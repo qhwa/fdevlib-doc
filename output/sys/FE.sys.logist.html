@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+        <title>FD.Member.LR</title>
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <link href="http://style.china.alibaba.com/css/sys/popsignin/loginreg.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="http://style.china.alibaba.com/css/sys/logist/logist.css">
+        <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v4/core/fdev-min.js"></script>
+    </head>
+    <body>
+        <div id="doc">
+            <div class="g-memo">
+                <h2>FD.Member.LR：统一登录/注册浮层</h2>
+                <h3>更新日志</h3>
+                <ul>
+                    <li>@update 2011.07.11 Fdev3版本入库</li>
+                    <li>@update 2011.07.20 Fdev4版本入库</li>
+                    <li>@update 钱汝峰 2011.11.22 修改登录接口，实现HTTPS登录</li>
+                    <li>@update 王昌彬 2012.02.03 测试环境和figo打通<span style="color:#f00;">（此脚本已部署在测试机上，测试环境下默认为开发环境，建议使用测试机搭环境，同时不建议再使用埋点传参的方式切换环境，浮层登录底层改造除外）</span></li>
+                    <li>@update 王昌彬 2012.03.05 fdev4浮层登录通过传参（详见调用方法）确认默认展开tab（新增功能，只有fdev4版本实现）</li>
+                </ul>
+            </div>
+            <div class="g-detail">
+                <h3>Fdev3版本使用说明</h3>
+                <p>提供统一登录和注册的功能，以浮层的方式展现。提供登录/注册成功的全自定义回调函数。</p>
+                <h3>css依赖</h3>
+                <pre class="brush:css">
+ImportJavscript.url("http://style.china.alibaba.com/css/sys/popsignin/loginreg.css");
+            </pre>
+                <h3>JS依赖</h3>
+                <pre class="brush:js">
+ImportJavscript.url("http://style.china.alibaba.com/js/common/aliclick.js");		
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/get-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/valid/valid-min.js");		
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/block/block-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/sys/popsignin/loginreg.js");
+            </pre>
+                <h3>调用方式</h3>
+                <pre class="brush:js">
+/**
+ * @paran {Object} 配置参数
+ * 默认配置
+ *	source: '',	调用必选配置！2011.07.11更新，提供调用页面的信息（就是传递给后台的joinfrom参数）。ex: 'detail'
+ *	showOverlay: true,	浮层是否有遮罩
+ *	onShow: null,	浮层出现后触发的回调函数，scope为FD.Member.LR
+ *	onLoginSuccess: function, 登录成功后的回调函数
+ *  onRegistSuccess: function, 注册成功后的回调函数
+ *  imgDomain: null, 验证码图片对应的域名，'http://checkcode.china.alibaba.com:8888'，非浮层登录底层改造，建议不传，使用测试机搭环境
+ *  aliDomain: null, 接口对应的域名，'http://exodus2.china.alibaba.com:2100'，同上
+ *  loginchinaDomain: null, 登录接口对应的域名，'https://loginchina-test.alibaba.com:3300'，同上
+ *	loginchinahttpDomain: null, getLastLoginType接口对应的域名，'http://loginchina-test.alibaba.com:3100'，同上
+ */				
+FD.Member.LR.show(options);
+//手动关闭浮层
+FD.Member.LR.hide();		
+			</pre>
+                <h3>Demo</h3>
+                <p>
+                    <button id="demo1">Fdev3</button>
+                </p>
+                <p>
+                    <pre class="brush:js">
+FD.Member.LR.show({
+    source: 'test'
+});
+				</pre>
+                </p>
+                <h3>Fdev4版本使用说明</h3>
+                <h3>css依赖</h3>
+                <pre class="brush:css">
+ImportJavscript.url("http://style.china.alibaba.com/css/sys/logist/logist-min.css");
+            </pre>
+                <h3>JS依赖</h3>
+                <pre class="brush:js">
+ImportJavscript.url("http://style.china.alibaba.com/js/common/aliclick.js");		
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v4/core/fdev-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/sys/logist/logist-min.js");
+            </pre>
+                <h3>调用方式</h3>
+                <pre class="brush:js">
+FE.sys.logist({
+	source: 'test',		//调用页面的来源
+    aliDomain: 'http://exodus2.china.alibaba.com:2100',    //ali主域名，也兼容之前版本的未带http协议的域名，非浮层登录底层改造，建议不传，使用测试机搭环境
+    loginchinaDomain: 'https://loginchina-test.alibaba.com:3300',    //登录域名，同上
+    loginchinahttpDomain:'http://loginchina-test.alibaba.com:3100',	//getLastLogintype域名，同上
+	imgDomain: 'http://checkcode.china.alibaba.com:8888',	//验证码域名，同上
+	tab: 'login',     // 默认展开的tab（'login':中文站登录、'regist':注册、'alipay':支付宝登录、'taobao':淘宝登录），如不传走老逻辑（有cookie登录，无注册）
+	onLoginSuccess: function(){		//登陆成功后回调函数
+		$.log(arguments);
+	},
+	onRegistSuccess: function(){	//注册成功后回调函数
+		$.log(arguments);
+	}
+});
+//手动关闭浮层的方法
+FE.sys.logist('close');
+			</pre>
+                <h3>Demo</h3>
+                <p>
+                    <button id="demo2">Fdev4</button>
+                    <button id="demo3">Fdev4中文站登录</button>
+                    <button id="demo4">Fdev4淘宝登录</button>
+                    <button id="demo5">Fdev4支付宝登录</button>
+                    <button id="demo6">Fdev4注册</button>
+                </p>
+                <p>
+                    <pre class="brush:js">
+FE.sys.logist({
+	source: 'test',		//调用页面的来源
+	//aliDomain: 'http://exodus2.china.alibaba.com:2100',	//ali主域名，也兼容之前版本的未带http协议的域名，非浮层登录底层改造，建议不传，使用测试机搭环境
+    //loginchinaDomain: 'https://loginchina-test.alibaba.com:3300',    //登录域名，同上
+    //loginchinahttpDomain:'http://loginchina-test.alibaba.com:3100',	//getLastLogintype域名，同上
+    //imgDomain: 'http://checkcode.china.alibaba.com:8888',    //验证码域名，同上
+    //tab: ['login','regist','alipay','taobao']    //默认展开tab
+	onLoginSuccess: function(){		//登陆成功后回调函数
+		$.log(arguments);
+	},
+	onRegistSuccess: function(){	//注册成功后回调函数
+		$.log(arguments);
+	}
+});
+				</pre>
+                </p>
+                <h3>提建议给开发者</h3>
+                作者：Denis
+                <br/>
+                邮件：<a href="mailto:danxia.shidx@alibaba-inc">danxia.shidx@alibaba-inc</a>
+                <br/>
+                旺旺：swainet（淘宝网）
+            </div>
+        </div>
+        <script src="http://style.china.alibaba.com/js/common/aliclick.js"></script>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/get-min.js"></script>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/valid/valid-min.js"></script>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/block/block-min.js"></script>
+        <script src="http://style.china.alibaba.com/js/sys/popsignin/loginreg.js"></script>
+        <script src="http://style.china.alibaba.com/js/sys/logist/logist.js"></script>
+        <script>
+            FYE.onDOMReady(function(){
+                FYE.on(FYG('demo1'), 'click', function(){
+                    FD.Member.LR.show({
+                        aliDomain: 'http://china.alibaba.com',
+                        source: 'test'
+                    });
+                });
+                (function($){
+                    $('#demo2').click(function(){
+                        $.use('util-debug', function(){
+                            FE.sys.logist({
+                                source: 'test', //调用页面的来源
+                                //aliDomain: 'http://exodus2.china.alibaba.com:2100',	//ali主域名
+                                //imgDomain: 'http://checkcode.china.alibaba.com:8888',	//验证码域名
+                                onLoginSuccess: function(){ //登陆成功后回调函数
+                                    $.log(arguments);
+                                },
+                                onRegistSuccess: function(){ //注册成功后回调函数
+                                    $.log(arguments);
+                                }
+                            });
+                        });
+                    });
+                    $('#demo3').click(function(){
+                        $.use('util-debug', function(){
+                            FE.sys.logist({
+                                source: 'test', //调用页面的来源
+                                //aliDomain: 'http://exodus2.china.alibaba.com:2100',	//ali主域名
+                                //imgDomain: 'http://checkcode.china.alibaba.com:8888',	//验证码域名
+                                tab: 'login',
+                                onLoginSuccess: function(){ //登陆成功后回调函数
+                                    $.log(arguments);
+                                },
+                                onRegistSuccess: function(){ //注册成功后回调函数
+                                    $.log(arguments);
+                                }
+                            });
+                        });
+                    });
+                    $('#demo4').click(function(){
+                        $.use('util-debug', function(){
+                            FE.sys.logist({
+                                source: 'test', //调用页面的来源
+                                //aliDomain: 'http://exodus2.china.alibaba.com:2100',	//ali主域名
+                                //imgDomain: 'http://checkcode.china.alibaba.com:8888',	//验证码域名
+                                tab: 'taobao',
+                                onLoginSuccess: function(){ //登陆成功后回调函数
+                                    $.log(arguments);
+                                },
+                                onRegistSuccess: function(){ //注册成功后回调函数
+                                    $.log(arguments);
+                                }
+                            });
+                        });
+                    });
+                    $('#demo5').click(function(){
+                        $.use('util-debug', function(){
+                            FE.sys.logist({
+                                source: 'test', //调用页面的来源
+                                //aliDomain: 'http://exodus2.china.alibaba.com:2100',	//ali主域名
+                                //imgDomain: 'http://checkcode.china.alibaba.com:8888',	//验证码域名
+                                tab: 'alipay',
+                                onLoginSuccess: function(){ //登陆成功后回调函数
+                                    $.log(arguments);
+                                },
+                                onRegistSuccess: function(){ //注册成功后回调函数
+                                    $.log(arguments);
+                                }
+                            });
+                        });
+                    });
+                    $('#demo6').click(function(){
+                        $.use('util-debug', function(){
+                            FE.sys.logist({
+                                source: 'test', //调用页面的来源
+                                //aliDomain: 'http://exodus2.china.alibaba.com:2100',	//ali主域名
+                                //imgDomain: 'http://checkcode.china.alibaba.com:8888',	//验证码域名
+                                tab: 'regist',
+                                onLoginSuccess: function(){ //登陆成功后回调函数
+                                    $.log(arguments);
+                                },
+                                onRegistSuccess: function(){ //注册成功后回调函数
+                                    $.log(arguments);
+                                }
+                            });
+                        });
+                    });
+                })(jQuery);
+            });
+        </script>
+    </body>
+</html>

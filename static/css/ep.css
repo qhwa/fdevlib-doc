@@ -1,0 +1,54 @@
+#doc{
+	width:952px;
+	overflow:hidden;
+	margin:0 auto;
+}
+#hd{
+	height:40px;
+	line-height:40px;
+}
+#bd{
+	margin:8px 0;
+}
+#ft{
+	text-align:right;
+	padding:8px 16px 0 0;
+	border-top:1px dashed #ccc;
+}
+h1{
+	font-size:16px;
+	font-weight:bold;
+	text-align:center;
+	color:#ff7300;
+}
+.layout{
+	margin-bottom:16px;
+	zoom:1;
+}
+.layout:after{
+	content:"\0020"; 
+	display:block; 
+	height:0; 
+	clear:both; 
+}
+.main{
+	width:352px;
+	float:left;
+	overflow:hidden;
+	margin-right:8px;
+}
+.sub{
+	width:592px;
+	float:left;
+}
+h2{
+	font-weight:bold;
+	margin-bottom:8px;
+}
+.clr { zoom:1; } 
+.clr:after { 
+	content:"\0020"; 
+	display:block; 
+	height:0; 
+	clear:both; 
+}

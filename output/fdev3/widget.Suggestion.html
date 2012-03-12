@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.Suggest</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+
+        <h2>suggestion组件</h2>
+        <p>根据用户输入的内容进行自动匹配，方便用户输入</p>
+        <h3>
+            更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-12-09 version 1.0 beta</li>
+        </ul>
+
+    </div>
+    <div class="g-detail">
+        <h3>
+            开始：</h3>
+        如果你想使用验证组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/get-min.js" type="text/javascript"); 
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/suggestion/suggestion-min.js");
+	    </pre>
+        <h3>
+            使用说明</h3>
+
+        <p>1、本组件对html没有特殊要求，只要是文本类型的input即可，通过id初始化即可
+		    <pre class="brush:html;">
+<input type="text" class="suggstionbox" id="suggestion"/>
+			</pre>
+		</p>
+        <p>2、默认是从http://suggest.china.alibaba.com/bin/suggest取数据，如果数据源不同，可以在参数里配置
+            <pre class="brush:js;">
+FD.widget.Suggest('suggestion','http://demo.china.alibaba.com/')
+        </pre>
+        </p>
+        <h3>
+            节点配置参数列表</h3>
+
+        <table class="g-paramtable">
+            <thead>
+                <tr>
+                    <th>配置参数</th>
+                    <th>参数可选值</th>
+                    <th>作用说明</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>containerClass</td>
+                    <td>String</td>
+                    <td>自定义提示层的 class</td>
+                </tr>
+
+                <tr class="even">
+                    <td>myParam</td>
+                    <td>String</td>
+                    <td>自定义参数，默认为空，组件只发送文本框里的值</td>
+                </tr>
+                <tr>
+                    <td>containerWidth</td>
+
+                    <td>String</td>
+                    <td>提示层的宽度，默认情况下，提示层的宽度和input输入框的宽度保持一致，示范取值："200px", "10%"等，必须带单位</td>
+                </tr>
+                <tr class="even">
+                    <td>resultFormat</td>
+                    <td>String</td>
+                    <td>result的格式，默认"约%result%条结果"</td>
+
+                </tr>
+                <tr>
+                    <td>showCloseBtn</td>
+                    <td>String</td>
+                    <td>是否显示关闭按钮</td>
+                </tr>
+                <tr class="even">
+
+                    <td>closeBtnText</td>
+                    <td>String</td>
+                    <td>关闭按钮上的文字</td>
+                </tr>
+                <tr>
+                    <td>useShim</td>
+                    <td>String</td>
+
+                    <td>是否需要iframe shim</td>
+                </tr>
+                <tr class="even">
+                    <td>autoFocus</td>
+                    <td>true | false</td>
+                    <td>初始化后，自动激活</td>
+                </tr>
+
+                <tr>
+                    <td>submitFormOnClickSelect</td>
+                    <td>true | false</td>
+                    <td>鼠标点击完成选择时，是否自动提交表单</td>
+                </tr>
+                <tr class="even">
+                    <td>varName</td>
+
+                    <td>String</td>
+                    <td>存放接口数据的变量名称</td>
+                </tr>
+                <tr>
+                    <td>leftOffset</td>
+                    <td>Number</td>
+                    <td>suggest层left偏移量修正</td>
+
+                </tr>
+                <tr class="even">
+                    <td>topOffset</td>
+                    <td>Number</td>
+                    <td>suggest层top偏移量修正</td>
+                </tr>
+                <tr>
+
+                    <td>timerDelay</td>
+                    <td>Number</td>
+                    <td>定时器的延时</td>
+                </tr>
+                <tr class="even">
+                    <td>showNum</td>
+                    <td>Number</td>
+
+                    <td>超过数目后显示滚动条,默认为0，表示不做限制</td>
+                </tr>
+                <tr>
+
+                    <td>titleLength</td>
+                    <td>Number</td>
+                    <td>匹配标题的字数限制，默认为0，不做限制</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>
+            Demo演示</h3>
+        这里为开发者展示了suggestion组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.Suggestion.html">example:Suggestion</a><br />
+        <h3>
+            提建议给开发者</h3>
+
+        作者：李晓东<br>
+        邮件：<a href="mailto:kevin.lixd@alibaba-inc.com">kevin.lixd@alibaba-inc.com</a><br>
+        旺旺：lxdwxf
+    </div>
+</body>
+</html>

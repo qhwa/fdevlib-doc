@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdev3.css.type</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>
+            type: 常用样式类集合</h2>
+        <p>type通过统一class名的方式提供了中文站页面上常用的样式集合。所有的class名都有一个代表全站公用的"fd-"的前缀。type文件中的class命名 是全站统一的，任何人不能在页面制作过程中对它进行修改或重载。 </p>
+        <h3>
+            更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010.07.28发布1.0 RC版</li>
+            <li>2010.08.06发布1.1 Beta版</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>
+            开始：</h3>
+        如果你想引用type，请在页面中加入以下片段:
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/type/type-min.css");
+	    </pre>
+        如果你引用的是fdevlib的css合集（包含type在内的所有css样式），请在页面中加入以下代码片段：
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/fdev.css");
+	    </pre>
+        <h3>
+            新特性：</h3>
+        <p>新版不兼容老版，作如下改变：
+            <ul>
+                <li>1、<strong>class名以fd-为前缀，统一标识，任何人不能在页面制作过程中对它进行修改或<span style="color:red;">重载</span></strong></li>
+                <li>2、去除文字相关样式</li>
+                <li><del>3、去除颜色相关样式，各产品线差异较大</del></li>
+                <li>3、去除颜色相关样式，保留gray色值</li>
+                <li>4、去除text-align相关样式</li>
+                <li>5、去除margin、padding清零相关样式</li>
+                <li>6、增加不允许左右存在浮动对象样式</li>
+                <li>7、增加显示为内联对象的样式</li>
+                <li>7、增加visibility相关样式</li>
+                <li>8、增加相对定位样式</li>
+                <li>9、增加人民币符号规范化样式</li>
+            </ul>
+        </p>
+        <h3>
+            代码：</h3>
+        <pre class="brush:css;">
+        /**
+         * type.css
+         * @version 20100806
+         */
+        /** 浮动相关 **/
+        .fd-left{
+            float:left;
+        }
+        .fd-right{
+            float:right;
+        }
+        .fd-clear{
+            clear:both;
+        }
+        .fd-clr{
+            zoom:1;
+        }
+        .fd-clr:after{
+            display:block;
+            clear:both;
+            height:0;
+            content:"\0020";
+        }
+        /** 显示相关 **/
+        .fd-hide{
+            display:none;
+        }
+        .fd-show{
+            display:block;
+        }
+        .fd-inline{
+            display:inline;
+        }
+        .fd-lump{
+            display:inline-block; 
+            display:-moz-inline-stack;
+            zoom:1; 
+            *display:inline;
+        }
+        /** 对象相关 **/
+        .fd-visible{
+            visibility:visible;
+        }
+        .fd-hidden{
+            visibility:hidden;
+        }
+        /** 定位相关 **/
+        .fd-locate{
+            position:relative;
+        }
+        /**
+         * 人民币符号
+         * 使用方法：<span class="fd-cny">&amp;yen;</span>
+         */
+        .fd-cny{
+            font-family:Helvetica,Arial;
+        }
+        /** 文字相关 **/
+        .fd-gray{
+            color:#666;
+        }
+        .fd-bold{
+            font-weight:700;
+        }
+        </pre>
+        <h3>
+            提建议给开发者</h3>
+        作者：Edgar<br />
+        邮件：<a href="mailto:mail@edgarhoo.net">mail@edgarhoo.net</a><br />
+        旺旺：edgarhoo（中文站）
+    </div>
+</body>
+</html>

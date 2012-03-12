@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>jQuery.ui.timer</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet">
+    <style>
+        #timer2 div{
+            float: left;
+        }
+        #timer2 dl,#timer2 dd{
+            margin:0;
+            padding:0;
+        }
+    </style>
+</head>
+<body>
+    <div id="doc">
+        <h1>ui-timer : 计时器</h1>
+        
+        <h2>Demo 1 文字模式</h2>
+        <div id="demo1">
+            <p id="timer1">
+                <span class="year"></span>年
+                <span class="month"></span>月
+                <span class="day"></span>天
+                <span class="hour"></span>小时
+                <span class="minute"></span>分钟
+                <span class="second"></span>秒
+            </p>
+            <pre class="prettyprint language-html">
+&lt;!--HTML--&gt;
+&lt;p id="timer1"&gt;
+    &lt;span class="year"&gt;&lt;/span&gt;年
+    &lt;span class="month"&gt;&lt;/span&gt;月
+    &lt;span class="day"&gt;&lt;/span&gt;天
+    &lt;span class="hour"&gt;&lt;/span&gt;小时
+    &lt;span class="minute"&gt;&lt;/span&gt;分钟
+    &lt;span class="second"&gt;&lt;/span&gt;秒
+&lt;/p&gt;</pre>
+            <pre class="prettyprint language-js">
+/* Javascript */
+jQuery(function($){
+    $.use("ui-timer",function(){
+        $("#timer1").timer({
+            to: new Date(2020, 7, 5, 12, 12, 12)
+        });
+    });
+});</pre>
+        </div>
+
+        <h2>Demo 2 图片模式</h2>
+        <div id="demo2">
+            <div id="timer2" class="fd-clr">
+                <div class="year"></div><div>年</div>
+                <div class="month"></div><div>月</div>
+                <div class="day"></div><div>天</div>
+                <div class="hour"></div><div>小时</div>
+                <div class="minute"></div><div>分钟</div>
+                <div class="second"></div><div>秒</div>
+            </div>
+            <pre class="prettyprint language-html">
+&lt;!--HTML--&gt;
+&lt;div id="timer2"&gt;
+    &lt;div class="year"&gt;&lt;/div&gt;&lt;div&gt;年&lt;/div&gt;
+    &lt;div class="month"&gt;&lt;/div&gt;&lt;div&gt;月&lt;/div&gt;
+    &lt;div class="day"&gt;&lt;/div&gt;&lt;div&gt;天&lt;/div&gt;
+    &lt;div class="hour"&gt;&lt;/div&gt;&lt;div&gt;小时&lt;/div&gt;
+    &lt;div class="minute"&gt;&lt;/div&gt;&lt;div&gt;分钟&lt;/div&gt;
+    &lt;div class="second"&gt;&lt;/div&gt;&lt;div&gt;秒&lt;/div&gt;
+&lt;/div&gt;</pre>
+            <pre class="prettyprint language-js">
+/* Javascript */
+jQuery(function($){
+    // 加载图片模式所需要的图片样式
+    $.loadCSS('http://'+ $.styleDomain + '/css/lib/fdev-v4/widget/ui/timer-min.css');
+    $.use("ui-timer",function(){
+        $("#timer2").timer({
+            animate: true,
+            to: new Date(2020, 7, 5, 12, 12, 12)
+        });
+    });
+});</pre>
+        </div>
+    </div>
+    <script src="../../static/js/app-merge.js"></script> 
+    <script>
+        /* Demo 1 */
+        jQuery(function($){
+            $.use("ui-timer",function(){
+                $("#timer1").timer({
+                    to: new Date(2020, 7, 5, 12, 12, 12)
+                });
+            });
+        });
+
+        /* Demo 2 */
+        jQuery(function($){
+            // 加载图片模式所需要的图片样式
+            $.loadCSS('http://'+ $.styleDomain + '/css/lib/fdev-v4/widget/ui/timer-min.css');
+            $.use("ui-timer",function(){
+                $("#timer2").timer({
+                    animate: true,
+                    to: new Date(2020, 7, 5, 12, 12, 12)
+                });
+            });
+        });
+    </script>
+</body>
+</html>

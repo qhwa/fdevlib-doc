@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=GBk" />
+        <title>fdevlib-example: Flash</title>
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev4.js">
+        </script>
+    </head>
+    <body>
+        <div id="doc" class="w952">
+            <div id="header">
+                <h1>Flash</h1>
+            </div>
+            <div id="content">
+                <div id="demo1" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush:js;">
+jQuery(function($){
+    $.use('ui-flash,util-debug', function(){
+        $('div.grid-sub div', '#demo1').flash({
+            swf: '/fdevlib/static/flash/test_flashvars.swf',
+            flashvars: {
+                name1: 'jQuery',
+                name2: 'jQuery.ui.flash',
+                name3: 'widget'
+            }
+        });
+    });
+});
+                        	</pre>
+                            <div class="dialog">
+                                <h3>Demo1</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>1、简单应用</h3>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo2" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush:js;">
+/*
+ *	绑定（登录 https://loginchina-test.alibaba.com:3300/member/signin.htm 帐号：djtest190 密码：1111112）：
+ *	10.20.136.129	picman.china.alibaba.com #20200
+ *	10.20.141.148	loginchina-test.alibaba.com #3300 
+ */                                	
+jQuery(function($){
+    $.use('ui-flash-uploader,util-debug', function(){
+        $('div.grid-sub div', '#demo2').flash({
+            module: 'uploader'
+        }).bind('fileSelect.flash', function(e, o){
+            $(this).flash('uploadAll', 'http://picman.china.alibaba.com:20200/album/ajax/image_upload_ajax.json', {
+                drawTxt: true,
+                albumId: '15801026',
+                _csrf_token: 'test',
+                source: 'offer_detail'
+            });
+        }).bind('uploadCompleteData.flash', function(e, o){
+            var data = o.data || {};
+            if (typeof data === 'string') {
+                data = $.parseJSON(data);
+            }
+            //上传成功
+            if (data.result === 'success') {
+                $.log("success");
+                return;
+            }
+        });
+    });
+});
+                        	</pre>
+                            <div class="dialog">
+                                <h3>Demo2</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>2、上传组件</h3>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo3" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush:js;">
+jQuery(function($){
+	$.use('ui-flash-chart', function(){
+        var chart = $('div.grid-sub div', '#demo3').flash({
+            module: 'chart',
+            type: 'line',
+            width: 390,
+            height: 300,
+            flashvars: {
+                cssUrl: 'http://' + location.host + '/fdevlib/static/css/examples/line.css'
+            }
+        }).bind('swfReady.flash', function(){
+            $.log('swfReady');
+            $(this).flash('load', 'http://' + location.host + '/fdevlib/static/xml/examples/line.xml');
+        }).bind('load_start.flash', function(){
+            $.log('load_start');
+        });
+        
+        $('button', '#demo3').toggle(function(){
+            chart.flash('setDatasetVisibility', 1, false);
+        }, function(){
+            chart.flash('setDatasetVisibility', 1, true);
+        });		
+    });
+});
+                        	</pre>
+                            <div class="dialog">
+                                <h3>Demo3</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>3、YID组件--线状图</h3>
+                        <button type="button">Toggle B 公司!</button>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                —— 阿里巴巴中文站前端开发团队
+            </div>
+        </div>
+        <script>
+            //Dom树构建完毕后开始执行
+            jQuery(function($){
+                $.use('ui-flash-uploader,ui-flash-chart,util-debug', function(){
+                    $('div.grid-sub div', '#demo1').flash({
+                        swf: '/fdevlib/static/flash/test_flashvars.swf',
+                        flashvars: {
+                            name1: 'jQuery',
+                            name2: 'jQuery.ui.flash',
+                            name3: 'widget'
+                        }
+                    });
+                    
+                    
+                    $('div.grid-sub div', '#demo2').flash({
+                        module: 'uploader'
+                    }).bind('fileSelect.flash', function(e, o){
+                        $(this).flash('uploadAll', 'http://picman.china.alibaba.com:20200/album/ajax/image_upload_ajax.json', {
+                            drawTxt: true,
+                            albumId: '15801026',
+                            _csrf_token: 'test',
+                            source: 'offer_detail'
+                        });
+                    }).bind('uploadCompleteData.flash', function(e, o){
+                        var data = o.data || {};
+                        if (typeof data === 'string') {
+                            data = $.parseJSON(data);
+                        }
+                        //上传成功
+                        if (data.result === 'success') {
+                            $.log("success");
+                            return;
+                        }
+                    });
+                    
+                    var chart = $('div.grid-sub div', '#demo3').flash({
+                        module: 'chart',
+                        type: 'line',
+                        width: 390,
+                        height: 300,
+                        flashvars: {
+                            cssUrl: 'http://' + location.host + '/fdevlib/static/css/examples/line.css'
+                        }
+                    }).bind('swfReady.flash', function(){
+                        $.log('swfReady');
+                        $(this).flash('load', 'http://' + location.host + '/fdevlib/static/xml/examples/line.xml');
+                    }).bind('load_start.flash', function(){
+                        $.log('load_start');
+                    });
+                    
+                    $('button', '#demo3').toggle(function(){
+                        chart.flash('setDatasetVisibility', 1, false);
+                    }, function(){
+                        chart.flash('setDatasetVisibility', 1, true);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

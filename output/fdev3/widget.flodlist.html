@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="gbk" /> 
+    <title>Widget.FlodList</title> 
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet" type="text/css" /> 
+    <script src="/fdevlib/static/js/merge-fdev3.js" type="text/javascript"></script> 
+</head> 
+<body> 
+    <div class="g-memo"> 
+        <h2>FlodList：折叠菜单</h2> 
+        <p>非常简单实用的折叠功能，可以实现无限级树形菜单等常见的效果。</p> 
+        <h3>更新日志</h3> 
+        <ul class="update-histroy"> 
+            <li>2010-7-1 发布1.0 beta版本</li> 
+        </ul> 
+    </div> 
+    <div class="g-detail"> 
+        <h3>开始：</h3> 
+        如果你想使用flodlist组件，请在页面中加入以下片段:
+        <pre class="brush:html;"> 
+			<script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js"></script>
+			<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/flodlist/flodlist-min.js"></script>
+	    </script> 
+        <h3>使用说明</h3> 
+        <p>1、本组件对结构没有太多需求(绝大多数情况下都是列表结构)，但需要设定对应的className。具体要求为最外层有一个容器的id。然后有触点class
+        名“<strong>triggerClass</strong>”和对应内容的class名“<strong>contentClass</strong>”。其中内容元素应该是触点元素的下一个兄弟元素。如下所示：</p> 
+        <pre class="brush:html;"> 
+			<div id="flodlist">
+				<h2 class="f-trigger">标题</h2>
+				<ul class="f-content">
+					<li>
+						<h3 class="f-trigger">段落1</h3>
+						<ul class="f-content">
+							<li>内容1.1</li>
+							<li>内容1.2</li>
+							<li>内容1.3</li>
+							<li>内容1.4</li>
+						</ul>
+					</li>
+					<li>
+						<h3 data-flag="f2" class="f-trigger">段落2</h3>
+						<ul class="f-content">
+							<li>内容2.1</li>
+							<li>
+								<h4 data-flag="f22" class="f-trigger">内容2.2</h4>
+								<ul class="f-content">
+									<li>内容2.2.1</li>
+									<li>内容2.2.2</li>
+									<li>内容2.2.3</li>
+								</ul>
+							</li>
+							<li>内容2.3</li>
+							<li>内容2.4</li>
+						</ul>
+					</li>
+					<li>段落3</li>
+					<li>段落4</li>
+				</ul>
+			</div>
+	    </script> 
+	    </p> 
+	    <p>2、调用组件时，只需要初始化FlodList对象即可。其中第一个参数为容器的id，第二个参数为配置对象。</p>
+	    <pre class="brush:js;"> 
+	    	var flodlist = new FD.widget.FlodList('flodlist');
+	    </script>
+	    <p>3、当你同级只允许出现一个展开的对象时，只需要在配置参数中设置multiExpand为false即可。</p>
+	    <pre class="brush:js;"> 
+	    	var flodlist = new FD.widget.FlodList('flodlist', {multiExpand: false});
+	    </script>
+	    <p>4、在某些情况下你可能需要指定某个对象展开。这是你需要为该对象的触点(trigger)设置<strong> data-flag </strong>属性，属性的值为你调用方法时需要
+	    传递的参数。</p>
+	    <pre class="brush:js;"> 
+	    	var flodlist = new FD.widget.FlodList('flodlist');
+	    	flodlist.getFlag('f22');
+	    </script>
+        <h3>配置参数列表</h3> 
+        <table class="g-paramtable"> 
+        	<thead> 
+	        	<tr> 
+	        		<th>配置参数</th><th>参数可选值</th><th>作用说明</th> 
+	        	</tr> 
+	        </thead> 
+	        <tbody> 
+	        	<tr> 
+        			<td>triggerClass</td><td>Object</td><td>触点的className，默认为f-trigger。</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>contentClass</td><td>String</td><td>折叠内容的className，默认为f-content。</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>expandClass</td><td>String</td><td>展开后触点展示的className，默认为f-expand。</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>collapseClass</td><td>String</td><td>折叠后触点展示的className，默认为f-collapse。</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>showType</td><td>block | inline</td><td>折叠内容的display形式，默认为block。</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>multiExpand</td><td>true | false</td><td>是否允许同时展开多个同级的内容，默认为true。</td> 
+        		</tr> 
+        	</tbody> 
+        </table> 
+        <h3>对象方法列表</h3> 
+       	<table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>方法名称</th><th>参数说明</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+	        		<td>.expand(trigger)</td><td>Object:触发对象</td><td>展开内容</td>
+	        	</tr>
+	        	<tr class="even">
+	        		<td>.collapse(trigger)</td><td>Object:触发对象</td><td>折叠内容</td>
+	        	</tr>
+	        	<tr>
+	        		<td>.expandAll()</td><td>/</td><td>全部展开</td>
+	        	</tr>
+	        	<tr class="even">
+	        		<td>.collapseAll()</td><td>/</td><td>全部折叠</td>
+	        	</tr>
+	        	<tr>
+	        		<td>.getFlag(flag)</td><td>String: trigger的data-flag属性</td><td>展开指定的某一个对象</td>
+	        	</tr>
+	        </tbody>
+        </table>
+        <h3>Demo演示</h3>
+        这里为开发者展示了FlodList组件的种种用法：<a target="_blank" href="../examples/Widget.FlodList.html">example: FlodList</a>
+        <h3>提建议给开发者</h3>
+        作者：姚升亮<br />
+        邮件：<a href="mailto:shengliang.yaosl@alibaba-inc.com">shengliang.yaosl@alibaba-inc.com</a><br />
+        旺旺：yaosl1984
+    </div> 
+</body> 
+</html> 

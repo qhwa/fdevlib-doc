@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: CountDowner</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="http://style.china.alibaba.com/css/fdevlib/widget/countdown.css?t=123" media="screen" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style>
+        .ep-CountDowner { width: 340px; height: 150px; overflow: hidden; float: left;}
+
+    </style>
+</head>
+<body>
+	<div id="doc">
+		<div id="hd">
+			<h1>fdevlib-example: CountDowner（倒计时、正计时）</h1>
+		</div>
+		<div id="bd">
+			<div class="layout">
+				<div class="main">
+					<h2>1、倒计时，设置了topBound:2 即最高单位为天；cdstep:2 即两秒跳动一次（离世界末日还剩下） </h2>
+					<div class="ep-CountDowner clr">
+						<div class="countDown"  id="ctdn1">
+							<span class="cd-day">
+								0
+							</span>天
+							<span class="cd-hour">
+								0
+							</span>小时
+							<span class="cd-minute">
+								0
+							</span>分钟
+							<span class="cd-second">
+								0 
+							</span>秒
+						</div>
+					
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						<div class="countDown"  id="ctdn1">
+							<span class="cd-day">
+								0
+							</span>天
+							<span class="cd-hour">
+								0
+							</span>小时
+							<span class="cd-minute">
+								0
+							</span>分钟
+							<span class="cd-second">
+								0 
+							</span>秒
+						</div>
+
+						var ctdn1 = FD.widget.CountDowner.init('ctdn1',{countUp:0,outputType:0,nowTime:new Date(),desTime:new Date('2012','0','1','0','0','0'),cdStep:2,topBound:2});
+
+					</pre>
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>2、倒计时，使用了默认的css，并配置参数effect:'scroll'</h2>
+					<div class="ep-CountDowner clr">
+						<div class="countDown"  id="ctdn2">
+							<div class="cd-day">
+								0
+							</div><div style="float:left">天</div>
+							<div class="cd-hour">
+								0
+							</div><div style="float:left">：</div>
+							<div class="cd-minute">
+								0
+							</div><div style="float:left">：</div>
+							<div class="cd-second">
+								0 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						<div class="countDown"  id="ctdn2">
+							<div class="cd-day">
+								0
+							</div><div style="float:left">天</div>
+							<div class="cd-hour">
+								0
+							</div><div style="float:left">：</div>
+							<div class="cd-minute">
+								0
+							</div><div style="float:left">：</div>
+							<div class="cd-second">
+								0 
+							</div>
+						</div>
+
+						var ctdn2 = FD.widget.CountDowner.init('ctdn2',{countUp:0,outputType:1,effect:'scroll',nowTime:new Date(),desTime:new Date('2012','0','1','0','0','0'),cdStep:2,topBound:2});
+					</pre>				
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>3、正计时</h2>
+					<div class="ep-CountDowner clr">
+						<div class="countDown"  id="ctdn3">
+							<span class="cd-year">
+								0
+							</span>年
+							<span class="cd-month">
+								0
+							</span>月
+							<span class="cd-day">
+								0
+							</span>日
+							<span class="cd-hour">
+								0
+							</span>小时
+							<span class="cd-minute">
+								0
+							</span>分钟
+							<span class="cd-second">
+								0 
+							</span>秒
+						</div>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						<div class="countDown"  id="ctdn3">
+							<span class="cd-year">
+								0
+							</span>年
+							<span class="cd-month">
+								0
+							</span>月
+							<span class="cd-day">
+								0
+							</span>日
+							<span class="cd-hour">
+								0
+							</span>小时
+							<span class="cd-minute">
+								0
+							</span>分钟
+							<span class="cd-second">
+								0 
+							</span>秒
+						</div>
+
+						var ctdn3 = FD.widget.CountDowner.init('ctdn3',{countUp:1,outputType:0,nowTime:new Date(),cdStep:1});
+					</pre>				
+				</div>			
+			</div>
+			
+		</div>
+		<div id="ft">
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/animation-min.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/time/countdowner-min.js"></script>  
+	<script>
+	//Dom树构建完毕后开始执行
+	$E.onDOMReady(function(){
+		dp.SyntaxHighlighter.HighlightAll('code');	//代码高亮
+		var ctdn1 = FD.widget.CountDowner.init('ctdn1',{countUp:0,outputType:0,nowTime:new Date(),desTime:new Date('2012','0','1','0','0','0'),cdStep:2,topBound:2});
+		var ctdn2 = FD.widget.CountDowner.init('ctdn2',{countUp:0,outputType:1,effect:'scroll',nowTime:new Date(),desTime:new Date('2012','0','1','0','0','0'),cdStep:2,topBound:2});
+		var ctdn3 = FD.widget.CountDowner.init('ctdn3',{countUp:1,outputType:0,nowTime:new Date(),cdStep:1});
+	});
+	</script>
+</body>
+</html>

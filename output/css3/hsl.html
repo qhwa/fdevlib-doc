@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+	<title>color: HSL</title>
+    <meta name="description" content="阿里巴巴批发大市场"/>
+    <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+	<link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+    <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<base target="_blank" />
+</head>
+<body>
+    <div class="g-memo">
+        <h2>HSL color values</h2>
+    </div>
+    <div class="g-detail">
+        <h3>定义：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>color: hsla(H,S,L)</u></i></th>
+            </tr>
+            <tr>    
+                <td rowspan="3"><span>值:</span></td>
+                <td><span class="ml8 mr8">H : hue(色度); 角度，0(或360)表示红色，120表示绿色，240表示蓝色</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">S : saturation(饱和度); 取值为0%到100%之间的值</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">L : lightness(亮度); 取值为0%到100%之间的值</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="g-detail">
+        <h3>浏览器兼容性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+            <tr>
+                <th align="left" width="56"><strong>浏览器</strong></th>
+                <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+            </tr>
+            <tr>
+                <td>兼容性</td>
+                <td><span class="positive">(√)chrome 5+</span></td>
+                <td><span class="positive">(√)firefox 3.6+</span></td>
+                <td><span class="positive">(√)opera 10.6+</span></td>
+                <td><span class="positive">(√)safari 5+</span></td>
+                <td><span class="negative">(×)IE6-8; IE9 unverified</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>HSL色彩模式是工业界的一种颜色标准，是通过对色调(H)、饱和度(S)、亮度(L)三个颜色通道的变化以及它们相互之间的叠加来得到各式各样的颜色的，HSL即是代表色调，饱和度，亮度三个通道的颜色，这个标准几乎包括了人类视力所能感知的所有颜色，是目前运用最广的颜色系统之一。</p>
+    </div>
+    <div class="g-detail">
+        <h3>例子：</h3>
+        <h4>当前浏览器显示效果：</h4>
+        <div class="show">
+            <p class="red">我是红色的。</p>
+            <p class="lime">我是黄绿色的</p>
+            <p class="dark-green">我是深绿色的</p>
+            <p class="light-green">我是浅绿色的</p>
+            <p class="pastel-green">我是崧蓝绿色的</p>
+        </div>
+        <style type="text/css">
+            .show { padding:10px; width:500px; }
+            .show .red { color: hsl(0, 100%, 50%); }
+            .show .lime { color: hsl(120, 100%, 50%); }
+            .show .dark-green { color: hsl(120, 100%, 25%); }
+            .show .light-green { color: hsl(120, 100%, 75%); }
+            .show .pastel-green { color: hsl(120, 75%, 75%); }
+        </style>
+        <h4>chrome效果截图：</h4>
+        <img class="example-img" src="/fdevlib/static/img/css3/hsl.PNG" alt="chrome效果截图" />
+        <h4>code:</h4>
+        <pre class="brush:html">
+        &lt;div class="show"&gt;
+            &lt;p class="red"&gt;我是红色的。&lt;/p&gt;
+            &lt;p class="lime"&gt;我是黄绿色的&lt;/p&gt;
+            &lt;p class="dark-green"&gt;我是深绿色的&lt;/p&gt;
+            &lt;p class="light-green"&gt;我是浅绿色的&lt;/p&gt;
+            &lt;p class="pastel-green"&gt;我是崧蓝绿色的&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;style type="text/css"&gt;
+            .show { padding:10px; width:500px; }
+            .show .red { color: hsl(0, 100%, 50%); }
+            .show .lime { color: hsl(120, 100%, 50%); }
+            .show .dark-green { color: hsl(120, 100%, 25%); }
+            .show .light-green { color: hsl(120, 100%, 75%); }
+            .show .pastel-green { color: hsl(120, 75%, 75%); }
+        &lt;/style&gt;
+            
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>相关文档：</h3>
+        <ul>
+            <li><a href="http://www.w3.org/TR/css3-color/#hsl-color" title="w3c Working Draft">CSS Color Module Level 3 (w3c Working Draft)</a></li>
+            <li><a href="http://www.findmebyip.com/litmus" title="HTML5 & CSS support">HTML5 &amp; CSS support</a></li>
+        </ul>
+    </div>
+</body>
+</html>

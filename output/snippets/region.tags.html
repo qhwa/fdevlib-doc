@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Tags</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .tags-a { width: 300px; line-height: 1; overflow: hidden; background-color:#EEF3FA; }
+        .tags-a a { display:inline-block; margin: 4px 0 1px -1px; padding: 0 8px 2px; border-left: solid 1px #CCC; word-break: keep-all; padding-bottom:0\9; *padding-top:1px; *padding-bottom:1px; }
+        .tags-a .l { font-size:16px; }
+        .tags-a .m { font-size:14px; }
+        .tags-b { width: 300px; line-height: 1; overflow: hidden; background-color:#EEF3FA; }
+        .tags-b dt { font-weight:bold; }
+        .tags-b dt a { color:#2B91AF; }
+        .tags-b a { display:inline-block; margin: 4px 0 1px -1px; padding: 0 8px 2px; border-left: solid 1px #CCC; word-break: keep-all; padding-bottom:0\9; *padding-top:1px; *padding-bottom:1px; }
+        .tags-b .l { font-size:16px; }
+        .tags-b .m { font-size:14px; }
+    </style>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Tags：标签云</h2>
+    </div>
+    <div class="g-detail">
+        <h3>tags-a：非定宽类目标签云 </h3>
+        <div class="g-demo">
+            <div class="tags-a fd-clr" data-sp="tags-a">
+                <a class="l" href="javascript:;">大标签</a>
+                <a href="javascript:;">标签二</a>
+                <a href="javascript:;">标签名三</a>
+                <a href="javascript:;">标签名称四</a>
+                <a href="javascript:;">标签</a>
+                <a class="m" href="javascript:;">中标签</a>
+                <a class="l" href="javascript:;">大标签</a>
+                <a href="javascript:;">标签名八</a>
+                <a href="javascript:;">标签名称九</a>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <div class="tags-a fd-clr" data-sp="tags-a">
+                <a class="l" href="javascript:;">大标签</a>
+                <a href="javascript:;">标签二</a>
+                <a href="javascript:;">标签名三</a>
+                <a href="javascript:;">标签名称四</a>
+                <a href="javascript:;">标签</a>
+                <a class="m" href="javascript:;">中标签</a>
+                <a class="l" href="javascript:;">大标签</a>
+                <a href="javascript:;">标签名八</a>
+                <a href="javascript:;">标签名称九</a>
+            </div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        /*tags-a begin*/
+        .tags-a { width: 300px; line-height: 1; overflow: hidden; background-color:#EEF3FA; }
+        .tags-a a { display:inline-block; margin: 4px 0 1px -1px; padding: 0 8px 2px; border-left: solid 1px #CCC; word-break: keep-all; padding-bottom:0\9; *padding-top:1px; *padding-bottom:1px; }
+        .tags-a .l { font-size:16px; }
+        .tags-a .m { font-size:14px; }
+        /*tags-a end*/
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>tags-b：非定宽、分级类目标签云 </h3>
+        <div class="g-demo">
+            <dl class="tags-b fd-clr" data-sp="tags-b">
+                <dt>
+                    <a href="javascript:;">标签名三</a>
+                    <a href="javascript:;">标签名称四</a>
+                    <a href="javascript:;">标签</a>
+                    <a class="m" href="javascript:;">中标签</a>            
+                </dt>
+                <dd>                
+                    <a class="l" href="javascript:;">大标签</a>
+                    <a href="javascript:;">标签二</a>
+                    <a href="javascript:;">标签名三</a>
+                    <a href="javascript:;">标签名称四</a>
+                    <a href="javascript:;">标签</a>
+                    <a class="m" href="javascript:;">中标签</a>
+                    <a class="l" href="javascript:;">大标签</a>
+                    <a href="javascript:;">标签名八</a>
+                    <a href="javascript:;">标签名称九</a>
+                </dd>
+            </dl>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <dl class="tags-b fd-clr" data-sp="tags-b">
+                <dt>
+                    <a href="javascript:;">标签名三</a>
+                    <a href="javascript:;">标签名称四</a>
+                    <a href="javascript:;">标签</a>
+                    <a class="m" href="javascript:;">中标签</a>            
+                </dt>
+                <dd>                
+                    <a class="l" href="javascript:;">大标签</a>
+                    <a href="javascript:;">标签二</a>
+                    <a href="javascript:;">标签名三</a>
+                    <a href="javascript:;">标签名称四</a>
+                    <a href="javascript:;">标签</a>
+                    <a class="m" href="javascript:;">中标签</a>
+                    <a class="l" href="javascript:;">大标签</a>
+                    <a href="javascript:;">标签名八</a>
+                    <a href="javascript:;">标签名称九</a>
+                </dd>
+            </dl>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .tags-b { width: 300px; line-height: 1; overflow: hidden; background-color:#EEF3FA; }
+        .tags-b dt { font-weight:bold; }
+        .tags-b dt a { color:#2B91AF; }
+        .tags-b a { display:inline-block; margin: 4px 0 1px -1px; padding: 0 8px 2px; border-left: solid 1px #CCC; word-break: keep-all; padding-bottom:0\9; *padding-top:1px; *padding-bottom:1px; }
+        .tags-b .l { font-size:16px; }
+        .tags-b .m { font-size:14px; }
+        </pre>
+    </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.flash.uploader</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+        <style>
+            #demo2 input {
+                height: 32px;
+                font-size: 50px;
+            }
+            #demo2 a.ui-state-hover {
+                background-position: 0 -32px;
+            }
+            
+            #demo2 a.ui-state-active {
+                background-position: 0 -64px;
+            }
+            
+            #demo2 .ui-flash-disabled a {
+                background-position: 0 -96px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-flash-uploader : uploader上传组件</h1>
+            <h2>Demo运行之前</h2>
+            <ul>
+                <li>
+                    需要绑定host
+                    <pre class="prettyprint">
+10.20.136.129    picman-test.china.alibaba.com #40100
+10.20.141.148    loginchina-test.alibaba.com #3300
+10.20.141.151    test.img.china.alibaba.com</pre>
+                </li>
+                <li>
+                    需要登录测试环境: <a href="https://loginchina-test.alibaba.com:3300/member/signin.htm" target="_blank">https://loginchina-test.alibaba.com:3300/member/signin.htm</a> 帐号：djtest190 密码：1111112
+                </li>
+            </ul>
+            <h2>单个文件上传功能</h2>
+            <div id="demo1">
+            </div>
+            <div id="result1">
+            </div>
+            <pre class="prettyprint language-js">
+$.use('ui-flash-uploader', function(){
+    $('#demo1').flash({
+        module: 'uploader'
+    }).bind('fileSelect.flash', function(e, o){
+        $(this).flash('uploadAll', 'http://picman-test.china.alibaba.com:40100/album/ajax/image_upload_ajax.json', {
+            drawTxt: true,
+            albumId: '15801026',
+            _csrf_token: 'test',
+            source: 'offer_detail'
+        });
+    }).bind('uploadCompleteData.flash', function(e, o){
+        var data = o.data || {};
+        if (typeof data === 'string') {
+            data = $.parseJSON(data);
+        }
+        //上传成功
+        if (data.result === 'success') {
+            var img = new Image();
+            img.src = data.miniImgUrls;
+            $('#result1').html(img);
+        }
+    });
+});</pre>
+            <h2>指定文件类型+上传进度信息+支持多文件上传(仅Flash实现模式下可实现多文件上传，请在安装了flash版本10以上的IE浏览器下运行本Demo)</h2>
+            <div id="demo2">
+            </div>
+            <div id="result2">
+            </div>
+            <pre class="prettyprint language-css">
+#demo2 input {
+    height: 32px;
+    font-size: 50px;
+}
+#demo2 a.ui-state-hover {
+    background-position: 0 -32px;
+}
+
+#demo2 a.ui-state-active {
+    background-position: 0 -64px;
+}
+
+#demo2 .ui-flash-disabled a {
+    background-position: 0 -96px !important;
+}                
+            </pre>
+            <pre class="prettyprint language-js">
+$.use('ui-flash-uploader', function(){
+    $('#demo2').flash({
+        swf: 'http://img.china.alibaba.com/swfapp/aliuploader/aliuploader-v2.8.swf',
+        width: 160,
+        height: 32,
+        module: 'uploader',
+        flashvars: {
+            allowCompress: true,
+            allowMultiple: true,
+            fileNumLimit: 3,
+            buttonSkin: 'http://img.china.alibaba.com/images/common/icon_v02/upload1.png'
+        }                    
+    }).bind('fileSelect.flash', function(e, o){
+        $(this).flash('uploadAll', 'http://picman-test.china.alibaba.com:40100/album/ajax/image_upload_ajax.json', {
+            drawTxt: true,
+            albumId: '15801026',
+            _csrf_token: 'test',
+            source: 'offer_detail'
+        });
+        $(this).triggerHandler('progress');
+    }).bind('progress.flash', function(){
+        var fileStatus = $(this).flash('getFileStatus');
+        $.each(fileStatus, function(i, file){
+            $.log(file.name);
+            switch (file.status) {
+                case 'ready':
+                    $.log('准备就绪！');
+                    break;
+                case 'done':
+                    $.log('上传成功！');
+                    break;
+                case 'uploading':
+                    $.log('正在上传！');
+                    break;
+            }
+        });
+    }).bind('uploadCompleteData.flash', function(e, o){
+        var data = o.data || {};
+        if (typeof data === 'string') {
+            data = $.parseJSON(data);
+        }
+        //上传成功
+        if (data.result === 'success') {
+            var img = new Image();
+            img.src = data.miniImgUrls;
+            $('#result2').append(img);
+        }
+        $(this).triggerHandler('progress');
+    }).bind('finish.flash', function(e){
+        $(this).triggerHandler('progress');
+    });
+});</pre>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($){
+                $.use('ui-flash-uploader, util-debug', function(){
+                    $('#demo1').flash({
+                        module: 'uploader'
+                    }).bind('fileSelect.flash', function(e, o){
+                        $(this).flash('uploadAll', 'http://picman-test.china.alibaba.com:40100/album/ajax/image_upload_ajax.json', {
+                            drawTxt: true,
+                            albumId: '15801026',
+                            _csrf_token: 'test',
+                            source: 'offer_detail'
+                        });
+                    }).bind('uploadCompleteData.flash', function(e, o){
+                        var data = o.data || {};
+                        if (typeof data === 'string') {
+                            data = $.parseJSON(data);
+                        }
+                        //上传成功
+                        if (data.result === 'success') {
+                            var img = new Image();
+                            img.src = data.miniImgUrls;
+                            $('#result1').html(img);
+                        }
+                    });
+                    $('#demo2').flash({
+                        swf: 'http://img.china.alibaba.com/swfapp/aliuploader/aliuploader-v2.8.swf',
+                        width: 160,
+                        height: 32,
+                        module: 'uploader',
+                        fileFilters: [{
+                            description: "gif文件(*.gif)",
+                            extensions: "*.gif;"
+                        }],
+                        flashvars: {
+                            allowCompress: true,
+                            allowMultiple: true,
+                            fileNumLimit: 3,
+                            buttonSkin: 'http://img.china.alibaba.com/images/common/icon_v02/upload1.png'
+                        }
+                    }).bind('fileSelect.flash', function(e, o){ //每个文件被选择后都会触发，假如一次选择多个文件，将触发多次
+                        //$.log('文件队列id：' + o.fileList[0].id + "\n文件名称：" + o.fileList[0].name + "\n已经选择！");
+                        //每个文件将独立请求上传的目标服务器接口
+                        $(this).flash('uploadAll', 'http://picman-test.china.alibaba.com:40100/album/ajax/image_upload_ajax.json', {
+                            drawTxt: true,
+                            albumId: '15801026',
+                            _csrf_token: 'test',
+                            source: 'offer_detail'
+                        });
+                        $(this).triggerHandler('progress');
+                    }).bind('progress.flash', function(){
+                        var fileStatus = $(this).flash('getFileStatus');
+                        $.each(fileStatus, function(i, file){
+                            $.log(file.name);
+                            switch (file.status) {
+                                case 'ready':
+                                    $.log('准备就绪！');
+                                    break;
+                                case 'done':
+                                    $.log('上传成功！');
+                                    break;
+                                case 'uploading':
+                                    $.log('正在上传！');
+                                    break;
+                            }
+                        });
+                    }).bind('uploadCompleteData.flash', function(e, o){ //每个文件上传结束后都会触发
+                        var data = o.data || {};
+                        if (typeof data === 'string') {
+                            data = $.parseJSON(data);
+                        }
+                        //上传成功
+                        if (data.result === 'success') {
+                            var img = new Image();
+                            img.src = data.miniImgUrls;
+                            $('#result2').append(img);
+                            return;
+                        }
+                        $(this).triggerHandler('progress');
+                        //出错
+                        //alert('文件队列id：' + o.id + '\n文件名称：' + o.fileName + '\n上传失败！错误代码：' + data.errCode);
+                    }).bind('finish.flash', function(e){
+                        $(this).triggerHandler('progress');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

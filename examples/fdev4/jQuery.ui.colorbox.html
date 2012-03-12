@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.colorbox</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+        <style>
+            #demo2 span{font-weight:700;}
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-colorbox : 取色盒子</h1>
+            <h2>事件触发浮出</h2>
+            <div id="demo1">
+                <input type="text" value="#FF3366"/>
+            </div>
+			<pre class="prettyprint language-js">
+$('input', '#demo1').colorbox({
+    update: true,
+    triggerType: 'focus',
+    select: function(e, ui){
+        //选择颜色触发select事件
+    }
+});</pre>
+            <h2>直接容器渲染</h2>
+            <div id="demo2">
+                Evnets change: <span></span>
+                select: <span></span>
+                <button class="toggle">
+                    Toggle
+                </button>
+                <button class="show">
+                    Show
+                </button>
+                <button class="hide">
+                    Hide
+                </button>
+                <div>
+                </div>
+            </div>
+            <pre class="prettyprint language-js">
+var demo2 = $('#demo2'), spans = $('>span', demo2);
+var inst2 = $('div', demo2).colorbox({
+    popup: false,
+    color: '#ff9900',
+    change: function(e, ui){
+        //鼠标移动触发change事件
+        spans.eq(0).html(ui.color).css('color', ui.color);
+    },
+    select: function(e, ui){
+        //选择颜色触发select事件
+        spans.eq(1).html(ui.color).css('color', ui.color);
+    }
+});
+//Toggle按钮方法
+$('button.toggle', demo2).click(function(){
+    inst2.colorbox('toggle');
+});
+//Show按钮方法
+$('button.show', demo2).click(function(){
+    inst2.colorbox('show');
+});
+//Hide按钮方法
+$('button.hide', demo2).click(function(){
+    inst2.colorbox('hide');
+});</pre>
+        </div>
+        <div id="achievement">
+            <h1 class="header">功能点测试</h1>
+            <h2 class="agent"></h2>
+            <h2 class="status"></h2>
+            <div class="list">
+            </div>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            //Dom树构建完毕后开始执行
+            jQuery(function($){
+                $.use('ui-colorbox,util-achievement', function(){
+                    $('input', '#demo1').colorbox({
+                        update: true,
+                        triggerType: 'focus',
+                        select: function(e, ui){
+                            if (this.value === ui.color) {
+                                Achievement.check('property-update', true);
+                            } else {
+                                Achievement.check('property-update', false);
+                            }
+                        }
+                    }).focus(function(){
+                        if ($('>div.ui-colorbox', document.body).length) {
+                            Achievement.check('property-triggerType', true);
+                        } else {
+                            Achievement.check('property-triggerType', false);
+                        }
+                    }).keyup(function(){
+                        var key = this.value.trim().toUpperCase();
+                        if(key.length === 7){
+                            if(/^#(00|33|66|99|CC|FF)(00|33|66|99|CC|FF)(00|33|66|99|CC|FF)$/.test(key)){
+                                if($(this).colorbox('getColor') === key){
+                                    Achievement.check('method-setColor', true);
+                                    Achievement.check('property-update', true);
+                                }else{
+                                    Achievement.check('method-setColor', true);
+                                    Achievement.check('property-update', false);
+                                }
+                            }
+                        }
+                    });
+                    var demo2 = $('#demo2'), spans = $('>span', demo2);
+                    var inst2 = $('div', demo2).colorbox({
+                        popup: false,
+                        color: '#ff9900',
+                        change: function(e, ui){
+                            spans.eq(0).html(ui.color).css('color', ui.color);
+                            Achievement.check('event-change', true);
+                        },
+                        select: function(e, ui){
+                            spans.eq(1).html(ui.color).css('color', ui.color);
+                            Achievement.check('event-select', true);
+                        }
+                    });
+                    setTimeout(function(){
+                        if (inst2.colorbox('getColor') === '#FF9900') {
+                            Achievement.check('property-color', true);
+                        } else {
+                            Achievement.check('property-color', false);
+                        }
+                        if ($('div.ui-colorbox', inst2).length) {
+                            Achievement.check('property-popup', true);
+                        } else {
+                            Achievement.check('property-popup', false);
+                        }
+                    }, 200);
+                    $('button.toggle', demo2).click(function(){
+                        var exist = !!$('div.ui-colorbox', inst2).length, then;
+                        inst2.colorbox('toggle');
+                        then = !!$('div.ui-colorbox', inst2).length;
+                        if (exist === then) {
+                            Achievement.check('method-toggle', false);
+                        } else {
+                            Achievement.check('method-toggle', true);
+                        }
+                        
+                    });
+                    $('button.show', demo2).click(function(){
+                        if (!$('div.ui-colorbox', inst2).length) {
+                            inst2.colorbox('show');
+                            if ($('div.ui-colorbox', inst2).length) {
+                                Achievement.check('method-show', true);
+                            } else {
+                                Achievement.check('method-show', false);
+                            }
+                        }
+                    });
+                    $('button.hide', demo2).click(function(){
+                        if ($('div.ui-colorbox', inst2).length) {
+                            inst2.colorbox('hide');
+                            if ($('div.ui-colorbox', inst2).length) {
+                                Achievement.check('method-hide', false);
+                            } else {
+                                Achievement.check('method-hide', true);
+                            }
+                        }
+                    });
+                    var Achievement = $.util.Achievement;
+                    Achievement.add('property-color', '取色器默认选中的颜色', ['当update配置为true时，该配置失效，取色器会自动验证输入框中的值并进行同步']);
+                    Achievement.add('property-popup', '取色器展现方式', ['true取色器的展现方式为"浮出层"形式，false则直接渲染到目标容器中']);
+                    Achievement.add('property-update', '是否将取色盒与输入框同步', ['给输入框赋选中的RGB值，或者将输入框变动的值反应到取色盒']);
+                    Achievement.add('property-triggerType', '指定触发组件展示的事件名', ['当"popup"为true时有效，默认为click，一些情况建议使用focus。不建议其他事件。']);
+                    
+                    Achievement.add('method-toggle', '切换显示和隐藏');
+                    Achievement.add('method-show', '显示');
+                    Achievement.add('method-hide', '隐藏');
+                    Achievement.add('method-setColor', '手动设置颜色');
+                    
+                    Achievement.add('event-change', '鼠标move切换颜色时触发该事件');
+                    Achievement.add('event-select', '鼠标click选择颜色时触发该事件');
+                    Achievement.init();
+                });
+            });
+        </script>
+    </body>
+</html>

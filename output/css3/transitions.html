@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+	<title>transitions</title>
+    <meta name="description" content="阿里巴巴批发大市场"/>
+    <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+	<link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+    <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<base target="_blank" />
+</head>
+<body>
+    <div class="g-memo">
+        <h2>transitions</h2>
+    </div>
+    <div class="g-detail">
+        <h3>定义：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>transitions</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">[&lt;'transition-property'&gt; || &lt;'transition-duration'&gt; || &lt;'transition-timing-function'&gt; || &lt;'transition-delay'&gt; [, [&lt;'transition-property'&gt; || &lt;'transition-duration'&gt; || &lt;'transition-timing-function'&gt; || &lt;'transition-delay'&gt;]]*</span></td>
+            </tr>
+        </table>
+        <dl class="value-desc">
+            <dt>属性说明:</dt>
+            <dd>transition-property：指定“变换”的属性</dd>
+            <dd>transition-duration：指定“变换”过程的时间</dd>
+            <dd>transition-timing-function：指定“变换”过程中可用的效果，预设的有：ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier(x1, y1, x2, y2)，默认值时easy。</dd>
+            <dd>transition-delay：指定一个动画开始执行的时间，即当改变元素属性值后多长时间开始执行“变换效果”，初始默认值为0.</dd>
+        </dl>
+    </div>
+    <div class="g-detail">
+        <h3>浏览器兼容性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+            <tr>
+                <th align="left" width="56"><strong>浏览器</strong></th>
+                <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+            </tr>
+            <tr>
+                <td rowspan="2">兼容性</td>
+                <td rowspan="2"><span class="positive">(&radic;)chrome</span></td>
+                <td rowspan="2"><span class="positive">(&times;)firefox</span></td>
+                <td rowspan="2"><span class="positive">(&radic;)opera 10.5+</span></td>
+                <td rowspan="2"><span class="positive">(&radic;)safari 3+</span></td>
+                <td><span class="negative">(&times;)IE 6-8</span></td>
+            </tr>
+            <tr>
+                <td><span class="positive">(?)IE 9</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>当元素在大小、颜色、布局、透明度等数值改变时（请注意是数值的改变），可以使其产生过渡的动画效果，比如当元素的大小变动时，可以使用Transition将这个变动过程变得分平滑，可以增强网站的体验。</p>
+    </div>
+    <div class="g-detail">
+        <h3>transition-property：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>transition-property</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">none | all | [ &lt;IDENT&gt; ] [ ',' &lt;IDENT&gt; ]*</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <ul>
+            <li>
+                指定当元素哪个属性改变时执行Transition效果，属性可以是以下属性：none、all以及其他可以触发浏览器reflow或repaint的属性。
+            </li>
+            <li>
+                当指定为none时，动画立即停止，当指定为all的时候，则当元素产生任何属性值变化时都将执行“转换”效果，比如大小改变。
+            </li>
+            <li>
+                初始默认值为all.
+            </li>
+        </ul>
+        <h3>属性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable">
+            <tr>
+                <th align="center" width="160" ><strong>CSS属性</strong></th>
+                <th align="center" width="160"><strong>改变的对象</strong></th>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">background-color</span></td>
+                <td><span class="ml8 mr8">色彩</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">background-image</span></td>
+                <td><span class="ml8 mr8">只是渐变</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">background-position</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">border-bottom-color</span></td>
+                <td><span class="ml8 mr8">色彩</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">border-bottom-width</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">border-color</span></td>
+                <td><span class="ml8 mr8">色彩</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">border-left-color</span></td>
+                <td><span class="ml8 mr8">色彩</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">border-left-width</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">border-right-color</span></td>
+                <td><span class="ml8 mr8">色彩</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">border-right-width</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">border-spacing</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">border-top-color</span></td>
+                <td><span class="ml8 mr8">色彩</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">border-top-width</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">border-width</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">bottom</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">color</span></td>
+                <td><span class="ml8 mr8">色彩</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">crop</span></td>
+                <td><span class="ml8 mr8">百分比</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">font-size</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">font-weight</span></td>
+                <td><span class="ml8 mr8">数字</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">grid-*</span></td>
+                <td><span class="ml8 mr8">数量</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">height</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">left</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">letter-spacing</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">line-height</span></td>
+                <td><span class="ml8 mr8">百分比，长度，数字</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">margin-bottom</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">margin-left</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">margin-right</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">margin-top</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">max-height</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">max-width</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">min-height</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">min-width</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">opacity</span></td>
+                <td><span class="ml8 mr8">数字</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">outline-color</span></td>
+                <td><span class="ml8 mr8">色彩</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">outline-offset</span></td>
+                <td><span class="ml8 mr8">整数</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">outline-width</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">padding-bottom</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">padding-left</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">padding-right</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">padding-top</span></td>
+                <td><span class="ml8 mr8">长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">right</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">text-indent</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">text-shadow</span></td>
+                <td><span class="ml8 mr8">阴影</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">top</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">vertical-align</span></td>
+                <td><span class="ml8 mr8">百分比，长度，关键词</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">visibility</span></td>
+                <td><span class="ml8 mr8">可见性</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">width</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">word-spacing</span></td>
+                <td><span class="ml8 mr8">百分比，长度</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">z-index</span></td>
+                <td><span class="ml8 mr8">正整数</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">zoom</span></td>
+                <td><span class="ml8 mr8">数字</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="g-detail">
+        <h3>示例1: transition-duration</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>transition-duration</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">&lt;time&gt; [, &lt;time&gt;]*</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>变换持续的时间，通常以秒来计算(比如, .25s)；默认值为0。</p>
+        <h3>示例2: transition-timing-function</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>transition-timing-function</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;) [, ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier(&lt;number&gt;, &lt;number&gt;, &lt;number&gt;, &lt;number&gt;)]*</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <ul>
+            <li>
+                <p>指定“转变”过程中可用的效果，预设的有：ease, linear, ease-in, ease-out, ease-in-out, cubic-bezier(x1, y1, x2, y2)，默认值时easy。</p>
+            </li>
+            <li>
+                <p>cubic-bezier为通过贝塞尔曲线来计算“转换”过程中的属性值，如下曲线所示，通过改变P1(x1, y1)和P2(x2, y2)的坐标可以改变整个过程的Output Percentage。</p>
+                <p><img alt="贝塞尔曲线" src="http://www.w3.org/TR/css3-transitions/TimingFunction.png"/></p>
+            </li>
+        </ul>
+        <div class="transition-function-example">
+            <div class="showbox default">default &raquo;</div>
+            <div class="showbox linear">linear &raquo;</div>
+            <div class="showbox ease-in">ease-in &raquo;</div>
+            <div class="showbox ease-out">ease-out &raquo;</div>
+            <div class="showbox ease-in-out">ease-in-out &raquo;</div>
+            <div class="showbox cubic-bezier">cubic-bezier &raquo;</div>
+        </div>
+        <h3>示例3: transition-delay</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>transition-delay</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">&lt;time&gt; [, &lt;time&gt;]*</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>在动作和变换开始之间等待多久，通常用秒来表示(比如, .1s)。如果你不想延迟，该值可省略；默认值为0。</p>
+        <div class="example mt8">
+            <div class="transition-delay-example">hover me</div>
+        </div>
+    </div>
+    <div class="g-detail">
+        <h3>更多例子：</h3>
+        <a href="transforms-example.html" title="transforms-example">transforms-example</a>
+    </div>
+    <div class="g-detail">
+        <h3>相关文档：</h3>
+        <ul>
+            <li><a href="http://www.w3.org/TR/css3-2d-transforms/#transform-origin" title="w3c Working Draft">CSS 2D Transforms Module Level 3 (w3c Working Draft)</a></li>
+            <li><a href="http://www.findmebyip.com/litmus" title="HTML5 & CSS support">HTML5 &amp; CSS support</a></li>
+        </ul>
+    </div>
+</body>
+</html>

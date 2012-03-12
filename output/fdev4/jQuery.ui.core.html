@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.core</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-core：UI功能扩展+基础类模块</h1>
+            <p>
+                此模块整合了jQuery UI的core.js和widget.js，所有以jQuery UI的模式扩展的组件都需要use此模块：
+            </p>
+            <ul>
+                <li>
+                    提供了UI组件常用的一些方法，并重写了一些框架的方法来配合UI组件的完美运作
+                </li>
+                <li>
+                    提供了UI组件的继承机制
+                </li>
+            </ul>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    基于jQuery UI Core 1.8.13 + jQuery UI Widget 1.8.11
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.add('ui-xxxx', {
+    required: ['ui-core'], //注册新模块的依赖
+    js: [/*...*/]
+});</pre>
+            <h2>Properties</h2>
+            <dl>
+                <dt><b>jQuery.ui.keyCode.*</b> : Number</dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>UP</b>
+                            : 方向键“上”
+                        </li>
+                        <li>
+                            <b>DOWN</b>
+                            : 方向键“下”
+                        </li>
+                        <li>
+                            <b>LEFT</b>
+                            : 方向键“左”
+                        </li>
+                        <li>
+                            <b>RIGHT</b>
+                            : 方向键“右”
+                        </li>
+                        <li>
+                            <b>ENTER</b>
+                            : 回车键
+                        </li>
+                        <li>
+                            <b>ESCAPE</b>
+                            : 空格键
+                        </li>
+                        <li>
+                            <b>NUMPAD_ENTER</b>
+                            : 小键盘回车键
+                        </li>
+                        <li>
+                            <b>SHIFT</b>
+                            : 功能键“Shift”
+                        </li>
+                        <li>
+                            <b>TAB</b>
+                            : 功能键“Tab”
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    提供了按钮keyCode的枚举。<pre class="prettyprint language-js">
+$(selector).keydown(function(e){
+    if(e.keyCode === $.ui.keyCode.ENTER){
+        console.info('你敲打了回车键！');
+    }
+});
+</pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>jQuery.support.*</b> : Bolean</dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>minHeight</b>
+                            : 浏览器是否支持"min-height"样式属性
+                        </li>
+                        <li>
+                            <b>selectstart</b>
+                            : 浏览器是否支持div的onselectstart事件
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    扩展浏览器特性检测
+                </dd>
+            </dl>
+            <h2>jQuery.fn.extend</h2>
+            <dl>
+                <dt><b>.scrollParent()</b></dt>
+                <dd>
+                    获取最近的具有滚动条的父级jQuery DOM元素。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.zIndex([zIndex])</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>zIndex</b>
+                            : 需要设置的"z-index"值
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    获取/设置jQuery对象的"z-index"样式
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.disableSelection()</b></dt>
+                <dd>
+                    禁用元素的文本选中能力
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.enableSelection()</b></dt>
+                <dd>
+                    启用元素的文本选中能力（前提是该元素具有文本选中的能力）
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.bgiframe([options])</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>options</b>
+                            : 自定义垫片的Style以及在ie6下的iframe的src值
+                            <ul>
+                                <li>
+                                    <b>src</b>
+                                    : String iframe的src值，默认是'about:blank'
+                                </li>
+                                <li>
+                                    <b>*</b>
+                                    : String 所有可支持的style属性
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    使当前元素具有垫片的能力。垫片具有在ie6下遮盖浮层下方select的能力，以及在所有浏览器中防止用户拖动选中下方页面内容的特性。
+                </dd>
+            </dl>
+            <h2>扩展jQuery选择器</h2>
+            <dl>
+                <dt><b>:data(name)</b></dt>
+                <dd>
+                    查找 $().data(name) 不为 undefined 的元素<pre class="prettyprint language-js">
+$('input:data(alitalk)')
+//return  &lt;input data-alitalk="{id:'swainet'}" />
+</pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>:focusable</b></dt>
+                <dd>
+                    查找能够被"focus"的元素，例如表单元素。<pre class="prettyprint language-js">
+$(':focusable', 'form')
+</pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>:tabbable</b></dt>
+                <dd>
+                    查找具有"tabindex"的元素（按"Tab"键会依次focus此类元素），例如表单元素。<pre class="prettyprint language-js">
+$(':tabbable', 'form')
+</pre>
+                </dd>
+            </dl>
+            <h2>Classes</h2>
+            <dl>
+                <dt><b>jQuery.Widget</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>widgetName</b>
+                            : String 组件名称
+                        </li>
+                        <li>
+                            <b>widgetEventPrefix</b>
+                            : String 组件事件前缀
+                        </li>
+                        <li>
+                            <b>options</b>
+                            : Object 组件配置
+                        </li>
+                        <li>
+                            <b>destroy</b>
+                            : Function 销毁组件实例
+                        </li>
+                        <li>
+                            <b>widget()</b>
+                            : Function 获取组件容器
+                        </li>
+                        <li>
+                            <b>option( key[, value] )</b>
+                            : Function 获取/设置组件配置
+                        </li>
+                        <li>
+                            <b>enable</b>
+                            : Function 启用组件功能
+                        </li>
+                        <li>
+                            <b>disable</b>
+                            : Function 禁用组件功能
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    该类提供了默认的常用组件方法，并且允许用户重写其中的私有方法，包括"_create"，"_init"，"_destroy"等。在组件开发过程中还可以使用类的一些私有方法，包括"_trigger"等。详细的组件开发技巧请参考已有组件或咨询比较熟悉的同学。
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt><b>jQuery.widget( name, base, prototype )</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>name</b>
+                            : String 组件名称，以"ui."为前缀
+                        </li>
+                        <li>
+                            <b>base</b>
+                            : Object 组件的实现
+                        </li>
+                        <li>
+                            <b>prototype</b>
+                            : Object 指定组件的prototype对象，默认为"jQuery.Widget"
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    该方法提供了jQueryUI组件的制作方式，以及一套简单的组件开发模式。所有组件默认都扩展自"jQuery.Widget"。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>jQuery.ui.isOverAxis( x, reference, size )</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>x</b>
+                            : Number 当前的坐标值
+                        </li>
+                        <li>
+                            <b>reference</b>
+                            : Number 边界起始坐标值
+                        </li>
+                        <li>
+                            <b>size</b>
+                            : Number 边界长度
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    这个方法主要为"jQuery.ui.isOver"方法服务。实现原理很简单，同学们可以根据爱好使用。<pre class="prettyprint language-js">
+isOverAxis: function(x, reference, size){
+    return (x > reference) && (x < (reference + size));
+}
+</pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>jQuery.ui.isOver( y, x, top, left, height, width )</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>y</b>
+                            : Number 当前纵坐标
+                        </li>
+                        <li>
+                            <b>x</b>
+                            : Number 当前横坐标
+                        </li>
+                        <li>
+                            <b>top</b>
+                            : Number 区域top坐标
+                        </li>
+                        <li>
+                            <b>left</b>
+                            : Number 区域left坐标
+                        </li>
+                        <li>
+                            <b>height</b>
+                            : Number 区域高度
+                        </li>
+                        <li>
+                            <b>width</b>
+                            : Number 区域宽度
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    判断当前坐标是否在指定范围内。
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>ui-portlets</title>
+        <link href="../../static/css/demo-merge.css" rel="stylesheet"/>
+        <style>
+            ul {
+                margin-left: 0;
+                list-style: none;
+            }
+            
+            #demo1 li, #demo2 li, #demo3 li {
+                border: 1px solid #d3d3d3;
+                background-color: #e6e6e6;
+                font-weight: normal;
+                color: #555555;
+            }
+            
+            #demo1 li {
+                margin: 4px;
+                padding: 4px;
+                width: 120px;
+                cursor: default;
+            }
+            
+            #demo2 li {
+                float: left;
+                margin-right: 4px;
+                padding: 4px;
+                width: 60px;
+                cursor: default;
+            }
+            
+            #demo3 div {
+                float: left;
+                width: 78px;
+            }
+            
+            #demo3 li {
+                margin: 4px;
+                padding: 4px;
+                width: 60px;
+                cursor: default;
+            }
+            
+            .ui-portlets-disabled {
+                background-color: #FFCC00 !important;
+            }
+            
+            .ui-state-highlight {
+                border: 1px solid #fcefa1 !important;
+                background-color: #fbf9ee !important;
+                color: #363636 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-portlets : 排序</h1>
+            <h2>1. 单列纵向排序</h2>
+            <ul id="demo1" class="fd-clr">
+                <li>
+                    Item1
+                </li>
+                <li>
+                    Item2
+                </li>
+                <li>
+                    Item3
+                </li>
+                <li>
+                    Item4
+                </li>
+                <li>
+                    Item5
+                </li>
+            </ul>
+            <pre class="prettyprint language-html">
+&lt;ul id="demo1" class="fd-clr">
+    &lt;li>
+        Item1
+    &lt;/li>
+    &lt;li>
+        Item2
+    &lt;/li>
+    &lt;li>
+        Item3
+    &lt;/li>
+    &lt;li>
+        Item4
+    &lt;/li>
+    &lt;li>
+        Item5
+    &lt;/li>
+&lt;/ul>            
+        </pre>
+            <pre class="prettyprint language-js">
+$('#demo1').portlets({
+    items: '>li',
+    placeholder: 'ui-state-highlight',
+    cursorAt: {
+        top: 5,
+        left: 5
+    },
+    opacity: .5
+});   
+        </pre>
+            <h2>2. 单列横向排序</h2>
+            <ul id="demo2" class="fd-clr">
+                <li>
+                    Item1
+                </li>
+                <li>
+                    Item2
+                </li>
+                <li>
+                    Item3
+                </li>
+                <li>
+                    Item4
+                </li>
+            </ul>
+            <pre class="prettyprint language-html">
+&lt;ul id="demo2" class="fd-clr">
+    &lt;li>
+        Item1
+    &lt;/li>
+    &lt;li>
+        Item2
+    &lt;/li>
+    &lt;li>
+        Item3
+    &lt;/li>
+    &lt;li>
+        Item4
+    &lt;/li>
+&lt;/ul>            
+        </pre>
+            <pre class="prettyprint language-js">
+$('#demo2').portlets({
+    items: '>li',
+    placeholder: 'ui-state-highlight',
+    orientation: 'horizontal',
+    axis: 'x',
+    opacity: .5,
+    revert: 250
+});
+</pre>
+            <h2>3. 多列排序</h2>
+            <div id="demo3" class="fd-clr">
+                <div>
+                    <h4>第一列</h4>
+                    <ul class="fd-clr">
+                        <li>
+                            Item1
+                        </li>
+                        <li>
+                            Item2
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>第二列</h4>
+                    <ul class="fd-clr">
+                        <li>
+                            Item3
+                        </li>
+                        <li>
+                            Item4
+                        </li>
+                        <li>
+                            Item5
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>第三列</h4>
+                    <ul class="fd-clr">
+                        <li class="ui-portlets-disabled">
+                            Disabled
+                        </li>
+                        <li>
+                            Item7
+                        </li>
+                        <li>
+                            Item8
+                        </li>
+                        <li>
+                            Item9
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <pre class="prettyprint language-html">
+&lt;div id="demo3">
+    &lt;div>
+        &lt;h4>第一列&lt;/h4>
+        &lt;ul class="fd-clr">
+            &lt;li>
+                Item1
+            &lt;/li>
+            &lt;li>
+                Item2
+            &lt;/li>
+        &lt;/ul>
+    &lt;/div>
+    &lt;div>
+        &lt;h4>第二列&lt;/h4>
+        &lt;ul class="fd-clr">
+            &lt;li>
+                Item3
+            &lt;/li>
+            &lt;li>
+                Item4
+            &lt;/li>
+            &lt;li>
+                Item5
+            &lt;/li>
+        &lt;/ul>
+    &lt;/div>
+    &lt;div>
+        &lt;h4>第三列&lt;/h4>
+        &lt;ul class="fd-clr">
+            &lt;li class="ui-portlets-disabled">
+                Disabled
+            &lt;/li>
+            &lt;li>
+                Item7
+            &lt;/li>
+            &lt;li>
+                Item8
+            &lt;/li>
+            &lt;li>
+                Item9
+            &lt;/li>
+        &lt;/ul>
+    &lt;/div>
+&lt;/div>
+            </pre>
+            <pre class="prettyprint language-js">
+$('#demo3').portlets({
+    items: 'li:not(.ui-portlets-disabled)',
+    columns: 'ul',
+    placeholder: 'ui-state-highlight',
+    opacity: .5,
+    revert: 250,
+    dropOnEmpty: function(e, ui) {
+        ui.currentColumn.append(ui.placeholder);
+        return false;
+    },
+    start: function(e, ui) {
+        $.log('start');
+    },
+    change: function(e, ui) {
+        $.log('change');
+    },
+    over: function(e, ui) {
+        $.log('over');
+    },
+    stop: function(e, ui) {
+        $.log('stop');
+    }
+});</pre>        
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($) {
+                $.use('ui-portlets', function() {
+                    var doc = $(document), demo1 = $('#demo1').portlets({
+                        items: '>li',
+                        placeholder: 'ui-state-highlight',
+                        cursorAt: {
+                            top: 5,
+                            left: 5
+                        },
+                        opacity: .5
+                    }), demo2 = $('#demo2').portlets({
+                        items: '>li',
+                        placeholder: 'ui-state-highlight',
+                        orientation: 'horizontal',
+                        axis: 'x',
+                        opacity: .5,
+                        revert: 250
+                    }), demo3 = $('#demo3').portlets({
+                        items: 'li:not(.ui-portlets-disabled)',
+                        columns: 'ul',
+                        placeholder: 'ui-state-highlight',
+                        opacity: .5,
+                        revert: 250,
+                        dropOnEmpty: function(e, ui) {
+                            ui.currentColumn.append(ui.placeholder);
+                            return false;
+                        },
+                        start: function(e, ui) {
+                            $.log('start');
+                        },
+                        change: function(e, ui) {
+                            $.log('change');
+                        },
+                        over: function(e, ui) {
+                            $.log('over');
+                        },
+                        stop: function(e, ui) {
+                            $.log('stop');
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

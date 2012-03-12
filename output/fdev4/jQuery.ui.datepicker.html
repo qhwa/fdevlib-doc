@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.datepicker</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-datepicker, ui-datepicker-time : 日历控件</h1>
+            <h2>介绍</h2>
+            <p>
+                该组件提供日历和时间选择功能。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    Denis: 从KISSY移植 ---- 2011.03.01
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+//日期选择功能                
+$.use('ui-datepicker', function(){
+    $('...').datepicker(options);
+});
+//日期+时间选择功能                
+$.use('ui-datepicker-time', function(){
+    $('...').datepicker({
+        showTime: true,
+        //...
+    });
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.datepicker.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>date</b> : Date</dt>
+                <dd>
+                    Default : new Date()
+                </dd>
+                <dd>
+                    默认高亮（红色加粗字体）的当前日期
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>startDay</b> : Number</dt>
+                <dd>
+                    Default : 0
+                </dd>
+                <dd>
+                    日历中一周的第一天，"0"表示周日。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>pages</b> : Number</dt>
+                <dd>
+                    Default : 1
+                </dd>
+                <dd>
+                    同时显示几个月的日历
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>popup</b> : Bolean</dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否以浮出层的方式显示日历
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>closable</b> : Bolean</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    在"popup"配置为false的时候，允许日历在选择完日期后关闭。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>rangeSelect</b> : Bolean</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否提供区间选择的功能
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>minDate</b> : Date | false</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    提供日历可选择范围的起始日期
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>maxDate</b> : Date | false</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    提供日历可选择范围的截止日期
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>range</b> : Object</dt>
+                <dd>
+                    Default : { start: null, end: null }
+                </dd>
+                <dd>
+                    提供日历可选择范围的截止日期
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>navigator</b> : Bolean</dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    提供标题栏修改年月的功能
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>shim</b> : Bolean</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否在IE6下提供垫片
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>showTime</b> : Bolean</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否提供时分秒选择的扩展功能<em>需要"ui-datepicker-time"</em>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>triggerType</b> : String</dt>
+                <dd>
+                    Default : 'click'
+                </dd>
+                <dd>
+                    触发日历的事件<em>在input上建议使用'blur'</em>
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt><b>beforeShow</b> : undefined</dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Bolean 返回"flase"中止日历激活
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    日历打开前触发本事件，返回"false"来中止。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>rangeSelect</b> : undefined</dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象
+                        </li>
+                        <li>
+                            <b>ui</b>
+                            : Object 提供选择的日期范围（起始/结束），精确到日。
+                            <ul>
+                                <li>
+                                    <b>start</b>
+                                    : Date 起始日期
+                                </li>
+                                <li>
+                                    <b>end</b>
+                                    : Date 截止日期
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    选中日期范围后触发。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>select</b> : undefined</dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象
+                        </li>
+                        <li>
+                            <b>ui</b>
+                            : Object 提供选择的日期，精确到日。
+                            <ul>
+                                <li>
+                                    <b>date</b>
+                                    : Date 选中的日期
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当"rangeSelect"为"undefined"，选中日期后触发。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>monthChange</b> : undefined</dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象
+                        </li>
+                        <li>
+                            <b>ui</b>
+                            : Object 提供选择的月份的第一天，精确到月。
+                            <ul>
+                                <li>
+                                    <b>date</b>
+                                    : Date 选中的月份的第一天
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    改变月份后触发。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>timeSelect</b> : undefined</dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象
+                        </li>
+                        <li>
+                            <b>ui</b>
+                            : Object 提供选择的日期，精确到秒。
+                            <ul>
+                                <li>
+                                    <b>date</b>
+                                    : Date 选中的时间
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当使用"ui-datepicker-time"扩展时，选中时间后触发。
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

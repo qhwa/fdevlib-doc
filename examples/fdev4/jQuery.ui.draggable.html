@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="GBK">
+	<title>jQuery.ui.draggable</title>
+	<link href="../../static/css/app-merge.css" rel="stylesheet"/>
+	<style>
+		.draggable {
+			width: 150px;
+			height: 150px;
+			border: 1px solid #ddd;
+			background: #eee;
+			margin: 10px;
+			float: left;
+			padding: 4px;
+		}
+		.draggable p{
+			text-indent: 10px;
+		}
+		.ui-state-hover{
+			color: red;
+		}
+		.clear{
+			clear: both;
+		}
+		#snaptarget{
+			height: 200px;
+			border: 1px solid #E78F08;
+			background: #F6A828;
+			color: white;
+			font-weight: bold;
+		}
+		.handle{
+			border: 1px solid #E78F08;
+			background: #F6A828;
+			color: white;
+			padding-top:10px;
+			padding-bottom:10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="doc">
+		<h1>ui-draggable : 拖动</h1>
+		<h2>Demo 1 简单使用</h2>
+		<div id="demo1">
+			<div id="demo1-draggable" class="draggable">
+				<p><b>#demo1-draggable</b></p>
+				<p>拖动我</p>
+			</div>
+			<pre class="prettyprint language-js clear">
+jQuery(function($){
+	$.use("ui-draggable",function(){
+		$("#demo1-draggable").draggable();
+	});
+});</pre>
+		</div>
+		<h2>Demo 2 事件</h2>
+		<div id="demo2">
+			<div id="demo2-draggable" class="draggable">
+				<p><b>#demo2-draggable</b></p>
+				<p>拖动我，触发事件</p>
+				<ul>
+					<li id="event-start">"start" 被调用 <span class="count">0</span>  次</li>
+					<li id="event-drag">"drag" 被调用 <span class="count">0</span>  次</li>
+					<li id="event-stop">"stop" 被调用 <span class="count">0</span>  次</li>
+				</ul>
+			</div>
+			<pre class="prettyprint language-js clear">
+jQuery(function($){
+	$.use("ui-draggable",function(){
+		var $start_counter = $("#event-start"),
+			$drag_counter = $("#event-drag"),
+			$stop_counter = $("#event-stop"),
+			counts = [0, 0, 0,];
+				
+			$("#demo2-draggable").draggable({
+				start: function(event, ui){
+					counts[0]++;
+					updateCounterStatus($start_counter, counts[0]);
+				},
+				drag: function(event, ui){
+					counts[1]++;
+					updateCounterStatus($drag_counter, counts[1]);
+				},
+				stop: function(event, ui){
+					counts[2]++;
+					updateCounterStatus($stop_counter, counts[2]);
+				}
+			});
+			
+			function updateCounterStatus($event_counter, new_count){
+				if (!$event_counter.hasClass("ui-state-hover")){
+					$event_counter.addClass("ui-state-hover")
+						.siblings().removeClass("ui-state-hover");
+				}
+				$("span.count",$event_counter).text(new_count);
+			}
+	});
+});</pre>
+		</div>
+		<h2>Demo 3 延迟</h2>
+		<div id="demo3">
+			<div id="demo3-draggable1" class="draggable">
+				<p><b>#demo3-draggable1</b></p>
+				<p>点下鼠标拖动20像素后，元素才开始移动</p>	
+			</div>
+			<div id="demo3-draggable2" class="draggable">
+				<p><b>#demo3-draggable2</b></p>
+				<p>点下鼠标1000毫秒后，元素才开始移动</p>
+			</div>
+			<pre class="prettyprint language-js clear">
+jQuery(function($){
+	$.use("ui-draggable",function(){
+		$("#demo3-draggable1").draggable({ distance: 20 });
+		$("#demo3-draggable2").draggable({ delay: 1000 });
+	});
+});</pre>
+		</div>
+		<h2>Demo 4 自动吸附与网格移动</h2>
+		<div id="demo4">
+			<div id="snaptarget">
+				<p><b>#snaptarget</b></p>
+				<p>容器！</p>
+			</div>
+			<div id="demo4-draggable1" class="draggable">
+				<p><b>#demo4-draggable1</b></p>
+				<p>默认（snap: true),自动吸附于任何draggable元素</p>
+			</div>
+			<div id="demo4-draggable2" class="draggable">
+				<p><b>#demo4-draggable2</b></p>
+				<p>这只自动吸附于容器。</p>
+			</div>
+			<div id="demo4-draggable3" class="draggable">
+				<p><b>#demo4-draggable3</b></p>
+				<p>这只自动吸附在容器外边。</p>
+			</div>
+			<div id="demo4-draggable4" class="draggable">
+				<p><b>#demo4-draggable4</b></p>
+				<p>这只能以 20x20 的网格距离移动。</p>
+			</div>
+			<div id="demo4-draggable5" class="draggable">
+				<p><b>#demo4-draggable5</b></p>
+				<p>这只能以 80x80 的网格距离移动。</p>
+			</div>
+			<pre class="prettyprint language-js clear">
+jQuery(function($){
+	$.use("ui-draggable",function(){
+		$("#demo4-draggable1").draggable({ snap: true });
+		$("#demo4-draggable2").draggable({ snap: "#snaptarget" });
+		$("#demo4-draggable3").draggable({ snap: "#snaptarget", snapMode: "outer" });
+		$("#demo4-draggable4").draggable({ grid: [ 20, 20 ]});
+		$("#demo4-draggable5").draggable({ grid: [ 80, 80 ]});
+	});
+});</pre>
+		</div>
+		<h2>Demo 5 Drag handle</h2>
+		<div id="demo5">
+			<div id="demo5-draggable1" class="draggable">
+				<div><b>#demo5-draggable1</b></div>
+				<div class="handle">只能在这里拖动我！</div>
+			</div>
+			<div id="demo5-draggable2" class="draggable">
+				<div><b>#demo5-draggable2</b></div>
+				<div>你可以拖动我...</div>
+				<div class="handle">...但是你不可以在这里拖动我。</div>
+			</div>
+            <pre class="prettyprint language-html clear">
+&lt;!--HTML--&gt;
+&lt;div id="demo5"&gt;
+    &lt;div id="demo5-draggable1" class="draggable"&gt;
+        &lt;div&gt;&lt;b&gt;#demo5-draggable1&lt;/b&gt;&lt;/div&gt;
+        &lt;div class="handle"&gt;只能在这里拖动我！&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id="demo5-draggable2" class="draggable"&gt;
+        &lt;div&gt;&lt;b&gt;demo5-draggable2&lt;b&gt;&lt;/div&gt;
+        &lt;div&gt;你可以拖动我...&lt;/div&gt;
+        &lt;div class="handle"&gt;...但是你不可以在这里拖动我。&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+			<pre class="prettyprint language-js clear">
+jQuery(function($){
+	$.use("ui-draggable",function(){
+		$("#demo5-draggable1").draggable({ handle: ".handle" });
+		$("#demo5-draggable2").draggable({ cancel: ".handle" });
+	});
+});</pre>
+		</div>
+	</div>
+	<script src="../../static/js/app-merge.js">
+	</script>
+	<script type="text/javascript">
+		/* Demo 1 */
+		jQuery(function($){
+			$.use("ui-draggable",function(){
+				$("#demo1-draggable").draggable();
+			});			
+		});
+		
+		/* Demo 2 */
+		jQuery(function($){
+			$.use("ui-draggable",function(){
+				var $start_counter = $("#event-start"),
+				    $drag_counter = $("#event-drag"),
+					$stop_counter = $("#event-stop"),
+					counts = [0, 0, 0,];
+				$("#demo2-draggable").draggable({
+					start: function(event, ui){
+						counts[0]++;
+						updateCounterStatus($start_counter, counts[0]);
+					},
+					drag: function(event, ui){
+						counts[1]++;
+						updateCounterStatus($drag_counter, counts[1]);
+					},
+					stop: function(event, ui){
+						counts[2]++;
+						updateCounterStatus($stop_counter, counts[2]);
+					}
+				});
+				function updateCounterStatus($event_counter, new_count){
+					if (!$event_counter.hasClass("ui-state-hover")){
+						$event_counter.addClass("ui-state-hover")
+							.siblings().removeClass("ui-state-hover");
+					}
+					$("span.count",$event_counter).text(new_count);
+				}
+			});
+		});
+		
+		/* Demo 3 */
+		jQuery(function($){
+			$.use("ui-draggable",function(){
+				$("#demo3-draggable1").draggable({ distance: 20 });
+				$("#demo3-draggable2").draggable({ delay: 1000 });
+			});
+		});
+
+		/* Demo 4 */
+		jQuery(function($){
+			$.use("ui-draggable",function(){
+				$("#demo4-draggable1").draggable({ snap: true });
+				$("#demo4-draggable2").draggable({ snap: "#snaptarget" });
+				$("#demo4-draggable3").draggable({ snap: "#snaptarget", snapMode: "outer" });
+				$("#demo4-draggable4").draggable({ grid: [ 20, 20 ]});
+				$("#demo4-draggable5").draggable({ grid: [ 80, 80 ]});
+			});
+		});
+
+		/* Demo 5 */
+		jQuery(function($){
+			$.use("ui-draggable",function(){
+				$("#demo5-draggable1").draggable({ handle: ".handle" });
+				$("#demo5-draggable2").draggable({ cancel: ".handle" });
+			});
+		});
+	</script>
+</body>
+</html>

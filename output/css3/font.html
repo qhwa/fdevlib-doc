@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>@font-face</title>
+        <meta name="description" content="阿里巴巴批发大市场"/>
+        <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+        <link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+        <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+        <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+        <base target="_blank" />
+    </head>
+    <body>
+        <div class="g-memo">
+            <h2>@font-face</h2>
+        </div>
+        <div class="g-detail">
+            <h3>定义：</h3>
+            <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+                <tr>
+                    <th align="left" width="56"><strong>Name:</strong></th>
+                    <th align="left"><i class="ml8 mr8"><u>@font-face</u></i></th>
+                </tr>
+                <tr>
+                    <td><span>值:</span></td>
+                    <td><span class="ml8 mr8">&lt;'<a href="#font-description" target="_self">font-description</a>'&gt; </span></td>
+                </tr>
+            </table>
+            <p>&lt;font-description&gt;一般是这种形式：</p>
+            <p>descriptor: value;</p>
+            <p>descriptor: value;</p>
+            <p>[...]</p>
+            <p>descriptor: value;</p>
+            <p>每个 @font-face 规则为每个字体描述符号指定一个值，隐式的或者显示的指定。没有显示指定出来的值将按照初始值处理。</p>
+        </div>
+        <div class="g-detail">
+            <h3>浏览器兼容性：</h3>
+            <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+                <tr>
+                    <th align="left" width="56"><strong>浏览器</strong></th>
+                    <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                    <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                    <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                    <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                    <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+                </tr>
+                <tr>
+                    <td>兼容性</td>
+                    <td><span class="positive">(√)chrome</span></td>
+                    <td><span class="positive">(√)firefox 3.6+</span></td>
+                    <td><span class="positive">(√)opera 10.6+</span></td>
+                    <td><span class="positive">(√)safari 5+</span></td>
+                    <td><span class="negative">(√)IE 6</span></td>
+                </tr>
+            </table>
+            <h3>说明：</h3>
+            <p>由于 IE 和其他浏览器使用的字体文件不一样，所以推荐使用 google 的 font-face API 来解决兼容性问题。http://code.google.com/apis/webfonts/</p>
+            <p>opera不支持 font-face 定义的字体粗体显示。</p>
+        </div>
+        <div class="g-detail">
+            <h3>例子：</h3>
+            <h4>当前浏览器显示效果：</h4>
+            <div class="show">
+                <p class="para1">we are alibaba front-end engineers.</p>
+                <p class="para2">we are alibaba front-end engineers.</p>
+                <p class="para3">we are alibaba front-end engineers.</p>
+            </div>
+            <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Reenie+Beanie">
+            <style type="text/css">
+                .show p {
+                    font-size:22px;
+                }
+                .show .para2 {
+                    font-family: 'Reenie Beanie';
+                }
+                .show .para3 {
+                    font-family: 'Reenie Beanie';
+                    font-weight:bold;
+                }
+            </style>
+            <h4>chrome中效果截图：</h4>
+            <img class="example-img" src="/fdevlib/static/img/css3/chrome-font-face.png" alt="chrome效果截图" />
+            <h4>code:</h4>
+            <pre class="brush:html">
+            &lt;div class=&quot;show&quot;&gt;
+                &lt;p class=&quot;para1&quot;&gt;we are alibaba front-end engineers.&lt;/p&gt;
+                &lt;p class=&quot;para2&quot;&gt;we are alibaba front-end engineers.&lt;/p&gt;
+                &lt;p class=&quot;para3&quot;&gt;we are alibaba front-end engineers.&lt;/p&gt;
+
+            &lt;/div&gt;
+            &lt;link href='http://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'&gt;
+            &lt;style type=&quot;text/css&quot;&gt;
+                .show p {
+                    font-size:22px;
+                }
+                .show .para2 {
+                    font-family: 'Reenie Beanie';
+                }
+                .show .para3 {
+                    font-family: 'Reenie Beanie';
+                    font-weight:bold;
+                }
+            &lt;/style&gt;
+                
+            </pre>
+        </div>
+        <div class="g-detail">
+            <h3>相关文档：</h3>
+            <ul>
+                <li><a title="w3c Working Draft" href="http://www.w3.org/TR/css3-fonts/#font-resources">CSS Fonts Module Level 3 (w3c Working Draft)</a></li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>Fdev4.css.grid.float</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>float.css : 浮动布局</h1>
+            <h2>介绍</h2>
+            <p>
+                目前中文站提供了“浮动”和“双飞翼”两套页面布局结构。这两套布局结构遵行<a href="../fdev3/css.grid.html" target="_blank">栅格化理论</a>，浮动布局利用容器的左浮自动排列的特性，提供24种浮动样式来控制单列容器的宽度（grid-1 ~ grid-24，单位宽度为32px），适合绝大部分的页面布局。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    汉军: 提供了初始版本 ---- 2011-02-23
+                </li>
+            </ul>
+            <pre class="prettyprint language-html">
+&lt;!--列的数字相加满24为952px-->
+&lt;!--两列-->
+&lt;div class="layout">
+    &lt;div class="grid-16">632px(.grid-16)&lt;/div>
+    &lt;div class="grid-8 grid-fixed">312px(.grid-8)&lt;/div>
+&lt;/div>
+&lt;!--三列-->
+&lt;div class="layout">
+    &lt;div class="grid-6">232px(.grid-6)&lt;/div>
+    &lt;div class="grid-12">472px(.grid-12)&lt;/div>	
+    &lt;div class="grid-6 grid-fixed">232px(.grid-6)&lt;/div>
+&lt;/div>
+&lt;!--四列-->
+&lt;div class="layout">
+    &lt;div class="grid-6">232px(.grid-6)&lt;/div>
+    &lt;div class="grid-6">232px(.grid-6)&lt;/div>	
+    &lt;div class="grid-6">232px(.grid-6)&lt;/div>
+    &lt;div class="grid-6 grid-fixed">232px(.grid-6)&lt;/div>
+&lt;/div>
+</pre>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Table</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .table-a { table-layout: fixed; width: 100%; border-collapse: separate; border-spacing: 1px; background-color: #999; word-wrap: break-word; word-break: break-all; }
+        .table-a th, .table-a td { background-color: #FFF; vertical-align: top; }
+        .table-a .c1 { width: 150px; }
+        .table-a .c3 { width: 300px; }
+        .table-b { table-layout: fixed; width: 100%; border-collapse: separate; border-spacing: 1px; background-color: #999; word-wrap: break-word; word-break: break-all; }
+        .table-b th, .table-b td { vertical-align: top; }
+        .table-b th { background-color: #CCC; text-align: right; }
+        .table-b td { background-color: #FFF; }
+        .table-b .c1 { width: 150px; }
+        .table-b .c2 { width: 200px; }
+    </style>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Table：表格</h2>
+    </div>
+    <div class="g-detail">
+        <h3>table-a：自适应，带边框，其中一列自适应，其他列定宽的表格，常用于列表结构</h3>
+        <div class="g-demo">
+            <table class="table-a" cellpadding="0" cellspacing="1" data-sp="table-a">
+                <tr>
+                    <th class="c1">150px</th>
+                    <th class="c2">auto</th>
+                    <th class="c3">300px</th>
+                </tr>
+                <tr>
+                    <td>looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog English</td>
+                    <td>looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog English</td>
+                    <td>looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog English</td>
+                </tr>
+            </table>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <table class="table-a" cellpadding="0" cellspacing="1" data-sp="table-a">
+                <tr>
+                    <th class="c1">150px</th>
+                    <th class="c2">auto</th>
+                    <th class="c3">300px</th>
+                </tr>
+                <tr>
+                    <td>looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog English</td>
+                    <td>looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog English</td>
+                    <td>looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooog English</td>
+                </tr>
+            </table>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .table-a { table-layout: fixed; width:100%; border-collapse:separate; border-spacing:1px; background-color: #999; word-wrap: break-word; word-break: break-all; }
+        .table-a th, .table-a td { background-color: #FFF; vertical-align:top; }
+        .table-a .c1 { width: 150px; }
+        .table-a .c2 { }
+        .table-a .c3 { width: 300px; }
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>table-b：常用于表单结构</h3>
+        <div class="g-demo">
+            <table class="table-b" cellpadding="0" cellspacing="1" data-sp="table-b">
+                <tr>
+                    <th class="c1">150px</th>
+                    <td class="c2">200px</td>
+                    <td class="c3">auto</td>
+                </tr>
+                <tr>
+                    <th>title:</th>
+                    <td>form element</td>
+                    <td>tips</td>
+                </tr>
+            </table>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <table class="table-b" cellpadding="0" cellspacing="1" data-sp="table-b">
+                <tr>
+                    <th class="c1">150px</th>
+                    <td class="c2">200px</td>
+                    <td class="c3">auto</td>
+                </tr>
+                <tr>
+                    <th>title:</th>
+                    <td>form element</td>
+                    <td>tips</td>
+                </tr>
+            </table>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .table-b { table-layout: fixed; width: 100%; border-collapse: separate; border-spacing: 1px; background-color: #999; word-wrap: break-word; word-break: break-all; }
+        .table-b th, .table-b td { vertical-align: top; }
+        .table-b th { background-color: #CCC; text-align: right; }
+        .table-b td { background-color: #FFF; }
+        .table-b .c1 { width: 150px; }
+        .table-b .c2 { width: 200px; }
+        </pre>
+    </div>
+</body>
+</html>

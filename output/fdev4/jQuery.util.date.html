@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>jQuery.util.date</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div id="doc">
+        <h1>util-date : 日期</h1>
+        
+        <h2>介绍</h2>
+        <p>扩展了原生的Date对象，提供了一些常用的方法。</p>
+
+        <h2>版本</h2>
+        <ul>
+            <li>施丹侠：创建</li>
+            <li>倪朱国：添加----2011.11.2</li>
+        </ul>
+
+        <h2>开始</h2>
+        <pre class="prettyprint langage-js">
+jQuery(function($){
+    $.use("util-date",function(){
+        var dt = Date.parseDate("2011-06-02");
+        dt.format("yyyy-MM-dd hh:mm:ss");
+    });
+});</pre>
+
+        <h2>Properties</h2>
+        <dl>
+            <dt><b>Date.monthNames</b> : Array</dt>
+            <dd> : Array</dt>
+            <dd>一个存储月份名称的数组。</dd>
+            <dd>
+                <pre class="prettyprint language-js">
+alert(Date.monthNames[0]);  // "January"</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>Date.abbrMonthNames</b> : Array</dt>
+            <dd>一个存储月份名称缩写的数组。</dd>
+            <dd>
+                <pre class="prettyprint language-js">
+alert(Date.abbrMonthNames[0]);  //"Jan"</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>Date.format</b> ：String</dt>
+            <dd>Default : "yyyy-MM-dd"</dd>
+            <dd>日期的默认格式化字符串</dd>
+        </dl>
+
+
+        <h2>Methods</h2>
+        <dl>
+        	<dt><b>format( [format] )</b></dt>
+        	<dd>
+                <ul>
+                	<li><b>format</b> : String 日期格式。若不指定，则以默认格式处理，默认格式存储在Date.format中，默认值为"yyyy-MM-dd,若不指定，则以默认格式处理，默认格式存储在Date.format中，默认值为"yyyy-MM-dd"。</li>
+                    <li><b>return</b> : String 日期字符串</li>
+                </ul>
+            </dd>
+        	<dd>
+                提供格式，把Date转化成指定格式的字符串。
+            </dd>
+            <dd>
+                用例:
+                <pre class="prettyprint language-js">
+var dt = new Date(),
+dateString = dt.format("yyyy-MM-dd hh:mm:ss");</pre>
+            </dd>
+        </dl>
+
+        <h2>Statics</h2>
+        <dl>
+            <dt><b>Date.parseDate( s[, format] )</b></dt>
+            <dd>
+                <ul>
+                	<li><b>s</b> : String 日期字符串</li>
+                	<li><b>format</b> : String 日期格式。若不指定则使用Date.format中的格式。</li>
+                    <li><b>return</b> : Date 日期对象</li>
+                </ul>
+            </dd>
+            <dd>
+                提供日期格式，把相应的日期字符串转化为Date对象
+            </dd>
+            <dd>
+                用例：
+                <pre class="prettyprint language-js">
+var dt  = Date.parseDate("2011-11-03");
+var dt2 = Date.parseDate("20111103","yyyyMMdd");
+var dt3 = Date.parseDate("2011-11-03 10:04:12","yyyy-MM-dd hh:mm:ss");
+                </pre>
+            </dd>
+        </dl>
+        <dl>
+             <dt><b>$.util.date.compare( oDate1, oDate2 )</b></dt>
+             <dd>
+                <ul>
+                	<li><b>oDate1</b> : Date</li>
+                	<li><b>oDate2</b> : Date</li>
+                	<li><b>return</b> : Integer 两个日期的毫秒差值</li>
+                </ul>
+             </dd>
+             <dd>比较两个日期的数值差</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.clearTime( date )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>date</b> : Date</li>
+                    <li><b>return</b> : Date</li>
+                </ul>
+            </dd>
+            <dd>重置当前日期为当日的00:00:00</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.clone( date )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>date</b> : Date</li>
+                    <li><b>return</b> : Date</li>
+                </ul>
+            </dd>
+            <dd>创建当前日期的拷贝</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.today()</b></dt>
+            <dd>
+                <ul>
+                    <li><b>return</b> : Date</li>
+                </ul>
+            </dd>
+            <dd>获取今天，时间为00:00:00</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.now()</b></dt>
+            <dd>
+            	<ul>
+     		        <li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>获取当前的date</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.isLeapYear( year )</b></dt>            
+            <dd>
+            	<ul>
+            		<li><b>year</b> : Integer</li>
+            		<li><b>return</b> : Boolean</li>
+            	</ul>
+            </dd>
+            <dd>判断是否为润年</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.getDaysMonth( year, month )</b></dt>
+            <dd>
+            	<ul>
+            		<li>
+            			<b>year</b> : Integer
+            		</li>
+            		<li>
+            			<b>month</b> : Integer
+            		</li>
+            		<li>
+            			<b>return</b> : Integer
+            		</li>
+            	</ul>
+            </dd>
+            <dd>获取某月的天数</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.parse( date, s )</b></dt>
+            <dd>
+            	<ul>
+            		<li>
+            			<b>date</b> : Date | String 若这个参数为String，则这个参数作为日期运算的表达式，也就不用指定第二个参数了。
+            		</li>
+            		<li>
+            			<b>s</b> ：String 运算的字符串
+            		</li>
+            		<li>
+            			<b>return</b> : Date 运算后的日期 
+            		</li>
+            	</ul>
+            </dd>
+            <dd>解析日期，包括日期的运算</dd>
+            <dd>
+                格式说明：
+                <pre>
+ Format         Description
+ Y              年
+ M              月
+ D              日
+ W              周
+ h              小时
+ m              分钟
+ s              秒
+ today          今天
+ now            当前日期和时间</pre>
+            </dd>
+            <dd>
+                用例：
+                <pre class="prettyprint language-js">
+$.util.date.parse("2011-11-03");
+$.util.date.parse("2011-11-03 13:09:43 - 1M");
+$.util.date.parse("2011/4/2 - 2.2h");
+$.util.date.parse("today - 1D");
+$.util.date.parse("now + 1Y");
+$.util.date.parse(new Date());
+$.util.date.parse(new Date(), "+1W");</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.addMs( date, value )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>value</b> : Integer | Float</li>
+            		<li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>为日期添加或减少n毫秒</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.addSeconds( date, value )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>value</b> : Integer | Float</li>
+            		<li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>为日期添加或减少n秒</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.addMinutes( date, value )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>value</b> : Integer | Float</li>
+            		<li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>为日期添加或减少n分钟</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.addHours( date, value )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>value</b> : Integer | Float</li>
+            		<li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>为日期添加或减少n小时</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.addDays( date, value )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>value</b> : Integer | Float</li>
+            		<li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>为日期添加或减少n天</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.addWeeks( date, value )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>value</b> : Integer | Float</li>
+            		<li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>为日期添加或减少n周</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.addMonths( date, value )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>value</b> : Integer | Float</li>
+            		<li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>为日期添加或减少n月</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.addYear( date, value )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>value</b> : Integer | Float</li>
+            		<li><b>return</b> : Date</li>
+            	</ul>
+            </dd>
+            <dd>为日期添加或减少n年</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.getWeekDays( date )</b></dt>
+            <dd>
+            	<ul>
+            		<li><b>date</b> : Date</li>
+            		<li><b>return</b> : Array 该周日期的date数组</li>
+            	</ul>
+            </dd> 
+            <dd>获取某日所在周的所有日期</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.isWeekday( date )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>date</b> : Date</li>
+                    <li><b>return</b> : Boolean</li>
+                </ul>
+            </dd>
+            <dd>判断某日是否为工作日</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.isBefore( date, target )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>date</b> : Date 需要判断的日期</li>
+                    <li><b>target</b> : Date 对比的目标日期</li>
+                    <li><b>return</b> : Boolean</li>
+                </ul>
+            </dd>
+            <dd>判断某日是否在另一天之前</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.isAfter( date, target )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>date</b> : Date 需要判断的日期</li>
+                    <li><b>target</b> : Date 对比的目标日期</li>
+                    <li><b>return</b> : Boolean</li>
+                </ul>
+            </dd>
+            <dd>判断某日是否在另一天之后</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.isEquals( date1, date2 )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>date1</b> : Date</li>
+                    <li><b>date2</b> : Date</li>
+                    <li><b>return</b> : Boolean</li>
+                </ul>
+            </dd>
+            <dd>判断两个日期是否相等</dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.date.hasDate( date, range )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>date</b> : Date</li>
+                    <li><b>range</b> : Object 日期区间，该参数可以时一个数组，或多个区间的二维数组，如["2001-9-25","2011-8-20"]，数组的第一个值为开始日期，第二个值为结束日期，值可以为date对象或者YYYY-MM-DD格式的字符串</li>
+                    <li><b>return</b> : Boolean</li>
+                </ul>
+            </dd>
+            <dd>判断某个日期是否在一个或多个日期区间范围内</dd>
+        </dl>
+        <script src="../../static/js/app-merge.js"></script>
+    </div>
+</body>
+</html>

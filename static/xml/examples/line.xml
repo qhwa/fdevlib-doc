@@ -1,0 +1,19 @@
+<chart>
+    <data>
+        <indexAxis name="月份" unit=""><!--横坐标名称 unit是单位-->
+            <labels>1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月</labels><!--横坐标标签-->
+        </indexAxis>
+        <valueAxis name="营业额" unit="亿元" /><!--纵坐标名称 unit是单位 -->
+        <dataSets>
+            <set name="A公司"><!--纵坐标的标签1 -->
+                <values>343, 350, 424, 413, 415, 408, 437, 458, 452</values><!--数据1 --><!--A公司1月营业额343亿元 2月营业额350亿元 -->
+            </set>
+            <set name="B公司"><!--纵坐标标签2 -->
+                <values>59, 39, 64, 65, 66, 66, 69, 69, 71</values><!--数据2 -->
+            </set>
+            <set name="C公司"><!--纵坐标标签3 -->
+                <values>39, 38, 43,44,45,45,44,43,43</values><!--数据3 -->
+            </set>
+        </dataSets>
+    </data>
+</chart>

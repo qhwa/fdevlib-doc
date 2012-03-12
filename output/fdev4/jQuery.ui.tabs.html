@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.tabs</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-tabs, ui-tabs-lazyload, ui-tabs-effect : tab切换组件</h1>
+            <h2>介绍</h2>
+            <p>
+                tabs切换组件，例外提供懒加载（图片与HTML的懒加载）与动画效果（渐隐渐现、滚动效果）扩展。其中效果扩展中经过简单配置便可实现焦点图与走马灯效果。<br />
+                1、经典的tabs切换；<br />
+                2、tabs切换时可以对图片或HTML进行懒加载；<br />
+                3、tabs切换时可以有渐隐渐现或滚动效果；<br />
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    hongss: tabs第一版 ---- 2011.02.21
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+//简单的tabs切换
+$.use('ui-tabs',function(){
+    $('...').tabs(options);
+});
+//在tabs中实现懒加载功能
+$.use('ui-tabs-lazyload',function(){
+    $('...').tabs(options);
+});
+//在切换时加上动画效果
+$.use('ui-tabs-effect',function(){
+    $('...').tabs(options);
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="/fdevlib/examples/fdev4/jQuery.ui.tabs.html">Try it!</a>
+            </p>
+            <h2>Configs - 基础配置</h2>
+            <dl>
+                <dt><b>isAutoPlay</b> : boolean</dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否自动切换，默认为自动切换
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>timeDelay</b> : Number</dt>
+                <dd>
+                    Default : 3
+                </dd>
+                <dd>
+                    自动切换的时间间隔，单位为“秒”
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>torpid</b> : Number</dt>
+                <dd>
+                    Default : 200
+                </dd>
+                <dd>
+                    事件产生后与切换动作之间的时间差，单位为“毫秒”
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>event</b> : string</dt>
+                <dd>
+                    Default : 'mouseover|mouseout'
+                </dd>
+                <dd>
+                    可触发动作的事件，如：click, mouseover|mouseout
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>currentClass</b> : string</dt>
+                <dd>
+                    Default : 'current'
+                </dd>
+                <dd>
+                    承载当前title触点样式的class名
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>titleSelector</b> : string</dt>
+                <dd>
+                    Default : '.f-tab-t'
+                </dd>
+                <dd>
+                    可以表示title触点集的selector
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>boxSelector</b> : string</dt>
+                <dd>
+                    Default : '.f-tab-b'
+                </dd>
+                <dd>
+                    可以表示box集的selector
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>selected</b> : number</dt>
+                <dd>
+                    Default : 0
+                </dd>
+                <dd>
+                    设置初始化时第几个触点为当前状态，默认从0开始
+                </dd>
+            </dl>
+            <h2>Configs - 懒加载的配置</h2>
+            <dl>
+                <dt><b>lazyImg</b> : string</dt>
+                <dd>
+                    Default : 'data-lazy-src'
+                </dd>
+                <dd>
+                    用于承载原img标签中的src属性值的自定义属性名
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>lazyHtml</b> : string</dt>
+                <dd>
+                    Default : 'fe-lazy-html'
+                </dd>
+                <dd>
+                    用于存放需懒加载的HTML的textarea的class名，根据此class名存在与否来判断是否执行html懒加载
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>isPreLoad</b> : boolean</dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否预加载下一个tab的数据（img or html），默认为预加载
+                </dd>
+            </dl>
+            <h2>Configs - 动画效果的配置</h2>
+            <dl>
+                <dt><b>effect</b> : string</dt>
+                <dd>
+                    Default : 'none'
+                </dd>
+                <dd>
+                    动画效果，可选值：none{无}|scroll{滚动}|fade{渐隐渐现}|function(){自定义}
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>speed</b> : string/number</dt>
+                <dd>
+                    Default : 'slow'
+                </dd>
+                <dd>
+                    动画播放速度，可选值：slow|normal|fast|数值(单位：毫秒)
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>scrollType</b> : string</dt>
+                <dd>
+                    Default : 'fill'
+                </dd>
+                <dd>
+                    滚动方式，loop{循环}|fill{空白填充}|break{不填充}，只对滚动效果生效
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>perItem</b> : number</dt>
+                <dd>
+                    Default : 1
+                </dd>
+                <dd>
+                    每次滚动的子元素数量，只对滚动效果生效
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>easing</b> : string</dt>
+                <dd>
+                    Default : 'swing'
+                </dd>
+                <dd>
+                    动画效果，swing|easeInQuad|easeOutQuad
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>subLength</b> : number</dt>
+                <dd>
+                    Default : null
+                </dd>
+                <dd>
+                    滚动时每个子元素的宽（高）度，默认自动计算，只对滚动效果生效
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>direction</b> : string</dt>
+                <dd>
+                    Default : 'left'
+                </dd>
+                <dd>
+                    滚动方向，可选值：left|right|up|down，只对滚动效果生效
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt><b>.tabs('prev', n)</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>n</b>
+                            : 可选，number，切换到向前第n个tab
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    向前n个，默认为向前一个
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.tabs('next', n)</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>n</b>
+                            : 可选，number，切换到向后第n个tab
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    可选，向后n个，默认为向后一个
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.tabs('length')</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : 返回tab数
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.tabs('idx')</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : 返回当前index
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.tabs('select', index)</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>index</b>
+                            : 必选；允许负数，如果负数从最后一个开始算
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    选中所传index的tab
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.tabs('reset')</b></dt>
+                <dd>
+                    重新遍历tab数；在使用JS动态增加tab后调用，则新增部分也能融入到原tabs中生效。
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt><b>select</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            : {index:idx}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    setBox前触发
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>show</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            : {index:idx}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    setBox后触发
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>after</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>obj</b>
+                            : {index:idx, boxes:boxes}或{boxes:boxes}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    HTML懒加载完成后触发
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

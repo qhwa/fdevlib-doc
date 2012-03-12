@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>storage test</title>
+        <link rel="stylesheet" href="/fdevlib/static/css/qunit.css" type="text/css" />
+        <script type="text/javascript" src="/fdevlib/static/js/qunit.js">
+        </script>
+        <style type="text/css">
+                        .hostname-error .error {
+                            color:#c00;
+                        }
+                    
+        </style>
+    </head>
+    <body>
+        <h1 id="qunit-header">QUnit Test Suite</h1>
+        <h2 id="qunit-banner"></h2>
+        <div id="qunit-testrunner-toolbar">
+        </div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests">
+        </ol>
+        <div id="qunit-fixture">
+            test markup
+        </div>
+        <div class="hostname-error" id="hostname-error">
+            <script type="text/javascript" src="http://style.china.alibaba.com/js/lib/fdev-v4/core/fdev-min.js">
+            </script>
+            <script type="text/javascript" src="http://style.china.alibaba.com/js/lib/fdev-v4/widget/util/storage.js">
+            </script>
+            <script type="text/javascript">
+                if (!/((taobao|alipay|alibaba|yahoo|alisoft|alimama|koubei|aliimg)\.(com|net|cn|com\.cn)|1688\.com)$/i.test(window.location.host)) {
+                    document.write('<p class="error">当前域名不符合 /((taobao|alipay|alibaba|yahoo|alisoft|alimama|koubei|aliimg)\.(com|net|cn|com\.cn)|1688\.com)$/i 这个规则，flash的存储方式将失败，触发 securityError事件</p>');
+                } else {
+                    /**
+                     * author honglun.menghl
+                     * date 2011-5-9
+                     * storage widget test
+                     */
+                    var STORE = jQuery.util.storage;
+                    asyncTest("STORE setItem&getItem test", function(){
+                        expect(1);
+                        STORE.ready(function(){
+                            var key = 'test';
+                            var value = 'test string';
+                            STORE.setItem(key, value);
+                            equal(value, STORE.getItem(key), 'setItem&getJson test');
+                            start();
+                        });
+                    });
+                    
+                    asyncTest("STORE setJson&getJson test", function(){
+                        expect(1);
+                        STORE.ready(function(){
+                            var key = 'json';
+                            var value = {
+                                a: 1,
+                                b: 2,
+                                c: {
+                                    data: 3
+                                }
+                            };
+                            STORE.setJson(key, value);
+                            deepEqual(value, STORE.getJson(key), 'setJson&getJson test');
+                            start();
+                        });
+                    });
+                    
+                    asyncTest("STORE removeItem test", function(){
+                        expect(4);
+                        STORE.ready(function(){
+                            var key = 'removeItem1';
+                            var value = 'test tset';
+                            var key2 = 'removeItem2';
+                            var value2 = {
+                                a: 3,
+                                b: 4
+                            };
+                            STORE.setItem(key, value);
+                            equal(value, STORE.getItem(key), 'set item');
+                            STORE.removeItem(key);
+                            equal(null, STORE.getItem(key), 'remove ');
+                            STORE.setJson(key2, value2);
+                            deepEqual(value2, STORE.getJson(key2), 'set json');
+                            STORE.removeItem(key2);
+                            equal(null, STORE.getItem(key2), 'remove');
+                            start();
+                        });
+                    });
+                    
+                    asyncTest("STORE clear test", function(){
+                        expect(2);
+                        STORE.ready(function(){
+                            var key1 = 'test1';
+                            var value1 = 'test string';
+                            var key2 = 'test2';
+                            var value2 = {
+                                test: 'test'
+                            };
+                            STORE.setItem(key1, value1);
+                            STORE.setJson(key2, value2);
+                            STORE.clear();
+                            equal(null, STORE.getItem(key1), 'clear');
+                            equal(null, STORE.getJson(key2), 'clear');
+                            start();
+                        });
+                        
+                    });
+                    
+                    asyncTest("STORE length test", function(){
+                        expect(2);
+                        STORE.ready(function(){
+                            STORE.clear();
+                            STORE.setItem('a', 'b');
+                            STORE.setJson('cc', {
+                                a: 2
+                            });
+                            equal(2, STORE.getLength(), 'length');
+                            STORE.removeItem('a');
+                            equal(1, STORE.getLength(), 'length after remove');
+                            start();
+                        });
+                    });
+                    
+                    asyncTest("STORE key function test", function(){
+                        expect(1);
+                        STORE.ready(function(){
+                            STORE.clear();
+                            STORE.setItem('a', 'b');
+                            equal('a', STORE.key(0), 'key function');
+                            start();
+                        });
+                    });
+                    
+                    /*asyncTest("STORE error test",function(){*/
+                    /*expect(1);*/
+                    /*STORE.ready(function(){*/
+                    /*start = 0;*/
+                    /*var content = 'max data test';*/
+                    /*for ( var i = 0 ; i < 100 ; i++){*/
+                    /*content+='max data test';*/
+                    /*}*/
+                    /*function addStorage(){*/
+                    /*STORE.setItem('test'+start,content);*/
+                    /*start++;*/
+                    /*STORE.setItem('number',start);*/
+                    /*}*/
+                    /*var t = setInterval(addStorage,10);*/
+                    /*STORE.bind('error',function(ev,o){*/
+                    /*console.log(ev);*/
+                    /*console.log(o);*/
+                    /*});*/
+                    /**//*equal('a',STORE.key(0),'length');*/
+                    /**//*start();*/
+                    /*});*/
+                    /*});*/
+                
+                }
+            </script>
+        </div>
+    </body>
+</html>

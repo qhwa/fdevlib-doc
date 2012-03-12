@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.autocomplete</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-autocomplete : 自动补全</h1>
+            <h2>介绍</h2>
+            <p>
+                该组件可以自动筛选、 补全用户输入
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    倪朱国：创建----2011.10.14
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+    $.use('ui-autocomplete', function(){
+        $('...').autocomplete(options);
+    });</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.autocomplete.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>disabled</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    使用(false)或禁用(true) autocomplete，可以在初始化autocomplete的时候设置。<br/>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>appendTo</b>
+                    : Selector
+                </dt>
+                <dd>
+                    Default : "body"
+                </dd>
+                <dd>
+                    下拉提示菜单应该被追加到哪个元素下
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>autoFocus</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    如果设置为true的第一个选项将被自动聚焦。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>delay</b>
+                    : Integer
+                </dt>
+                <dd>
+                    Default : 300
+                </dd>
+                <dd>
+                    指定从访问者开始在文本域输入到显示下拉提示菜单所间隔的毫秒数；对于本地数据可以将值设为0以加快响应速度。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>minLength</b>
+                    : Integer
+                </dt>
+                <dd>
+                    Default : 1
+                </dd>
+                <dd>
+                    指定用户最少输入多少个字符后启动自动完成组件。对于本地的少量数据可以将值设为0，但有大量的数据时
+                    应该适当的增加这个数值，以免有太多的匹配项。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>position</b>
+                    : Object
+                </dt>
+                <dd>
+                    Default : { my: "left top", at: "left bottom", collision: "none"}
+                </dd>
+                <dd>
+                    设置autocomplete组件基于和他相关的input的相对位置，也可以用"of"选项指定到其他的input上。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>source</b>
+                    : String, Array, Callback
+                </dt>
+                <dd>
+                    Default : none, must be specified
+                </dd>
+                <dd>
+                    数据源，必须指定。
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.autocomplete("destroy")</b>
+                </dt>
+                <dd>
+                    彻底删除自动补全的功能。这将使input元素返回到初始状态
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.autocomplete("disable")</b>
+                </dt>
+                <dd>
+                    使自动补全功能失效
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.autocompelte("enable")</b>
+                </dt>
+                <dd>
+                    使自动补全功能生效
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.autocomplete("option",optionName,[value])</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>optionName</b>
+                            : String 参数名
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    获得或更改autocomplete的参数
+                    <pre class="prettyprint language-js">
+//getter
+var optionName = $("...").autocomplete("option",optionName);
+//setter
+$("...").autocomplete("option",optionName,value);
+                    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.autocomplete("option", options)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>options</b>
+                            : Object 参数对象
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    提供了一个选项obejct,一次设置多个自动补全选项。
+                    <pre class="prettyprint language-js">
+$("...").autocomplete("option",{
+    disabled: false,
+    appendTo: "body",
+    autoFocus: "false",
+    delay: 300,
+    minLength: 1,
+    position: {
+        my:"left top",
+        at: "left bottom",
+        collision:"none"
+    },
+    source: url
+});
+                    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.autocomplete("widget")</b>
+                </dt>
+                <dd>
+                    返回  .ui-autocomplete 元素
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.autocomplete("search",[value])</b>
+                </dt>
+                <dd>
+                    当数据可用时，可以手动触发搜索事件，得到下拉提示菜单。如果没有指定value，将会使用输入框
+                    中的数据。当使用一个空字符和minLenth=0时，可以显示全部项目。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.autocomplete("colse")</b>
+                </dt>
+                <dd>
+                    关闭打开的菜单。在search方法中很有用，可以关闭已经打开的下拉提示菜单。
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>create</b> Type: autocompletecreate
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                        <li>
+                            <b>ui</b> : Obejct
+                            <pre class="prettyprint language-js">
+    {
+        item: item //当前选中的"item"
+    }</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    autocomplete 创建完成时触发
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>search</b> Type: autocompletesearch
+                </dt>
+                 <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                        <li>
+                            <b>ui</b> : Obejct
+                            <pre class="prettyprint language-js">
+    {
+        item: item //当前选中的"item"
+    }</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    在请求开始前被触发，可以取消请求(return false)。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>open</b> Type: autocompleteopen
+                </dt>
+                 <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                        <li>
+                            <b>ui</b> : Obejct
+                            <pre class="prettyprint language-js">
+    {
+        item: item //当前选中的"item"
+    }</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                   在下拉提示菜单打开时被触发。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>focus</b> Type: autocompletefocus
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                        <li>
+                            <b>ui</b> : Obejct
+                            <pre class="prettyprint language-js">
+    {
+        item: item //当前选中的"item"
+    }</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                   当选项得到焦点时（未选中）触发，ui.item为当前选项的引用。它的默认操作为替换输入框中的
+                   值为焦点选项的值，在键盘上下选择选项时被触发。取消该事件可以阻止输入框中的数据被更新，但是不能阻止选项获得焦点。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>select</b> Type: autocompleteselect
+                </dt>
+                 <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                        <li>
+                            <b>ui</b> : Obejct
+                            <pre class="prettyprint language-js">
+    {
+        item: item //当前选中的"item"
+    }</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    从下拉提示菜单中选择项目时触发； ui.item是被选中选项的引用。默认动作是用被选中选项的值取代input中的值。
+                    取消此事件，可防止值被取代，但并不妨碍关闭菜单。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>close</b> Type: autocompleteclose
+                </dt>
+                 <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                        <li>
+                            <b>ui</b> : Obejct
+                            <pre class="prettyprint language-js">
+    {
+        item: item //当前选中的"item"
+    }</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当列表隐藏 - 没有发生改变。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>change</b> Type: autocompletechange
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                        <li>
+                            <b>ui</b> : Obejct
+                            <pre class="prettyprint language-js">
+    {
+        item: item //当前选中的"item"
+    }</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当字段失去焦点的时候被触发，如果值发生改变， ui.item为被选中选项的引用。
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

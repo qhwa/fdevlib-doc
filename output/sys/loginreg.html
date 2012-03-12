@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk"/>
+        <title>loginreg</title>
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+        <style>
+            iframe {
+                border: 0 none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <div class="g-memo">
+                <h2>loginreg: 中文站统一浮出层登录</h2>
+                <h3>更新日志</h3>
+                <ul class="update-histroy">
+                    <li>2011.06.13 文档入库</li>
+                </ul>
+            </div>
+            <div class="g-detail">
+                <h3>CSS/JS依赖：</h3>
+                <pre class="brush:css">
+/* CSS */
+@import url("http://style.china.alibaba.com/css/sys/popsignin/loginreg.css");
+/* 此CSS依赖于任何版本的reset.css及fdev-v3的type.css，优先使用 */
+            </pre>
+                <pre class="brush:js">
+/* JS */
+ImportJavscript.url("http://style.china.alibaba.com/js/sys/popsignin/loginreg.js");
+/* 此JS依赖于fdev.js、get.js，fdevlib/fdev-v3版本均可，但fdev、get须同版本 */
+            </pre>
+                <h3>使用方法：</h3>
+                <pre class="brush:js">
+/*
+ * @param {Object} options:
+ *	showOverlay {Bolean} 是否显示遮罩
+ *	onShow {Function} 浮出后触发回调函数
+ *	onLoginSuccess {Function} 登陆成功之后回调函数
+ *		@this	成功后的div容器
+ *		@param	提交的get参数
+ *		@o		后台返回的数据
+ *	onRegistSuccess {Function} onRegistSuccess 注册成功之后回调函数
+ *		@this	成功后的div容器
+ *		@param	提交的get参数
+ *		@o		后台返回的数据
+ *	imgDomain {String} 验证图片的前缀，默认为http://checkcode.china.alibaba.com
+ *	aliDomain {String} 数据请求的前缀，默认为http://china.alibaba.com
+ */		
+FD.Member.LR.show(options);
+FD.Member.LR.hide();
+            </pre>
+                <h3>提建议给开发者</h3>
+                作者：Denis & qijun & jinxin
+                <br/>
+                邮件：<a href="mailto:danxia.shidx@alibaba-inc.com">danxia.shidx@alibaba-inc.com</a>
+                <br/>
+                旺旺：swainet（淘宝网）
+            </div>
+        </div>
+    </body>
+</html>

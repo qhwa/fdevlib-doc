@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.Slider</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Slider：焦点图轮播</h2>
+        <p>目前中文站使用最多的图片轮播方式。</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-6-21 发布1.0 RC版本</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>开始：</h3>
+        如果你想使用Slider组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/animation-min.js");
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/slider/slider-min.js");
+	    </pre>
+	    默认的触点样式文件(如果不设置sliderClass等参数时可引用默认的触点样式文件)
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/widget/slider.css");
+	    </pre>
+        <h3>使用说明</h3>
+        <p>1、本组件需要的html结构: 幻灯片必须包括在&lt;ul&gt;中，每张幻灯片是一个&lt;li&gt;。最外层有一个容器div：
+        <pre class="brush:html;">
+			<div id="slider">
+	 			<ul>
+	 				<li><img src="a.jpg" /></li>
+	 				<li><img src="b.jpg" /></li>
+	 				<li><img src="c.jpg" /></li>
+	 			</ul>
+	 		</div>
+	    </pre>
+	    外层的容器为组件的显示区。必须给容器设定合适的宽度和高度。同时设置overflow属性为hidden;
+        </p>
+        <p>2、组件调用方法如下：初始化是需要提供2个参数，第一个参数为容器的id(必填)；第二个参数为配置对象(将覆盖默认的参数设定):
+        <pre class="brush:js;">
+			var slider = new FD.widget.Slider('slider',{timeDelay:5});
+	    </pre>
+	    </p>
+	    <p>
+	    	3、如果你需要重新设置触点的样式，只要编码自己的css替换默认的slider.css即可。触点结构如下:
+	        <pre class="brush:html;">
+				<ul class = config.triggersClass>
+					<li>1</li>
+					<li>2</li>
+					<li class= config.currentClass >3</li><!--当前li的样式-->
+				</ul>
+		    </pre>
+	    </p>
+        <h3>配置参数列表</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>配置参数</th><th>参数可选值</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+        			<td>sliderClass</td><td>String</td><td>幻灯影片ul的className，默认为f-slider</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>triggersClass</td><td>String</td><td>触点的className，默认为f-slider-triggers。</td>
+        		</tr>
+	        	<tr>
+        			<td>currentClass</td><td>String</td><td>当前触点的className，默认为current。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>eventType</td><td>click | mouse</td><td>鼠标触发事件: click:鼠标点击触发；mouse: 鼠标滑动触发，默认为click。</td>
+        		</tr>
+	        	<tr>
+        			<td>timeDelay</td><td>Number</td><td>自动播放时间间隔，单位是秒。默认为3。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>isAutoPlay</td><td>true | false</td><td>是否自动播放,默认为true。</td>
+        		</tr>
+	        	<tr>
+        			<td>sliderHeight</td><td>Number</td><td>只有当无法正确获取高宽时进行修正设定，默认为null。</td>
+        		</tr>
+        	</tbody>
+        </table>
+        <h3>Demo演示</h3>
+        这里为开发者展示了slider组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.Slider.html">example: slider</a>
+        <h3>提建议给开发者</h3>
+        作者：姚升亮<br />
+        邮件：<a href="mailto:shengliang.yaosl@alibaba-inc.com">shengliang.yaosl@alibaba-inc.com</a><br />
+        旺旺：yaosl1984
+    </div>
+</body>
+</html>

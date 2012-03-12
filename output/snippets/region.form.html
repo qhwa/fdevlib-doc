@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>SP.Region.Crumbs</title>
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+		<script src="/fdevlib/static/js/merge-fdev4.js"></script>
+        <style type="text/css">
+            /*demo2*/
+            #demo2 .empty {
+                color: #999;
+            }
+            
+            .field {
+                padding: 2px;
+                border: solid 1px #A2A9AF;
+                height: 19px;
+                background: #FFF url(http://img.china.alibaba.com/images/common/icon_v02/bg5.gif) repeat-x;
+                line-height: 19px;
+            }
+        </style>
+        <script>
+            //FDEV4
+            jQuery(function($){
+                if (!$.support.placeholder) {
+                    $('input[placeholder], textarea[placeholder]').each(function(i, el){
+                        el = $(el);
+                        var defValue = el.attr('placeholder'), defColor = el.css('color');
+                        el.focus(function(){
+                            if (this.value === '' || this.value === defValue) {
+                                $(this).css('color', defColor);
+                                this.value = '';
+                            }
+                        })
+						.blur(blurHandler)
+                        .closest('form').submit(function(){
+                            if (el.val() === defValue) {
+                                el.val('');
+                            }
+                        });
+						blurHandler.call(el[0]);
+                        function blurHandler(){
+                            if (this.value === '' || this.value === defValue) {
+                                $(this).css('color', '#999');
+                                this.value = defValue;
+                            }
+                        }
+                    });
+                }
+            });
+//            //FDEV3            	
+//            FYE.onDOMReady(function(){
+//                if (!('placeholder' in document.createElement('input'))) {
+//                    var els = FYS('input[placeholder],textarea[placeholder]');
+//                    els.forEach(function(el){
+//                        var defValue = FYD.getAttribute(el, 'placeholder'), defColor = FYD.getStyle(el, 'color');
+//                        FYE.on(el, 'focus', function(){
+//                            if (this.value == '' || this.value == defValue) {
+//                                FYD.setStyle(this, 'color', defColor);
+//                                this.value = '';
+//                            }
+//                        });
+//                        FYE.on(el, 'blur', blurHandler);
+//                        blurHandler.call(el);
+//                        FYE.on(FYD.getAncestorByTagName(el, 'form'), 'submit', function(){
+//                            if (el.value === defValue) {
+//                                el.value = '';
+//                            }
+//                        });
+//                    });
+//                    function blurHandler(){
+//                        if (this.value == '' || this.value == defValue) {
+//                            FYD.setStyle(this, 'color', '#999');
+//                            this.value = defValue;
+//                        }
+//                    }
+//                }
+//            });
+        </script>
+    </head>
+    <body>
+        <div class="g-memo">
+            <h2>Form：表单及表单控件相关</h2>
+        </div>
+        <div class="g-detail">
+            <h3>form-a：表单控件默认提示文案（经汉军优化，使用“placeholder”这个HTML5中属性来区别实现此功能，经小欣优化，不支持placeholder的浏览器使用label模拟）</h3>
+            <div id="demo2" class="g-demo">
+                <input type="text" class="field" placeholder="请在这里填写内容" />
+                <br/>
+                <br/>
+                <input type="text" class="field" placeholder="请在这里填写内容" value="我已经填写了内容" />
+                <br/>
+            </div>
+            html:<pre class="brush:html">
+<input type="text" class="field" placeholder="请在这里填写内容" /><br />
+<br />
+<input type="text" class="field" placeholder="请在这里填写内容" value="我已经填写了内容" /><br />
+        </pre>
+            css:<pre class="brush:css;collapse:true">
+.field {
+    padding: 2px;
+    border: solid 1px #A2A9AF;
+    height: 19px;
+    background: #FFF url(http://img.china.alibaba.com/images/common/icon_v02/bg5.gif) repeat-x;
+    line-height: 19px;
+}
+        </pre>
+            js:<pre class="brush:js;collapse:true">
+//FDEV4
+jQuery(function($){
+    if (!$.support.placeholder) {
+        $('input[placeholder], textarea[placeholder]').each(function(i, el){
+            el = $(el);
+            var defValue = el.attr('placeholder'), defColor = el.css('color');
+            el.focus(function(){
+                if (this.value === '' || this.value === defValue) {
+                    $(this).css('color', defColor);
+                    this.value = '';
+                }
+            })
+            .blur(blurHandler)
+            .closest('form').submit(function(){
+                if (el.val() === defValue) {
+                    el.val('');
+                }
+            });
+            blurHandler.call(el[0]);
+            function blurHandler(){
+                if (this.value === '' || this.value === defValue) {
+                    $(this).css('color', '#999');
+                    this.value = defValue;
+                }
+            }
+        });
+    }
+});
+//FDEV3            	
+FYE.onDOMReady(function() {
+    if(!('placeholder' in document.createElement('input'))) {
+        var els=FYS('input[placeholder],textarea[placeholder]');
+        els.forEach(function(el) {
+            var defValue=FYD.getAttribute(el,'placeholder'),
+                defColor=FYD.getStyle(el,'color');
+            FYE.on(el,'focus',function() {
+                if(this.value==''||this.value==defValue) {
+                    FYD.setStyle(this,'color',defColor);
+                    this.value='';
+                }
+            });
+            FYE.on(el,'blur',blurHandler);
+			blurHandler.call(el);
+			FYE.on(FYD.getAncestorByTagName(el, 'form'), 'submit', function(){
+				if(el.value === defValue){
+					el.value = '';
+				}
+			});
+            function blurHandler() {
+                if(this.value==''||this.value==defValue) {
+                    FYD.setStyle(this,'color','#999');
+                    this.value=defValue;
+                }
+            }
+        });
+    }
+});
+        </pre>
+        </div>
+    </body>
+</html>

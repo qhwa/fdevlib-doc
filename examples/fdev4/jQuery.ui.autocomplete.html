@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.autocomplete</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    
+        <style>
+            #tag1,#project{
+                padding: 2px;
+                border: solid 1px #A2A9AF;
+                height: 19px;
+                background: #FFF url(http://img.china.alibaba.com/images/common/icon_v02/bg5.gif) repeat-x;
+                line-height: 19px;
+            }
+            .ui-menu{
+                padding:.5em;
+                width:300px;
+                border:1px solid gray;
+                background:white;
+                cursor:pointer;
+            }
+            .ui-state-hover{
+                background-color:#ddd;
+            }
+            .ui-state-hover a:hover{
+                color:black;
+            }
+            .ui-state-default{
+                border: 1px solid lightGrey;
+                background: #E6E6E6 ;
+                font-weight: normal;
+                color: #555;
+            }
+            #project-label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 1em;
+            }
+            #project-icon {
+                float: left;
+                height: 32px;
+                width: 32px;
+                margin-right:4px;
+            }
+            #project-description {
+                margin: 0;
+                padding: 0;
+                margin-bottom:20px;
+            }
+            .clear{
+                clear:both;
+            }
+            ul {list-style: none;margin: 0;padding:0;}
+            p{ text-indent: 0px; }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-autocomplete : 自动补全</h1>
+            <h2>Demo 1 基本实现</h2>
+            <div id="demo1">
+                <label for="tag1">Tags </label>
+                <input id="tag1" type="text"/>
+            	<pre class="prettyprint language-js">
+jQuery(function($){
+    var availableTags = [
+        "ActionScript", "AppleScript", "Asp",
+        "BASIC",
+        "C", "C++", "Clojure", "COBOL", "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java", "JavaScript",
+        "Lisp",
+        "Perl", "PHP", "Python",
+        "Ruby",
+        "Scala", "Scheme"
+    ];
+    $.use("ui-autocomplete",function(){
+        $("#tag1").autocomplete({
+            source : availableTags
+        });
+    });
+});
+</pre>
+            </div>
+            <h2>Demo 2 复杂数据</h2>
+            <div id="demo2">      
+                <div id="project-label">Select a project (type "j" for a start):</div>
+                <img id="project-icon" alt="" src="../../static/img/examples/jqueryui.autocomplete.transparent_1x1.png" class="ui-state-default"/>
+                <input id="project"/>
+                <input type="hidden" id="project-id"/>
+                <p id="project-description"></p>
+                <pre class="prettyprint language-html clear">
+&lt;div id=&quot;demo2&quot;&gt;
+    &lt;div id=&quot;project-label&quot;&gt;Select a project (type &quot;j&quot; for a start):&lt;/div&gt;
+    &lt;img id=&quot;project-icon&quot; src=&quot;...&quot; class=&quot;ui-state-default&quot;/&gt;
+    &lt;input id=&quot;project&quot;/&gt;
+    &lt;input type=&quot;hidden&quot; id=&quot;project-id&quot;/&gt;
+    &lt;p id=&quot;project-description&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;</pre>
+                <pre class="prettyprint language-js clear">
+jQuery(function($){
+    var projects = [{
+        value: "jquery",
+            label: "jQuery",
+            desc: "the write less, do more, JavaScript library",
+            icon: "jquery_32x32.png"
+        },{
+            value: "jquery-ui",
+            label: "jQuery UI",
+            desc: "the official user interface library for jQuery",
+            icon: "jqueryui_32x32.png"
+        },{
+            value: "sizzlejs",
+            label: "Sizzle JS",
+            desc: "a pure-JavaScript CSS selector engine",
+            icon: "sizzlejs_32x32.png"
+    }];
+                
+    $.use("ui-autocomplete",function(){
+        $( "#project" ).autocomplete({
+            minLength: 0,
+            source: projects,
+            focus: function( event, ui ) {
+                $( "#project" ).val( ui.item.label );
+                return false;
+            },
+            select: function( event, ui ) {
+                $( "#project" ).val( ui.item.label );
+                $( "#project-id" ).val( ui.item.value );
+                $( "#project-description" ).html( ui.item.desc );
+                $( "#project-icon" ).attr( "src", "../../static/img/examples/jqueryui.autocomplete." + ui.item.icon );
+            
+                return false;
+            }
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+            return $( "&lt;li&gt;&lt;/li&gt;" )
+                .data( "item.autocomplete", item )
+                .append( "&lt;a&gt;" + item.label + "&lt;br /&gt;" + item.desc + "&lt;/a&gt;" )
+                .appendTo( ul );
+        };
+    });
+});                
+                </pre>
+            </div>
+            <h2>Demo 3 多须选择</h2>
+            <div id="#demo3">
+                <label for="tag3">输入编程语言:</label>
+                <input id="tag3" type="text" size="50"/>
+                <pre class="prettyprint language-js ">
+jQuery(function($){
+    var languages = [
+        "ActionScript", "AppleScript", "Asp",
+        "BASIC",
+        "C", "C++", "Clojure", "COBOL", "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java", "JavaScript",
+        "Lisp",
+        "Perl", "PHP", "Python",
+        "Ruby",
+        "Scala", "Scheme"
+    ];
+                
+    function split(val){
+        return val.split(/,\s*/);
+    }
+                    
+    function extractLast(term){
+        return split(term).pop();
+    }
+                
+    $.use("ui-autocomplete",function(){
+        $("#tag3").bind("keydown",function(event){
+            if(event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).data("autocomplete").menu.active){
+                event.preventDefault();    
+            }
+        })
+        .autocomplete({
+            minLength: 0,
+            source: function( request, response ) {
+                // delegate back to autocomplete, but extract the last term
+                response( $.ui.autocomplete.filter(
+                    languages, extractLast( request.term ) ) );
+            },
+            focus: function() {
+                // prevent value inserted on focus
+                return false;
+            },
+            select: function( event, ui ) {
+                var terms = split( this.value );
+                // remove the current input
+                terms.pop();
+                // add the selected item
+                terms.push( ui.item.value );
+                // add placeholder to get the comma-and-space at the end
+                terms.push( "" );
+                this.value = terms.join( ", " );
+                return false;
+            }
+        });
+    });
+});</pre>
+            </div>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            /* Demo 1 */
+            jQuery(function($){
+                var availableTags = [
+                    "ActionScript", "AppleScript", "Asp",
+                    "BASIC",
+                    "C", "C++", "Clojure", "COBOL", "ColdFusion",
+                    "Erlang",
+                    "Fortran",
+                    "Groovy",
+                    "Haskell",
+                    "Java", "JavaScript",
+                    "Lisp",
+                    "Perl", "PHP", "Python",
+                    "Ruby",
+                    "Scala", "Scheme"
+                ];
+                $.use("ui-autocomplete",function(){
+                   $("#tag1").autocomplete({
+                       source : availableTags
+                 
+                   });
+               });
+            });
+            
+            /* Demo 2*/
+            jQuery(function($){
+                var projects = [{
+                    value: "jquery",
+                    label: "jQuery",
+                    desc: "the write less, do more, JavaScript library",
+                    icon: "jquery_32x32.png"
+                },{
+                    value: "jquery-ui",
+                    label: "jQuery UI",
+                    desc: "the official user interface library for jQuery",
+                    icon: "jqueryui_32x32.png"
+                },{
+                    value: "sizzlejs",
+                    label: "Sizzle JS",
+                    desc: "a pure-JavaScript CSS selector engine",
+                    icon: "sizzlejs_32x32.png"
+                }];
+                
+                $.use("ui-autocomplete",function(){
+                    $( "#project" ).autocomplete({
+                        minLength: 0,
+                        source: projects,
+                        focus: function( event, ui ) {
+                            $( "#project" ).val( ui.item.label );
+                            return false;
+                        },
+                        select: function( event, ui ) {
+                            $( "#project" ).val( ui.item.label );
+                            $( "#project-id" ).val( ui.item.value );
+                            $( "#project-description" ).html( ui.item.desc );
+                            $( "#project-icon" ).attr( "src", "../../static/img/examples/jqueryui.autocomplete." + ui.item.icon );
+            
+                            return false;
+                        }
+                    })
+                    .data( "autocomplete" )._renderItem = function( ul, item ) {
+                        return $( "<li></li>" )
+                            .data( "item.autocomplete", item )
+                            .append( "<a>" + item.label + "<br>" + item.desc + "</a>" )
+                            .appendTo( ul );
+                    };
+                });
+           });
+           
+            /* Demo 3*/
+            jQuery(function($){
+                var languages = [
+                    "ActionScript", "AppleScript", "Asp",
+                    "BASIC",
+                    "C", "C++", "Clojure", "COBOL", "ColdFusion",
+                    "Erlang",
+                    "Fortran",
+                    "Groovy",
+                    "Haskell",
+                    "Java", "JavaScript",
+                    "Lisp",
+                    "Perl", "PHP", "Python",
+                    "Ruby",
+                    "Scala", "Scheme"
+                ];
+                
+                function split(val){
+                    return val.split(/,\s*/);
+                }
+                
+                function extractLast(term){
+                    return split(term).pop();
+                }
+                
+                $.use("ui-autocomplete",function(){
+                    $("#tag3").bind("keydown",function(event){
+                        if(event.keyCode === $.ui.keyCode.TAB &&
+                                $(this).data("autocomplete").menu.active){
+                            event.preventDefault();    
+                        }
+                    })
+                    .autocomplete({
+                        minLength: 0,
+                        source: function( request, response ) {
+                            // delegate back to autocomplete, but extract the last term
+                            response( $.ui.autocomplete.filter(
+                                languages, extractLast( request.term ) ) );
+
+                        },
+                        focus: function() {
+                            // prevent value inserted on focus
+                            return false;
+                        },
+                        select: function( event, ui ) {
+                            var terms = split( this.value );
+                            // remove the current input
+                            terms.pop();
+                            // add the selected item
+                            terms.push( ui.item.value );
+                            // add placeholder to get the comma-and-space at the end
+                            terms.push( "" );
+                            this.value = terms.join( ", " );
+                            return false;
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

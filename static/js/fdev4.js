@@ -1,0 +1,3 @@
+jQuery(function(){
+    SyntaxHighlighter.all();
+});

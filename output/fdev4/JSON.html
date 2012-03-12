@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>JSON</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>util-json : JSON操作</h1>
+            <h2>介绍</h2>
+            <ul>
+                <li>
+                    提供对JSON的操作，包括正向、逆向的操作：JSON - 字符串、字符串 - JSON
+                </li>
+                <li>
+                    对于浏览器原生就支持的，框架会智能判断是否需要load此js文件（不影响jQuery.use的正常使用）
+                </li>
+                <li>
+                    jQuery核心已经提供了 "字符串 - JSON" 的方法"<a href="http://api.jquery.com/jQuery.parseJSON/" target="_blank">jQuery.parseJSON()</a>"，请同学们优先使用
+                </li>
+            </ul>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    JSON2.js的版本
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('util-json', function(){
+    JSON.parse();
+    JSON.stringify();
+});</pre>            
+            <h2>Statics</h2>
+            <dl>
+                <dt>
+                    <b>JSON.parse( text[, reviver] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>text</b>
+                            : String 需要转成JSON的字符串<em>必须是标准格式的字符串，"{a:1}" "{'a':1}"都不是标准的，必须"{"a":1}"</em>
+                        </li>
+                        <li>
+                            <b>reviver</b>
+                            : Function 自定义key的value
+                        </li>
+                        <li>
+                            <b>return</b>
+                            : Object 转化后的Javascript对象
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    字符串 - JSON<pre class="prettyprint language-js">
+JSON.parse("{\"success\":true,\"data\":1}");
+                    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>JSON.stringify( value[, replacer][, space] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>value</b>
+                            : Object 需要转化为字符串的Javascript对象
+                        </li>
+                        <li>
+                            <b>replacer</b>
+                            : Function | Array 自定义key的value的替换
+                        </li>
+                        <li>
+                            <b>space</b>
+                            : String 格式化字符串的表现，一般为缩进和换行，默认无格式化效果
+                        </li>
+                        <li>
+                            <b>return</b>
+                            : String 转化后的字符串
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    JSON - 字符串
+                    <pre class="prettyprint language-js">
+JSON.stringify({
+    success: true,
+    data: 1
+});
+                    </pre>
+                </dd>
+            </dl>
+            <h2>单元测试</h2>
+            <p>
+                <a href="../../test/fdev4/widget.html" target="_blank">Go!</a>
+            </p>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

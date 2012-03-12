@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.dialog</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <style>
+        #trigger1, #trigger2, #trigger3 {
+            padding: 2px;
+            border: solid 1px #A2A9AF;
+            height: 19px;
+            background: #FFF url(http://img.china.alibaba.com/images/common/icon_v02/bg5.gif) repeat-x;
+            line-height: 19px;
+        }
+    </style>
+    <body>
+        <div id="doc">
+            <h1>ui-datepicker ui-datepicker-time : 日历</h1>
+            <h2>输入框+最小可选日期+最大可选日期</h2>
+            <div id="demo1">
+                <input id="trigger1" type="text" name="" readonly="readonly" data-min-date="2011-09-07" data-max-date="2012-12-21" />
+            </div><pre class="prettyprint language-html">
+&lt;input id="trigger1" type="text" name="" readonly="readonly" data-min-date="2011-09-07" data-max-date="2011-12-21" /></pre><pre class="prettyprint language-js">
+$('#trigger1').one('focus', function(){
+    var self = $(this);
+    $.use('ui-datepicker, util-date', function(){
+        self.datepicker({
+            showTime:true,
+            closable:true,
+            triggerType: 'focus',
+            minDate: Date.parseDate(self.data('minDate')),
+            maxDate: Date.parseDate(self.data('maxDate')),
+            select: function(e, ui){
+                $(this).val(ui.date.format('yyyy-MM-dd hh:mm:ss'));
+            },
+            timeSelect: function(e, ui){
+                $(this).val(ui.date.format('yyyy-MM-dd hh:mm:ss')).datepicker('hide');
+            }
+        }).triggerHandler('focus');
+    });
+});</pre><h2>双输入框日期范围</h2>
+            <div id="demo2">
+                <input id="trigger2" type="text" name="" readonly="readonly" /> - <input id="trigger3" type="text" name="" readonly="readonly" />
+            </div>
+            <pre class="prettyprint language-html">
+&lt;input id="trigger2" type="text" name="" readonly="readonly" /> - &lt;input id="trigger3" type="text" name="" readonly="readonly" />                
+            </pre>
+            <pre class="prettyprint language-js">
+var trigger2 = $('#trigger2'), trigger3 = $('#trigger3');
+trigger2.one('focus', function(){
+    $.use('ui-datepicker, util-date', function(){
+        trigger2.datepicker({
+            triggerType: 'focus',
+            beforeShow: function(){
+                $(this).datepicker({
+                    maxDate: Date.parseDate(trigger3.val())
+                });
+                return true;
+            },
+            select: function(e, ui){
+                $(this).val(ui.date.format()).datepicker('hide');
+            }
+        }).triggerHandler('focus');
+    });
+});
+trigger3.one('focus', function(){
+    $.use('ui-datepicker, util-date', function(){
+        trigger3.datepicker({
+            triggerType: 'focus',
+            beforeShow: function(){
+                $(this).datepicker({
+                    minDate: Date.parseDate(trigger2.val())
+                });
+                return true;
+            },
+            select: function(e, ui){
+                $(this).val(ui.date.format()).datepicker('hide');
+            }
+        }).triggerHandler('focus');
+    });
+});</pre>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($){
+                $('#trigger1').one('focus', function(){
+                    var self = $(this);
+                    $.use('ui-datepicker-time, util-date', function(){
+                        self.datepicker({
+                            showTime:true,
+                            closable:true,
+                            triggerType: 'focus',
+                            minDate: Date.parseDate(self.data('minDate')),
+                            maxDate: Date.parseDate(self.data('maxDate')),
+                            select: function(e, ui){
+                                $(this).val(ui.date.format('yyyy-MM-dd hh:mm:ss'));
+                            },
+                            timeSelect: function(e, ui){
+                                $(this).val(ui.date.format('yyyy-MM-dd hh:mm:ss')).datepicker('hide');
+                            }
+                        }).triggerHandler('focus');
+                    });
+                });
+                var trigger2 = $('#trigger2'), trigger3 = $('#trigger3');
+                trigger2.one('focus', function(){
+                    $.use('ui-datepicker, util-date', function(){
+                        trigger2.datepicker({
+                            triggerType: 'focus',
+                            beforeShow: function(){
+                                $(this).datepicker({
+                                    maxDate: Date.parseDate(trigger3.val())
+                                });
+                                return true;
+                            },
+                            select: function(e, ui){
+                                $(this).val(ui.date.format()).datepicker('hide');
+                            }
+                        }).triggerHandler('focus');
+                    });
+                });
+                trigger3.one('focus', function(){
+                    $.use('ui-datepicker, util-date', function(){
+                        trigger3.datepicker({
+                            triggerType: 'focus',
+                            beforeShow: function(){
+                                $(this).datepicker({
+                                    minDate: Date.parseDate(trigger2.val())
+                                });
+                                return true;
+                            },
+                            select: function(e, ui){
+                                $(this).val(ui.date.format()).datepicker('hide');
+                            }
+                        }).triggerHandler('focus');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

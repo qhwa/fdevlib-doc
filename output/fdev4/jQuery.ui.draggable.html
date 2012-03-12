@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.draggable</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-draggable : 拖动</h1>
+            <h2>介绍</h2>
+            <p>
+                在任何DOM元素启用拖动功能。通过单击鼠标并拖动对象在窗口内的任何地方移动。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    倪朱国：创建----2011.10.24
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+    $.use('ui-draggable', function(){
+        $("...").draggable();
+    });</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.draggable.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>disable</b> : Boolean</dt>
+                <dd>Default: false<dd>
+                <dd>启用或禁用draggable</dd>
+            </dl>
+            <dl>
+                <dt><b>addClasses</b> : Boolean</dt>
+                <dd>Default: true<dd>
+                <dd>如果设置成false，将在加载时阻止ui-graggable样式的加载。</dd>
+                <dd>当有很多对象要加载draggable()插件的情况下，这将对性能有极大的优化。</dd>
+            </dl>
+            <dl>
+                <dt><b>appendTo</b> : Element, Selector</dt>
+                <dd>Default: 'parent'<dd>
+                <dd>helper元素追加的哪个元素后面。</dd>
+            </dl>
+            <dl>
+                <dt><b>axis</b> : String</dt>
+                <dd>Default: false<dd>
+                <dd>约束拖动的动作只能在X轴或Y轴上执行，可选值：'x','y'。</dd>
+            </dl>
+            <dl>
+                <dt><b>cancel</b> : Selector</dt>
+                <dd>Default: ':input, option'<dd>
+                <dd>防止在指定的对象上开始拖动。</dd>
+            </dl>
+            <dl>
+                <dt><b>connectToSortable</b> : Selector</dt>
+                <dd>Default: false<dd>
+                <dd>允许可拖动的元素(draggable)被拖放(dropped)到指定的sortable中，使该可拖动元素成为
+                sortable的一部分。如果使用此选项helper属性必须
+                设置成clone才能正常工作</dd>
+            </dl>
+            <dl>
+                <dt><b>containment</b> : Selector, Element, String, Array</dt>
+                <dd>Default: false<dd>
+                <dd>强制可拖动元素(draggable)只允许在指定元素或区域的范围内移动。</dd>
+                <dd>可选值：'parent', 'docment', 'window', [ x1, y1, x2, y3 ]</dd>
+            </dl>
+            <dl>
+                <dt><b>cursor</b> : String</dt>
+                <dd>Default: 'auto'<dd>
+                <dd>指定在做拖动动作时，鼠标的CSS样式。</dd>
+            </dl>
+            <dl>
+                <dt><b>cursorAt</b> : Object</dt>
+                <dd>Default: false<dd>
+                <dd>开始移动时，鼠标定位在某个位置上（最多两个方向）。</dd>
+                <dd>可选值：{ top, left, right, bottom }</dd>
+            </dl>
+            <dl>
+                <dt><b>delay</b> : Integer</dt>
+                <dd>Default: 0<dd>
+                <dd>当鼠标点下后，延迟指定时间后才开始激活拖动动作（单位：毫秒）。此选项可以用来防止鼠标误点。</dd>
+            </dl>
+            <dl>
+                <dt><b>distance</b> : Integer</dt>
+                <dd>Default: 1<dd>
+                <dd>单鼠标点下后，只有移动指定像素后才开始激活拖动动作。</dd>
+            </dl>
+            <dl>
+                <dt><b>grid</b> : Array</dt>
+                <dd>Default: false<dd>
+                <dd>拖动元素时，只能以指定大小的方格进行拖动。</dd>
+            </dl>
+            <dl>
+                <dt><b>handle</b> : Element, Selector</dt>
+                <dd>Default: false<dd>
+                <dd>只能在拖动元素内的指定元素开始拖动。</dd>
+            </dl>
+            <dl>
+                <dt><b>helper</b> : String, Function</dt>
+                <dd>Default: 'original'<dd>
+                <dd>拖动元素时的显示方式。</dd>
+                <dd>可选值： 'original', 'clone', Function（如果是函数，必须返回一个DOM元素）</dd>
+            </dl>
+            <dl>
+                <dt><b>iframeFix</b> : Boolean, Selector</dt>
+                <dd>Default: false<dd>
+                <dd>可防止当mouseover事件触发拖动动作时，移动过iframes并捕获到它（内部内容），
+                如果设置成true，则屏蔽层会覆盖页面的iframe。如果设置成对应的选择器，则屏蔽层会
+                覆盖相匹配的iframe。</dd>
+            </dl>
+            <dl>
+                <dt><b>opacity</b> : Float</dt>
+                <dd>Default: false<dd>
+                <dd>当元素开始拖动时，改变元素的透明度。</dd>
+            </dl>
+            <dl>
+                <dt><b>refreshPositions</b> : Boolean</dt>
+                <dd>Default: false<dd>
+                <dd>如果设置成true，所有移动过程中的坐标都会被记录。（注意：此功能将影响性能）</dd>
+            </dl>
+            <dl>
+                <dt><b>revert</b> : Boolean, String</dt>
+                <dd>Default: false<dd>
+                <dd>当元素拖动结束后，元素回到原来的位置。</dd>
+            </dl>
+            <dl>
+                <dt><b>revertDuration</b> : Integer</dt>
+                <dd>Default: 500<dd>
+                <dd>当元素拖动结束后，元素回到原来的位置的时间。</dd>
+            </dl>
+            <dl>
+                <dt><b>scope</b> : String</dt>
+                <dd>Default: true<dd>
+                <dd>设置元素只允许拖动到具有相同scope值的元素中。</dd>
+            </dl>
+            <dl>
+                <dt><b>scroll</b> : Boolean</dt>
+                <dd>Default: true<dd>
+                <dd>如果设置为true，元素拖动至边缘时，父容器将自动滚动。</dd>
+            </dl>
+            <dl>
+                <dt><b>scrollSnsitivity</b> : Integer</dt>
+                <dd>Default: 20<dd>
+                <dd>当元素拖动至边缘时，父窗口一次滚动的像素。</dd>
+            </dl>
+            <dl>
+                <dt><b>scrollSpeed</b> : Integer</dt>
+                <dd>Default: 20<dd>
+                <dd>当元素拖动至边缘时，父窗口滚动的速度。</dd>
+            </dl>
+            <dl>
+                <dt><b>snap</b> : Boolean, Selector</dt>
+                <dd>Default: false<dd>
+                <dd>当设置位true或元素标签时，元素拖动到其他元素边缘时，会自动吸附其他元素。</dd>
+            </dl>
+            <dl>
+                <dt><b>snapMode</b> : String</dt>
+                <dd>Default: 'both'<dd>
+                <dd>确定拖动的元素吸附的模式。</dd>
+                <dd>可选值： 'inner', 'outer', 'both'</dd>
+            </dl>
+            <dl>
+                <dt><b>snapTolerance</b> : Integer</dt>
+                <dd>Default: 20<dd>
+                <dd>确定拖动的元素移动至其他元素多少像素的距离时，发生吸附的动作。</dd>
+            </dl>
+            <dl>
+                <dt><b>stack</b> : Selector</dt>
+                <dd>Default: false<dd>
+                <dd>群组设置，使最后拖动的元素在群组的最上面，即最后被拖动的元素的在zIndex值最大。</dd>
+            </dl>
+            <dl>
+                <dt><b>zIndex</b> : Integer</dt>
+                <dd>Default: false<dd>
+                <dd>当拖动元素时，该元素的z-index值。</dd>
+            </dl>
+            
+            
+            <h2>Events</h2>
+            <dl>
+                <dt><b>start</b> Type: dragstart</dt>
+                <dd>
+                    draggable的所有事件回调函数都有两个参数：event和ui，浏览器自有event对象，
+                    和经过封装的ui对象
+                    <ul>
+                        <li>event : Event</li>
+                        <li>
+                            ui : Object
+                            <pre class="prettyprint language-js">
+{
+    helper:     // 表示被拖动的元素的JQuery对象
+    position:   // 表示被拖动元素的相对位置(position:relative) { top, left }
+    offset:     // 表示被拖动元素的绝对位置(position:absolute) { top, left }
+}</pre>
+                        </li>
+                    </ul>
+                <dd>
+                <dd>当鼠标开始拖动时，触发此事件。</dd>
+            </dl>
+            <dl>
+                <dt><b>drag</b> Type: drag</dt>
+                <dd>当鼠标拖动时，触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>stop</b> Type: dragstop</dt>
+                <dd>当鼠标松开时，触发此事件。<dd>
+            </dl>
+            
+            
+            
+            <h2>Methods</h2>
+            <dl>
+                <dt>.draggable("destory")</dt>
+                <dd>从元素中移除拖动功能。<dd>
+            </dl>
+            <dl>
+                <dt>.draggable("disable")</dt>
+                <dd>禁用元素的拖动功能。<dd>
+            </dl>
+            <dl>
+                <dt>.draggable("enable")</dt>
+                <dd>启用元素的拖动功能。<dd>
+            </dl>
+            <dl>
+                <dt>.draggable("option", optionName, [value])</dt>
+                <dd>获取或设置元素的参数。<dd>
+            </dl>
+            <dl>
+                <dt>.draggable("options",options)</dt>
+                <dd>设置元素的参数<dd>
+            </dl>
+            <dl>
+                <dt>.draggable("widget")</dt>
+                <dd>返回draggable元素<dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

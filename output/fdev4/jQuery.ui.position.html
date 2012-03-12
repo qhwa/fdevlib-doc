@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk">
+        <title>jQuery.ui.position</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-position : 定位</h1>
+            <h2>介绍</h2>
+            <p>
+                用于相对定位的通用脚本，可以使任何插件相对于窗口(window),文档(document),
+                一个特定的元素(element),光标/鼠标(cursor/mouse)定位。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    倪朱国: 创建 ---- 2011.10.18
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use("ui-position",function(){
+    $("...").position({
+        of: $("#parent"),   // 父元素
+        my: "left top",     // 自己的基点
+        at: "left top",     // 父元素的基点
+        offset: "0 0",      // 两基点之间的偏移量
+        using: function(){},
+        collision: "none"
+    });
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.position.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>of</b> : Selector, Element, jQuery, Event</dt>
+                <dd>
+                    Default : null, 必须指定！
+                </dd>
+                <dd>
+                    指定父元素。如果你提供的是selector或是jQuery object，他们的第一个元素将被指定为父元素"；如果你提供的是一个
+                    event object，则会使用pageX和pageY属性。<br/>
+                    例如："#top-menu"
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>my</b> : String</dt>
+                <dd>
+                    Default : "center center"
+                </dd>
+                <dd>
+                    两个元素要对齐，必须指定各自的基点。my参数用于设置元素本身基点，他的值为一个字符串，分别指定水平和垂直位置。
+                    <ul>
+                        <li>水平位置可取的值为:"left","center","right";</li>
+                        <li>垂直位置可取的值为:"top","center","right";</li>
+                    </ul>
+                    如果你只指定了一个值，如"right",脚本会把它理解为"right center";如"top",则理解为"center top"。（符合CSS规范）
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>at</b> : String</dt>
+                <dd>
+                    Default : "center center"
+                </dd>
+                <dd>
+                    at参数用于设置父元素的基点，使用方法可以查考my参数。
+                </dd>
+            </dl>
+            
+            <dl>
+                <dt><b>offset</b> : String</dt>
+                <dd>
+                    Default : "0 0"
+                </dd>
+                <dd>
+                    设置两个基点之间的偏移量。<br/>
+                    例如："10 15",表示水平偏移10，垂直偏移15；如果只指定一个值，如"10"，则被解释为"10 10";
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>collision</b> : String</dt>
+                <dd>
+                    Default : "flip flip"
+                </dd>
+                <dd>
+                    当定位的元素溢出窗口时，将它移动到一个替代的位置。和my、at类似，可以接受一对
+                    水平/垂直的值，例如 "flip","fit","fit flip","fit none"
+                    <ul>
+                        <li><b>flip</b> 根据方向翻转</li>
+                        <li><b>fit</b> 元素被重定位在合适的位置，无法越出边界</li>
+                        <li><b>none</b> 不做冲突检测</li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

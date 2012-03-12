@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.portlets</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-portlets : 轻量级排序组件</h1>
+            <h2>介绍</h2>
+            <ul>
+                <li>
+                    本组件诞生于旺铺一期项目，为了实现页面模块的排序功能
+                </li>
+                <li>
+                    本组件功能类似于官方提供的"ui-sortable"组件，但是体积更小，性能更好，去掉了一些不常用的功能
+                </li>
+                <li>
+                    建议使用在简单的单(多)列表排序功能中
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('ui-portlets', function(){
+    $('...').portlets(options);
+});
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.portlets.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>axis</b>
+                    : "x" | "y"
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    限制模块拖动的方向，"x" | "y"。对应水平和垂直方向拖动。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>cursorAt</b>
+                    : object
+                </dt>
+                <dd>
+                    拖拽过程中，鼠标与"helper"的左上角顶点的相对位置。单位(px)<pre class="prettyprint language-js">
+{
+    top: 5,
+    left: 5
+}</pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>columns</b>
+                    : String
+                </dt>
+                <dd>
+                    该配置为选择器，提供排序的分组条件，"items"必须为"columns"的直接子结点。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>helper</b>
+                    : Function
+                </dt>
+                <dd>
+                Default : 'original'
+                <dd>
+                    定义拖动时的辅助容器，一般是在鼠标点击后出现，并跟随鼠标进行移动。默认为鼠标点击时对应的模块本身。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>orientation</b>
+                    : "vertical" | "horizontal"
+                </dt>
+                <dd>
+                    Default : "vertical"
+                </dd>
+                <dd>
+                    该配置的作用是辅助排序算法，指定模块的排序方向。当出现模块全部位于水平时需要使用"horizontal"。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>handle</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    该配置一般为选择器，提供"items"的可供拖拽的子元素条件。默认为"items"的所有区域均可供拖拽。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>items</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : ">*"
+                </dd>
+                <dd>
+                    该配置为选择器，提供排序模块的节点条件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>opacity</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 0.5
+                </dd>
+                <dd>
+                    0 - 1 之间的数值，设置"helper"的透明度。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>placeholder</b>
+                    : Function | String
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    拖拽过程中，提供在被模块位置的占位容器。默认不提供可见的占位容器。如果是自定义方法，则方法返回DOM节点。如果是字符串，则由组件自动创建DOM节点，并将此字符串作为样式追加给DOM节点。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>revert</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    拖拽结束，释放鼠标后，"helper"到"placeholder"的一个动画效果的时长(毫秒)。默认没有动画效果。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>scroll</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    拖拽过程中是否进行智能滚屏。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>scrollSpeed</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 20
+                </dd>
+                <dd>
+                    智能滚屏的速度，数值越大越快。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>zIndex</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 1000
+                </dd>
+                <dd>
+                    拖拽时"helper"的"z-index"样式属性。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>dropOnEmpty</b>
+                    : Function | Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    当"columns"有多个的情况下，出现某个"column"中没有"item"，是否允许从其他"column"拖拽"item"到空的"column"内。该配置可以自定义方法来手动调节"item"被拖拽到空"column"时需要"append"的位置。<em>注意：假如自定了"item"的位置，需要在方法内"return false;"阻止组件默认的算法。</em>
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>capture</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    currentItem: currentItem    //当前的"item"
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当鼠标在"item"的"handle"区域点下(未释放)时，触发的事件。该事件可以通过"return false;"阻止后续的事件流。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>start</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    columns: self.columns,  //当前所有的column。假如未配置，则为初始化的容器本身
+    items: self.items,  //当前的所有item
+    currentItem: self.currentItem,  //当前被拖拽的item
+    currentColumn: self.currentColumn,  //"placeholder"所在的column
+    originalColumn: self.originalColumn,   //被拖拽的item在拖拽开始时所在的column 
+    helper: self.helper,    //"helper"节点引用
+    placeholder: self.placeholder   //"placeholder"节点引用
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当鼠标在"item"的"handle"区域点下(未释放)并开始移动时触发。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>over</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    columns: self.columns,  //当前所有的column。假如未配置，则为初始化的容器本身
+    items: self.items,  //当前的所有item
+    currentItem: self.currentItem,  //当前被拖拽的item
+    currentColumn: self.currentColumn,  //"placeholder"所在的column
+    originalColumn: self.originalColumn,   //被拖拽的item在拖拽开始时所在的column 
+    helper: self.helper,    //"helper"节点引用
+    placeholder: self.placeholder   //"placeholder"节点引用
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    在拖拽过程中，切换column时触发。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>change</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    columns: self.columns,  //当前所有的column。假如未配置，则为初始化的容器本身
+    items: self.items,  //当前的所有item
+    currentItem: self.currentItem,  //当前被拖拽的item
+    currentColumn: self.currentColumn,  //"placeholder"所在的column
+    originalColumn: self.originalColumn,   //被拖拽的item在拖拽开始时所在的column 
+    helper: self.helper,    //"helper"节点引用
+    placeholder: self.placeholder   //"placeholder"节点引用
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    在拖拽过程中，placeholder位置发生变化时触发。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>stop</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    columns: self.columns,  //当前所有的column。假如未配置，则为初始化的容器本身
+    items: self.items,  //当前的所有item
+    currentItem: self.currentItem,  //当前被拖拽的item
+    currentColumn: self.currentColumn,  //"placeholder"所在的column
+    originalColumn: self.originalColumn,   //被拖拽的item在拖拽开始时所在的column 
+    helper: self.helper,    //"helper"节点引用
+    placeholder: self.placeholder   //"placeholder"节点引用
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当拖拽结束并释放鼠标时触发。
+                </dd>
+            </dl>
+        </div>
+    </body>
+</html>

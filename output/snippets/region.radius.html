@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Radius</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .radius-a { border: 1px solid #CCC; }
+        .radius-a .lt, .radius-a .lb, .radius-a .rt, .radius-a .rb { position: relative; overflow: hidden; width: 4px; height: 4px; background: #FFF url(/fdevlib/static/img/output/SP.Region.Radius1.gif); }
+        .radius-a .lt { float: left; margin: -1px 0 0 -1px; background-position: 0 0; }
+        .radius-a .lb { float: left; margin: 0 0 -1px -1px; background-position: 0 -10px; }
+        .radius-a .rt { float: right; margin: -1px -1px 0 0; background-position: 0 -5px; }
+        .radius-a .rb { float: right; margin: 0 -1px -1px 0; background-position: 0 -15px; }
+        .radius-a { width: 400px; }
+        .radius-a .content { height: 120px; }
+        .radius-b .edge { margin: 0 1px; height: 1px; overflow: hidden; background-color: #69A1BF; font-size: 0; }
+        .radius-b .wrap { padding: 2px; background-color: #E6F0FF; }
+        .radius-b .content { border-style: solid; border-width: 0 1px; border-color: #69A1BF; background-color: #FFF; }
+        .radius-b2 .edge { margin: 0 1px; height: 1px; overflow: hidden; background-color: #69A1BF; font-size: 0; }
+        .radius-b2 .wrap { padding: 2px; border-style: solid; border-width: 0 1px; border-color: #69A1BF; background-color: #E6F0FF; }
+        .radius-b2 .content { background-color: #FFF; }
+        .radius-css3 { border: solid 3px #D2E6FA; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Radius：圆角</h2>
+    </div>
+    <div class="g-detail">
+        <h3>radius-a：偶数宽度、圆角需要图片模拟、单色边框、非IFrame内嵌页。（波波大神出品）</h3>
+        <div class="g-demo">
+            <div class="radius-a fd-clr" data-sp="radius-a">
+                <div class="fd-clr">
+                    <div class="lt">
+                    </div>
+                    <div class="rt">
+                    </div>
+                </div>
+                <div>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                </div>
+                <div class="fd-clr">
+                    <div class="lb">
+                    </div>
+                    <div class="rb">
+                    </div>
+                </div>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <div class="radius-a fd-clr" data-sp="radius-a">
+                <div class="fd-clr">
+                    <div class="lt">
+                    </div>
+                    <div class="rt">
+                    </div>
+                </div>
+                <div>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                </div>
+                <div class="fd-clr">
+                    <div class="lb">
+                    </div>
+                    <div class="rb">
+                    </div>
+                </div>
+            </div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .radius-a { border: 1px solid #CCC; }
+        .radius-a .lt, .radius-a .lb, .radius-a .rt, .radius-a .rb { position: relative; overflow: hidden; width: 4px; height: 4px; background: #FFF url(/fdevlib/static/img/output/SP.Region.Radius1.gif); *display:inline;}
+        .radius-a .lt { float: left; margin: -1px 0 0 -1px; background-position: 0 0; }
+        .radius-a .lb { float: left; margin: 0 0 -1px -1px; background-position: 0 -10px; }
+        .radius-a .rt { float: right; margin: -1px -1px 0 0; background-position: 0 -5px; }
+        .radius-a .rb { float: right; margin: 0 -1px -1px 0; background-position: 0 -15px; }
+        .radius-a { width: 400px; }
+        .radius-a .content { height: 120px; }
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>radius-b：1px半径圆角（波波大神出品）</h3>
+        <div class="g-demo">
+            <div class="radius-b" data-sp="radius-b">
+                <div class="edge">
+                </div>
+                <div class="content">
+                    <p>content here...</p>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                </div>
+                <div class="edge">
+                </div>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <div class="radius-b" data-sp="radius-b">
+                <div class="edge">
+                </div>
+                <div class="content">
+                    <p>content here...</p>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                    <p>content here...</p>
+                </div>
+                <div class="edge">
+                </div>
+            </div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .radius-b .edge { margin: 0 1px; height: 1px; overflow: hidden; background-color: #D2E6FA; font-size: 0; }
+        .radius-b .content { border-style: solid; border-width: 0 1px; border-color: #D2E6FA; }
+        </pre>
+        <div class="g-demo">
+            <div class="radius-b2" data-sp="radius-b">
+                <div class="edge">
+                </div>
+                <div class="wrap">
+                    <div class="content">
+                        <p>content here...</p>
+                        <p>content here...</p>
+                        <p>content here...</p>
+                        <p>content here...</p>
+                    </div>
+                </div>
+                <div class="edge">
+                </div>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <div class="radius-b2" data-sp="radius-b">
+                <div class="edge">
+                </div>
+                <div class="wrap">
+                    <div class="content">
+                        <p>content here...</p>
+                        <p>content here...</p>
+                        <p>content here...</p>
+                        <p>content here...</p>
+                    </div>
+                </div>
+                <div class="edge">
+                </div>
+            </div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .radius-b2 .edge { margin: 0 1px; height: 1px; overflow: hidden; background-color: #D2E6FA; font-size: 0; }
+        .radius-b2 .wrap { padding: 2px; background-color: #E6F0FF; }
+        .radius-b2 .content { border-style: solid; border-width: 0 1px; border-color: #D2E6FA; background-color:#FFF; }
+        .radius-b2 .content { border-style: solid; border-width: 0 1px; border-color: #D2E6FA; }
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>radius-css3：CSS3圆角实现，非IE浏览器</h3>
+        <div class="g-demo">
+            <div class="radius-css3" data-sp="radius-css3">
+                <p>content here...</p>
+                <p>content here...</p>
+                <p>content here...</p>
+                <p>content here...</p>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <div class="radius-css3" data-sp="radius-css3">
+                <p>content here...</p>
+                <p>content here...</p>
+                <p>content here...</p>
+                <p>content here...</p>
+            </div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .radius-css3 { border: solid 3px #D2E6FA; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; }
+        </pre>
+    </div>
+</body>
+</html>

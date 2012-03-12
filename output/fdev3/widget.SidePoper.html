@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.SidePoper</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+
+        <h2>SidePoper：侧边跟随框</h2>
+        <p>SidePoper 如果需要有scrollbar 跟随效果，请使用此组件</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-9-10 发布1.0 alpha版本</li>
+        </ul>
+    </div>
+
+    <div class="g-detail">
+        <h3>特性：</h3>
+        <ul>
+            <li>1、此类对象适用于viewport边界附近的浮出和隐去。可以通过baseline 定义是靠上 or 靠下；dockSide 定义是靠左 or 靠右。</li>
+            <li>2、浮出内容可选三种形式。1、页面预埋节点；2、html字符串导入；3、iframe形式</li>
+            <li>3、可以给浮出内容套上外框，方便定义外框样式。</li>
+            <li>4、浮出框可收缩，收缩方向可选垂直方向 or 水平方向。</li>
+            <li>5、浮出后，可设置自动执行 1-maxIt() 2-minIt() 3-close()。</li>
+            <li>6、关闭浮出框后，可自定义执行方法。</li>
+            <li>7、当scroll 设置为2 时，跟随效果为，先隐藏再显示。</li>
+        </ul>
+
+        <h3>开始：</h3>
+        如果你想使用SidePoper组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/sidepoper/sidepoper-min.js");
+	    </pre>
+		如果你希望有动画效果，请在页面中加入以下片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/animation-min.js");
+	    </pre>
+		如果你想使用SidePoper组件的默认样式，请加入以下片段:
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/widget/sidepoper.css");
+	    </pre>
+        <h3>使用说明</h3>
+		<p>初始化有3种形式，初始化一：页面预埋节点；初始化二：传入html字符串；初始化三：iframe形式。 <br /><br /></p>
+		<p>初始化是需要提供3个参数。 <br />第一个参数为容器的id(必填)。 <br /><br />第二个参数可为null(对应初始化一，已经预埋节点了，不需要再传内容了)，html字符串(对应初始化二，传入的字符串作为浮出框内容)或url地址(url地址也是字符串啦，组件里做过正则匹配，如果传入的是url，则将url页面以iframe的形式插入到浮出内容框)。<br /><br />第三个参数为配置对象(将覆盖默认的参数设定)。 <br /><br /></p>
+        <p>1、组件调用之初始化一：(预埋节点方式)
+        <pre class="brush:html;">
+		<a  id="sidepoper-1" class="test" href="#" target="_self"><img  src="http://img.china.alibaba.com/news/upload/0/t_1284012649613.gif" width="19" height="63"/></a>
+		&lt;script>
+		FYE.onDOMReady(function (){
+			FD.widget.SidePoper.init( 'sidepoper-1',null, {defaultShell:0,initWidth:19,initHeight:63,btnset:0,expandDir:0,dockSide:1,isFixed:0,baseline:1,scroll:1,bias:400});
+		});
+		&lt;/script>  
+	    </pre>
+		（注：）baseline 设置为2 时，浮出对象以预埋的位置为基准。
+	    </p>
+        <p>2、组件调用之初始化二：(传入html片段)
+        <pre class="brush:html;">
+		&lt;script>
+		FYE.onDOMReady(function (){
+			FD.widget.SidePoper.init(  'sidePop-shell','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {defaultShell:1,initWidth:353,initHeight:307,expandDir:0,dockSide:1,baseline:0,scroll:1,shellBlank:8,bias:100});
+		});
+		&lt;/script> 
+	    </pre>
+		（注：）如果设置了 defaultShell 为 1，会整体加上外框，并使用默认外框样式（可重定义外框样式）
+	    </p>
+		 <p>3、组件调用之初始化三：(iframe方式)
+        <pre class="brush:html;">
+		&lt;script>
+		FYE.onDOMReady(function (){
+			FD.widget.SidePoper.init(  'sidePop-iframe','http://blog.china.alibaba.com/misc/pop/searchPop.html?keywords=site', {defaultShell:0,initWidth:353,initHeight:307,expandDir:0,dockSide:1,baseline:0,scroll:1,bias:100});
+		});
+		&lt;/script> 
+	    </pre>
+		（注：）与传入html 片段的方式唯一区别是第二个参数传入的是 url 字符串
+	    </p>
+        <h3>配置参数列表</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>配置参数</th><th>参数可选值</th><th>作用说明</th>
+	        	</tr>
+
+	        </thead>
+	        <tbody>
+	        	<tr>
+        			<td>position</td><td>Node</td><td>如果是html 片段的方式生成浮出节点，position 指定浮出节点插入的地方。如果position 为null 则会插入到body 下。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>originWidth</td><td>Num</td><td>对象区域完全宽度</td>
+        		</tr>
+	        	<tr>
+        			<td>originHeight</td><td>Num</td><td>对象区域完全高度</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>initWidth</td><td>Num</td><td>对象区域初始宽度</td>
+        		</tr>
+	        	<tr>
+        			<td>initHeight</td><td>Num</td><td>对象区域初始高度</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>remainArea</td><td>Num</td><td>收起后，保留的区域宽度</td>
+        		</tr>
+	        	<tr>
+        			<td>initTop</td><td>Num</td><td>对象初始的top值 默认为null值情况下，如果baseline==1 则浮出对象从底部弹出</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>btnset</td><td>0 | 1 | 2 | 3</td><td>设置功能按钮 0-无 1-有关闭功能 2-有展开缩小功能 3-有前面两个功能</td>
+
+        		</tr>
+	        	<tr>
+        			<td>scroll</td><td>1 | 2</td><td>是否跟随滚动轴滚动  0-否   1 常规的滚动跟随  2 先隐藏，滚动结束后显示</td>
+        		</tr>		       		
+	        	<tr class="even">
+        			<td>hideTime</td><td>Num</td><td>当scroll 设置为2 时，浮窗的隐藏或显示动画的过程时间</td>
+
+        		</tr>
+	        	<tr>
+        			<td>initExe</td><td>0 | 1 | 2 | 3</td><td>初始化完毕执行的方法 0-不执行任何方法 1-执行maxIt() 2-执行minIt() 3-执行close()</td>
+        		</tr>
+				<tr class="even">
+        			<td>exeDelay</td><td>Num</td><td>初始化完毕执行的方法 延迟执行 ms为单位</td>
+        		</tr>
+	        	<tr>
+        			<td>doAfterClose</td><td>Fun</td><td>关闭后执行的方法</td>
+        		</tr>
+				<tr class="even">
+        			<td>dockSide</td><td>0 | 1</td><td>停靠方向 0-左边停靠  >1-右边停靠</td>
+        		</tr>
+	        	<tr>
+        			<td>departure</td><td>Num | 'center'</td><td>偏离停靠边的距离 值为center时 居中</td>
+        		</tr>
+				<tr class="even">
+        			<td>baseline</td><td>0 | 1 | 2</td><td>0:上基线-viewport上边界；1:下基线-viewport下边界；2:上基线，原位置顶部之下开始随滚动轴滚动</td>
+        		</tr>
+	        	<tr>
+        			<td>isFixed</td><td>0 | 1</td><td>是否使用position:fixed 属性</td>
+        		</tr>	
+				<tr class="even">
+        			<td>bias</td><td>Num | 'middle'</td><td>偏离基线的距离 值为middle时 居中</td>
+        		</tr>
+	        	<tr>
+        			<td>expandDir</td><td>0 | 1</td><td>展开方向 0-上下 1-左右</td>
+        		</tr>
+				<tr class="even">
+        			<td>expandSpeed</td><td>Num</td><td>展开或隐去的速度</td>
+        		</tr>
+	        	<tr>
+        			<td>floatSpeed</td><td>Num</td><td>滚动跟随的速度</td>
+        		</tr>
+				<tr class="even">
+        			<td>defaultShell</td><td>0 | 1</td><td>0-无外框 1-使用默认的外框</td>
+        		</tr>
+	        	<tr>
+        			<td>shellBlank</td><td>Num</td><td>当defaultShell 生效时，此参数表示外框和内容间非展开方向上的留白</td>
+        		</tr>
+				<tr class="even">
+        			<td>zIndex</td><td>Num</td><td>浮出层zindex</td>
+        		</tr>
+        	</tbody>
+        </table>
+        <h3>对象方法列表</h3>
+
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>方法名称</th><th>参数说明</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+
+	        	<tr>
+	        		<td>/</td><td>/</td><td>/</td>
+	        	</tr>
+	        </tbody>
+        </table>
+        <h3>Demo演示</h3>
+        这里为开发者展示了SidePoper组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.SidePoper.html">example: SidePoper</a>
+
+        <h3>提建议给开发者</h3>
+        作者：陈波<br />
+        邮件：<a href="mailto:balibell.chenb@alibaba-inc.com">balibell.chenb@alibaba-inc.com</a><br />
+        旺旺：balibell
+    </div>
+</body>
+</html>

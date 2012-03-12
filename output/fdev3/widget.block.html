@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.block</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/block/block-min.js"></script>
+    <style type="text/css">
+        .modal { border: solid 8px #585858; background-color: #FFF; line-height: 1.5; }
+        .modal .title { padding: 0 8px; border-bottom: solid 1px #C1D2E6; background: url(http://img.china.alibaba.com/images/trade/quotation/100426/bg6.gif) repeat-x; }
+        .modal .title .close { display: block; float: right; margin-top: 7px; width: 21px; height: 22px; overflow: hidden; background: url(http://img.china.alibaba.com/images/trade/quotation/100426/close1.png) no-repeat; cursor: pointer; }
+        .modal h3 { float: left; height: 35px; line-height: 2.5; font-size: 14px; font-weight: bold; color: #06C; }
+        #modal1 { width: 400px; }
+    </style>
+    <script type="text/javascript">
+        FYE.onDOMReady(function () {
+            FYE.on(FYS('button','demo1'),'click',function () {
+                FD.widget.block(FYG('modal1'));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>
+            遮罩组件：实现遮罩浮层效果</h2>
+        <p>只支持全屏单浮层遮罩</p>
+        <h3>
+            更新日志</h3>
+        <ul class="update-histroy">
+            <li>version 2.0.0 优化逻辑，去除1.0.0版本中的局部遮罩功能，参数调整，第一个参数变为需要浮层的对象。</li>
+            <li>version 2.0.1 提供自动居中功能</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>
+            开始：</h3>
+        如果你想使用block组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/block/block-min.js");
+	    </pre>
+        <h3>
+            使用说明</h3>
+        <p>1、本组件对结构没有要求，只要是body内的dom节点即可，唯一的要求是该dom的样式不能被其他非body节点的样式继承： </p>
+        <p>2、组件调用方法如下：由于本组件是由静态函数实现的，所以不需要实例化即可直接调用。第一个参数为浮层DOM对象(必填)；第二个参数为配置对象(将覆盖默认的参数设定):
+            <pre class="brush:js;">
+//打开浮层
+FD.widget.block(HTMLDOMElement, configs);
+//关闭浮层
+FD.widget.unblock();
+        </pre>
+        </p>
+        <h3>
+            配置参数列表</h3>
+        <table class="g-paramtable">
+            <thead>
+                <tr>
+                    <th>配置参数</th>
+                    <th>参数可选值</th>
+                    <th>作用说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>css</td>
+                    <td>Object</td>
+                    <td>浮层容器的style hash值</td>
+                </tr>
+                <tr class="even">
+                    <td>overlayCSS</td>
+                    <td>Object</td>
+                    <td>遮罩层style hash值</td>
+                </tr>
+                <tr>
+                    <td>baseZ</td>
+                    <td>Number</td>
+                    <td>遮罩初始z-index</td>
+                </tr>
+                <tr class="even">
+                    <td>iframe</td>
+                    <td>true | false</td>
+                    <td>是否在IE6下自动生成iframe。（当页面中可能出现select时设为true，默认false）</td>
+                </tr>
+                <tr>
+                    <td>fixed</td>
+                    <td>true | false</td>
+                    <td>是否跟随滚动条滚动。（默认false）</td>
+                </tr>
+                <tr class="even">
+                    <td>center</td>
+                    <td>true | false</td>
+                    <td>是否自动居中浮层。（默认true）</td>
+                </tr>
+                <tr>
+                    <td>allowBodyStretch</td>
+                    <td>true | false</td>
+                    <td>在IE6下，短html页面是否强制把遮罩层填满页面。（默认true）</td>
+                </tr>
+                <tr class="even">
+                    <td>constrainTabKey</td>
+                    <td>true | false</td>
+                    <td>是否限制Tab建光标的移动范围。（默认true）</td>
+                </tr>
+                <tr>
+                    <td>showOverlay</td>
+                    <td>true | false</td>
+                    <td>是否显示遮罩层。（默认true）</td>
+                </tr>
+                <tr class="even">
+                    <td>focusInput</td>
+                    <td>true | false</td>
+                    <td>假如浮层中有表单控件，是否在浮出时默认把光标移到第一个可用的表单控件上。（默认true）</td>
+                </tr>
+                <tr>
+                    <td>focusIndex</td>
+                    <td>Number</td>
+                    <td>假如focusInput设为了true，这里就设置要光标默认所在的控件索引。（默认0）</td>
+                </tr>
+                <tr class="even">
+                    <td>applyPlatformOpacityRules</td>
+                    <td>true | false</td>
+                    <td>解决Linux系统透明问题。（默认true）</td>
+                </tr>
+                <tr>
+                    <td>onBlock</td>
+                    <td>Function</td>
+                    <td>当浮层成功呈现后触发此方法。（默认null）</td>
+                </tr>
+                <tr class="even">
+                    <td>onUnblock</td>
+                    <td>Function</td>
+                    <td>当浮层成功关闭后触发此方法。（默认null）</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>
+            Demo演示</h3>
+        <div id="demo1" class="g-demo">
+            <button id="btn1" type="button">
+                Click me to Block!</button>
+            <div id="modal1" class="modal" style="display: none;">
+                <div class="title fd-clr">
+                    <h3>
+                        新会员注册</h3>
+                    <span onclick="FD.widget.unblock();" class="close"></span>
+                </div>
+                <div class="box">
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                    <p>context here ...</p>
+                </div>
+            </div>
+        </div>
+        html:
+        <pre class="brush:html;">
+<div id="modal1" class="modal" style="display: none;">
+    <div class="title fd-clr">
+        <h3>
+            新会员注册</h3>
+        <span onclick="FD.widget.unblock();" class="close"></span>
+    </div>
+    <div class="box">
+        <p>context here ...</p>
+        <p>context here ...</p>
+        <p>context here ...</p>
+        <p>context here ...</p>
+        <p>context here ...</p>
+        <p>context here ...</p>
+        <p>context here ...</p>
+        <p>context here ...</p>
+        <p>context here ...</p>
+        <p>context here ...</p>
+    </div>
+</div>
+        </pre>
+        css:
+        <pre class="brush:css;">
+.modal { border: solid 8px #585858; background-color: #FFF; line-height: 1.5; }
+.modal .title { padding: 0 8px; border-bottom: solid 1px #C1D2E6; background: url(http://img.china.alibaba.com/images/trade/quotation/100426/bg6.gif) repeat-x; }
+.modal .title .close { display: block; float: right; margin-top: 7px; width: 21px; height: 22px; overflow: hidden; background: url(http://img.china.alibaba.com/images/trade/quotation/100426/close1.png) no-repeat; cursor: pointer; }
+.modal h3 { float: left; height: 35px; line-height: 2.5; font-size: 14px; font-weight: bold; color: #06C; }
+#modal1 { width: 400px; }
+        </pre>
+        js:
+        <pre class="brush:js;">
+//注册按钮单击事件触发浮层
+FYE.on(FYS('button','demo1'),'click',function() {
+    FD.widget.block(FYG('modal1'));
+});
+        </pre>
+        <h3>
+            提建议给开发者</h3>
+        作者：施丹侠<br />
+        邮件：<a href="mailto:danxia.shidx@alibaba-inc.com">danxia.shidx@alibaba-inc.com</a><br />
+        旺旺：swainet
+    </div>
+</body>
+</html>

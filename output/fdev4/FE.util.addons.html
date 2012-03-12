@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>FE.util.addons</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div id="doc">
+        <h1>web-addons : 浏览器插件（active控件，plugin）应用</h1>
+        
+        <h2>介绍</h2>
+        <p>提供判断是否安装了阿里旺旺和阿里工具条两个属性</p>
+
+        <h2>版本</h2>
+        <ul>
+            <li>施丹侠：创建</li>
+            <li>倪朱国：修改----2011.11.03</li>
+        </ul>
+
+        <h2>开始</h2>
+        <pre class="prettyprint langage-js">
+// 手动注册模块。由于该模块使用率不高，所以没有在框架核心中注册此组件。需要使用的同学在产品线或者项目global文件中注册模块。
+jQuery.add("web-addons", {
+    js: ["http://style.china.alibaba.com/js/lib/fdev-v4/widget/web/addons-min.js"],
+    ver: "1.0"
+});
+// 模块动态载入
+jQuery(function($){
+    $.use("web-addons",function(){
+        //...
+    });
+});</pre>
+
+        <h2>Properties</h2>
+        <dl>
+            <dt><b>FE.util.hasAlitalk</b> : Boolean</dt>
+            <dd>是否安装了旺旺</dd>
+        </dl>
+        <dl>
+            <dt><b>FE.util.hasAlitool</b> : Boolean</dt>
+            <dd>是否安装了阿里工具条</dd>
+        </dl>
+        <script src="../../static/js/app-merge.js"></script>
+    </div>
+</body>
+</html>

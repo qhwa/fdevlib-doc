@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>jQuery.ui.droppable</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    <style>
+        .draggable{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ddd;
+            background: #eee;
+            margin: 10px;   
+            float: left;
+            padding: 4px;
+        }
+        .droppable{
+            width: 150px;
+            height: 150px;
+            padding: 0.5em;
+            float: left;
+            margin: 10px;
+            border: 1px solid #E78F08;
+            background: #F6A828;
+            color: white;
+        }
+        .folder, .trash{
+            border: 1px solid #CCC;
+            background: #F6F6F6;
+            margin: 6px;
+            padding: 6px;
+            min-height: 18em;
+        }
+        * html #folder, * html #trash{ height: 18em; } /* IE6 */
+        #folder{
+            width: 54%;
+            float: left;
+        }
+        #trash{
+            width: 36%;
+            float: right;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            border: 1px solid #ddd;
+            background: #eee;
+            margin: 4px;
+            padding: 4px;
+            width: 120px; 
+            height: 120px;
+            float: left;
+            list-style:none;
+        }
+        .ui-state-highlight{
+            border: 1px solid #FED22F;
+            background: #FFE45C;
+            color: #363636;
+        }
+        .ui-state-hover{
+            border: 1px solid #FBD850;
+            background: #ffffff;
+            color: #eb8f00;
+        }
+        .ui-state-active{
+            border: 1px solid #fbcb09;
+            background: #FDF5CE;
+            color: #C77405;
+        }
+        .folder-active{
+            border: 1px solid #BDFCC9;
+            background: #E9FDCE;
+        }
+        .deleted{
+            border: 1px solid #E78F08;
+            background: #F6A828;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="doc">
+        <h1>ui-droppable : 拖放</h1>
+        <h2>Demo 1 简单使用</h2>
+        <div id="demo1">
+            <div id="demo1-draggable" class="draggable">
+                <p><b>#demo1-draggable</b></p>
+                <p>Drag me to my target</p>
+            </div>
+            <div id="demo1-droppable" class="droppable">
+                <p><b>#demo1-droppable</b></p>
+                <p>Drop here</p>
+                
+            </div>
+            <pre class="prettyprint language-js fd-clear">
+/*Javascript*/
+jQuery(function($){
+    $.use("ui-droppable",function(){
+        $("#demo1-draggable").draggable();
+        $("#demo1-droppable").droppable({
+            drop: function( event, ui ) {
+                $(this).addClass("ui-state-highlight")
+                       .find("p:last")
+                       .html("Dropped!");
+            },
+            out: function( event, ui ) {
+                $(this).removeClass("ui-state-highlight")
+                       .find("p:last")
+                       .html("Drop here");
+            }   
+        });
+    });
+});</pre>
+        </div>
+        <h2>Demo 2 反馈(feedback)</h2>
+        <div id="demo2">
+            <h3>在可拖动元素悬停在可拖放元素上(hover)的时候反馈</h3>
+            <div id="demo2-draggable1" class="draggable">
+                <p><b>#demo2-draggable1</b></p>
+                <p>Drag me to my target</p>
+            </div>
+            <div id="demo2-droppable1" class="droppable">
+                <p><b>#demo2-droppable1</b></p>
+                <p>Drop here</p>
+            </div>
+            
+            <h3 class="fd-clear">在可拖动元素拖动的时候反馈</h3>
+            <div id="demo2-draggable2" class="draggable">
+                        <p><b>#demo2-draggable2</b></p>
+                <p>Drag me to my target</p>
+            </div>
+            <div id="demo2-droppable2" class="droppable">
+                <p><b>#demo2-droppable2</b></p>
+                <p>Drop here</p>
+            </div>
+            <pre class="prettyprint language-js fd-clear">
+/*Javascript*/
+jQuery(function($){
+    $.use("ui-droppable",function(){
+        // feedback hover
+        $("#demo2-draggable1").draggable();
+        $("#demo2-droppable1").droppable({
+            hoverClass: "ui-state-hover",
+            drop: function(){
+                $(this).addClass("ui-state-highlight")
+                       .find("p:last")
+                       .html("Dropped!");
+            },
+            out: function( event, ui ) {
+                $(this).removeClass("ui-state-highlight")
+                       .find("p:last")
+                       .html("Drop here");
+            }
+        });
+
+        // feedback active
+        $("#demo2-draggable2").draggable();
+        $("#demo2-droppable2").droppable({
+            accept: "#demo2-draggable2",
+            activeClass: "ui-state-active",
+            drop: function(){
+                $(this).addClass("ui-state-highlight")
+                       .find("p:last")
+                       .html("Dropped!");
+            },
+            out: function( event, ui ) {
+                $(this).removeClass("ui-state-highlight")
+                       .find("p:last")
+                       .html("Drop here");
+            }
+        });
+    });
+});</pre>
+        </div>
+        <h2>Demo 3 综合使用</h2>
+        <div id="demo3">
+            <ul id="folder" class="folder">    
+                <h3>文件夹</h3>
+                <li>文件 1</li>
+                <li>文件 2</li>
+                <li>文件 3</li>
+                <li>文件 4</li>
+                <li>文件 5</li>
+                <li>文件 6</li>
+                <li>文件 7</li>
+                <li>文件 8</li>
+                <li>文件 9</li>
+                <li>文件 10</li>
+            </ul>
+            <div id="trash" class="trash">
+                <h3>垃圾箱</h3>
+            </div>
+            <pre class="prettyprint language-html fd-clear">
+&lt;!--HTML--&gt;
+&lt;ul id="folder" class="folder"&gt;  
+    &lt;h3&gt;文件夹&lt;/h3&gt;
+    &lt;li&gt;文件 1&lt;/li&gt;
+    &lt;li&gt;文件 2&lt;/li&gt;
+    &lt;li&gt;文件 3&lt;/li&gt;
+    &lt;li&gt;文件 4&lt;/li&gt;
+    &lt;li&gt;文件 5&lt;/li&gt;
+    &lt;li&gt;文件 6&lt;/li&gt;
+    &lt;li&gt;文件 7&lt;/li&gt;
+    &lt;li&gt;文件 8&lt;/li&gt;
+    &lt;li&gt;文件 9&lt;/li&gt;
+    &lt;li&gt;文件 10&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id="trash" class="trash"&gt;
+    &lt;h3&gt;垃圾箱&lt;/h3&gt;
+&lt;/div&gt;</pre>
+            <pre class="prettyprint language-js fd-clear">
+/*Javascript*/
+jQuery(function($){
+    $.use("ui-droppable",function(){
+        var $folder = $("#folder"), // 文件夹
+            $trash  = $("#trash");  // 垃圾箱
+
+        // 使文件夹中的文件可被拖动删除
+        $("li",$folder).draggable({
+            revert: "invalid",
+            containment: "#demo3",
+            helper: "clone",
+            cursor: "move"
+        });
+
+        // 垃圾箱接收被删除的文件
+        $trash.droppable({
+            accept: "#folder li",
+            activeClass: "ui-state-active",
+            drop: function( event, ui ){
+                deleteFile(ui.draggable);
+            }
+
+        });
+
+        // 文件夹接收被还原的文件
+        $folder.droppable({
+            accept: "#trash li",
+            activeClass: "folder-active",
+            drop: function( event, ui ){
+                recycleFile(ui.draggable);
+            }
+        });
+
+        function deleteFile($file){
+            $file.fadeOut(1, function(){
+                var $list = $("ul",$trash).length ? $("ul",$trash) : $("&lt;ul/&gt;").appendTo($trash);
+                $file.appendTo($list).fadeIn(1, function(){
+                    $file.addClass("deleted")
+                         .animate({ width: "48px", height: "48px" }, 1);
+                });
+            });
+        }
+        
+        function recycleFile($file){
+            $file.fadeOut(1, function(){
+                $file.appendTo($folder).fadeIn(1, function(){
+                    $file.removeClass("deleted")
+                         .animate({ width: "120px", height: "120px" }, 1);
+                });     
+            });
+        }
+    });
+});</pre>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="../../static/js/app-merge.js">        
+    </script>
+    <script type="text/javascript">
+        /* Demo 1 */
+        jQuery(function($){
+            $.use("ui-droppable",function(){
+                $("#demo1-draggable").draggable();
+                $("#demo1-droppable").droppable({
+                    drop: function( event, ui ) {
+                        $(this).addClass("ui-state-highlight")
+                               .find("p:last")
+                               .html("Dropped!");
+                    },
+                    out: function( event, ui ) {
+                        $(this).removeClass("ui-state-highlight")
+                               .find("p:last")
+                               .html("Drop here");
+                    }   
+                });
+            });
+        });
+
+        /* Demo 2 */
+        jQuery(function($){
+            $.use("ui-droppable",function(){
+                // feedback hover
+                $("#demo2-draggable1").draggable();
+                $("#demo2-droppable1").droppable({
+                    hoverClass: "ui-state-hover",
+                    drop: function(){
+                        $(this).addClass("ui-state-highlight")
+                               .find("p:last")
+                               .html("Dropped!");
+                    },
+                    out: function( event, ui ) {
+                        $(this).removeClass("ui-state-highlight")
+                               .find("p:last")
+                               .html("Drop here");
+                    }
+                });
+
+                // feedback active
+                $("#demo2-draggable2").draggable();
+                $("#demo2-droppable2").droppable({
+                    accept: "#demo2-draggable2",
+                    activeClass: "ui-state-active",
+                    drop: function(){
+                        $(this).addClass("ui-state-highlight")
+                               .find("p:last")
+                               .html("Dropped!");
+                    },
+                    out: function( event, ui ) {
+                        $(this).removeClass("ui-state-highlight")
+                               .find("p:last")
+                               .html("Drop here");
+                    }
+                });
+            });
+        });
+
+        /* Demo 3 */
+        jQuery(function($){
+            $.use("ui-droppable",function(){
+                var $folder = $("#folder"), // 文件夹
+                    $trash  = $("#trash");  // 垃圾箱
+
+                // 使文件夹中的文件可被拖动删除
+                $("li",$folder).draggable({
+                    revert: "invalid",
+                    containment: "#demo3",
+                    helper: "clone",
+                    cursor: "move"
+                });
+
+                // 垃圾箱接收被删除的文件
+                $trash.droppable({
+                    accept: "#folder li",
+                    activeClass: "ui-state-active",
+                    drop: function( event, ui ){
+                        deleteFile(ui.draggable);
+                    }
+
+                });
+
+                // 文件夹接收被还原的文件
+                $folder.droppable({
+                    accept: "#trash li",
+                    activeClass: "folder-active",
+                    drop: function( event, ui ){
+                        recycleFile(ui.draggable);
+                    }
+                });
+
+                function deleteFile($file){
+                    $file.fadeOut(1, function(){
+                        var $list = $("ul",$trash).length ? $("ul",$trash) : $("<ul/>").appendTo($trash);
+                        $file.appendTo($list).fadeIn(1, function(){
+                            $file.addClass("deleted")
+                                 .animate({ width: "48px", height: "48px" }, 1);
+                        });
+                    });
+                }
+                
+                function recycleFile($file){
+                    $file.fadeOut(1, function(){
+                        $file.appendTo($folder).fadeIn(1, function(){
+                            $file.removeClass("deleted")
+                                 .animate({ width: "120px", height: "120px" }, 1);
+                        });     
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

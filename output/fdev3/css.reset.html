@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdev3.css.reset</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>
+            reset：重置浏览器样式</h2>
+        <p>reset文件用来重置浏览器样式，统一各大浏览器的默认表现形式，解决部分兼容性问题。</p>
+        <h3>
+            更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-5-10 发布1.0的beta版本</li>
+            <li>2010-6-9 发布1.0 RC版</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>开始：</h3>
+        如果你想引用reset，请在页面中加入以下片段片段:
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/reset/reset-min.css");
+	    </pre>
+        如果你引用的是fdevlib的css合集（包含reset在内的所有css样式），请在页面中加入以下代码片段：
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/fdev.css");
+	    </pre>
+        <strong>注意：</strong> reset文件是中文站默认的样式，任何新建的页面都应该在reset的基础上进行开发。
+        <h3>
+            新特性：</h3>
+        <p>和老版本相比，新版reset在以下方面进行了改进：
+            <ul>
+                <li>1、默认的字体行高设为1.5，避免了部分字体显示不全的bug。同时无单位的行高设定也便于别的应用的行高设定。详见<a target="_blank" href="http://www.maxdesign.com.au/"> Russ Weakley </a>的精彩讲解:<a target="_blank" href="http://www.slideshare.net/maxdesign/line-height">《 Line Height 》</a>。</li>
+                <li>2、修改了老版本中浏览器默认纵向滚动条的设定方式设定，改为：html { overflow-y: scroll; }，更加友善的写法，防止因滚动条引起的闪烁。</li>
+                <li>3、重新加上:focus{outline:0;}的设定，原因是现阶段Tab操控用户少，暂不予考虑。同时可以确保firefox下面链接在被点击状态不出现超长的边框线。</li>
+                <li>4、根据中文站的视觉规范，直接设置a标签hover状态的颜色为#ff7300。</li>
+                <li>5、考虑到中文站ie7用户的比例很大，直接在reset中增加了ie7的私有属性：img{ -ms-interpolation-mode:bicubic; }设置，相关说明可见<a href="http://www.aoao.org.cn/blog/2009/03/img-ms-interpolation-mode/" target="_blank">《用私有属性来拯救IE7缩放图片的失真》</a>。</li>
+            </ul>
+            <strong>注意：</strong> 没有万能的银弹，不要寄希望于reset解决你的所有问题。 </p>
+        <h3>
+            代码：</h3>
+        <pre class="brush:css;">
+		/**
+		 * reset.css
+		 * 重置浏览器的常用样式
+		 * @version 20100510
+		 */
+		 
+		/* 设置页面默认的白底黑字以及默认纵向滚动条位置 */
+		html{
+			color: #000;
+			overflow-y: scroll;
+			background: #fff;
+		}
+
+		/* 清除内外边距 */
+		body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,  /* structural elements 结构元素 */
+		dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+		pre, /* text formatting elements 文本格式元素 */
+		fieldset, lengend, button, input, textarea, form, /* form elements 表单元素 */
+		th, td { /* table elements 表格元素 */
+		    margin: 0;
+		    padding: 0;
+		}
+
+		/** 设置默认字体及大小 **/
+		body, button, input, select, textarea {
+		    font: 12px/1.5 Tahoma, Arial, "\5b8b\4f53", sans-serif; /* 中文用 ascii 字符表示，使得在任何编码下都无问题 */
+		}
+		h1, h2,	h3,	h4, h5, h6 { 
+			font-size:100%; 
+			font-weight:normal; 
+		}
+		address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+		code, kbd, pre, samp, tt { font-family: "Courier New", Courier, monospace; } /* 统一等宽字体 */
+		small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+
+		/** 重置列表元素 **/
+		ul, ol { list-style: none; }
+
+		/** 重置文本格式元素 **/
+		a { text-decoration: none; }
+		a:hover { 
+			text-decoration: underline;
+			color:#ff7300; 
+		}
+		abbr[title], acronym[title] { /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+			border-bottom: 1px dotted;
+			cursor: help;
+		}
+		q:before, q:after { content: ''; }
+		:focus{	outline:0;} 	/* firefox下面链接在被点击状态不出现超长的边框线*/
+
+		/** 重置表单元素 **/
+		legend { color: #000; } /* for ie6 */
+		fieldset, img { border: none; } /* img 搭车：让链接里的 img 无边框 */
+		/* 注：optgroup 无法扶正 */
+		button, input, select, textarea {  font-size: 100%; /* 使得表单元素在 ie 下能继承字体大小 */}
+
+		/** 重置表格元素 **/
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+		td,th{
+			border:1px solid #000;
+		}
+
+		/** 统一hr为1像素的横线 **/
+		hr {
+		    border: 0;
+		    color: #000;
+		    background-color: #000;
+		    height: 1px
+		}
+
+		/** 解决ie7下图片缩放的失真问题 **/
+		img{ -ms-interpolation-mode:bicubic; }
+	    </pre>
+        <h3>
+            Demo演示</h3>
+        添加了reset后，一个普通的html页面看起来将是这个样子：<a target="_blank" href="/fdevlib/examples/fdev3/css.reset.html">example: reset</a>
+        <h3>
+            提建议给开发者</h3>
+        作者：姚升亮<br />
+        邮件：<a href="mailto:shengliang.yaosl@alibaba-inc.com">shengliang.yaosl@alibaba-inc.com</a><br />
+        旺旺：yaosl1984
+    </div>
+</body>
+</html>

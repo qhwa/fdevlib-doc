@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Tags</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .tab-a { height: 32px; border-bottom: solid 1px #CFCFCF; *overflow:hidden;}
+        .tab-a li { position: relative; float: left; margin-right: 4px; height: 33px; overflow: hidden; color: #1590E2; line-height: 32px; cursor: pointer; }
+        .tab-a h4, .tab-a span { float: left; height: 33px; background: url(http://img.china.alibaba.com/images/common/icon_v02/bg1.png) no-repeat; }
+        .tab-a h4 { padding: 0 16px; background-position: left -33px; font-size: 14px; font-weight: bold; }
+        .tab-a span { display: block; width: 2px; overflow: hidden; background-position: right -33px; }
+        .tab-a .current h4 { background-position: left top; color: #333; }
+        .tab-a .current span { background-position: right top; }
+        .tab-a em { color: #666; font-size: 12px; font-weight: normal; }
+        .tab-b { height: 32px; border-bottom: solid 1px #CFCFCF; *overflow:hidden;}
+        .tab-b li { position: relative; float: left; margin-right: 4px; height: 33px; overflow: hidden; color: #1590E2; line-height: 32px; cursor: pointer; }
+        .tab-b a, .tab-b span { float: left; height: 33px; background: url(http://img.china.alibaba.com/images/common/icon_v02/bg1.png) no-repeat; }
+        .tab-b a { padding: 0 16px; background-position: left -33px; font-size: 14px; font-weight: bold; text-decoration: none !important; }
+        .tab-b span { display: block; width: 2px; overflow: hidden; background-position: right -33px; }
+        .tab-b a:hover { color: #FF7300; }
+        .tab-b .current a { background-position: left top; color: #333 !important; }
+        .tab-b .current span { background-position: right top; }
+        .tab-b em { color: #666; font-size: 12px; font-weight: normal; }
+        .tab-c ul { height: 32px; border-bottom: solid 1px #CFCFCF; *overflow:hidden;}
+        .tab-c li { position: relative; float: left; margin-right: 4px; height: 33px; overflow: hidden; color: #1590E2; line-height: 32px; cursor: pointer; }
+        .tab-c ul a, .tab-c ul span { float: left; height: 33px; background: url(http://img.china.alibaba.com/images/common/icon_v02/bg1.png) no-repeat; }
+        .tab-c ul a { padding: 0 16px; background-position: left -33px; font-size: 14px; font-weight: bold; text-decoration: none !important; }
+        .tab-c ul span { display: block; width: 2px; overflow: hidden; background-position: right -33px; }
+        .tab-c ul a:hover { color: #FF7300; }
+        .tab-c ul .current a { background-position: left top; color: #333 !important; }
+        .tab-c ul .current span { background-position: right top; }
+        .tab-c ul em { color: #666; font-size: 12px; font-weight: normal; }
+        .tab-c dl { padding: 4px 0; height: 23px; background: url(http://img.china.alibaba.com/images/common/icon_v02/bg2.gif) repeat-x; overflow: hidden; }
+        .tab-c dt, .tab-c dd { float: left; margin-left: -2px; padding: 0 20px; background: url(http://img.china.alibaba.com/images/common/icon_v02/split2.gif) no-repeat left center; }
+        .tab-c dt em { font-weight: bold; }
+        .btn-a2 a { display: block; float: left; overflow: hidden; height: 22px; text-decoration: none !important; }
+        .btn-a2 span { display: block; float: left; height: 22px; cursor: pointer; }
+        .btn-a2 .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a2 .btn-r { width: 2px; background-position: right top; }
+        .btn-a2 em { padding: 0 8px; font: 12px/1.9 \5B8B\4F53; color: #333; }
+        .btn-a2 a:hover span { background: url(http://img.china.alibaba.com/images/common/icon_v02/btn3.png) no-repeat; }
+        .btn-a2 a:hover .btn-l { background-position: left -66px; }
+        .btn-a2 a:hover .btn-r { background-position: right -66px; }
+        .btn-a2 a:hover em { color: #FF7300; }
+    </style>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Tab：标签切换</h2>
+    </div>
+    <div class="g-detail">
+        <h3>tab-a：有下边框的固定高度的标签组 </h3>
+        <div class="g-demo">
+            <ul class="tab-a" data-sp="tab-a">
+                <li>
+                    <h4>标签一<em>（200条）</em></h4>
+                    <span></span></li>
+                <li class="current">
+                    <h4>标签二<em>（55条）</em></h4>
+                    <span></span></li>
+                <li>
+                    <h4>标签三<em>（8条）</em></h4>
+                    <span></span></li>
+            </ul>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+<ul class="tab-a" data-sp="tab-a">
+    <li>
+        <h4>标签一<em>（200条）</em></h4>
+        <span></span></li>
+    <li class="current">
+        <h4>标签二<em>（55条）</em></h4>
+        <span></span></li>
+    <li>
+        <h4>标签三<em>（8条）</em></h4>
+        <span></span></li>
+</ul>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+.tab-a { height: 32px; border-bottom: solid 1px #CFCFCF; *overflow:hidden; }
+.tab-a li { position: relative; float: left; margin-right: 4px; height: 33px; overflow: hidden; color: #1590E2; line-height: 32px; cursor: pointer; }
+.tab-a h4, .tab-a span { float: left; height: 33px; background: url(http://img.china.alibaba.com/images/common/icon_v02/bg1.png) no-repeat; }
+.tab-a h4 { padding: 0 16px; background-position: left -33px; font-size: 14px; font-weight: bold; }
+.tab-a span { display: block; width: 2px; overflow: hidden; background-position: right -33px; }
+.tab-a .current h4 { background-position: left top; color: #333; }
+.tab-a .current span { background-position: right top; }
+.tab-a em { color: #666; font-size: 12px; font-weight: normal; }
+        </pre>
+        <h3>tab-b：标签页点击刷新跳转，跟tab-a的区别在于标签a </h3>
+        <div class="g-demo">
+            <ul class="tab-b" data-sp="tab-b">
+                <li><a href="javascript:;">标签一<em>（200条）</em></a> <span></span></li>
+                <li class="current"><a href="javascript:;">标签二<em>（55条）</em></a> <span></span></li>
+                <li><a href="javascript:;">标签三<em>（8条）</em></a> <span></span></li>
+            </ul>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+<ul class="tab-b" data-sp="tab-b">
+    <li>
+        <a href="javascript:;">标签一<em>（200条）</em></a>
+        <span></span></li>
+    <li class="current">
+        <a href="javascript:;">标签二<em>（55条）</em></a>
+        <span></span></li>
+    <li>
+        <a href="javascript:;">标签三<em>（8条）</em></a>
+        <span></span></li>
+</ul>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+.tab-b { height: 32px; border-bottom: solid 1px #CFCFCF; *overflow:hidden;}
+.tab-b li { position: relative; float: left; margin-right: 4px; height: 33px; overflow: hidden; color: #1590E2; line-height: 32px; cursor: pointer; }
+.tab-b a, .tab-b span { float: left; height: 33px; background: url(http://img.china.alibaba.com/images/common/icon_v02/bg1.png) no-repeat; }
+.tab-b a { padding: 0 16px; background-position: left -33px; font-size: 14px; font-weight: bold; text-decoration: none !important; }
+.tab-b span { display: block; width: 2px; overflow: hidden; background-position: right -33px; }
+.tab-b a:hover { color: #FF7300; }
+.tab-b .current a { background-position: left top; color: #333 !important; }
+.tab-b .current span { background-position: right top; }
+.tab-b em { color: #666; font-size: 12px; font-weight: normal; }
+        </pre>
+        <h3>tab-c：带二级菜单的选项卡</h3>
+        <div class="g-demo">
+            <div class="tab-c" data-sp="tab-c">
+                <ul>
+                    <li><a href="javascript:;">标签一<em>（200条）</em></a> <span></span></li>
+                    <li class="current"><a href="javascript:;">标签二<em>（55条）</em></a> <span></span></li>
+                    <li><a href="javascript:;">标签三<em>（8条）</em></a> <span></span></li>
+                </ul>
+                <dl class="btn-a2">
+                    <dt><a href="javascript:;"><span class="btn-l"><em>全部</em></span><span class="btn-r"></span></a></dt>
+                    <dd><a href="javascript:;"><span class="btn-l"><em>菜单一</em></span><span class="btn-r"></span></a></dd>
+                    <dd><a href="javascript:;"><span class="btn-l"><em>菜单二</em></span><span class="btn-r"></span></a></dd>
+                    <dd><a href="javascript:;"><span class="btn-l"><em>菜单三</em></span><span class="btn-r"></span></a></dd>
+                    <dd><a href="javascript:;"><span class="btn-l"><em>菜单四</em></span><span class="btn-r"></span></a></dd>
+                </dl>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+<div class="tab-c" data-sp="tab-c">
+    <ul>
+        <li><a href="javascript:;">标签一<em>（200条）</em></a> <span></span></li>
+        <li class="current"><a href="javascript:;">标签二<em>（55条）</em></a> <span></span></li>
+        <li><a href="javascript:;">标签三<em>（8条）</em></a> <span></span></li>
+    </ul>
+    <dl class="btn-a2">
+        <dt><a href="javascript:;"><span class="btn-l"><em>全部</em></span><span class="btn-r"></span></a></dt>
+        <dd><a href="javascript:;"><span class="btn-l"><em>菜单一</em></span><span class="btn-r"></span></a></dd>
+        <dd><a href="javascript:;"><span class="btn-l"><em>菜单二</em></span><span class="btn-r"></span></a></dd>
+        <dd><a href="javascript:;"><span class="btn-l"><em>菜单三</em></span><span class="btn-r"></span></a></dd>
+        <dd><a href="javascript:;"><span class="btn-l"><em>菜单四</em></span><span class="btn-r"></span></a></dd>
+    </dl>
+</div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+.tab-c ul { height: 32px; border-bottom: solid 1px #CFCFCF; *overflow:hidden;}
+.tab-c li { position: relative; float: left; margin-right: 4px; height: 33px; overflow: hidden; color: #1590E2; line-height: 32px; cursor: pointer; }
+.tab-c ul a, .tab-c ul span { float: left; height: 33px; background: url(http://img.china.alibaba.com/images/common/icon_v02/bg1.png) no-repeat; }
+.tab-c ul a { padding: 0 16px; background-position: left -33px; font-size: 14px; font-weight: bold; text-decoration: none !important; }
+.tab-c ul span { display: block; width: 2px; overflow: hidden; background-position: right -33px; }
+.tab-c ul a:hover { color: #FF7300; }
+.tab-c ul .current a { background-position: left top; color: #333 !important; }
+.tab-c ul .current span { background-position: right top; }
+.tab-c ul em { color: #666; font-size: 12px; font-weight: normal; }
+.tab-c dl { padding: 4px 0; height: 23px; background: url(http://img.china.alibaba.com/images/common/icon_v02/bg2.gif) repeat-x; overflow: hidden; }
+.tab-c dt, .tab-c dd { float: left; margin-left: -2px; padding: 0 20px; background: url(http://img.china.alibaba.com/images/common/icon_v02/split2.gif) no-repeat left center; }
+.tab-c dt em { font-weight: bold; }
+.btn-a2 a { display: block; float: left; overflow: hidden; height: 22px; text-decoration: none !important; }
+.btn-a2 span { display: block; float: left; height: 22px; cursor: pointer; }
+.btn-a2 .btn-l { padding-left: 2px; background-position: left top; }
+.btn-a2 .btn-r { width: 2px; background-position: right top; }
+.btn-a2 em { padding: 0 8px; font: 12px/22px \5B8B\4F53; color: #333; }
+.btn-a2 a:hover span { background: url(http://img.china.alibaba.com/images/common/icon_v02/btn3.png) no-repeat; }
+.btn-a2 a:hover .btn-l { background-position: left -66px; }
+.btn-a2 a:hover .btn-r { background-position: right -66px; }
+.btn-a2 a:hover em { color: #FF7300; }
+        </pre>
+    </div>
+</body>
+</html>

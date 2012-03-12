@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdev3.css.grid</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>
+            grid：中文站栅格系统</h2>
+        <p>grid根据中文站的特定的页面布局整理的两种栅格系统。 </p>
+        <h3>
+            更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-07-26 1.0beta版本</li>
+            <li>2010-07-30 1.0RC版本</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>开始：</h3>
+        如果你想引用grid，请在页面中加入以下片段片段:
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/grid/grid-min.css");
+	    </pre>
+        如果你引用的是fdevlib的css合集（包含grid在内的所有全站公用css样式），请在页面中加入以下代码片段：
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/fdev.css");
+	    </pre>
+        <h3>新特性：</h3>
+        <p>同老版本相比，作如下调整：
+            <ul>
+                <li>1、去掉#doc.auto定义全屏宽度</li>
+                <li>2、改#doc.w952为w952来定义标准页宽</li>
+                <li>3、改#hd为#header</li>
+                <li>4、改#bd为#content</li>
+                <li>5、改#ft为#footer</li>
+            </ul>
+        </p>
+	    <h3>栅格系统说明：</h3>
+	    <p>有关栅格理论的说明请 <a target="_blank" href="/fdevlib/examples/fdev3/css.grid.html">猛击这里查看</a></p>
+        <h3>栅格实现：</h3>
+        <p>
+        <strong>grid-32系统（适用于市场及社区相关页面）:</strong>
+        <p>1、 class名：.layout-p32a24(以32px为最小栅格单位，8px为间隔，共计24个栅格单位)；</p>
+		<p>2、 grid-32栅格系统可构建的布局大小：
+			<table class="tableshow">
+				<tr class="t-n">
+					<th>class =</th><td>.grid-1</td><td>.grid-2</td><td>.grid-3</td><td>.grid-4</td><td>.grid-5</td><td>.grid-6</td>
+					<td>.grid-7</td><td>.grid-8</td><td>.grid-9</td><td>.grid-10</td><td>.grid-11</td><td>.grid-12</td>
+				</tr>
+				<tr class="t-w">
+					<th>W(px) =</th><td>32</td><td>72</td><td>112</td><td>152</td><td class="on">192</td><td class="on">232</td>
+					<td class="on">272</td><td class="on">312</td><td>352</td><td>392</td><td class="on">432</td><td class="on">472</td>
+				</tr>
+				<tr class="t-n">
+					<th>class =</th><td>.grid-13</td><td>.grid-14</td><td>.grid-15</td><td>.grid-16</td><td>.grid-17</td><td>.grid-18</td>
+					<td>.grid-19</td><td>.grid-20</td><td>.grid-21</td><td>.grid-22</td><td>.grid-23</td><td>.grid-24</td>
+				</tr>
+				<tr class="t-w">
+					<th>W(px) =</th><td class="on">512</td><td>552</td><td>592</td><td class="on">632</td><td>672</td><td>712</td>
+					<td class="on">752</td><td>792</td><td>832</td><td>872</td><td>912</td><td class="on">952</td>
+				</tr>
+			</table>
+		</p>
+		<p>3、使用范例:<br />
+		a)、两栏式用法:
+		<pre class="brush:html;">
+		<div class="layout-p32a24">
+			<div class="grid-16">632px(.grid-16)</div>
+			<div class="grid-8 grid-fixed">312px(.grid-8)</div>
+		</div>
+		</pre>
+		b)、三栏式用法:
+		<pre class="brush:html;">
+		<div class="layout-p32a24">
+			<div class="grid-8">312px(.grid-8)</div>
+			<div class="grid-8">312px(.grid-8)</div>	
+			<div class="grid-8 grid-fixed">312px(.grid-8)</div>
+		</div>
+		</pre>
+		</p>
+        <p>
+        <strong>grid-24系统（适用于旺铺）:</strong>
+        <p>1、 class名：.layout-p24a30；</p>
+		<p>2、 grid-24栅格系统可构建的布局大小：
+			<table class="tableshow">
+				<tr class="t-n">
+					<th>class =</th><td>.grid-1</td><td>.grid-2</td><td>.grid-3</td><td>.grid-4</td><td>.grid-5</td><td>.grid-6</td>
+					<td>.grid-7</td><td>.grid-8</td><td>.grid-9</td><td>.grid-10</td><td>.grid-11</td><td>.grid-12</td><td>.grid-13</td><td>.grid-14</td><td>.grid-15</td>
+				</tr>
+				<tr class="t-w">
+					<th>W(px) =</th><td>24</td><td>56</td><td>88</td><td>120</td><td>152</td><td class="on">184</td>
+					<td>216</td><td>248</td><td>280</td><td>312</td><td>344</td><td class="on">376</td><td>408</td><td>440</td><td class="on">472</td>
+				</tr>
+				<tr class="t-n">
+					<th>class =</th><td>.grid-16</td><td>.grid-17</td><td>.grid-18</td><td>.grid-19</td><td>.grid-20</td><td>.grid-21</td>
+					<td>.grid-22</td><td>.grid-23</td><td>.grid-24</td><td>.grid-25</td><td>.grid-26</td><td>.grid-27</td><td>.grid-28</td><td>.grid-29</td><td>.grid-30</td>
+				</tr>
+				<tr class="t-w">
+					<th>W(px) =</th><td>504</td><td>536</td><td class="on">568</td><td>600</td><td>632</td><td>664</td>
+					<td>696</td><td>728</td><td class="on">760</td><td>792</td><td>824</td><td>856</td><td>888</td><td>920</td><td class="on">952</td>
+				</tr>
+			</table>
+		</p>
+		<p>3、使用范例:<br />
+		a)、两栏式用法:
+		<pre class="brush:html;">
+		<div class="layout-p24a30">
+			<div class="grid-6">184px(.grid-6)</div>
+			<div class="grid-24 grid-fixed">760px(.grid-24)</div>
+		</div>
+		</pre>
+		b)、三栏式用法:
+		<pre class="brush:html;">
+		<div class="layout-p24a30">
+			<div class="grid-6">184px(.grid-8)</div>
+			<div class="grid-12">376px(.grid-12)</div>
+			<div class="grid-12 grid-fixed">376px(.grid-12)</div>		
+		</div>
+		</pre>
+		</p>
+        <h3>提建议给开发者</h3>
+        作者：姚升亮<br />
+        邮件：<a href="mailto:shengliang.yaosl@alibaba-inc.com">shengliang.yaosl@alibaba-inc.com</a><br />
+        旺旺：yaosl1984
+    </div>
+</body>
+</html>

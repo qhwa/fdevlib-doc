@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+	<title>border-image</title>
+    <meta name="description" content="阿里巴巴批发大市场"/>  
+    <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>  
+	<link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+    <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<base target="_blank" />
+</head>
+<body>
+    <div class="g-memo">
+        <h2>border-image</h2>
+    </div>
+    <div class="g-detail">
+        <h3>定义：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>border</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">&lt;'<a href="#border-image-source" target="_self">border-image-source</a>'&gt; ||
+      &lt;'<a href="#border-image-slice" target="_self">border-image-slice</a>'&gt; [ /
+      &lt;'<a href="#border-image-width" target="_self">border-image-width</a>'&gt;? [ /
+      &lt;'<a href="#border-image-outset" target="_self">border-image-outset</a>'&gt; ]? ]? ||
+      &lt;'<a href="#border-image-repeat" target="_self">border-image-repeat</a>'&gt;</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">请查看各个独立的属性</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">请查看各个独立的属性</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">N/A</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">请查看各个独立的属性</span></td>
+            </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="mt8 g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8" id="border-image-source"><u>border-image-source</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">none | &lt;image&gt;</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">none</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">除了 border-collapse 为 collapse 的 table 内部元素外的所有元素。</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">N/A</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">none’ 或者图片</span></td>
+            </tr>
+        </table>
+        <p class="mt8">指定一个图片来替代 border-style 属性，并且作为这个元素的一个附加背景图层。如果此值为None,或者图片不能显示，则使用border-style来显示。</p>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="mt8 g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8" id="border-image-slice"><u>border-image-slice</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">[&lt;number&gt; | &lt;percentage&gt;]{1,4} &amp;&amp; fill?</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">100%</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">同 border-image-source</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">相对于背景图片的大小</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">按规定计算</span></td>
+            </tr>
+        </table>
+        <p class="mt8">四个 border-image-slice 代表了4个从图片边缘向内的偏移量，把图片划分成9块。四个角，四个边缘，一个中心。中心部分默认会被省略掉（当成全透明处理）。除非有 fill 关键字，详情请参考<a href="http://www.w3.org/TR/css3-background/#border-image-process">border-image drawing process</a></p>
+        <p>如果第四个值省略，则它和第二个相同，如果第三个省略，则它和第一个相同，如果第二个省略，如果第二个省略，则和第一个相同。</p>
+        <dl class="value-desc">
+            <dt>&lt;percentage&gt;：</dt>
+            <dd>相对于图片尺寸的比率。</dd>
+            <dt>&lt;number&gt;:</dt>
+            <dd>数字代表图片的像素或者矢量坐标。</dd>
+            <dt>'fill'</dt>
+            <dd>如果有 fill 关键字,则引起中间区块被保留。</dd>
+        </dl>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="mt8 g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8" id="border-image-width"><u>border-image-width</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">[ &lt;length&gt; | &lt;percentage&gt; | &lt;number&gt; | auto ]{1,4}</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">1</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">同 border-image-source</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">相对于背景图区域的width,height</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">length 定义绝对值，其他按照规定计算</span></td>
+            </tr>
+        </table>
+        <p class="mt8">border image 是绘在叫做 “border image area 的区域内的。这是一个和border box 有关的区域。</p>
+        <p>border-image-width的四个值定义了4个偏移量把border image area 划分成 9 块。他们分别代表从上、右、下、左向内部的距离。</p>
+        <p>如果第四个值省略，则它和第二个相同，如果第三个省略，则它和第一个相同，如果第二个省略，如果第二个省略，则和第一个相同。</p>
+        <dl class="value-desc">
+            <dt>&lt;percentage&gt;：</dt>
+            <dd>相对于border image area 尺寸的比率。</dd>
+            <dt>&lt;number&gt;:</dt>
+            <dd>数字代表border-width 的倍数。</dd>
+            <dt>‘auto’</dt>
+            <dd>如果指定为 auto，则border image width 是相应的 image slice 的宽度或者高度。如果图片没有必须的固有尺寸，则用相关的border-width 用来代替。</dd>
+        </dl>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="mt8 g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8" id="border-image-outset"><u>border-image-outset</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">[ &lt;length&gt; | &lt;number&gt; ]{1,4}</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">0</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">同 border-image-source</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">N/A</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">length 定义绝对值，其他按照规定计算</span></td>
+            </tr>
+        </table>
+        <p class="mt8">border-image-outset 定义了 border image area 在上、右、下、左方向 超出 border-box 的部分。</p>
+        <p>不允许有负值。</p>
+        <p>border box 外的部分 border image 的渲染不会触发滚动。并且这一部分对于鼠标事件是不可见的，也不会代表此元素捕获此类事件。</p>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="mt8 g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8" id="border-image-repeat"><u>border-image-repeat</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">[ stretch | repeat | round ]{1,2}</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">stretch</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">同 border-image-source</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">N/A</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">按照规定</span></td>
+            </tr>
+        </table>
+        <p class="mt8">此属性定义了四个边和中间的部分的图片，是怎么缩放和平铺的。如果第二个关键字省略了，则它和第一个一样。</p>
+        <dl class="value-desc">
+            <dt>‘stretch’：</dt>
+            <dd>这个图片被拉伸来填充区域。</dd>
+            <dt>‘repeat’:</dt>
+            <dd>这个图片平铺（重复）来填充区域。</dd>
+            <dt>‘round’</dt>
+            <dd>这个图片平铺（重复）来填充区域，如果重复次数不是整数的话，图片会被缩放来满足整数次。</dd>
+        </dl>
+    </div>
+    <div class="g-detail">
+        <h3>浏览器兼容性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+            <tr>
+                <th align="left" width="56"><strong>浏览器</strong></th>
+                <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+            </tr>
+            <tr>
+                <td>兼容性</td>
+                <td><span class="positive">(√)chrome</span></td>
+                <td><span class="positive">(√)firefox 3.6+</span></td>
+                <td><span class="positive">(√)opera 10.6+</span></td>
+                <td><span class="positive">(√)safari 5+</span></td>
+                <td><span class="negative">(×)IE 9</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>此特性各浏览器目前支持不够理想。</p>
+        <p>所有浏览器都不支持 border-image-outset</p>
+        <p>chrome || safari 中不支持 border-image-repeat: round ,不支持 border-image-width</p>
+        <p>opera中不支持 border-image-width </p>
+        <p>webkit 核心目前通过 -webkit- 前缀获得支持。firefox 通过 -moz-前缀获得支持。</p>
+    </div>
+    <div class="g-detail">
+        <h3>例子：</h3>
+        <h4>当前浏览器显示效果：</h4>
+        <div class="show">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+        </div>
+        <style type="text/css">
+            .show {
+                display:inline-block;
+            }
+            .show div {
+                width:100px; 
+                height:80px;
+                float:left;
+                margin:10px;
+            }
+            .show .box1 {
+                -webkit-border-image: url("/fdevlib/static/img/css3/border-img.png") 27 round stretch ;
+                -moz-border-image: url("/fdevlib/static/img/css3/border-img.png") 27 round stretch;
+                border-image: url("/fdevlib/static/img/css3/border-img.png") 27 round stretch;
+                border-width:10px;
+                border-style:dashed;
+            }
+            .show .box2 {
+                -webkit-border-image: url("/fdevlib/static/img/css3/border-img.png") 27 round repeat ;
+                -moz-border-image: url("/fdevlib/static/img/css3/border-img.png") 27 round repeat;
+                border-image: url("/fdevlib/static/img/css3/border-img.png") 27 round repeat;
+                border-width:15px;
+                border-style:dashed;
+            }
+            .show .box3 {
+                -webkit-border-image: url("/fdevlib/static/img/css3/border-img.png") 27/10px 15px round repeat ;
+                -moz-border-image: url("/fdevlib/static/img/css3/border-img.png") 27/10px 15px round repeat;
+                border-image: url("images/bg-borderimgs/border-img.png") 27/10px 15px round repeat;
+                border-width:15px;
+                border-style:dashed;
+            }
+        </style>
+        <h4>firefox中效果截图：</h4>
+        <img class="example-img" src="/fdevlib/static/img/css3/firefox-border-img.png" alt="firefox效果截图" />
+        <h4>code:</h4>
+        <pre class="brush:html">
+        &lt;div class=&quot;show&quot;&gt;
+            &lt;div class=&quot;box1&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;box2&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;box3&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;style type=&quot;text/css&quot;&gt;
+            .show {
+                display:inline-block;
+            }
+            .show div {
+                width:100px;
+                height:80px;
+                float:left;
+                margin:10px;
+            }
+            .show .box1 {
+                -webkit-border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27 round stretch ;
+                -moz-border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27 round stretch;
+                border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27 round stretch;
+                border-width:10px;
+                border-style:dashed;
+            }
+            .show .box2 {
+                -webkit-border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27 round repeat ;
+                -moz-border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27 round repeat;
+                border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27 round repeat;
+                border-width:15px;
+                border-style:dashed;
+            }
+            .show .box3 {
+                -webkit-border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27/10px 15px round repeat ;
+                -moz-border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27/10px 15px round repeat;
+                border-image: url(&quot;/fdevlib/static/img/css3/border-img.png&quot;) 27/10px 15px round repeat;
+                border-width:15px;
+                border-style:dashed;
+            }
+        &lt;/style&gt;
+            
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>相关文档：</h3>
+        <ul>
+            <li><a href="http://www.w3.org/TR/css3-background/#border-images" title="w3c Working Draft">CSS Backgrounds and Borders Module Level 3 (w3c Working Draft)</a></li>
+        </ul>
+    </div>
+</body>
+</html>

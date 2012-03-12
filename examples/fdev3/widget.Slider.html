@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: slider</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+    <link rel="stylesheet"  href="http://style.china.alibaba.com/css/lib/fdev-v3/widget/slider.css" />  
+    <style>
+	.slider-demo{
+		width:328px;
+		height:168px;
+		overflow:hidden;
+	}
+    </style>
+</head>
+<body>
+	<div id="doc">
+		<div id="hd">
+			<h1>fdevlib-example: slider（幻灯片效果）</h1>
+		</div>
+		<div id="bd">
+			<div class="layout">
+				<div class="main">
+					<h2>1、自动无效果切换</h2>
+					 <div id="slider" class="slider-demo">
+			 			<ul>
+			 				<li><img src="/fdevlib/static/img/output/slider-a.jpg" /></li>
+			 				<li><img src="/fdevlib/static/img/output/slider-b.jpg" /></li>
+			 				<li><img src="/fdevlib/static/img/output/slider-c.jpg" /></li>
+			 			</ul>
+			 		</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var mar1 = new FD.widget.Slider('mar1');
+					</pre>
+				</div>			
+			</div>
+			
+			<div class="layout">
+				<div class="main">
+					<h2>2、自动滚动效果切换，间隔5秒。鼠标移动即触发</h2>
+					 <div id="slider2" class="slider-demo">
+			 			<ul>
+			 				<li><img src="/fdevlib/static/img/output/slider-a.jpg" /></li>
+			 				<li><img src="/fdevlib/static/img/output/slider-b.jpg" /></li>
+			 				<li><img src="/fdevlib/static/img/output/slider-c.jpg" /></li>
+			 			</ul>
+			 		</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var slider2 = new FD.widget.Slider('slider2',{
+						effect: 'scroll',
+						eventType: 'mouse',
+						timeDelay: 5 
+					});
+					</pre>
+				</div>			
+			</div>
+			
+			<div class="layout">
+				<div class="main">
+					<h2>3、淡入淡出效果</h2>
+					 <div id="slider3" class="slider-demo">
+			 			<ul>
+			 				<li><img src="/fdevlib/static/img/output/slider-a.jpg" /></li>
+			 				<li><img src="/fdevlib/static/img/output/slider-b.jpg" /></li>
+			 				<li><img src="/fdevlib/static/img/output/slider-c.jpg" /></li>
+			 			</ul>
+			 		</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var slider3 = new FD.widget.Slider('slider3',{
+							effect: 'fade'
+						});
+					</pre>
+				</div>			
+			</div>
+		</div>
+		<div id="ft">
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/animation-min.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/slider/source/slider.js"></script>
+	<script>
+	//Dom树构建完毕后开始执行
+	$E.onDOMReady(function(){
+		dp.SyntaxHighlighter.HighlightAll('code');	//代码高亮
+
+		var slider = new FD.widget.Slider('slider');
+		
+		var slider2 = new FD.widget.Slider('slider2',{
+			effect: 'scroll',
+			eventType: 'mouse',
+			timeDelay: 5 
+		});
+		
+		var slider3 = new FD.widget.Slider('slider3',{
+			effect: 'fade',
+		});
+	});
+	</script>
+</body>
+</html>

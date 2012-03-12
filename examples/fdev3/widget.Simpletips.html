@@ -1,0 +1,74 @@
+<!Doctype html>
+<html>
+<head>
+<title> fdevlib-example: Simpletips</title>
+<meta charset="gbk" />
+<meta name="author" content="Aissa" />
+<link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+<link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+<link href="http://style.china.alibaba.com/css/lib/fdev-v3/widget/simpletips.css" type="text/css" rel="Stylesheet" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/simpletips/simpletips-min.js"></script>
+<style type="text/css">
+	.w952{width:952px; margin:0 auto;}
+    #loc_logo .tips-box div{ border-color:#f73; color:#ff7300; font-size:12px; }
+    .tips-box div{font-family:Consolas}
+</style>
+</head>
+<body>
+    <div id="doc" class="w952">
+        <div id="hd"></div>
+        <div id="bd">
+            <div style="margin:100px;"><a href="#" class="more">more>></a></div>
+            <p style="border:dashed 1px #ccc">                
+                new FD.widget.SimpleTips('more', { isOnloadShow: true });<br />                
+                new FD.widget.SimpleTips('more', { graveId: 'loc_10', boxId: 'loc_box_10', local: 4, isOnloadShow: true, arrow: 0 });
+            </p>
+            <div style="margin:50px;">
+                <div>            
+                    <a id="a7" href="javascript:void(0);" target="_self" class="test" style="float:right; border:solid 1px #f00">测试七</a>
+                    <a id="a1" href="javascript:void(0);" target="_self" class="test" style="border:solid 1px #f00">测试一</a>
+                    <a id="a2" href="javascript:void(0);" target="_self" class="test" style="border:solid 1px #f00">测试二</a>
+                    <a id="a3" href="javascript:void(0);" target="_self" class="test">测试三</a>
+                    <a id="a4" href="javascript:void(0);" target="_self" class="test">测试四</a>
+                    <a id="a5" href="javascript:void(0);" target="_self" class="test">测试五</a>
+                    <a id="a6" href="javascript:void(0);" target="_self" class="test">测试六</a>
+                </div>
+            </div>
+            <p style="border:dashed 1px #ccc">  
+                #loc_logo .tips-box div{ border-color:#f73; color:#ff7300; font-size:12px; }<br />
+                var msg='&lt;img src="http://img.china.alibaba.com/images/ali_index/logo.gif" alt="" width="164" height="41" class="alibabalogo" /&gt;'<br />
+                new FD.widget.SimpleTips(['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7'], { graveId: 'loc_81', boxId: 'loc_box_81', isOnloadShow: true, local: 1, txt: msg, width: 174/*, arrow: 0*/ });<br />
+                new FD.widget.SimpleTips('alibabalogo', { isOnloadShow: true, graveId: 'loc_logo', boxId: 'loc_box_logo', txt: '出了门，那就干吧！', width: 118, onloadHold: 1500 });
+            </p>
+            <div id="dvLA" style="overflow:hidden; width:200px; height:120px; margin:50px; border:dashed 1px #06f; text-align:center; line-height:120px; color:#666; font-family:Consolas">local & arrow</div>
+            <p style="border:dashed 1px #ccc">
+                .tips-box div{font-family:Consolas}<br />
+                new FD.widget.SimpleTips('dvLA', { graveId: 'loc_1', boxId: 'loc_box_1', local: 1, txt: 'location: 1<br />arrow:3', width: 88, isOnloadShow: true });<br />
+                new FD.widget.SimpleTips('dvLA', { graveId: 'loc_2', boxId: 'loc_box_2', local: 2, txt: 'location: 2<br />arrow:4', width: 88, isOnloadShow: true });<br />
+                new FD.widget.SimpleTips('dvLA', { graveId: 'loc_3', boxId: 'loc_box_3', local: 3, txt: 'location: 3<br />arrow:1', width: 88, isOnloadShow: true });<br />
+                new FD.widget.SimpleTips('dvLA', { graveId: 'loc_4', boxId: 'loc_box_4', local: 4, txt: 'location: 4<br />arrow:2', width: 88, isOnloadShow: true });<br />
+                new FD.widget.SimpleTips('dvLA', { graveId: 'loc_5', boxId: 'loc_box_5', local: 5, txt: 'location: 5<br />arrow:7', width: 88, isOnloadShow: true });<br />
+                new FD.widget.SimpleTips('dvLA', { graveId: 'loc_6', boxId: 'loc_box_6', local: 6, txt: 'location: 6<br />arrow:8', width: 88, isOnloadShow: true });<br />
+                new FD.widget.SimpleTips('dvLA', { graveId: 'loc_7', boxId: 'loc_box_7', local: 7, txt: 'location: 7<br />arrow:5', width: 88, isOnloadShow: true });<br />
+                new FD.widget.SimpleTips('dvLA', { graveId: 'loc_8', boxId: 'loc_box_8', local: 8, txt: 'location: 8<br />arrow:6', width: 88, isOnloadShow: true });<br />
+            </p>            
+        </div>
+        <div id="ft"></div>
+    </div>
+    <script type="text/javascript">
+        new FD.widget.SimpleTips('more', { isOnloadShow: true });
+        new FD.widget.SimpleTips('more', { graveId: 'loc_10', boxId: 'loc_box_10', local: 4, isOnloadShow: true, arrow: 0 });
+        new FD.widget.SimpleTips('dvLA', { graveId: 'loc_1', boxId: 'loc_box_1', local: 1, txt: 'location: 1<br />arrow:3', width: 88, isOnloadShow: true });
+        new FD.widget.SimpleTips('dvLA', { graveId: 'loc_2', boxId: 'loc_box_2', local: 2, txt: 'location: 2<br />arrow:4', width: 88, isOnloadShow: true });
+        new FD.widget.SimpleTips('dvLA', { graveId: 'loc_3', boxId: 'loc_box_3', local: 3, txt: 'location: 3<br />arrow:1', width: 88, isOnloadShow: true });
+        new FD.widget.SimpleTips('dvLA', { graveId: 'loc_4', boxId: 'loc_box_4', local: 4, txt: 'location: 4<br />arrow:2', width: 88, isOnloadShow: true });
+        new FD.widget.SimpleTips('dvLA', { graveId: 'loc_5', boxId: 'loc_box_5', local: 5, txt: 'location: 5<br />arrow:7', width: 88, isOnloadShow: true });
+        new FD.widget.SimpleTips('dvLA', { graveId: 'loc_6', boxId: 'loc_box_6', local: 6, txt: 'location: 6<br />arrow:8', width: 88, isOnloadShow: true });
+        new FD.widget.SimpleTips('dvLA', { graveId: 'loc_7', boxId: 'loc_box_7', local: 7, txt: 'location: 7<br />arrow:5', width: 88, isOnloadShow: true });
+        new FD.widget.SimpleTips('dvLA', { graveId: 'loc_8', boxId: 'loc_box_8', local: 8, txt: 'location: 8<br />arrow:6', width: 88, isOnloadShow: true });
+        new FD.widget.SimpleTips(['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7'], { graveId: 'loc_81', boxId: 'loc_box_81', isOnloadShow: true, local: 1, txt: '<img src="http://img.china.alibaba.com/images/ali_index/logo.gif" alt="" width="164" height="41" class="alibabalogo" />', width: 174/*, arrow: 0*/ });
+        var tt = new FD.widget.SimpleTips('alibabalogo', { isOnloadShow: true, graveId: 'loc_logo', boxId: 'loc_box_logo', txt: '出了门，那就干吧！', width: 118, onloadHold: 1500 });
+	</script>
+</body>
+</html>

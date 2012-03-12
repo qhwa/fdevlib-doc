@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>jQuery.util.storage</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet">
+</head>
+<body>
+    <div id="doc">
+        <h1>util-storage : 本地存储</h1>
+        
+        <h2>介绍</h2>
+        <ul>
+            <li>在支持localStorage的浏览器上，使用原生的localStorage。 不支持的浏览器使用flash作为fallback的方案，级不支持flash也不支持localStorage的浏览器不兼容。</li>  
+            <li>在原生的setItem和getItem的基础上，提供setJson,getJson的方法，方便存储和读取复杂数据。</li>  
+            <li>为了支持flash这个fallback的方案，所有的操作必须放在ready()这个方法里，并且是异步执行的。原生本地存储到存储上限的时候，抛出的异常也在组件内被转换成error事件。</li>  
+            <li>flash存储有域名限制，验证规则 /((taobao|alipay|alibaba|yahoo|alisoft|alimama|koubei|aliimg)\.(com|net|cn|com\.cn)|1688\.com)$/i</li>  
+        </ul> 
+            
+        <h2>版本</h2>
+        <ul>
+            <li>Allen.M : 创建</li>
+            <li>倪朱国 : 修改表现形式----2011.10.27</li>
+        </ul>
+        
+        <h2>开始</h2>
+        <pre class="prettyprint language-js">
+jQuery(function($){
+    // 动态加载组件
+    $.use("util-storage",function(){
+        /* 所有的操作都必须放在ready里面 */
+        var STORE = jQuery.util.storage;
+        STORE.ready(function(){
+            STORE.setItem('foo','i\'m a string');
+            console.log(STORE.getItem('foo'));
+        });
+
+        STORE.ready(function(){
+            STORE.setJson('jsonTest',{a:'json test'});
+            console.log(STORE.getJson('jsonTest'));
+        });
+    });
+});</pre>
+
+        <h2>Test Case</h2>
+        <p>
+            <a target="_blank" href="../../test/fdev4/jQuery.util.storage.html">Try it!</a>
+        </p>
+        
+        <h2>Methods</h2>
+        <dl>
+            <dt><b>$.util.storage.setItem( key, value )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>key</b> : String 存储的字段名</li>  
+                    <li><b>value</b> : String 值</li> 
+                    <li><b>return</b> : N/A</li>  
+                </ul>
+                持久化保存要存储的数据
+            </dd>
+            <dd>
+                <pre class="prettyprint language-js">
+$.util.storage.ready(function(){
+    $.util.storage.setItem('foo','foo');
+});</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.storage.getItem( key )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>key</b> : String 字段名</li>  
+                    <li><b>return</b> : String</li>  
+                </ul>
+                获取本地存储中，此key对应的值
+            </dd>
+            <dd>
+                <pre class="prettyprint language-js">
+$.util.storage.ready(function(){
+    console.log($.util.storage.getItem('foo'));
+});</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.storage.setJson( key, value )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>key</b> : String 存储的字段名</li>  
+                    <li><b>value</b> : Object 值</li> 
+                    <li><b>return</b> : N/A</li>  
+                </ul>
+                持久化保存要存储的数据，和setItem不同的是，第二个参数是object，内部通过JSON.stringify(value)转化成字符串，进行存储。
+            </dd>
+            <dd>
+                <pre class="prettyprint language-js">
+$.util.storage.ready(function(){
+    $.util.storage.setJson('foo',{foo:'foo'});
+});</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.storage.getJson( key )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>key</b> : String 字段名</li>  
+                    <li><b>return</b> : Obejct</li>
+                </ul>
+                获取本地存储中，此key对应的值，内部通过JSON.parse(value)的方式把结果转换成object。
+            </dd>
+            <dd>
+                <pre class="prettyprint language-js">
+$.util.storage.ready(function(){
+    console.log($.util.storage.getJson('foo'));
+});</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.storage.removeItem( key ) </b></dt>
+            <dd>
+                <ul>
+                    <li><b>key</b> : String 字段名</li>  
+                    <li><b>return</b> : N/A</li>  
+                </ul>
+                删除的字段
+            </dd>
+            <dd>
+                <pre class="prettyprint language-js">
+$.util.storage.ready(function(){
+    $.util.storage.removeItem('foo');
+});</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.storage.clear()</b></dt>
+            <dd>清除所有已经存储的数据，慎用</dd>
+            <dd>
+                <pre class="prettyprint language-js">
+$.util.storage.ready(function(){
+    $.util.storage.clear();
+});</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.storage.getLength()</b></dt>
+            <dd>
+                <ul>
+                    <li><b>return</b> : Number</li>
+                </ul>
+                获取存储空间键值对的个数。HTML5中length是作为属性存在的，这里为了兼容flash的模式
+            </dd>
+            <dd>
+                <pre class="prettyprint language-js">
+$.util.storage.ready(function(){
+    console.log($.util.storage.getLength());
+});</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.storage.key( n )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>n</b> : Number 第n个键值对</li>
+                    <li><b>return</b> : String | null</li>  
+                </ul>
+                获取已经存储的第n个键名，从0开始，如果第n个不存在，返回null
+            </dd>
+            <dd>
+                <pre class="prettyprint language-js">
+$.util.storage.ready(function(){
+    console.log($.util.storage.key(0));
+});</pre>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>$.util.storage.ready( func )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>func</b> : Function 引擎准备好后要执行的函数</li>
+                </ul>
+                把所有操作都包成一个funciton的形式，传入ready()，确保引擎初始化完毕，此方式是为了兼容flash的方式。注意传入的function是异步执行的。
+            </dd>
+        </dl>
+
+        <h2>Events</h2>
+        <dl>
+            <dt><b>error</b></dt>
+            <dd>存储失败，可能已经达到客户端存储上限</dd>
+        </dl>
+        <dl>
+            <dt><b>securityError</b></dt>
+            <dd>安全错误，你可能使用了不能通过验证的域名</dd>
+        </dl>
+    </div>
+    <script src="../../static/js/app-merge.js"></script>
+</body>
+</html>

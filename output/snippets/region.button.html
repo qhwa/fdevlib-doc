@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Button</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        a { margin-right: 8px; }
+        .btn-a { display: block; float: left; overflow: hidden; height: 32px; line-height:32px; text-decoration: none !important; }
+        .btn-a span { display: block; float: left; height: 100%; background: url(http://img.china.alibaba.com/images/common/icon_v02/btn2.png) no-repeat; cursor: pointer; }
+        .btn-a .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a .btn-r { width: 2px; background-position: right top; }
+        .btn-a button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-a em { padding: 0 12px; font: bold 14px/28px "\5B8B\4F53"; color: #934002; vertical-align:middle;}
+        .btn-a:hover .btn-l { background-position: left -32px; }
+        .btn-a:hover .btn-r { background-position: right -32px; }
+        .btn-a:hover em { color: #333; }
+        .btn-a:active .btn-l { background-position: left top; }
+        .btn-a:active .btn-r { background-position: right top; }
+        .btn-a-disabled .btn-l { background-position: left -64px !important; }
+        .btn-a-disabled .btn-r { background-position: right -64px !important; }
+        .btn-a-disabled, .btn-a-disabled button, .btn-a-disabled span { cursor: default !important; }
+        .btn-a-disabled em { color: #999 !important; }
+		
+        .btn-a2 { display: block; float: left; overflow: hidden; height: 22px; line-height:22px; text-decoration: none !important; }
+        .btn-a2 span { display: block; float: left; height: 100%; background: url(http://img.china.alibaba.com/images/common/icon_v02/btn3.png) no-repeat; cursor: pointer; }
+        .btn-a2 .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a2 .btn-r { width: 2px; background-position: right top; }
+        .btn-a2 button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-a2 em { padding: 0 8px; font: normal 12px/20px "\5B8B\4F53"; color: #333 !important; vertical-align:middle;}
+        .btn-a2:hover .btn-l { background-position: left -22px; }
+        .btn-a2:hover .btn-r { background-position: right -22px; }
+        .btn-a2-disabled .btn-l { background-position: left top !important; }
+        .btn-a2-disabled .btn-r { background-position: right top !important; }
+        .btn-a2-disabled, .btn-a2-disabled button, .btn-a2-disabled span { cursor: default !important; }
+        .btn-a2-disabled em { color: #999 !important; }
+		
+        .btn-a3 { display: block; float: left; overflow: hidden; height: 22px; text-decoration: none !important; }
+        .btn-a3 span { display: block; float: left; height: 22px; background: url(http://img.china.alibaba.com/images/trade/quotation/100426/btn3.png) no-repeat; cursor: pointer; }
+        .btn-a3 .btn-l { padding: 0 8px 0 12px; background-position: left top; line-height: 1.8; }
+        .btn-a3 .btn-r { width: 2px; background-position: right top; }
+        .btn-a3 em { font: normal 12px "\5B8B\4F53"; color: #FFF; line-height: 1.8; vertical-align:middle;}
+        .btn-a3:hover .btn-l { background-position: left -22px; }
+        .btn-a3:hover .btn-r { background-position: right -22px; }
+		
+        .btn-a4 { display: block; float: left; overflow: hidden; height: 32px; text-decoration: none !important; }
+        .btn-a4 span { display: block; float: left; height: 32px; background: url(http://img.china.alibaba.com/images/common/icon_v02/btn1.png) no-repeat; cursor: pointer; }
+        .btn-a4 .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a4 .btn-r { width: 2px; background-position: right top; }
+        .btn-a4 button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-a4 em { padding: 0 12px; font: bold 14px/28px "\5B8B\4F53"; color: #333; vertical-align:middle;}
+        .btn-a4:hover .btn-l { background-position: left -32px; }
+        .btn-a4:hover .btn-r { background-position: right -32px; }
+        .btn-a4:hover em { color: #06C; }
+        .btn-a4:active .btn-l { background-position: left top; }
+        .btn-a4:active .btn-r { background-position: right top; }
+        .btn-a4-disabled .btn-l { background-position: left -64px !important; }
+        .btn-a4-disabled .btn-r { background-position: right -64px !important; }
+        .btn-a4-disabled, .btn-a4-disabled button, .btn-a4-disabled span { cursor: default !important; }
+        .btn-a4-disabled em { color: #999 !important; }
+
+        .btn-s1 { display: block; float: left; overflow: hidden; height: 26px; line-height:26px; text-decoration: none !important; }
+        .btn-s1 span { display: block; float: left; height: 100%; background: url(http://img.china.alibaba.com/cms/upload/2011/088/980/89880_719516335.png) no-repeat; cursor: pointer; }
+        .btn-s1 .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-s1 .btn-r { width: 2px; background-position: right top; }
+        .btn-s1 button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-s1 em { padding: 0 8px; font: normal 12px/24px "\5B8B\4F53"; color: #333 !important; vertical-align:middle;}
+        .btn-s1:hover .btn-l { background-position: left -52px; }
+        .btn-s1:hover .btn-r { background-position: right -52px; }
+        .btn-s1-disabled .btn-l { background-position: left bottom !important; }
+        .btn-s1-disabled .btn-r { background-position: right bottom !important; }
+        .btn-s1-disabled, .btn-s1-disabled button, .btn-s1-disabled span { cursor: default !important; }
+        .btn-s1-disabled em { color: #999 !important; }
+
+        .btn-s2 { display: block; float: left; overflow: hidden; height: 26px; line-height:26px; text-decoration: none !important; }
+        .btn-s2 span { display: block; float: left; height: 100%; background: url(http://img.china.alibaba.com/cms/upload/2011/088/980/89880_719516335.png) no-repeat; cursor: pointer; }
+        .btn-s2 .btn-l { padding-left: 2px; background-position: left -26px; }
+        .btn-s2 .btn-r { width: 2px; background-position: right -26px; }
+        .btn-s2 button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-s2 em { padding: 0 8px; font: normal 12px/24px "\5B8B\4F53"; color: #333 !important; vertical-align:middle;}
+        .btn-s2:hover .btn-l { background-position: left -52px; }
+        .btn-s2:hover .btn-r { background-position: right -52px; }
+    </style>
+</head>
+<body>
+	 <div class="g-memo">
+        <h2>Button：按钮</h2>
+        <p>网站通用的一些按钮样式。</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2011-2-21 整理出一些按钮的常规样式<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button-a：所有需要a标签模拟的按钮都按照此结构，结构中的button标签可以根据需要添加或删除，sprite的图片规则请自己查看。 <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意：当需要表单提交的情况下才需要button节点，其他链接形式请去掉button节点，此节点不承载任何样式（需要根据实际情况hack IE6下margin-left和margin-right <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			的负值！），同时微调em节点的行高，使各浏览器看起来都正常。</li>
+			<li>2011-3-16 (leijun.wulj)修复按钮中文字增长，margin需要动态hack负值的情况，使得按钮中文字长度可变化，而不需要hack<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注意：由于firefox下button中文字会比其它游览器左右多出3px的情况，故针对firefox特别hack，其它游览器padding:0 3px或者margin:0 3px，firefox为0 来解决<br /></li>
+			<li>2011-4-8 Denis 去掉FF下的Hack，使代码简洁，放弃FF下的3px误差，后续有好的方案再优化。</li>
+            <li>新增两种次要命令按钮（分推荐和普通），各个按钮的使用场景可参考月异提供的规范，<a href="http://img.china.alibaba.com/cms/upload/2011/878/980/89878_719516335.png" target="_blank">视觉规范</a></li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <div class="g-demo">
+            <a class="btn-a" href="javascript:;"><span class="btn-l">
+            <button type="submit">
+                <em>确&nbsp;定</em>
+            </button>
+            </span><span class="btn-r"></span></a><a class="btn-a btn-a-disabled" href="javascript:;"><span class="btn-l">
+            <button type="submit" disabled="disabled">
+                <em>确&nbsp;定</em>
+            </button>
+            </span><span class="btn-r"></span></a>
+        </div>
+        html:
+        <pre class="brush:html;collapse:true">
+            <!--当存在<base target="_blank" />时，需要a标签上选择性添加target="_self"-->
+            <a class="btn-a" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit">
+                        <em>确&nbsp;定</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+            <a class="btn-a btn-a-disabled" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit" disabled="disabled">
+                        <em>确&nbsp;定</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+		.btn-a { display: block; float: left; overflow: hidden; height: 32px; line-height:32px; text-decoration: none !important; }
+        .btn-a span { display: block; float: left; height: 100%; background: url(http://img.china.alibaba.com/images/common/icon_v02/btn2.png) no-repeat; cursor: pointer; }
+        .btn-a .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a .btn-r { width: 2px; background-position: right top; }
+        .btn-a button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-a em { padding: 0 12px; font: bold 14px/28px "\5B8B\4F53"; color: #934002; vertical-align:middle;}
+        .btn-a:hover .btn-l { background-position: left -32px; }
+        .btn-a:hover .btn-r { background-position: right -32px; }
+        .btn-a:hover em { color: #333; }
+        .btn-a:active .btn-l { background-position: left top; }
+        .btn-a:active .btn-r { background-position: right top; }
+        .btn-a-disabled .btn-l { background-position: left -64px !important; }
+        .btn-a-disabled .btn-r { background-position: right -64px !important; }
+        .btn-a-disabled, .btn-a-disabled button, .btn-a-disabled span { cursor: default !important; }
+        .btn-a-disabled em { color: #999 !important; }
+        </pre>
+        <div class="g-demo">
+            <a class="btn-a4" href="javascript:;"><span class="btn-l">
+            <button type="submit">
+                <em>确&nbsp;定</em>
+            </button>
+            </span><span class="btn-r"></span></a><a class="btn-a4 btn-a4-disabled" href="javascript:;"><span class="btn-l">
+            <button type="submit" disabled="disabled">
+                <em>确&nbsp;定</em>
+            </button>
+            </span><span class="btn-r"></span></a>
+        </div>
+        html:
+        <pre class="brush:html;collapse:true">
+            <a class="btn-a4" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit">
+                        <em>发布信息</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+            <a class="btn-a4 btn-a4-disabled" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit" disabled="disabled">
+                        <em>发布信息</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">		
+        .btn-a4 { display: block; float: left; overflow: hidden; height: 32px; text-decoration: none !important; }
+        .btn-a4 span { display: block; float: left; height: 32px; background: url(http://img.china.alibaba.com/images/common/icon_v02/btn1.png) no-repeat; cursor: pointer; }
+        .btn-a4 .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a4 .btn-r { width: 2px; background-position: right top; }
+        .btn-a4 button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-a4 em { padding: 0 12px; font: bold 14px/28px \5B8B\4F53; color: #333; vertical-align:middle;}
+        .btn-a4:hover .btn-l { background-position: left -32px; }
+        .btn-a4:hover .btn-r { background-position: right -32px; }
+        .btn-a4:hover em { color: #06C; }
+        .btn-a4:active .btn-l { background-position: left top; }
+        .btn-a4:active .btn-r { background-position: right top; }
+        .btn-a4-disabled .btn-l { background-position: left -64px !important; }
+        .btn-a4-disabled .btn-r { background-position: right -64px !important; }
+        .btn-a4-disabled, .btn-a4-disabled button, .btn-a4-disabled span { cursor: default !important; }
+        .btn-a4-disabled em { color: #999 !important; }
+        </pre>
+        <div class="g-demo">
+            <a class="btn-a2" href="javascript:;"><span class="btn-l">
+            <button type="submit">
+                <em>确&nbsp;定</em>
+            </button>
+            </span><span class="btn-r"></span></a><a class="btn-a2  btn-a2-disabled" href="javascript:;"><span class="btn-l">
+            <button type="submit" disabled="disabled">
+                <em>确&nbsp;定</em>
+            </button>
+            </span><span class="btn-r"></span></a>
+        </div>
+        html:
+        <pre class="brush:html;collapse:true">
+            <a class="btn-a2" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit">
+                        <em>确&nbsp;定</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+            <a class="btn-a2 btn-a2-disabled" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit" disabled="disabled">
+                        <em>确&nbsp;定</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">		
+        .btn-a2 { display: block; float: left; overflow: hidden; height: 22px; line-height:22px; text-decoration: none !important; }
+        .btn-a2 span { display: block; float: left; height: 100%; background: url(http://img.china.alibaba.com/images/common/icon_v02/btn3.png) no-repeat; cursor: pointer; }
+        .btn-a2 .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a2 .btn-r { width: 2px; background-position: right top; }
+        .btn-a2 button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-a2 em { padding: 0 8px; font: normal 12px/20px "\5B8B\4F53"; color: #333 !important; vertical-align:middle;}
+        .btn-a2:hover .btn-l { background-position: left -22px; }
+        .btn-a2:hover .btn-r { background-position: right -22px; }
+        .btn-a2-disabled .btn-l { background-position: left top !important; }
+        .btn-a2-disabled .btn-r { background-position: right top !important; }
+        .btn-a2-disabled, .btn-a2-disabled button, .btn-a2-disabled span { cursor: default !important; }
+        .btn-a2-disabled em { color: #999 !important; }
+        </pre>
+        <div class="g-demo">
+            <a class="btn-a3" href="javascript:;"><span class="btn-l"><em>确&nbsp;定</em></span><span class="btn-r"></span></a>
+        </div>
+        html:
+        <pre class="brush:html;collapse:true">
+            <a class="btn-a3" href="javascript:;">
+                <span class="btn-l">
+                    <em>确&nbsp;定</em>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">		
+        .btn-a3 { display: block; float: left; overflow: hidden; height: 22px; text-decoration: none !important; }
+        .btn-a3 span { display: block; float: left; height: 22px; background: url(http://img.china.alibaba.com/images/trade/quotation/100426/btn3.png) no-repeat; cursor: pointer; }
+        .btn-a3 .btn-l { padding: 0 8px 0 12px; background-position: left top; line-height: 1.8; }
+        .btn-a3 .btn-r { width: 2px; background-position: right top; }
+        .btn-a3 em { font: normal 12px "\5B8B\4F53"; color: #FFF; line-height: 1.8; }
+        .btn-a3:hover .btn-l { background-position: left -22px; }
+        .btn-a3:hover .btn-r { background-position: right -22px; }
+        </pre>
+        <div class="g-demo">
+            <a class="btn-s1" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit">
+                        <em>确&nbsp;定</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+            <a class="btn-s2" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit">
+                        <em>确&nbsp;定</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+            <a class="btn-s1  btn-s1-disabled" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit" disabled="disabled">
+                    <em>确&nbsp;定</em>
+                </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+        </div>
+        html:
+        <pre class="brush:html;collapse:true">
+            <a class="btn-s1" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit">
+                        <em>确&nbsp;定</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+            <a class="btn-s2" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit">
+                        <em>确&nbsp;定</em>
+                    </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+            <a class="btn-s1  btn-s1-disabled" href="javascript:;">
+                <span class="btn-l">
+                    <button type="submit" disabled="disabled">
+                    <em>确&nbsp;定</em>
+                </button>
+                </span>
+                <span class="btn-r"></span>
+            </a>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">		
+        .btn-s1 { display: block; float: left; overflow: hidden; height: 26px; line-height:26px; text-decoration: none !important; }
+        .btn-s1 span { display: block; float: left; height: 100%; background: url(http://img.china.alibaba.com/cms/upload/2011/088/980/89880_719516335.png) no-repeat; cursor: pointer; }
+        .btn-s1 .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-s1 .btn-r { width: 2px; background-position: right top; }
+        .btn-s1 button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-s1 em { padding: 0 8px; font: normal 12px/24px "\5B8B\4F53"; color: #333 !important; vertical-align:middle;}
+        .btn-s1:hover .btn-l { background-position: left -52px; }
+        .btn-s1:hover .btn-r { background-position: right -52px; }
+        .btn-s1-disabled .btn-l { background-position: left bottom !important; }
+        .btn-s1-disabled .btn-r { background-position: right bottom !important; }
+        .btn-s1-disabled, .btn-s1-disabled button, .btn-s1-disabled span { cursor: default !important; }
+        .btn-s1-disabled em { color: #999 !important; }
+
+        .btn-s2 { display: block; float: left; overflow: hidden; height: 26px; line-height:26px; text-decoration: none !important; }
+        .btn-s2 span { display: block; float: left; height: 100%; background: url(http://img.china.alibaba.com/cms/upload/2011/088/980/89880_719516335.png) no-repeat; cursor: pointer; }
+        .btn-s2 .btn-l { padding-left: 2px; background-position: left -26px; }
+        .btn-s2 .btn-r { width: 2px; background-position: right -26px; }
+        .btn-s2 button { float:left; margin: 0; padding: 0; height: 100%; outline: none; border: 0 none; background: none; cursor: pointer; overflow:visible;}
+        .btn-s2 em { padding: 0 8px; font: normal 12px/24px "\5B8B\4F53"; color: #333 !important; vertical-align:middle;}
+        .btn-s2:hover .btn-l { background-position: left -52px; }
+        .btn-s2:hover .btn-r { background-position: right -52px; }
+        </pre>
+    </div>
+</body>
+</html>

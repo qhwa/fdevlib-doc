@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.util.alitalk</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>web-alitalk : 阿里旺旺</h1>
+            <h2>介绍</h2>
+            <p>
+                在网页上提供用户在线状态，并且能通过浏览器插件的形式激活桌面应用程序"阿里旺旺"的聊天功能。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    @update Denis 2011.03.02 旺旺接口支持JSONP
+                </li>
+                <li>
+                    @update Denis 2011.03.23 修复DOMReady情况下，FF赋值isInstalled报错; 调用旺旺插件通过iframe进行，不改变window.location; 去掉onClickBegin
+                </li>
+                <li>
+                    @update Denis 2011.06.23 对已经初始化过的标签不再重复初始化
+                </li>
+                <li>
+                    @update Denis 2011.09.22 优化getAlitalk的默认接口，带上了memberId；提取onRemote方法为默认函数，优化无默认文案的解决方案。
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('web-alitalk', function(){
+    FE.util.alitalk(elements, options);
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/FE.util.alitalk.html">Try it!</a>
+            </p>
+            <h2>Statics</h2>
+            <dl>
+                <dt><b>FE.util.alitalk( elements, options )</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>elements</b>
+                            : jQuery HTML对象、选择器或jQuery对象                            
+                        </li>
+                        <li>
+                            <b>options</b>
+                            : Object 组件配置参数                            
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    组件调用方法
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>FE.util.alitalk.login([id])</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>id</b>
+                            : String 用户memberId                    
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    调用插件的登录功能，触发桌面客户端的登录窗口
+                </dd>
+            </dl>
+            <h2>Properties</h2>
+            <dl>
+                <dt><b>FE.util.alitalk.version</b> : String</dt>
+                <dd>
+                    获取桌面客户端阿里旺旺的版本
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>FE.util.alitalk.isInstalled</b> : Bolean</dt>
+                <dd>
+                    判断是否已经安装了桌面客户端阿里旺旺（不支持插件的浏览器也返回false）
+                </dd>
+            </dl>
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>attr</b> : String</dt>
+                <dd>
+                    Default : 'alitalk'
+                </dd>
+                <dd>
+                    组件信息所在的标签（默认会先判断data-前缀）
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>cls</b> : Object</dt>
+                <dd>
+                    Default :
+                    <pre class="prettyprint language-js">
+{
+    base: 'alitalk',    //基础样式
+    on: 'alitalk-on',   //在线样式
+    off: 'alitalk-off', //离线样式
+    mb: 'alitalk-mb'    //手机在线样式
+}</pre>                
+                </dd>
+                <dd>
+                    提供不同状态下的组件样式
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>siteID</b> : String</dt>
+                <dd>
+                    Default : 'cnalichn'
+                </dd>
+                <dd>
+                    提供默认的网站信息（还可选'cntaobao'）
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>remote</b> : Bolean</dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否通过接口获取用户在线状态
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>prop</b> : String</dt>
+                <dd>
+                    Default : ''
+                </dd>
+                <dd>
+                    传递给桌面客户端的额外信息
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>getAlitalk</b> : Function</dt>
+                <dd>
+                    Default : 
+                    <pre class="prettyprint language-js">
+function(id) {
+    window.open('http://webww.china.alibaba.com/message/my_chat.htm?towimmid=' + id, '_blank');
+}</pre>                
+                </dd>
+                <dd>
+                    当浏览器检测不到用户安装了阿里旺旺桌面客户端时，调用此方法
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>onRemote</b> : Function</dt>
+                <dd>
+                    Default : 
+                    <pre class="prettyprint language-js">
+function(data) {
+    var self = this, online = data.online;
+    switch (online) {
+        case 0:
+        case 2:
+        case 6:
+        default: //不在线
+            self.addClass(data.cls.off).html('给我留言').attr('title', '我不在网上，给我留个消息吧');
+            break;
+        case 1: //在线
+            self.addClass(data.cls.on).html('和我联系').attr('title', '我正在网上，马上和我洽谈');
+            break;
+        case 4:
+        case 5: //手机在线
+            self.addClass(data.cls.mb).html('给我短信').attr('title', '我手机在线，马上和我洽谈');
+            break;
+    }
+}</pre>                
+                </dd>
+                <dd>
+                    每个DOM在获取到用户状态信息之后，调用此方法。可以重写此方法来适应不同的应用需求。
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>onSuccess</b> : Function</dt>
+                <dd>
+                    Default : null 
+                </dd>
+                <dd>
+                    所有DOM获取到用户状态信息之后，调用此方法。该方法与onRemote的区别是，onRemote会执行多次。
+                </dd>
+            </dl>            
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>        
+    </body>
+</html>

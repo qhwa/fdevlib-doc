@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>FE.util.browser</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div id="doc">
+        <h1>web-browser : 浏览器功能插件</h1>
+        
+        <h2>介绍</h2>
+        <p>提供“加入收藏夹”、”设为首页“两个方法，部分浏览器不兼容。</p>
+
+        <h2>版本</h2>
+        <ul>
+            <li>施丹侠：创建</li>
+            <li>倪朱国：修改----2011.11.03</li>
+        </ul>
+
+        <h2>开始</h2>
+        <pre class="prettyprint langage-js">
+//手动注册模块。由于该模块使用率不高，所以没有在框架核心中注册次组件。需要使用的同学在产品线或者项目global文件中注册模块。
+jQuery.add("web-browser", {
+    js: ["http://style.china.alibaba.com/js/lib/fdev-v4/widget/web/browser-min.js"],
+    ver: "1.0"
+});
+//模块动态载入
+jQuery(function($){
+    $.use("web-browser",function(){
+        //...
+    });
+});</pre>
+
+        <h2>Statics</h2>
+        <dl>
+            <dt><b>FE.util.setHome( url )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>url</b> : String 需要设为首页的URL</li>
+                </ul>
+            </dd>
+            <dd>设为首页</dd>
+        </dl>
+        <dl>
+            <dt><b>FE.util.addBookmark( url, title )</b></dt>
+            <dd>
+                <ul>
+                    <li><b>url</b> : String 需要收藏的URL</li>
+                    <li><b>title</b> : String 需要收藏的书签标题</li>
+                </ul>
+            </dd>
+            <dd>添加到收藏</dd>
+        </dl>
+        <script src="../../static/js/app-merge.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk">
+        <title>jQuery.ui.progressbar</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-progressbar : 进度条</h1>
+            <h2>介绍</h2>
+            <p>
+                这是一个进度条插件，使用此插件，使用者应该能够提供当前的进度。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    倪朱国: 创建 ---- 2011.10.19
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+jQuery(function($){
+    $.use("ui-progressbar",function(){
+        $("...").progressbar({
+            value: 37
+        });
+    });
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.progressbar.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>disabled</b> : Boolean</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    使用(false)或禁用(true) progressbar，可以在初始化progressbar的时候设置。<br/>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>value</b> : Number</dt>
+                <dd>
+                    Default ： 0
+                </dd>
+                <dd>
+                    已完成的进度, 0~100.
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.progressbar("destroy")</b>
+                </dt>
+                <dd>
+                    彻底删除进度条。这会使元素回到他的初始状态
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.progressbar("disable")</b>
+                </dt>
+                <dd>
+                    使进度条失效
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.progressbar("enable")</b>
+                </dt>
+                <dd>
+                    使进度条生效
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.progressbar("option",optionName,[value])</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>optionName</b>
+                            : String 参数名
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    获得或更改progressbar的参数
+                    <pre class="prettyprint language-js">
+//getter
+var optionName = $("...").progressbar("option",optionName);
+//setter
+$("...").progressbar("option",optionName,value);
+                    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.progressbar("option", options)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>options</b>
+                            : Object 参数对象
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    提供了一个选项obejct,一次设置多个进度条选项。 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.progressbar("widget")</b>
+                </dt>
+                <dd>
+                    返回  .ui-progressbar 元素
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.progressbar("value")</b>
+                </dt>
+                <dd>
+                    获取、设置进度条的进度
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>create</b> Type: progressbarcreate
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    progressbar 创建完成时触发
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>change</b> Type: progressbarchange
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当进度条的值改变时触发
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>complete</b> Type: progressbarcomplete
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>event</b> :　Event
+                        </li> 
+                    </ul>
+                </dd>
+                <dd>
+                    当进度条的值达到最大值100时触发
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

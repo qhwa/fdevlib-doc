@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Crumbs</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        /*
+        **第一级结构
+        */.form-a li.field { zoom: 1; padding: 6px 0px; line-height: 1.2; color: #404040; }
+        .form-a li.field:after { content: '\0020'; display: block; clear: both; height: 0px; }
+        .form-a .attr, .form-a .cont, .form-a .feedback { float: left; }
+        .form-a .attr { width: 180px; text-align: right; margin-right: 4px; line-height: 1.8; }
+        .form-a .cont { width: 250px; margin-right: 4px; }
+        .form-a .feedback { width: 200px; line-height: 1.8; }
+        /*
+        **第二级结构
+        */.form-a .attr .star { color: red; padding: 0 4px 0 0; }
+        /*input[text] 样式*/.form-a .cont .input-text { width: 240px; padding: 3px 2px; height: 16px; line-height: 16px; border: 1px solid #7F9DB9; }
+        .form-a .cont .input-err { border: 1px solid #ED8F8F; background-color: #FFF2F2; }
+        .form-a .input-focus { background-color: #E6EDFD; }
+        /*input[radio] 样式*/.form-a .input-radio { margin: 0 4px 0 0; }
+        /*input[checkbox] 样式*/.form-a .input-checkbox { margin: 0 4px 0 0; }
+        /*input[select] 样式*/.form-a .input-select { margin: 0 4px 0 0; padding: 3px 2px 3px 0; width: 244px; }
+        /*input[text-area] 样式*/.form-a .input-ta { margin: 0 4px 0 0; width: 240px; height: 100px; }
+        /*信息提示 样式*/.form-a .feedback .tip, .form-a .feedback .err, .form-a .feedback .rig { padding-left: 16px; background: url("http://img.china.alibaba.com/images/common/icon_v02/form-icons.gif") no-repeat; }
+        .form-a .feedback .tip { background-position: 0 2px; color: #2C5CD8; }
+        .form-a .feedback .err { background-position: 0 -41px; color: #ff0000; }
+        .form-a .feedback .rig { background-position: 0 -83px; color: #9fcd57; }
+        .form-a .feedback .def { color: #999; }
+        .form-a .feedback .none { color: #999; text-indent: -9999px; }
+        /*input[button]提交按钮样式*/.btn-a { display: block; float: left; overflow: hidden; height: 32px; text-decoration: none !important; }
+        .btn-a span { display: block; float: left; height: 32px; background: url(http://img.china.alibaba.com/images/trade/order/100423/btn1.png) no-repeat; cursor: pointer; }
+        .btn-a .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a .btn-r { width: 2px; background-position: right top; }
+        .btn-a button { margin: 0; padding: 0; height: 32px; outline: none; border: 0 none; background: none; cursor: pointer; *margin-left:-8px;*margin-right:-8px;}
+        .btn-a em { padding: 0 12px; font: bold 14px/28px \5B8B\4F53; color: #934002; }
+        .btn-a:hover .btn-l { background-position: left -32px; }
+        .btn-a:hover .btn-r { background-position: right -32px; }
+        .btn-a:hover em { color: #333; }
+        .btn-a:active .btn-l { background-position: left top; }
+        .btn-a:active .btn-r { background-position: right top; }
+        .btn-a-disabled .btn-l { background-position: left -64px !important; }
+        .btn-a-disabled .btn-r { background-position: right -64px !important; }
+        .btn-a-disabled, .btn-a-disabled button, .btn-a-disabled span { cursor: default !important; }
+        .btn-a-disabled em { color: #999 !important; }
+        /*demo2*/#demo2 .empty { color: #999; }
+        .txtbg { padding: 3px 2px; border: solid 1px #A8ACAD; background: #FFF url(http://img.china.alibaba.com/images/trade/quotation/100426/bg1.gif) repeat-x; line-height: 1.2; }
+    </style>
+    <script>
+        FYE.onDOMReady(function() {
+            var FEU=FDEV.env.ua;
+            function fireEventHandler(el,e) {
+                if(0<FEU.ie&&FEU.ie<9) {
+                    el.fireEvent('on'+e);
+                } else {
+                    var evt=document.createEvent('HTMLEvents');
+                    evt.initEvent(e,true,true);
+                    el.dispatchEvent(evt);
+                }
+            }
+            if(!('placeholder' in document.createElement('input'))) {
+                var els=FYS('input[placeholder],textarea[placeholder]');
+                els.forEach(function(el) {
+                    var defValue=FYD.getAttribute(el,'placeholder'),
+                        defColor=FYD.getStyle(el,'color');
+                    FYE.on(el,'focus',function() {
+                        if(this.value==''||this.value==defValue) {
+                            FYD.setStyle(this,'color',defColor);
+                            this.value='';
+                        }
+                    });
+                    FYE.on(el,'blur',function() {
+                        if(this.value==''||this.value==defValue) {
+                            FYD.setStyle(this,'color','#999');
+                            this.value=defValue;
+                        }
+                    });
+                    fireEventHandler(el,'blur');
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>forms:表单</h2>
+    </div>
+    <div class="g-detail">
+        <h3>forms-a：规范型表单（包含各种控件，佳佳保留最终解释权） </h3>
+        <div class="g-demo">
+            <!--表单开始-->
+            <form class="form-a" action='#'>
+                <!--隐藏域区域-->
+                <input type="hidden" value="">
+                <input type="hidden" value="">
+                <!--表单控件区域-->
+                <fieldset>
+                    <legend>
+                        规范型表单标题:</legend>
+                    <ul>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[radio]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-radio" name="rdo" id="rdo1" value="" type="radio" checked="checked" /><label for="rdo1">控件radio1</label>
+                                <input class="input-radio" name="rdo" id="rdo2" value="" type="radio" /><label for="rdo2">控件radio2</label>
+                            </div>
+                            <div class="feedback">
+                                <span class="none"></span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[radio]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-checkbox" id="ck1" value="" type="checkbox" /><label for="ck1">控件radio1</label>
+                                <input class="input-checkbox" id="ck2" value="" type="checkbox" checked="checked" /><label for="ck2">控件radio2</label>
+                            </div>
+                            <div class="feedback">
+                                <span class="none"></span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[text]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-text" type="text" value="初始状态" maxlength="18" />
+                            </div>
+                            <div class="feedback">
+                                <span class="def">初始提示信息</span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[text]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-text input-focus" type="text" value="光标选中后样式" maxlength="18" />
+                            </div>
+                            <div class="feedback">
+                                <span class="tip">选中后提示信息</span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[text]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-text input-err" type="text" value="内容验证错误并离开样式" maxlength="18" />
+                            </div>
+                            <div class="feedback">
+                                <span class="err">错误提示信息</span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[text]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-text" type="text" value="内容验证正确样式" maxlength="18" />
+                            </div>
+                            <div class="feedback">
+                                <span class="rig">正确提示信息</span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>select控件展示：
+                            </div>
+                            <div class="cont">
+                                <select id="" class="input-select">
+                                    <option value="下拉框option1" selected="selected">下拉框option1</option>
+                                    <option value="下拉框option2">下拉框option2</option>
+                                    <option value="下拉框option3">下拉框option3</option>
+                                </select>
+                            </div>
+                            <div class="feedback">
+                                <span class="none"></span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>textarea控件展示：
+                            </div>
+                            <div class="cont">
+                                <textarea class="input-ta" rows="3" cols="20">  标签定义多行的文本输入控件。
+  文本区中可容纳无限数量的文本，其中的文本的默认字体是等宽字体（通常是 Courier）。\n可以通过 cols 和 rows 属性来规定 textarea 的尺寸，不过更好的办法是使用 CSS 的 height 和 width 属性。注释：在文本输入区内的文本行间，用 "%OD%OA" （回车/换行）进行分隔。
+                                </textarea>
+                            </div>
+                            <div class="feedback">
+                                <span class="none"></span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                &nbsp;
+                            </div>
+                            <div class="cont">
+                                <a id="submit-btn" class="btn-a" href="javascript:;"><span class="btn-l">
+                                <button type="submit">
+                                    <em>提交表单</em>
+                                </button>
+                                </span><span class="btn-r"></span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <!--表单开始-->
+            <form class="form-a" action='#'>
+                <!--隐藏域区域-->
+                <input type="hidden" value="">
+                <input type="hidden" value="">
+                <!--表单控件区域-->
+                <fieldset>
+                    <legend>
+                        规范型表单标题:</legend>
+                    <ul>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[radio]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-radio" name="rdo" id="Radio1" value="" type="radio" checked="checked" /><label for="rdo1">控件radio1</label>
+                                <input class="input-radio" name="rdo" id="Radio2" value="" type="radio" /><label for="rdo2">控件radio2</label>
+                            </div>
+                            <div class="feedback">
+                                <span class="none"></span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[radio]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-checkbox" id="Checkbox1" value="" type="checkbox" /><label for="ck1">控件radio1</label>
+                                <input class="input-checkbox" id="Checkbox2" value="" type="checkbox" checked="checked" /><label for="ck2">控件radio2</label>
+                            </div>
+                            <div class="feedback">
+                                <span class="none"></span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[text]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-text" type="text" value="初始状态" maxlength="18" />
+                            </div>
+                            <div class="feedback">
+                                <span class="def">初始提示信息</span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[text]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-text input-focus" type="text" value="光标选中后样式" maxlength="18" />
+                            </div>
+                            <div class="feedback">
+                                <span class="tip">选中后提示信息</span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[text]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-text input-err" type="text" value="内容验证错误并离开样式" maxlength="18" />
+                            </div>
+                            <div class="feedback">
+                                <span class="err">错误提示信息</span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>input[text]控件展示：
+                            </div>
+                            <div class="cont">
+                                <input class="input-text" type="text" value="内容验证正确样式" maxlength="18" />
+                            </div>
+                            <div class="feedback">
+                                <span class="rig">正确提示信息</span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>select控件展示：
+                            </div>
+                            <div class="cont">
+                                <select id="Select1" class="input-select">
+                                    <option value="下拉框option1" selected="selected">下拉框option1</option>
+                                    <option value="下拉框option2">下拉框option2</option>
+                                    <option value="下拉框option3">下拉框option3</option>
+                                </select>
+                            </div>
+                            <div class="feedback">
+                                <span class="none"></span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                <span class="star">*</span>textarea控件展示：
+                            </div>
+                            <div class="cont">
+                                <textarea class="input-ta" rows="3" cols="20">  标签定义多行的文本输入控件。
+  文本区中可容纳无限数量的文本，其中的文本的默认字体是等宽字体（通常是 Courier）。\n可以通过 cols 和 rows 属性来规定 textarea 的尺寸，不过更好的办法是使用 CSS 的 height 和 width 属性。注释：在文本输入区内的文本行间，用 "%OD%OA" （回车/换行）进行分隔。
+                                &lt;/textarea&gt;
+                            </div>
+                            <div class="feedback">
+                                <span class="none"></span>
+                            </div>
+                        </li>
+                        <li class="field">
+                            <div class="attr">
+                                &nbsp;
+                            </div>
+                            <div class="cont">
+                                <a id="A1" class="btn-a" href="javascript:;"><span class="btn-l">
+                                <button type="submit">
+                                    <em>提交表单</em>
+                                </button>
+                                </span><span class="btn-r"></span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        /*
+        **第一级结构
+        */
+        .form-a li.field { zoom: 1; padding: 6px 0px; line-height: 1.2; color: #404040; }
+        .form-a li.field:after { content: '\0020'; display: block; clear: both; height: 0px; }
+        .form-a .attr, .form-a .cont, .form-a .feedback { float: left; }
+        .form-a .attr { width: 180px; text-align: right; margin-right: 4px; line-height: 1.8; }
+        .form-a .cont { width: 250px; margin-right: 4px; }
+        .form-a .feedback { width: 200px; line-height: 1.8; }
+        /*
+        **第二级结构
+        */
+        .form-a .attr .star { color: red; padding: 0 4px 0 0; }
+        /*input[text] 样式*/
+        .form-a .cont .input-text { width: 240px; padding: 3px 2px; height: 16px; line-height: 16px; border: 1px solid #7F9DB9; }
+        .form-a .cont .input-err { border: 1px solid #ED8F8F; background-color: #FFF2F2; }
+        .form-a .input-focus { background-color: #E6EDFD; }
+         /*input[radio] 样式*/
+        .form-a .input-radio { margin: 0 4px 0 0; }
+        /*input[checkbox] 样式*/
+        .form-a .input-checkbox { margin: 0 4px 0 0; }
+        /*input[select] 样式*/
+        .form-a .input-select { margin: 0 4px 0 0; padding:3px 2px 3px 0; width:244px; }
+        /*input[text-area] 样式*/
+        .form-a .input-ta { margin: 0 4px 0 0; width:240px; height:100px; }
+        /*信息提示 样式*/
+        .form-a .feedback .tip, .form-a .feedback .err, .form-a .feedback .rig { padding-left: 16px; background: url("http://img.china.alibaba.com/images/common/icon_v02/form-icons.gif") no-repeat; }
+        .form-a .feedback .tip { background-position: 0 2px; color: #2C5CD8; }
+        .form-a .feedback .err { background-position: 0 -41px; color: #ff0000; }
+        .form-a .feedback .rig { background-position: 0 -83px; color: #9fcd57; }
+        .form-a .feedback .def { color: #999; }
+        .form-a .feedback .none { color: #999; text-indent: -9999px; }
+        /*input[button]提交按钮样式*/
+        .btn-a { display: block; float: left; overflow: hidden; height: 32px; text-decoration: none !important; }
+        .btn-a span { display: block; float: left; height: 32px; background: url(http://img.china.alibaba.com/images/trade/order/100423/btn1.png) no-repeat; cursor: pointer; }
+        .btn-a .btn-l { padding-left: 2px; background-position: left top; }
+        .btn-a .btn-r { width: 2px; background-position: right top; }
+        .btn-a button { margin: 0; padding: 0; height: 32px; outline: none; border: 0 none; background: none; cursor: pointer; *margin-left:-8px;*margin-right:-8px;}
+        .btn-a em { padding: 0 12px; font: bold 14px/28px \5B8B\4F53; color: #934002; }
+        .btn-a:hover .btn-l { background-position: left -32px; }
+        .btn-a:hover .btn-r { background-position: right -32px; }
+        .btn-a:hover em { color: #333; }
+        .btn-a:active .btn-l { background-position: left top; }
+        .btn-a:active .btn-r { background-position: right top; }
+        .btn-a-disabled .btn-l { background-position: left -64px !important; }
+        .btn-a-disabled .btn-r { background-position: right -64px !important; }
+        .btn-a-disabled, .btn-a-disabled button, .btn-a-disabled span { cursor: default !important; }
+        .btn-a-disabled em { color: #999 !important; }
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>form-b：表单控件默认提示文案（经汉军优化，使用“placeholder”这个HTML5中属性来区别实现此功能）</h3>
+        <div id="demo2" class="g-demo">
+            <input type="text" class="txtbg" placeholder="请在这里填写内容" /><br />
+            <br />
+            <input type="text" class="txtbg" placeholder="请在这里填写内容" value="我已经填写了内容" /><br />
+        </div>
+        html:
+        <pre class="brush:html">
+<input type="text" class="txtbg" placeholder="请在这里填写内容" /><br />
+<br />
+<input type="text" class="txtbg" placeholder="请在这里填写内容" value="我已经填写了内容" /><br />
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+.txtbg { padding: 3px 2px; border: solid 1px #A8ACAD; background: #FFF url(http://img.china.alibaba.com/images/trade/quotation/100426/bg1.gif) repeat-x; line-height: 1.2; }
+        </pre>
+        js:
+        <pre class="brush:js;collapse:true">
+FYE.onDOMReady(function() {
+    var FEU=FDEV.env.ua;
+    function fireEventHandler(el,e) {
+        if(0&lt;FEU.ie&&FEU.ie&lt;9) {
+            el.fireEvent('on'+e);
+        } else {
+            var evt=document.createEvent('HTMLEvents');
+            evt.initEvent(e,true,true);
+            el.dispatchEvent(evt);
+        }
+    }
+    if(!('placeholder' in document.createElement('input'))) {
+        var els=FYS('input[placeholder],textarea[placeholder]');
+        els.forEach(function(el) {
+            var defValue=FYD.getAttribute(el,'placeholder'),
+                defColor=FYD.getStyle(el,'color');
+            FYE.on(el,'focus',function() {
+                if(this.value==''||this.value==defValue) {
+                    FYD.setStyle(this,'color',defColor);
+                    this.value='';
+                }
+            });
+            FYE.on(el,'blur',function() {
+                if(this.value==''||this.value==defValue) {
+                    FYD.setStyle(this,'color','#999');
+                    this.value=defValue;
+                }
+            });
+            fireEventHandler(el,'blur');
+        });
+    }
+});
+        </pre>
+    </div>
+</body>
+</html>

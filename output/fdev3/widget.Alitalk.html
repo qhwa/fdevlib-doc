@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.Alitalk</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>阿里旺旺：实现阿里旺旺聊天相关的一系列接口</h2>
+        <p>只支持全屏单浮层遮罩</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>@version 1.01 2010-03-10 修改了旺旺状态获取的路径，支持不同子公司旺旺状态获取。</li>
+            <li>@version 1.02 2010-06-03 增加了onClickBegin, onClickEnd2个事件接口。</li>
+            <li>@version 1.03 2010-06-28 提取onClickHandler，增加静态方法FD.widget.Alitalk.talk方法。</li>
+            <li>@version 1.04 2010-07-02 移除type配置项，转换cls配置项为Object。</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>开始：</h3>
+        如果你想使用alitalk组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+/* 当需要获取在线状态时，需要此js文件 */
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/get-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/alitalk/alitalk-min.js");
+	    </pre>
+        <h3>使用说明</h3>
+        <p>1、组件调用方法如下：第一个参数为旺旺聊天的承载对象(必填)；第二个参数为配置对象(将覆盖默认的参数设定):
+            <pre class="brush:js;">
+new FD.widget.Alitalk(HTMLDOMElements,{
+    //各状态对应的样式
+    cls: { base: 'iconAlitalk',on: 'icon-on',off: 'icon-off',mb: 'icon-mb'},
+    //旺旺所在的站点，
+    siteID: 'cnalichn',
+    //是否请求用户在线状态
+    remote: true,
+    //实例化过程中是否开启自动登陆
+    autoLogin: false,
+    beginNum: 0,
+    prop: '',
+    webWW: null,
+    onClickBegin: null,
+    onClickEnd: null,
+    //弹出阿里旺旺下载页
+    getAlitalk: function() {
+        window.open('http://alitalk.alibaba.com.cn/','_blank');
+    }
+});
+        </pre>
+        </p>
+        <p>2、定义旺旺样式
+            <pre class="brush:css;">
+a.iconAlitalk { padding: 2px 0 2px 20px; background: url(http://img.china.alibaba.com/images/fdevlib/contact-icon.gif) no-repeat; line-height: 14px; color: #001D4C; text-decoration: underline !important; font-family: arial,helvetica,sans-serif; font-size: 12px; font-weight: normal; zoom: 1; _padding-top: 3px; }
+a.iconAlitalk:hover { color: #FF7300; }
+a.icon-on { background-position: -190px -59px; }
+a.icon-off { background-position: -190px -29px; }
+a.icon-mb { background-position: -190px 1px; }
+        </pre>
+        </p>
+        <h3>配置参数列表</h3>
+        <table class="g-paramtable">
+            <thead>
+                <tr>
+                    <th>配置参数</th>
+                    <th>参数可选值</th>
+                    <th>作用说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>cls</td>
+                    <td>{ base: 'iconAlitalk',on: 'icon-on',off: 'icon-off',mb: 'icon-mb'}</td>
+                    <td>各状态对应的样式</td>
+                </tr>
+                <tr class="even">
+                    <td>siteID</td>
+                    <td>'cnalichn' 'cntaobao'</td>
+                    <td>旺旺所在的站点</td>
+                </tr>
+                <tr>
+                    <td>remote</td>
+                    <td>true | false</td>
+                    <td>是否请求用户在线状态</td>
+                </tr>
+                <tr class="even">
+                    <td>autoLogin</td>
+                    <td>true | false</td>
+                    <td>实例化过程中是否开启自动登陆</td>
+                </tr>
+                <tr>
+                    <td>beginNum</td>
+                    <td>0</td>
+                    <td>指定服务器返回的数组起始索引</td>
+                </tr>
+                <tr class="even">
+                    <td>prop</td>
+                    <td>String || function</td>
+                    <td>添加点击反馈，function必需return字符串</td>
+                </tr>
+                <tr>
+                    <td>webWW</td>
+                    <td>function</td>
+                    <td>自定义未安装旺旺时的webWW功能</td>
+                </tr>
+                <tr class="even">
+                    <td>onClickBegin</td>
+                    <td>function</td>
+                    <td>点击事件触发前事件</td>
+                </tr>
+                <tr>
+                    <td>onClickEnd</td>
+                    <td>function</td>
+                    <td>点击事件触发后事件</td>
+                </tr>
+                <tr class="even">
+                    <td>getAlitalk</td>
+                    <td>function</td>
+                    <td>自定义未安装旺旺事件</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Demo演示</h3>
+        这里为开发者展示了Alitalk组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.Alitalk.html">example: Alitalk</a>
+        <h3>提建议给开发者</h3>
+        作者：施丹侠<br />
+        邮件：<a href="mailto:danxia.shidx@alibaba-inc.com">danxia.shidx@alibaba-inc.com</a><br />
+        旺旺：swainet
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.flash.uploader</title>
+        <link href="../../static/css/demo-merge.css" rel="stylesheet"/>
+        <style>
+            #demo2 input {
+                height: 32px;
+                font-size: 50px;
+            }
+            #demo2 a.ui-state-hover {
+                background-position: 0 -32px;
+            }
+            
+            #demo2 a.ui-state-active {
+                background-position: 0 -64px;
+            }
+            
+            #demo2 .ui-flash-disabled a {
+                background-position: 0 -96px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-flash-uploader : uploader上传组件</h1>
+            <h2>Demo运行之前</h2>
+            <ul>
+                <li>
+                    需要绑定host<pre class="prettyprint">
+10.20.136.129    picman-test.china.alibaba.com #40100
+10.20.141.148    loginchina-test.alibaba.com #3300
+10.20.141.151    test.img.china.alibaba.com</pre>
+                </li>
+                <li>
+                    需要登录测试环境: <a href="https://loginchina-test.alibaba.com:3300/member/signin.htm" target="_blank">https://loginchina-test.alibaba.com:3300/member/signin.htm</a>
+                    帐号：djtest190 密码：1111112
+                </li>
+            </ul>
+            <h2>文件上传</h2>
+            <div id="demo1">
+                <div class="flash">
+                </div>
+                <div class="action">
+                    <button class="enable">
+                        Enable
+                    </button>
+                    <button class="disable">
+                        Disable
+                    </button>
+                    <button class="filter">
+                        setBrowseFilter
+                    </button>
+                    <button class="countlimit">
+                        setFileCountLimit
+                    </button>
+                    <button class="multiple">
+                        setAllMultiple
+                    </button>
+                </div>
+                <ul class="result">
+                </ul>
+            </div>
+            <pre class="prettyprint language-js">
+$.use('ui-flash-uploader2, util-debug', function(){
+    var result1 = $('ul.result', '#demo1');
+    var demo1 = $('div.flash', '#demo1').flash({
+        module: 'uploader2'
+    }).bind('fileSelect.flash', function(e, o){
+        $(this).flash('uploadAll', 'http://picman-test.china.alibaba.com:40100/album/ajax/image_upload_ajax.json', {
+            drawTxt: true,
+            albumId: '15815320',
+            _csrf_token: 'test',
+            source: 'picman'
+        }, 'imgFile', 'fname');
+    }).bind('swfReady.flash', function(e){
+        $.log('swfReady');
+    }).bind('processStart.flash', function(e, o){
+        $.log('processStart');
+        $.log(o.file);
+    }).bind('processProgress.flash', function(e, o){
+        $.log('processProgress');
+        $.log(o.file);
+    }).bind('processFinish.flash', function(e, o){
+        $.log('processFinish');
+        $.log(o.file);
+    }).bind('transferStart.flash', function(e, o){
+        $.log('transferStart');
+        $.log(o.file);
+    }).bind('transferProgress.flash', function(e, o){
+        $.log('transferProgress');
+        $.log(o.file);
+    }).bind('transferError.flash', function(e, o){
+        $.log('transferError');
+        $.log(o.file);
+    }).bind('transferComplete.flash', function(e, o){
+        $.log('transferComplete');
+        $.log(o.file);
+    }).bind('transferCompleteData.flash', function(e, o){
+        $.log('transferCompleteData');
+        $.log(o.file);
+        var file = o.file;
+        
+        if (file.status === 'done') {
+            var msg = eval('(' + file.msg + ')');
+            if (msg.result === 'success') {
+                var li = $('&lt;li>');
+                var img = new Image();
+                img.src = msg.miniImgUrls[0];
+                result1.append(li.append(img));
+            }
+        }
+    }).bind('finish.flash', function(e){
+        var fileStatuses = $(this).flash('getFileStatuses');
+        $.log('finish');
+        $(this).flash('clear');
+        fileStatuses = $(this).flash('getFileStatuses');
+    });
+    
+    $('button.enable', '#demo1').click(function(){
+        demo1.flash('enable');
+    });
+    $('button.disable', '#demo1').click(function(){
+        demo1.flash('disable');
+    });
+    $('button.filter', '#demo1').click(function(){
+        demo1.flash('setBrowseFilter', [{
+            description: '图片文件（jpg,jpeg,gif,png,bmp）',
+            extensions: '*.jpg;*.jpeg;*.gif;*.png;*.bmp'
+        }]);
+    });
+    $('button.countlimit', '#demo1').click(function(){
+        demo1.flash('setFileCountLimit', 1);
+    });
+    $('button.multiple', '#demo1').click(function(){
+        demo1.flash('allMultiple', false);
+    });
+});                
+            </pre>
+        </div>
+        <div id="achievement">
+            <h1 class="header">功能点测试</h1>
+            <h2 class="agent"></h2>
+            <h2 class="status"></h2>
+            <div class="list">
+            </div>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($){
+                $.DEBUG = true;
+                $.use('ui-flash-uploader2, util-debug, util-achievement', function(){
+                    var Achievement = $.util.Achievement;
+                    Achievement.add('property-buttonSkin', '配置上传按钮皮肤', ['请手工验证按钮的四种视觉状态。分别为：默认、鼠标hover、鼠标active（按下）、禁用。']);
+                    Achievement.add('property-enable', '组件初始化启用/禁用');
+                    Achievement.add('property-module', '配置ui-flash组件的功能');
+                    Achievement.add('method-clear', '清空队列中的文件信息');
+                    Achievement.add('method-disable', '禁用组件功能', ['请点击按钮人工验证']);
+                    Achievement.add('method-enable', '启用组件功能', ['请点击按钮人工验证']);
+                    Achievement.add('method-uploadAll', '上传状态列表中的所有文件');
+                    Achievement.add('method-getFileStatus', '根据id获取队列中的一个文件信息');
+                    Achievement.add('method-getFileStatuses', '获取队列中的文件信息');
+                    Achievement.add('method-setBrowseFilter', '设置上传的文件类型', ['请点击按钮人工验证']);
+                    Achievement.add('method-setFileCountLimit', '设置单次(uploadAll)可上传的文件个数', ['多出的文件将会被排除在上传队列之外，文件状态是refused']);
+                    Achievement.add('event-finish', '上传周期完成');
+                    Achievement.add('event-processStart', '客户端flash处理开始');
+                    Achievement.add('event-processProgress', '客户端flash处理中');
+                    Achievement.add('event-processFinish', '客户端flash处理结束');
+                    Achievement.add('event-transferStart', '上传开始');
+                    Achievement.add('event-transferProgress', '上传中');
+                    Achievement.add('event-transferError', '上传错误');
+                    Achievement.add('event-transferComplete', '上传结束');
+                    Achievement.add('event-transferCompleteData', '服务器返回上传结果');
+                    Achievement.add('event-swfReady', 'flash准备就绪');
+                    Achievement.init();
+                    
+                    var result1 = $('ul.result', '#demo1');
+                    var demo1 = $('div.flash', '#demo1').flash({
+                        module: 'uploader2'
+                    }).bind('fileSelect.flash', function(e, o){
+                        $(this).flash('uploadAll', 'http://picman-test.china.alibaba.com:40100/album/ajax/image_upload_ajax.json', {
+                            drawTxt: true,
+                            albumId: '15815320',
+                            _csrf_token: 'test',
+                            source: 'picman'
+                        }, 'imgFile', 'fname');
+                    }).bind('swfReady.flash', function(e){
+                        Achievement.check('property-module', true);
+                        Achievement.check('event-swfReady', true);
+                        $.log('swfReady');
+                    }).bind('processStart.flash', function(e, o){
+                        Achievement.check('event-processStart', true);
+                        $.log('processStart');
+                        $.log(o.file);
+                    }).bind('processProgress.flash', function(e, o){
+                        Achievement.check('event-processProgress', true);
+                        $.log('processProgress');
+                        $.log(o.file);
+                    }).bind('processFinish.flash', function(e, o){
+                        Achievement.check('event-processFinish', true);
+                        $.log('processFinish');
+                        $.log(o.file);
+                    }).bind('transferStart.flash', function(e, o){
+                        Achievement.check('event-transferStart', true);
+                        $.log('transferStart');
+                        $.log(o.file);
+                    }).bind('transferProgress.flash', function(e, o){
+                        Achievement.check('event-transferProgress', true);
+                        $.log('transferProgress');
+                        $.log(o.file);
+                    }).bind('transferError.flash', function(e, o){
+                        Achievement.check('event-transferError', true);
+                        $.log('transferError');
+                        $.log(o.file);
+                    }).bind('transferComplete.flash', function(e, o){
+                        Achievement.check('event-transferComplete', true);
+                        $.log('transferComplete');
+                        $.log(o.file);
+                    }).bind('transferCompleteData.flash', function(e, o){
+                        Achievement.check('event-transferCompleteData', true);
+                        $.log('transferCompleteData');
+                        $.log(o.file);
+                        var file = o.file;
+                        
+                        if (file.status === 'done') {
+                            var msg = eval('(' + file.msg + ')');
+                            if (msg.result === 'success') {
+                                var li = $('<li>');
+                                var img = new Image();
+                                img.src = msg.miniImgUrls[0];
+                                result1.append(li.append(img));
+                            }
+                        }
+                    }).bind('finish.flash', function(e){
+                        Achievement.check('method-uploadAll', true);
+                        Achievement.check('event-finish', true);
+                        var fileStatuses = $(this).flash('getFileStatuses');
+                        if (fileStatuses && fileStatuses.length) {
+                            Achievement.check('method-getFileStatuses', true);
+                            var fileStatus = $(this).flash('getFileStatus', fileStatuses[0].id);
+                            if (fileStatus && fileStatus.id === fileStatuses[0].id) {
+                                Achievement.check('method-getFileStatus', true);
+                            }
+                        }
+                        $.log('finish');
+                        $(this).flash('clear');
+                        fileStatuses = $(this).flash('getFileStatuses');
+                        if (fileStatuses && !fileStatuses.length) {
+                            Achievement.check('method-clear', true);
+                        }
+                    });
+                    
+                    $('button.enable', '#demo1').click(function(){
+                        demo1.flash('enable');
+                    });
+                    $('button.disable', '#demo1').click(function(){
+                        demo1.flash('disable');
+                    });
+                    $('button.filter', '#demo1').click(function(){
+                        demo1.flash('setBrowseFilter', [{
+                            description: '图片文件（jpg,jpeg,gif,png,bmp）',
+                            extensions: '*.jpg;*.jpeg;*.gif;*.png;*.bmp'
+                        }]);
+                    });
+                    $('button.countlimit', '#demo1').click(function(){
+                        demo1.flash('setFileCountLimit', 1);
+                    });
+                    $('button.multiple', '#demo1').click(function(){
+                        demo1.flash('allMultiple', false);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

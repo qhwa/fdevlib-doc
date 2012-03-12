@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.util.sweet</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>web-sweet : Javascript模板语言</h1>
+            <h2>介绍</h2>
+            <p>
+                创建动态的字符串模板，一般用于HTML结构的动态创建。
+            </p>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('web-sweet', function(){
+    var template, data;
+    //...
+    var inst = FE.util.sweet(template);
+    inst.applyData(data[, scope]);
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/FE.util.sweet.html">Try it!</a>
+            </p>
+            <h2>Statics</h2>
+            <dl>
+                <dt>
+                    <b>FE.util.sweet( tpl )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>tpl</b>
+                            : String 模板字符串
+                        </li>
+                        <li>
+                            <b>return</b>
+                            : Object Sweet类的实例
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    创建Sweet的实例对象
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>FE.util.sweet.trim</b>
+                </dt>
+                <dd>
+                    对jQuery.trim的引用
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>FE.util.sweet.escape</b>
+                </dt>
+                <dd>
+                    对jQuery.util.escapeHTML的引用
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>applyData( data, scope )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>data</b>
+                            : Object 模板数据
+                        </li>
+                        <li>
+                            <b>scope</b>
+                            : Object 模板程序中的'this'指向
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    创建Sweet的实例对象
+                </dd>
+            </dl>
+        </div>
+    </body>
+</html>

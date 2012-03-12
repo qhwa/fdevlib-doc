@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: SidePoper</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="http://style.china.alibaba.com/css/lib/fdev-v3/widget/sidepoper.css"/>
+    <style>
+        .ep-SidePoper { width: 340px; height: 150px; overflow: hidden; float: left;}
+
+    </style>
+
+</head>
+<body>
+	<div id="doc" style="overflow:visible" >
+		<div id="sidePop-top"  class="clr" style="background:#ff7300;height:0;overflow:hidden;" >
+			<div style="font-size:14px;line-height:30px;padding:5px 0 0 40px">示例一</div>
+		</div>
+
+		<div id="hd">
+			<h1>fdevlib-example: SidePoper（侧边跟随框）</h1>
+		</div>
+		<div id="bd">
+			
+			<div class="layout">
+				<div class="main">
+
+					<h2>1、顶部广告弹出 </h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-1" type="button" value="顶部广告弹出（示例一）"/>
+					
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('sidePop-top',null, {
+                            dockSide:0,
+                            expandDir:0,
+                            baseline:2,
+                            scroll:0,
+                            remainArea:0,
+                            btnset:2,
+                            initExe:1,
+                            expandSpeed:0.05,
+                            initHeight:0,
+                            originHeight:40
+                        });
+					</pre>
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>2、上下左右位置演示。只需修改 dockSide:(0/1) 和 baseline:(0/1) </h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-2.1" type="button" value="位置左上（示例二）"/>
+						<input id="example-2.2" type="button" value="位置左下（示例二）"/>
+						<input id="example-2.3" type="button" value="位置右下（示例二）"/>
+						<input id="example-2.4" type="button" value="位置右上（示例二）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-2','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:0,baseline:0});
+					</pre>				
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>3、水平、垂直方向位置调整。 bias 调整垂直方向位置(相对baseline)，departure 调整水平方向位置(相对dockSide)</h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-3.1" type="button" value="距上方30px距左边30px（示例三）"/>
+						<input id="example-3.2" type="button" value="距下方30px距左边30px（示例三）"/>
+						<input id="example-3.3" type="button" value="距下方30px距右边30px（示例三）"/>
+						<input id="example-3.4" type="button" value="距上方30px距右边30px（示例三）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-3','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:0,baseline:0,bias:30,departure:30});
+					</pre>				
+				</div>			
+			</div>
+
+
+			<div class="layout">
+				<div class="main">
+					<h2>4、水平居中和垂直居中。 dockSide:'center' 和 baseline:'middle' </h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-4.1" type="button" value="水平居中（示例四）"/>
+						<input id="example-4.2" type="button" value="垂直居中（示例四）"/>
+						<input id="example-4.3" type="button" value="全居中（示例四）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-4','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,bias:'middle',departure:'center'});
+					</pre>				
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>5、操作按钮设置。 btnset(0/1/2/3) </h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-5.1" type="button" value="默认有关闭有收缩（示例五）"/>
+						<input id="example-5.2" type="button" value="只有收缩（示例五）"/>
+						<input id="example-5.3" type="button" value="只有关闭（示例五）"/>
+						<input id="example-5.4" type="button" value="都没有（示例五）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-5','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,btnset:3});
+					</pre>				
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>6、收缩后剩余的高/宽度。 remainArea:26 默认值为26，此例设置为0，即收缩后几不可见</h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-6.1" type="button" value="收缩后剩余0高（示例六）"/>
+						<input id="example-6.2" type="button" value="收缩后剩余0宽（示例六）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-6','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,remainArea:0});
+					</pre>				
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>7、横向自动展开设置。 expandDir(0/1)<span style="color:#f00">此例特别说明：</span>设置了初始宽度initWidth:26 其值等于remainArea的默认值，同时设置完全宽度originWidth:253。通过initExe:3 参数设置为当初始化完毕停顿exeDelay:500ms 后执行最大化。</h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-7.1" type="button" value="横向展开（示例七）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-7','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:26,originWidth:253,initHeight:207,expandDir:1,exeDelay:500,initExe:1});
+					</pre>				
+				</div>			
+			</div>
+			
+			<div class="layout">
+				<div class="main">
+					<h2>8、除ie6的浏览器设置position:fixed。 isFixed(0/1) 此例设置isFixed:1，请用非ie6浏览器查看</h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-8.1" type="button" value="非ie6下的fixed（示例八）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-8','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,isFixed:1});
+					</pre>				
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>9、浮出外框套用。 defaultShell(0/1) 此例设置defaultShell:1，同时设置shellBlank:8 可看到默认的外框，且内容和外框间隔8px</h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-9.1" type="button" value="外框套用（示例九）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-9','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:353,initHeight:307,isFixed:1,defaultShell:1,shellBlank:8});
+					</pre>				
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>10、关闭后执行自定义方法。 设定doAfterClose:fn 可自定义关闭后执行的方法。本例当初始化完毕停顿exeDelay:1000ms 后执行关闭。</h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-10.1" type="button" value="关闭后提示（示例十）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-10','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:353,initHeight:307,isFixed:1,defaultShell:1,shellBlank:8,initExe:3,exeDelay:1000,doAfterClose:function (){
+							alert('谢谢！')
+						}});
+					</pre>				
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>11、跟随方式的设定。 注意：scroll:1为默认设置，浮动框一直跟随。scroll:0 不跟随。scroll:2 ，当滚动发生时，隐藏浮动框，滚动结束时再显示浮动框，此效果优先级低于isFixed:1。</h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-11.1" type="button" value="渐隐（示例十一）"/>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-11','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:353,initHeight:307,dockSide:0,defaultShell:1,shellBlank:8,scroll:2});
+					</pre>				
+				</div>			
+			</div>
+
+			<div class="layout" >
+				<div class="main" style="overflow:visible" >
+					<div id="example-12" style="float:left;"><img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg" width="200" height="120"/></div>
+					<h2 style="clear:both" >12、对页面上的任意预埋节点实施初始化。baseline:0 意为以窗口顶部为基线，baseline:1 意为以窗口底部为基线，baseline:2 意为基线设置在节点原本的位置。 <span style="color:#f00">(点击原始位置基线后请滚下去，然后滚回来)</span></h2>
+					<div class="ep-SidePoper clr">
+						<input id="example-12.1" type="button" value="原始位置基线（示例十二）"/>
+						<input id="example-12.2" type="button" value="窗口底部基线（示例十二）"/>
+						<input id="example-12.3" type="button" value="窗口顶部基线（示例十二）"/>
+					
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+
+					<pre class="brush:js">
+						FD.widget.SidePoper.init('example-12',null, {dockSide:0,baseline:2,bias:100});
+					</pre>
+					<div style="height:2000px" ></div>
+				</div>			
+			</div>
+
+
+		</div>
+		<div id="ft">
+
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/animation-min.js"></script>
+
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/sidepoper/source/sidepoper.js"></script> 
+
+<!-- 回到顶部依赖 -->
+<style type="text/css">
+.testbb{float:right;+display:inline;width:19px;height:63px;position:relative;margin-top:500px;margin-right:-20px;visibility:hidden}
+.testbb img{display:block;}
+</style>
+<a  id="testbb" class="testbb" href="#" target="_self"><img  src="http://img.china.alibaba.com/news/upload/0/t_1284012649613.gif" width="19" height="63"/></a>
+<script type="text/javascript">
+<!--
+FYG('doc').insertBefore(FYG('testbb'),FYD.getFirstChild('doc'));
+
+FYE.onDOMReady(function(){
+
+dp.SyntaxHighlighter.HighlightAll('code');	//代码高亮
+	//回到顶部
+	FD.widget.SidePoper.init('testbb',null, {defaultShell:0,initWidth:19,initHeight:63,btnset:0,expandDir:0,dockSide:1,isFixed:0,baseline:2,scroll:2,bias:400});
+});
+//-->
+</script>
+<!-- 回到顶部依赖 end -->
+
+
+	<script>
+	//Dom树构建完毕后开始执行
+	
+	FYE.on('example-1','click',function (){
+		FD.widget.SidePoper.init('sidePop-top',null, {dockSide:0,expandDir:0,baseline:2,scroll:0,remainArea:0,btnset:2,initExe:1,expandSpeed:0.05,initHeight:0,originHeight:40});
+		this.parentNode.removeChild(this)
+	})
+	FYE.on('example-2.1','click',function (){
+		FD.widget.SidePop.purge('example-2')
+		FD.widget.SidePoper.init('example-2','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,expandDir:0,dockSide:0,isFixed:0,baseline:0,bias:0});
+	})
+	FYE.on('example-2.2','click',function (){
+		FD.widget.SidePop.purge('example-2')
+		FD.widget.SidePoper.init('example-2','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,expandDir:0,dockSide:0,isFixed:0,baseline:1,bias:0});
+	})
+	FYE.on('example-2.3','click',function (){
+		FD.widget.SidePop.purge('example-2')
+		FD.widget.SidePoper.init('example-2','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,expandDir:0,dockSide:1,isFixed:0,baseline:1,bias:0});
+	})
+	FYE.on('example-2.4','click',function (){
+		FD.widget.SidePop.purge('example-2')
+		FD.widget.SidePoper.init('example-2','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,expandDir:0,dockSide:1,isFixed:0,baseline:0,bias:0});
+	})
+	FYE.on('example-3.1','click',function (){
+		FD.widget.SidePop.purge('example-3')
+		FD.widget.SidePoper.init('example-3','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:0,baseline:0,bias:30,departure:30});
+	})
+	FYE.on('example-3.2','click',function (){
+		FD.widget.SidePop.purge('example-3')
+		FD.widget.SidePoper.init('example-3','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:0,baseline:1,bias:30,departure:30});
+	})
+	FYE.on('example-3.3','click',function (){
+		FD.widget.SidePop.purge('example-3')
+		FD.widget.SidePoper.init('example-3','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:1,baseline:1,bias:30,departure:30});
+	})
+	FYE.on('example-3.4','click',function (){
+		FD.widget.SidePop.purge('example-3')
+		FD.widget.SidePoper.init('example-3','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:1,baseline:0,bias:30,departure:30});
+	})
+	FYE.on('example-4.1','click',function (){
+		FD.widget.SidePop.purge('example-4')
+		FD.widget.SidePoper.init('example-4','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,departure:'center'});
+	})
+	FYE.on('example-4.2','click',function (){
+		FD.widget.SidePop.purge('example-4')
+		FD.widget.SidePoper.init('example-4','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,bias:'middle'});
+	})
+	FYE.on('example-4.3','click',function (){
+		FD.widget.SidePop.purge('example-4')
+		FD.widget.SidePoper.init('example-4','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,bias:'middle',departure:'center'});
+	})
+	FYE.on('example-5.1','click',function (){
+		FD.widget.SidePop.purge('example-5')
+		FD.widget.SidePoper.init('example-5','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:0,baseline:1,btnset:3});
+	})
+	FYE.on('example-5.2','click',function (){
+		FD.widget.SidePop.purge('example-5')
+		FD.widget.SidePoper.init('example-5','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:0,baseline:1,btnset:2});
+	})
+	FYE.on('example-5.3','click',function (){
+		FD.widget.SidePop.purge('example-5')
+		FD.widget.SidePoper.init('example-5','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:0,baseline:1,btnset:1});
+	})
+	FYE.on('example-5.4','click',function (){
+		FD.widget.SidePop.purge('example-5')
+		FD.widget.SidePoper.init('example-5','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,dockSide:0,baseline:1,btnset:0});
+	})
+	FYE.on('example-6.1','click',function (){
+		FD.widget.SidePop.purge('example-6')
+		FD.widget.SidePoper.init('example-6','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,remainArea:0});
+	})
+	FYE.on('example-6.2','click',function (){
+		FD.widget.SidePop.purge('example-6')
+		FD.widget.SidePoper.init('example-6','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,expandDir:1,remainArea:0});
+	})
+	FYE.on('example-7.1','click',function (){
+		FD.widget.SidePop.purge('example-7')
+		FD.widget.SidePoper.init('example-7','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:26,originWidth:253,initHeight:207,baseline:1,expandDir:1,exeDelay:500,initExe:1});
+	})
+	FYE.on('example-8.1','click',function (){
+		FD.widget.SidePop.purge('example-8')
+		FD.widget.SidePoper.init('example-8','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:253,initHeight:207,isFixed:1});
+	})
+	FYE.on('example-9.1','click',function (){
+		FD.widget.SidePop.purge('example-9')
+		FD.widget.SidePoper.init('example-9','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:353,initHeight:307,isFixed:1,defaultShell:1,shellBlank:8});
+	})
+	FYE.on('example-10.1','click',function (){
+		FD.widget.SidePop.purge('example-10')
+		FD.widget.SidePoper.init('example-10','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:353,initHeight:307,isFixed:1,defaultShell:1,shellBlank:8,initExe:3,exeDelay:1000,doAfterClose:function (){
+			alert('谢谢！')
+		}});
+	})
+	FYE.on('example-11.1','click',function (){
+		FD.widget.SidePop.purge('example-11')
+		FD.widget.SidePoper.init('example-11','<img src="http://img.china.alibaba.com/images/unsort/793801-0.jpg"/>', {initWidth:353,initHeight:307,dockSide:0,defaultShell:1,shellBlank:8,scroll:2});
+	})
+	FYE.on('example-12.1','click',function (){
+		FD.widget.SidePop.purge('example-12')
+		FD.widget.SidePoper.init('example-12',null, {dockSide:0,baseline:2,bias:100});
+	})
+	FYE.on('example-12.2','click',function (){
+		FD.widget.SidePop.purge('example-12')
+		FD.widget.SidePoper.init('example-12',null, {dockSide:0,baseline:1,bias:100});
+	})
+	FYE.on('example-12.3','click',function (){
+		FD.widget.SidePop.purge('example-12')
+		FD.widget.SidePoper.init('example-12',null, {dockSide:0,baseline:0,bias:100});
+	})
+	</script>
+</body>
+</html>

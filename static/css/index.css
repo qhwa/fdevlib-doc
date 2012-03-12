@@ -1,0 +1,127 @@
+/* Ext 3.0 */
+.x-window-footer {
+    position: relative;
+    top: 0;
+    right: 0;
+}
+
+.x-date-mp td, .ext-el-mask-msg div, .loading-indicator, .x-tab-strip span.x-tab-strip-text, .x-form-invalid-msg, .x-small-editor .x-form-field, .x-fieldset legend, .x-btn, .x-btn button, .x-toolbar td, .x-toolbar span, .x-toolbar input, .x-toolbar div, .x-toolbar select, .x-toolbar label, .x-grid3-hd-row td, .x-grid3-row td, .x-grid3-summary-row td, .x-grid3-topbar, .x-grid3-bottombar, .x-grid-group-hd div.x-grid-group-title, .x-grid-empty, .x-dd-drag-ghost, .x-tree-node, .x-date-middle, .x-date-left, .x-date-right, .x-date-inner a, .x-date-mp-btns button, .x-tip .x-tip-mc, .x-tip .x-tip-header-text, .x-tip .x-tip-body, .x-menu-list-item, .x-combo-list-small, .x-panel-header, .x-panel-tl .x-panel-header, .x-panel-mc, .x-panel-fbar td, .x-panel-fbar span, .x-panel-fbar input, .x-panel-fbar div, .x-panel-fbar select, .x-panel-fbar label, .x-window-mc, .x-progress-text, .x-list-header-inner div em, .x-list-body dt em, .x-window-tl .x-window-header {
+    font: 12px tahoma, "\5B8B\4F53,arial,verdana,helvetica" !important;
+}
+
+.ext-webkit .x-form-text {
+    padding-top: 1px !important;
+}
+
+/*调整ie下表单控件中的文本行间距*/
+.x-form-text {
+    line-height: 18px !important;
+}
+
+.ext-ie .x-form-text, .ext-ie .x-form-trigger {
+    margin-top: 1px !important;
+}
+
+body {
+    font: 12px / 1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+    overflow: hidden;
+}
+
+.icon-home {
+    background-image: url(/fdevlib/static/img/icon/home.png) !important;
+}
+
+.icon-expand-all {
+    background-image: url(/fdevlib/static/img/icon/expand-all.gif) !important;
+}
+
+.icon-collapse-all {
+    background-image: url(/fdevlib/static/img/icon/collapse-all.gif) !important;
+}
+
+.icon-cls {
+    background-image: url(/fdevlib/static/img/icon/class.gif) !important;
+}
+
+.icon-cmp {
+    background-image: url(/fdevlib/static/img/icon/cmp.gif) !important;
+}
+
+.icon-new {
+    background-image: url(/fdevlib/static/img/icon/new.png) !important;
+}
+
+.icon-static {
+    background-image: url(/fdevlib/static/img/icon/static.gif) !important;
+}
+
+.icon-pkg {
+    background-image: url(/fdevlib/static/img/icon/pkg.gif) !important;
+}
+
+.icon-fav {
+    background-image: url(/fdevlib/static/img/icon/fav.gif) !important;
+}
+
+.icon-js {
+    background-image: url(/fdevlib/static/img/icon/js.png) !important;
+}
+
+.icon-html {
+    background-image: url(/fdevlib/static/img/icon/html.png) !important;
+}
+
+.icon-css {
+    background-image: url(/fdevlib/static/img/icon/css.png) !important;
+}
+
+.icon-tools {
+    background-image: url(/fdevlib/static/img/icon/tools.png) !important;
+}
+
+.icon-chart {
+    background-image: url(/fdevlib/static/img/icon/chart.png) !important;
+}
+
+.icon-txt {
+    background-image: url(/fdevlib/static/img/icon/txt.png) !important;
+}
+
+#loading {
+    position: absolute;
+    width: 180px;
+    margin: -70px 0 0 -90px;
+    height: 140px;
+    top: 50%;
+    left: 50%;
+}
+
+#loading .title {
+    position: absolute;
+    display: block;
+    top: 110px;
+    left: 0px;
+    width: 180px;
+    height: 28px;
+	line-height: 28px;
+	text-align: center;
+}
+
+#loading .logo {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 25px;
+    width: 120px;
+    height: 120px;
+    background: url(../img/icon/loading.gif) no-repeat;
+}
+
+iframe {
+    border: 0 none;
+    width: 100%;
+    height: 100%;
+}
+
+.header .x-panel-body{background:none !important;}
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>jQuery History</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+</head>
+<body>
+    <div id="doc">
+        <h1>util-history : 浏览器历史</h1>
+        
+        <h2>介绍</h2>
+        <p>
+            jQuery History 通过追踪URL Hash，轻松的追踪页面的状态改变。 支持书签，前进或后退按钮，当然，也支持多种浏览器。
+        </p>
+        <ul>
+            <li>跟踪应用程序的状态改变。状态可以被用户改变，通过URL Hash（URL中，在“#”之后的任何数据）；也可以被你自己改变，通过代码。</li>
+            <li>可以检测到所有可能的改变页面状态的方式。比如，链接、浏览器的前进或后退按钮、包含Hash的书签、刷新带有URL Hash的页面。</li>
+            <li>浏览器兼容。IE 6+，FF 2+，Safari 2+,Chrome 1+,Opera 8+</li>
+        </ul>
+
+        <h2>版本</h2>
+        <ul>
+            <li>倪朱国：创建----2011.11.1</li>
+        </ul>
+
+        <h2>开始</h2>
+        <pre class="prettyprint langage-js">
+jQuery(function($){
+    $.use("util-history",function(){
+        // 为所有状态绑定处理函数
+        $.History.bind(function( state ){
+            // ...
+        });
+
+        // 为指定的状态绑定处理函数
+        $.History.bind("stateName", function( state ){
+            // ...
+        });
+
+        // 跳转到指定的状态
+        $.History.go("stateName");
+
+    });
+});
+        </pre>
+
+        <h2>Demo</h2>
+        <p><a target="_blank" href="../../examples/fdev4/jQuery.util.history.html">Try it</a></p>
+
+
+        <h2>Methods</h2>
+        <dl>
+            <dt><b>bind( state, handler)</b></dt>
+            <dd>
+                <ul>
+                	<li><b>state</b> : String 状态名称</li>
+                	<li><b>handler</b> : Function 处理函数</li>
+                </ul>
+            </dd>
+            <dd>
+                为一个指定的状态绑定一个处理函数，当页面切换到该状态时，触发该函数。<br />
+                若不指定状态，则绑定为所有状态所共有的处理函数。
+            </dd>
+        </dl>
+        <dl>
+        	<dt><b>go( to )</b></dt>
+        	<dd>
+                <ul>
+                	<li><b>to</b> : String 状态名称</li>
+                </ul>
+            </dd>
+        	<dd>跳转到指定的状态</dd>
+        </dl>
+        <script src="../../static/js/app-merge.js"></script>
+    </div>
+</body>
+</html>
+
+

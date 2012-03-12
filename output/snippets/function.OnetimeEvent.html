@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>一次性事件处理</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>一次性事件处理</h2>
+    </div>
+    <div class="g-detail">
+        <h3>曾经有这样的需求:鼠标点击某个tab，才去加载相应的信息，还要加载控制，即不能做重复加载，一般的处理方法都是打tag，或者声明个全局变量的处理方式。现在我们也可以利用YUI的自定义事件(YAHOO.util.CustomEvent)来处理，非常的简单,也可以用YAHOO.util.Event.removeListener来处理</h3>
+        <pre class="brush:js">
+			function fnSubscribeEvent(type,msg){
+				alert(type);
+				alert(msg[0]);
+				ce.unsubscribe(arguments.callee); //arguments.callee这里也可以用fnSubscribeEvent来代替
+			}
+			//新建一个自定义事件example
+			var ce = new YAHOO.util.CustomEvent("exampleCustomEvent");
+			//进行订阅
+			ce.subscribe(fnSubscribeEvent);
+			
+			function buttonClickEvent(){
+				//触发事件
+				ce.fire('不管怎么点我，我就出现一次',2);
+			}
+			
+			function buttonClickEvent2(){
+				alert('不管怎么点我，我也是就出现一次');
+				FYE.removeListener('J_test2','click',arguments.callee);//arguments.callee这里也可以用buttonClickEvent2来代替
+			}
+			FYE.onDOMReady(function(){
+				FYE.on('J_test','click',buttonClickEvent);
+				FYE.on('J_test2','click',buttonClickEvent2);
+			});
+        </pre>
+		<pre class="brush:html">
+			<button id="J_test" style="height:23px;width:180px;">点我吧(自定义事件处理)</button>
+			<button id="J_test2" style="height:23px;width:180px;">再点我吧(移除事件处理)</button>
+		</pre>
+		<button id="J_test" style="height:23px;width:180px;">点我吧(自定义事件处理)</button>
+		<br/>
+		<br/>
+		<button id="J_test2" style="height:23px;width:180px;">再点我吧(移除事件处理)</button>
+    </div>
+	 <script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js"></script>
+	<script>
+		
+		function fnSubscribeEvent(type,msg){
+			alert(type);
+			alert(msg[0]);
+			ce.unsubscribe(arguments.callee); //arguments.callee这里也可以用FD.example.CE.init来代替
+		}
+		//新建一个自定义事件example
+		var ce = new YAHOO.util.CustomEvent("exampleCustomEvent");
+		//进行订阅
+		ce.subscribe(fnSubscribeEvent);
+		
+		function buttonClickEvent(){
+			//触发事件
+			ce.fire('不管怎么点我，我就出现一次',2);
+		}
+		
+		function buttonClickEvent2(){
+			alert('不管怎么点我，我也是就出现一次');
+			FYE.removeListener('J_test2','click',arguments.callee);//arguments.callee这里也可以用buttonClickEvent2来代替
+		}
+		FYE.onDOMReady(function(){
+			FYE.on('J_test','click',buttonClickEvent);
+			FYE.on('J_test2','click',buttonClickEvent2);
+		});
+	</script>
+</body>
+</html>

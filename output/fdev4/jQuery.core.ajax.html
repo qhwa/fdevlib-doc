@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ajax</title>
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev4.js"></script>
+    </head>
+    <body>
+        <div id="doc">
+            <div class="g-memo">
+                <h2>jQuery.ajax</h2>
+                <p>执行异步的 HTTP (Ajax) 请求.</p>
+				<ul><li>2011.02.27 1.5.1版本新增三个配置项isLocal、mimeType和xhrFields</li></ul>
+            </div>
+            <div class="g-detail">
+                <h3>概览：</h3>
+                <pre class="brush: js">
+/**
+ * @return jqXHR jQuery XHR 对象 以下属性及方法，在请求的不同阶段将得到不同的结果
+ * 属性：
+ * readyState						当前AJAX请求状态
+ * status							AJAX状态
+ * statusText						AJAX状态文案
+ * responseXML and/or responseText	当响应的数据是xml或text时，返回请求的原始数据
+ * 方法：
+ * setRequestHeader(name, value)	重新设置头部信息
+ * getAllResponseHeaders()			获取所有的响应头信息
+ * getResponseHeader(name)			获取 "Last-Modified" "Etag" "Content-Type" 等响应头信息
+ * abort()							中断请求
+ */
+var jqXHR = jQuery.ajax('some-domain.php', {
+    /*
+     * 设置请求头 accept 属性
+     * Default: 基于 dataType 的值
+     * 	{
+     * 		xml: "application/xml, text/xml",
+     * 		html: "text/html",
+     * 		text: "text/plain",
+     * 		json: "application/json, text/javascript",
+     * 		"*": "*\/*"
+     * 	}
+     * @type Map
+     */
+    accepts: {},
+    /*
+     * 设置ajax请求类型
+     * Default: true, false 发送同步请求
+     * @type Boolean
+     */
+    async: true,
+    /*
+     * 设置数据缓存
+     * Default: true, false 对 datatype 为 'script' 和 'jsonp 时有效
+     * @type Boolean
+     */
+    cache: true,
+    /*
+     *	{
+     * 		xml: /xml/,
+     * 		html: /html/,
+     * 		json: /json/
+     *	}
+     * @type Map
+     */
+    contents: {},
+    /*
+     * 设置请求头 Content-Type 属性
+     * Default: 'application/x-www-form-urlencoded'
+     * @type String
+     */
+    contentType: 'application/x-www-form-urlencoded',
+    /*
+     * 指定回调函数的上下文环境（this）
+     * Default: window
+     * @type object
+     */
+    context: document.body,
+    /*
+     * 指定 dataType 和 dataType 之间进行数据转换的方法
+     *	{
+     *		// convert anything to text
+     *		"* text": window.String,
+     *		// text to html true 不进行转换
+     *		"text html": true,
+     *		// evaluate text as a json expression
+     *		"text json": jQuery.parseJSON,
+     *		// parse text as xml
+     *		"text xml": jQuery.parseXML
+     *	}
+     * @type Map
+     */
+    converters: {},
+    /*
+     * 设置是否跨域数据请求
+     * Default: false
+     * @type Boolean
+     */
+    crossDomain: false,
+    /*
+     * 发送请求参数，可以是已经组织好的字符串，也可以是
+     * 	{
+     * 		{name:'name1',value:'value1'}
+     * 		...
+     * 	}
+     * 或者
+     * 	{
+     * 		name1:value1
+     * 		...
+     * 	}
+     * 的对象
+     * 可以通过jQuery提供的serialize serializeArray param等方法来组织数据格式
+     * @type Map
+     */
+    data: {},
+    /*
+     * 相应数据预处理
+     * Default: undefined
+     * @param {String} data	原始response数据
+     * @param {String} type	对应本次请求的 dataType
+     * @return {String} 经过处理后的response数据
+     * @type Function
+     */
+    dataFilter: function(data, type){
+        return data;
+    },
+    /*
+     * Default: 自动检测 (xml, json, script, or html)，手动指定（text, jsonp）
+     * @type String
+     */
+    dataType: 'jsonp',
+    /*
+     * 全局设置是否有效
+     * Default: true
+     * @type Boolean
+     */
+    global: true,
+    /*
+     * 设置请求头信息
+     * Default: {}
+     * @type Map
+     */
+    headers: {},
+    /*
+     * 判断响应头中的 Last-Modified 和 ETag 只有当数据被修改过才会触发 success 回调
+     * Default: false
+     * @type Boolean
+     */
+    ifModified: false,
+    /*
+     * 允许切换为本地环境，这个参数最好在ajaxSetup中配置，慎用
+     * Default: 自动分析当前协议
+     * @type Boolean
+     */	
+	isLocal: (depends on current location protocol),
+    /*
+     * 重写jsonp请求中 callback 参数的参数名 'callback=?' 中=号前的key
+     * Default: 'callback'
+     * @type Boolean
+     */
+    jsonp: 'callback',
+    /*
+     * 重写jsonp请求中 动态生成的方法名称 'callback=?' 中=号后的value
+     * Default: function() {
+     * 		return jQuery.expando + "_" + ( jsc++ );
+     * 	}
+     * @type String,Function
+     */
+    jsonpCallback: 'FE',
+    /*
+     * 重写XHR mime type
+     * @type String
+     */		
+	mimeType: undefined,
+    /*
+     * 需要http访问密码时提供
+     * Default: undefined
+     * @type String
+     */
+    password: '',
+    /*
+     * 默认情况下data参数将会被转成字符串发送给服务器，通过设置这个参数为 false 则不对data进行转化，比如需要传递一个HTMLElement
+     * Default: true
+     * @type Boolean
+     */
+    processData: true,
+    /*
+     * 只有在 dataType 为 "jsonp" "script" dataType 或者 type 为 "get" 时有效
+     * Default: undefined
+     * @type String
+     */
+    scriptCharset: 'gbk',
+    /*
+     * 根据不同的响应status，设置回调函数
+     * Default: {}
+     * @type Map
+     */
+    statusCode: {
+        404: function(){
+            alert('page not found');
+        }
+    },
+    /*
+     * 设置请求的超时时间（单位: 毫秒）
+     * Default: undefined
+     * @type number
+     */
+    timeout: 10000,
+    /*
+     * 设置参数组装的方式
+     * // traditional: true:
+     * { a: { b:1,c:2 }, d: [3,4,{ e:5 }] } 	// "a=[object+object]&d=3&d=4&d=[object+object]"
+     * // traditional: false:
+     * { a: { b:1,c:2 }, d: [3,4,{ e:5 }] } 	// "a[b]=1&a[c]=2&d[]=3&d[]=4&d[2][e]=5"
+     * Default: undefined
+     * @type Boolean
+     */
+    traditional: true,
+    /*
+     * 废弃的写法，不推荐在设置里指定url
+     */
+    url: '',
+    /*
+     * 需要http访问用户名时提供
+     * Default: undefined
+     * @type String
+     */
+    username: '',
+    /*
+     * 重写xhr的创建函数，提供第三方xhr实例
+     * Default: ie 使用 ActiveXObject 其他浏览器使用 XMLHttpRequest
+     * @type Function
+     */
+    xhr: function(){
+        return new window.XMLHttpRequest();
+    },
+    /*
+     * A map of fieldName-fieldValue pairs to set on the native XHR object. 如, 设置 withCredentials to true for cross-domain requests if needed。
+     * @type Map
+     */
+	xhrFields: {}
+})
+/**
+ * 在请求发送前触发该函数，return false 将阻止请求发送
+ * @param {object} jqXHR	jQuery XHR 对象
+ * @param {object} settings	配置参数
+ */
+.beforeSend(function(jqXHR, settings){
+    return false;
+})
+/**
+ * 请求成功后触发
+ * @param {Object} data			经过 dataType 指定的类型转化后的数据
+ * @param {Object} textStatus	"success", "notmodified", "error", "timeout", "abort", or "parsererror"
+ * @param {Object} jqXHR		jQuery XHR 对象
+ */
+.success(function(data, textStatus, jqXHR){
+
+})
+/**
+ * 请求失败后触发
+ * @param {Object} jqXHR		jQuery XHR 对象
+ * @param {Object} textStatus	"success", "notmodified", "error", "timeout", "abort", or "parsererror"
+ * @param {Object} errorThrown	错误异常对象
+ */
+.error(function(jqXHR, textStatus, errorThrown){
+
+})
+/**
+ * 请求结束后触发，无论成功与否
+ * @param {Object} jqXHR		jQuery XHR 对象
+ * @param {Object} textStatus	"success", "notmodified", "error", "timeout", "abort", or "parsererror"
+ */
+.complete(function(jqXHR, textStatus){
+
+});
+                </pre>
+            </div>
+        </div>
+    </body>
+</html>

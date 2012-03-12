@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.mouse</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-mouse : 鼠标行为</h1>
+            <h2>介绍</h2>
+            <p>
+                本组件配合其他有鼠标行为的组件，提供鼠标的“点击”，“拖动”，“释放”的行为跟踪。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    基于官方1.8.15版本 ---- 2011.08.26
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+//在组件制作过程中，需要一个Class具备mouse的特性，可以如下方式定义                
+$.widget('ui.portlets', $.ui.mouse, {
+    options: {
+        //...
+    }
+    //...
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.mouse.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>cancel</b> : Selector String</dt>
+                <dd>
+                    Default : ':input,option'
+                </dd>
+                <dd>
+                    对符合选择器的元素禁用鼠标动作。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>distance</b> : Number</dt>
+                <dd>
+                    Default : 1
+                </dd>
+                <dd>
+                    鼠标移动距离的捕捉精度，默认为1px以上的移动都捕捉。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>delay</b> : Number</dt>
+                <dd>
+                    Default : 0
+                </dd>
+                <dd>
+                    对Mouse Down动作的响应延时，默认为无延时。
+                </dd>
+            </dl>
+            <h2>Extend & Overriden</h2>
+            <dl>
+                <dt><b>_mouseStart( event )</b> : Function</dt>
+                <dd>
+                    Default : jQuery.noop
+                </dd>
+                <dd>
+                    Mousedown之后、Mousemove之前触发此方法
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>_mouseDrag</b> : Function</dt>
+                <dd>
+                    Default : jQuery.noop
+                </dd>
+                <dd>
+                    Mousemove时持续触发此方法
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>_mouseStop</b> : Function</dt>
+                <dd>
+                    Default : jQuery.noop
+                </dd>
+                <dd>
+                    Mouseup时触发此方法
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>_mouseCapture</b> : Function</dt>
+                <dd>
+                    Default : jQuery.noop
+                </dd>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Bolean 如果返回"false"则中断监视本次鼠标行为。默认返回"true"。
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    Mousedown时触发此方法，如果此方法返回"false"则中断监视本次鼠标行为，否则请返回"true"。
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>        
+    </body>
+</html>

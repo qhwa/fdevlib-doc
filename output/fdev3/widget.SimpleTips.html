@@ -1,0 +1,108 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="gbk" /> 
+    <title>FD.widget.SimpleTips</title> 
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/> 
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script> 
+</head> 
+<body> 
+    <div class="g-memo"> 
+        <h2>SimpleTips：简单提示帮助</h2> 
+        <p>最初从人脉通抽离出来的一个提示组件，能替代标签中的"title"、"alt"等功能。</p> 
+        <h3>更新日志</h3> 
+        <ul class="update-histroy"> 
+            <li>2010-6-28 发布1.0 beta版本</li> 
+        </ul> 
+    </div> 
+    <div class="g-detail"> 
+        <h3>新特性：</h3> 
+        <ul> 
+            <li>1、修复了原 <strong>SimpleTips</strong> 组件在ie6、ie7显示位置不正确的bug。</li> 
+			<li>2、增加了 <strong>tip</strong> 浮出位置在视窗之外的位置反向配置功能。</li>
+        </ul> 
+        <h3>开始：</h3> 
+        如果你想使用SimpleTips组件，请在页面中加入以下片段:
+        <pre class="brush:js;"> 
+			ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+			ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/simpletips/simpletips-min.js");
+	    </pre> 
+        <pre class="brush:css;"> 
+			@import url"http://style.china.alibaba.com/css/lib/fdev-v3/widget/simpletips.css");
+	    </pre> 
+        <h3>使用说明</h3> 
+        <p>1、本组件对结构没需求，tips为动态生成，但要注意每次实例化tips的设置grave容器id和tip的id都是唯一的（详见配置参数列表）。也可tips上触发tips。</p> 
+        <p>2、组件调用方法如下：初始化是需要提供2个参数，第一个参数为需要用到tips功能的标签的id、id数组或classname(必填)；第二个参数为配置对象(将覆盖默认的参数设定):
+        <pre class="brush:js;"> 
+			var simpletips = new FD.widget.SimpleTips('more', { isOnloadShow: true });
+	    </pre> 
+	    </p> 
+        <h3>配置参数列表</h3> 
+        <table class="g-paramtable"> 
+        	<thead> 
+	        	<tr> 
+	        		<th>配置参数</th><th>参数可选值</th><th>作用说明</th> 
+	        	</tr> 
+	        </thead> 
+	        <tbody> 
+	        	<tr> 
+        			<td>graveId</td><td>string</td><td>动态生成预埋容器id，默认：aissaSimpleTipsBox</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>boxId</td><td>string</td><td>动态生成tips box容器id，默认：aissaSimpleTips</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>local</td><td>int{1 ~ 8}</td><td>tips 浮动的相对位置 1:top left 2:top right 3:bottom left 4:bottom right 5:left top 6:left bottom 7:right top 8:right bottom，默认：1</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>arrow</td><td>int{1 ~ 9}</td><td>tips的arrow相对位置 0:null 1:top left 2:top right 3:bottom left 4:bottom right 5:left top 6:left bottom 7:right top 8:right bottom 9:default，默认：9</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>width</td><td>int</td><td>tips 宽度数值，默认：64</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>dLeft</td><td>int</td><td>向左微调坐标像素数值，默认：0</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>dTop</td><td>int</td><td>向上微调坐标像素数值，默认：0</td> 
+	     		</tr> 
+	        	<tr class="even"> 
+        			<td>isAnim</td><td>true | false</td><td>动画弹动效果是否开启，默认：true</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>isHold</td><td>true | false</td><td>鼠标经过时是否hold，默认：true</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>tipsHold</td><td>true | false</td><td>鼠标移出tips后是否继续hold tips，默认：true</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>keep</td><td>int</td><td>tipsHold后持续显示时间，单位毫秒，默认：200</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>isOnloadShow</td><td>true | false</td><td>页面onload成功后是否马上显示，默认：false</td> 
+        		</tr>    
+				<tr> 
+        			<td>onloadHold</td><td>int</td><td>isOnloadShow后持续显示时间，单位毫秒，默认：5000</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>txt</td><td>string</td><td>提示时显示文案，也可是html结构，默认：‘Message’</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>overflowChange</td><td>true | false</td><td>超出边框是否反向处理，默认：true</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>eListener</td><td>‘mouseover’ | ‘click’ | ...</td><td>显示tip的触发方式，默认：‘mouseover’</td> 
+        		</tr>      		       		
+        	</tbody> 
+        </table> 
+        <h3>对象方法列表</h3> 
+       	<p>写simpletips的人过于傻瓜，以致于你不需要调用对象方法就能完成需求。</p>
+        <h3>Demo演示</h3> 
+        这里为开发者展示了simpletips组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.Simpletips.html">example: simpletips</a> 
+        <h3>提建议给开发者</h3> 
+        作者：王山坡<br />
+		邮件：<a href="mailto:yinghao.chenyh@alibaba-inc.com">yinghao.chenyh@alibaba-inc.com</a><br />  
+        旺旺：arquas（中文站）
+    </div> 
+</body> 
+</html> 

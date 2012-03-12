@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>FE.ui.StyleSheet</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div id="doc">
+        <h1>StyleSheet</h1>
+        <h2>1.基本应用</h2>
+        <div id="demo1">
+            <span>span</span>
+            <em>em</em>
+            <a href="#">link</a>
+            <div>
+                <button id="enable">enable</button>
+                <button id="disable">disable</button>
+            </div>
+        </div>
+            <pre class="prettyprint language-html">
+&lt;!--HTML--&gt;
+&lt;div id="demo1"&gt;
+    &lt;span&gt;span&lt;/span&gt;
+    &lt;em&gt;em&lt;/em&gt;
+    &lt;a href="#"&gt;link&lt;/a&gt;
+    &lt;div&gt;
+        &lt;button id="enable"&gt;enable&lt;/button&gt;
+        &lt;button id="disable"&gt;disable&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+            <pre class="prettyprint language-js">
+/* JavaScript */
+jQuery(function($){
+    $.use("web-stylesheet",function(){
+        var demo1 = new FE.ui.StyleSheet();
+        demo1.set("#demo1 span",{
+            color: 'red'
+        });
+        demo1.set("#demo1 em",{
+            color: 'blue'
+        });
+        demo1.set("#demo1 a:hover",{
+            color: '#000'
+        });
+
+        $("#enable").click(function(){
+            demo1.enable();
+        });
+        $("#disable").click(function(){
+            demo1.disable();
+        });
+        
+        console.log(demo1.cssRules);
+    });
+});</pre>
+        <script src="../../static/js/app-merge.js"></script>
+        <script>
+            jQuery(function($){
+                $.use("web-stylesheet",function(){
+                    var demo1 = new FE.ui.StyleSheet();
+                    demo1.set("#demo1 span",{
+                        color: 'red'
+                    });
+                    demo1.set("#demo1 em",{
+                        color: 'blue'
+                    });
+                    demo1.set("#demo1 a:hover",{
+                        color: '#000'
+                    });
+                    
+                    $("#enable").click(function(){
+                        demo1.enable();
+                    });
+                    $("#disable").click(function(){
+                        demo1.disable();
+                    });
+                    console.log(demo1.cssRules);
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

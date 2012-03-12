@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+	<title>background-clip</title>
+    <meta name="description" content="阿里巴巴批发大市场"/>
+    <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+	<link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+    <link rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<base target="_blank" />
+</head>
+<body>
+    <div class="g-memo">
+        <h2>background-clip</h2>
+    </div>
+    <div class="g-detail">
+        <h3>定义：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>background-clip</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">&lt;box&gt; [ , &lt;box&gt; ]*</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">border-box</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">所有元素</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">N/A</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">按照指定值</span></td>
+            </tr>
+        </table>
+        <h4>指定值:</h4>
+        <pre class="brush:html">
+        &lt;box&gt; = border-box | padding-box | content-box
+            
+        </pre>
+        <p>此属性决定绘图区域。</p>
+        <dl class="value-desc">
+            <dt>border-box:</dt>
+            <dd>背景在包含 border 的区域内绘图。</dd>
+            <dt>padding-box:</dt>
+            <dd>背景在包含 padding 的区域内绘图。</dd>
+            <dt>content-box:</dt>
+            <dd>背景仅在 content 区域内绘图。</dd>
+        </dl>
+    </div>
+    <div class="g-detail">
+        <h3>浏览器兼容性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+            <tr>
+                <th align="left" width="56"><strong>浏览器</strong></th>
+                <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+            </tr>
+            <tr>
+                <td>兼容性</td>
+                <td><span class="positive">(√)chrome</span></td>
+                <td><span class="positive">(√)firefox 3.6+ <br />部分支持</span></td>
+                <td><span class="positive">(√)opera 10.6+</span></td>
+                <td><span class="positive">(√)safari 5+</span></td>
+                <td><span class="positive">(√)IE 9</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>在chrome和safari，content-box 需要通过 <code>-webkit-background-clip:content-box;</code>来获得支持。</p>
+        <p>在firefox中，content-box模式不支持，其余两种定义方式也和标准不同，需要通过<code>-moz-background-clip:border; -moz-background-clip:padding; 来实现。</code></p>
+    </div>
+    <div class="g-detail">
+        <h3>例子：</h3>
+        <h4>当前浏览器显示效果：</h4>
+        <div class="show">
+            <div class="border"></div>
+            <div class="padding"></div>
+            <div class="content"></div>
+        </div>
+        <style type="text/css">
+            .show {
+                display:inline-block;
+            }
+            .show div {
+                float:left;
+                width:100px;
+                height:100px;
+                padding:10px;
+                border:10px dashed #666;
+                background:url(/fdevlib/static/img/css3/flower-min.png) no-repeat;
+                margin:8px;
+                background-position:-10px -10px;
+            }
+            .show .border {
+                -moz-background-clip:border;
+                background-clip:border-box;
+            }
+            .show .padding {
+                -moz-background-clip:padding;
+                background-clip:padding-box;
+            }
+            .show .content {
+                -webkit-background-clip:content-box;
+                background-clip:content-box;
+            }
+        </style>
+        <h4>chrome效果截图：</h4>
+        <img class="example-img" src="/fdevlib/static/img/css3/chrome-clip.png" alt="chrome效果截图" />
+        <h4>code:</h4>
+        <pre class="brush:html">
+        &lt;div class="show"&gt;
+            &lt;div class="border"&gt;&lt;/div&gt;
+            &lt;div class="padding"&gt;&lt;/div&gt;
+            &lt;div class="content"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;style type="text/css"&gt;
+            .show {
+                display:inline-block;
+            }
+            .show div {
+                float:left;
+                width:100px;
+                height:100px;
+                padding:10px;
+                border:10px dashed #666;
+                background:url(/fdevlib/static/img/css3/flower-min.png) no-repeat;
+                margin:8px;
+                background-position:-10px -10px;
+            }
+            .show .border {
+                -moz-background-clip:border;
+                background-clip:border-box;
+            }
+            .show .padding {
+                -moz-background-clip:padding;
+                background-clip:padding-box;
+            }
+            .show .content {
+                -webkit-background-clip:content-box;
+                background-clip:content-box;
+            }
+        &lt;/style&gt;
+            
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>相关文档：</h3>
+        <ul>
+            <li><a href="http://www.w3.org/TR/css3-background/#the-background-clip" title="w3c Working Draft">CSS Backgrounds and Borders Module Level 3 (w3c Working Draft)</a></li>
+            <li><a href="https://developer.mozilla.org/en/CSS/background-clip" title="MDC">MDC background-clip</a></li>
+        </ul>
+    </div>
+</body>
+</html>

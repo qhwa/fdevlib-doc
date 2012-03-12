@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: ColumStater</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="http://style.china.alibaba.com/css/fdevlib/widget/columstater.css"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style>
+        .ep-ColumStater { width: 300px; height: 150px; overflow: hidden; float: left; }
+		.columStat s{width:50px;}
+		.columStat ul{list-style:none;width:300px;}
+		.topest{color:#f00;}
+    </style>
+</head>
+<body>
+	<div id="doc">
+		<div id="hd">
+			<h1>fdevlib-example: ColumStater（简单柱状图）</h1>
+		</div>
+		<div id="bd">
+			<div class="layout">
+				<div class="main">
+					<h2>1、纯数值，无css </h2>
+					<div class="ep-ColumStater clr" id="colm1">
+						
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var colm1 = FD.widget.ColumStater.init('colm1',{data:[['很好',100],['较好',200]]});  
+					</pre>
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>2、引用了默认的css，并设置了clength:100,ctype:0</h2>
+					<div class="ep-ColumStater clr" id="colm2">
+						
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var colm2 = FD.widget.ColumStater.init('colm2',{data:[['很好',100],['较好',200]],clength:100});
+					</pre>				
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>3、引用了默认的css，并设置了clength:100,ctype:1（与2的唯一区别是ctype为1）</h2>
+					<div class="ep-ColumStater clr" id="colm3">
+						
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var colm3 = FD.widget.ColumStater.init('colm3',{data:[['很好',100],['较好',200]],clength:100,ctype:1});
+					</pre>				
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>4、引用了默认的css，并使用了自定义模板template:[]（数值后面加上了单位）</h2>
+					<div class="ep-ColumStater clr" id="colm4">
+						
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var colm4 = FD.widget.ColumStater.init('colm4',{data:[['很好',100],['较好',200]],clength:100,template:['<div class="columStat"><ul>','<li class="[%topclass%]"><s>[%title%]</s><div class="[%holes0%]" style="width:0px"></div><u class="[%holes1%]">0</u><span style="float:left">票</span><i class="[%holes2%]">0%</i></li>','</ul></div>']});
+					</pre>				
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>5、引用了默认的css，并使用了topclass参数（配合.topest{color:#f00;}）</h2>
+					<div class="ep-ColumStater clr" id="colm5">
+						
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var colm5 = FD.widget.ColumStater.init('colm5',{data:[['很好',100],['较好',200]],clength:100,topclass:'topest']});
+					</pre>				
+				</div>			
+			</div>
+		</div>
+		<div id="ft">
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/stat/columstater-min.js"></script>  
+	<script>
+	//Dom树构建完毕后开始执行
+	$E.onDOMReady(function(){
+		dp.SyntaxHighlighter.HighlightAll('code');	//代码高亮
+
+		var colm1 = FD.widget.ColumStater.init('colm1',{data:[['很好',100],['较好',200]],template:['<div class=""><ul>','<li class="[%topclass%]"><s>[%title%]</s><div class="[%holes0%]" style="width:0px"></div><u class="[%holes1%]">0</u><i class="[%holes2%]">0%</i></li>','</ul></div>']});
+		var colm2 = FD.widget.ColumStater.init('colm2',{data:[['很好',100],['较好',200]],clength:100});
+		var colm3 = FD.widget.ColumStater.init('colm3',{data:[['很好',100],['较好',200]],clength:100,ctype:1});
+		var colm4 = FD.widget.ColumStater.init('colm4',{data:[['很好',100],['较好',200]],clength:100,template:['<div class="columStat"><ul>','<li class="[%topclass%]"><s>[%title%]</s><div class="[%holes0%]" style="width:0px"></div><u class="[%holes1%]">0</u><span style="float:left">票</span><i class="[%holes2%]">0%</i></li>','</ul></div>']});   
+		var colm5 = FD.widget.ColumStater.init('colm5',{data:[['很好',100],['较好',200]],clength:100,topclass:'topest'});
+		
+	});
+	</script>
+</body>
+</html>

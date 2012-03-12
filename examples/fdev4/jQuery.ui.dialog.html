@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.dialog</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+        <style>
+            .dialog {
+                display: none;
+                border: solid 5px #112435;
+                width: 320px;
+                height: 240px;
+                background-color: #EFEFEF;
+            }
+            
+            .dialog .header {
+                padding: 4px;
+                background-color: #CCC;
+                color: #FFF;
+                line-height: 2;
+                font-weight: 700;
+            }
+            
+            .dialog .header {
+                cursor: move;
+            }
+            
+            .dialog p {
+                line-height: 200px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-dialog : 浮出层</h1>
+            <h2>多重浮出层</h2>
+            <div id="demo1">
+                <button id="trigger1">Trigger</button>
+                <select>
+                    <option>option1</option>
+                </select>
+                <div class="dialog">
+                    <div class="header">
+                        Drag me!
+                    </div>
+                    <p>
+                        <button class="close">关闭</button>
+                        <button id="trigger3">打开</button>
+                    </p>
+                </div>
+                <div class="dialog">
+                    <p>
+                        本浮出层将在打开后1秒后关闭！
+                    </p>
+                </div>
+            </div>
+            <pre class="prettyprint language-html">
+&lt;!--HTML-->            	
+&lt;div class="dialog">
+    &lt;div class="header">Drag me!&lt;/div>
+    &lt;p>
+        &lt;button class="close">关闭&lt;/button>
+        &lt;button id="trigger3">打开&lt;/button>
+    &lt;/p>
+&lt;/div>
+&lt;div class="dialog">
+    &lt;p>本浮出层将在打开后1秒后关闭！&lt;/p>
+&lt;/div>
+			</pre>
+            <pre class="prettyprint language-js">
+/*Javascript*/ 	
+var dialogs = $('div.dialog', '#demo1');
+$('#trigger1').click(function(){
+    $(dialogs[0]).bind('dialogbefore', function(){
+        $.log('custom before');
+    }).dialog({
+        modalCss: {
+            backgroundColor: '#FFF'
+        },
+        draggable: {
+            handle: 'div.header'
+        },
+        shim: true,
+        open: function(){
+            $.log('open');
+        },
+        beforeClose: function(){
+            $.log('beforeClose');
+            return true;
+        },
+        close: function(){
+            $.log('close');
+        }
+    });
+});	
+//注册多重浮出层
+$('#trigger3').click(function(){
+    $(dialogs[1]).dialog({
+        fadeIn: 500,
+        fadeOut: 500,
+        timeout: 1000,
+        center: true
+    });
+});
+//注册弹出框内关闭事件
+$('button.close', '#demo1').click(function(){
+    $(this).closest('div.dialog').dialog('close');
+});		
+			</pre>
+            <h2>无蒙版浮出层</h2>
+            <div id="demo2">
+                <button id="trigger2">Trigger</button>
+                <select>
+                    <option>option1</option>
+                </select>
+                <div class="dialog">
+                    <p>
+                        Drag me! <button class="close">关闭</button>
+                    </p>
+                </div>
+            </div>
+            <pre class="prettyprint language-html">
+&lt;!--HTML-->             	
+&lt;div class="dialog">
+    &lt;p>
+        Drag me! &lt;button class="close">关闭&lt;/button>
+    &lt;/p>
+&lt;/div>
+			</pre>
+            <pre class="prettyprint language-js">
+/*Javascript*/         	
+var dialog2 = $('div.dialog', '#demo2');			
+$('#trigger2').click(function(event){
+    dialog2.dialog({
+        modal: false,
+        shim: true,
+        draggable: true,
+        css: {
+            left: event.clientX + 50,
+            top: event.clientY - 20
+        }
+    });
+});
+			</pre>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            //Dom树构建完毕后开始执行
+            jQuery(function($){
+                $.use('ui-core,ui-draggable,ui-dialog', function(){
+                    var dialogs = $('div.dialog', '#demo1'), dialog2 = $('div.dialog', '#demo2');
+                    $('#trigger1').click(function(){
+                        $(dialogs[0]).bind('dialogbefore', function(){
+                            $.log('custom before');
+                        }).dialog({
+                            modalCss: {
+                                backgroundColor: '#FFF'
+                            },
+                            draggable: {
+                                handle: 'div.header'
+                            },
+                            shim: true,
+                            open: function(){
+                                $.log('open');
+                            },
+                            beforeClose: function(){
+                                $.log('beforeClose');
+                                return true;
+                            },
+                            close: function(){
+                                $.log('close');
+                            }
+                        });
+                    });
+                    $('#trigger3').click(function(){
+                        $(dialogs[1]).dialog({
+                            fadeIn: 500,
+                            fadeOut: 500,
+                            timeout: 1000,
+                            center: true
+                        });
+                    });
+                    $('#trigger2').click(function(event){
+                        dialog2.dialog({
+                            modal: false,
+							shim: true,
+                            draggable: true,
+                            css: {
+                                left: event.clientX + 50,
+                                top: event.clientY - 20
+                            }
+                        });
+                    });
+                    $('button.close').click(function(){
+                        $(this).closest('div.dialog').dialog('close');
+                    });
+                    
+                });
+            });
+        </script>
+    </body>
+</html>

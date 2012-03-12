@@ -1,0 +1,116 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta charset="gbk"/>  
+        <title>ali-masthead</title>  
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+        <style>
+        iframe{border:0 none;overflow:hidden;}
+        .g-detail h2{font-size:20px;font-weight:700;margin-top:15px;}
+        </style>
+    </head>  
+    <body>  
+        <div class="g-memo">
+            <h2>ali-masthead：报头，含LOGO及搜索条</h2>
+            <h3>
+                更新日志</h3>
+            <ul class="update-histroy">
+                <li>2011.01.27 发布1.3</li>
+                <li>2011.06.13 发布1.4</li>
+            </ul>
+        </div>
+        <div class="g-detail">
+            <h2>使用者须知</h2>
+            <h3>ali-masthead说明</h3>
+            <p>ali-masthead根据LOGO类型分为standard、ultimate、common三个分支，又可根据搜索条当前搜索tab不同每个分支再细分十种，但每个分支的依赖样式相同</p>
+            <p>LOGO的使用规则请详见 <a href="http://fd.aliued.cn/fdevlib/output/rules/logo.html">中文站LOGO前端使用规则</a></p>
+            <h3>JS依赖</h3>
+            <p><strong>默认使用style.china.alibaba.com，若使用static，请自行更换，css同</strong></p>
+            <pre class="brush:js">
+//fdev-v4版js，基于fdev-v4，不分分支，全一份
+ImportJavscript.url("http://style.china.alibaba.com/js/sys/universal/masthead/standard-v1.3-min.js");
+
+//fdev-v3版js，依赖于fdev-v3的fdev.js及get.js，不分分支，全一份
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/get-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/sys/head/masthead/v1/standard-v1.3-min.js");
+            </pre>
+            <h3>standard分支</h3>
+            <p>standard分支适用于中文站除资讯首页、社区首页、运营线、旺铺、工作平台之外的大部分页面</p>
+            <p>示图（<a href="/fdevlib/examples/sys/masthead/v1.3.standard.shtml">via</a>）：</p>
+            <iframe src="/fdevlib/examples/sys/masthead/v1.3.standard.shtml" width="1000px" height="120px"></iframe>
+            <p>CSS依赖：</p>
+            <pre class="brush:css">
+/*fdev-v4版，基于fdev-v4*/
+@import url("http://style.china.alibaba.com/css/sys/universal/masthead/standard-v1.3.css");
+
+/*fdev-v3版，基于fdev-v3*/
+@import url("http://style.china.alibaba.com/css/lib/fdev-v3/fdev.css");
+@import url("http://style.china.alibaba.com/css/sys/head/masthead/v1/standard-v1.3.css");
+            </pre>
+            <h3>ultimate分支</h3>
+            <p>ultimate分支适用于运营线</p>
+            <p>示图（<a href="/fdevlib/examples/sys/masthead/v1.3.ultimate.shtml">via</a>）：</p>
+            <iframe src="/fdevlib/examples/sys/masthead/v1.3.ultimate.shtml" width="1000px" height="120px"></iframe>
+            <p>CSS依赖：</p>
+            <pre class="brush:css">
+/*fdev-v4版，基于fdev-v4*/
+@import url("http://style.china.alibaba.com/css/sys/universal/masthead/ultimate-v1.3.css");
+
+/*fdev-v3版，基于fdev-v3*/
+@import url("http://style.china.alibaba.com/css/lib/fdev-v3/fdev.css");
+@import url("http://style.china.alibaba.com/css/sys/head/masthead/v1/ultimate-v1.3.css");
+            </pre>
+            <h3>common分支</h3>
+            <p>common分支适用于资讯首页、社区首页、推广页面</p>
+            <p>示图（<a href="/fdevlib/examples/sys/masthead/v1.3.common.shtml">via</a>）：</p>
+            <iframe src="/fdevlib/examples/sys/masthead/v1.3.common.shtml" width="1000px" height="120px"></iframe>
+            <p>CSS依赖：</p>
+            <pre class="brush:css">
+/*fdev-v4版，基于fdev-v4*/
+@import url("http://style.china.alibaba.com/css/sys/universal/masthead/common-v1.3.css");
+
+/*fdev-v3版，基于fdev-v3*/
+@import url("http://style.china.alibaba.com/css/lib/fdev-v3/fdev.css");
+@import url("http://style.china.alibaba.com/css/sys/head/masthead/v1/common-v1.3.css");
+            </pre>
+        </div>
+        <div class="g-detail">
+            <h2>开发者须知</h2>
+            <h3>ali-masthead所有js/css</h3>
+            <pre>
+<strong>fdev-v4版：</strong>
+http://style.china.alibaba.com/js/sys/universal/masthead/standard-v1.3.js(source版，线上不允许直接使用)
+http://style.china.alibaba.com/js/sys/universal/masthead/standard-v1.3-min.js
+http://style.china.alibaba.com/js/sys/universal/masthead/suggestion-v1.3.js(source版，线上不允许直接使用)
+http://style.china.alibaba.com/js/sys/universal/masthead/suggestion-v1.3-min.js(由standard-v1.3.js调用，线上不允许直接使用)
+
+http://style.china.alibaba.com/css/sys/universal/masthead/standard-v1.3.css
+http://style.china.alibaba.com/css/sys/universal/masthead/ultimate-v1.3.css
+http://style.china.alibaba.com/css/sys/universal/masthead/common-v1.3.css
+http://style.china.alibaba.com/css/sys/universal/masthead/suggestion-v1.3.css(由standard-v1.3.js调用，线上不允许直接使用)
+
+<strong>fdev-v3版：</strong>
+http://style.china.alibaba.com/js/sys/head/masthead/v1/standard-v1.3.js(source版，线上不允许直接使用)
+http://style.china.alibaba.com/js/sys/head/masthead/v1/standard-v1.3-min.js
+
+http://style.china.alibaba.com/css/sys/head/masthead/v1/standard-v1.3.css
+http://style.china.alibaba.com/css/sys/head/masthead/v1/ultimate-v1.3.css
+http://style.china.alibaba.com/css/sys/head/masthead/v1/common-v1.3.css
+            </pre>
+            <!--
+            <h3>ali-masthead测试功能点</h3>
+            <pre>
+1、
+            </pre>
+            -->
+        </div>
+        <div class="g-detail">
+            <h3>提建议给开发者</h3>
+            作者：Edgar<br />
+            邮件：<a href="mailto:mail@edgarhoo.net">mail@edgarhoo.net</a><br />
+            旺旺：edgarhoo（中文站）
+        </div>
+    </body>  
+</html>

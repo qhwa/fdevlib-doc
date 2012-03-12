@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.flash</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-flash : 创建flash</h1>
+            <h2>介绍</h2>
+            <p>
+                本组件提供了flash操作的基本功能，包括：插入flash，浏览器是否支持flash及版本检测。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    Denis: 增加了flash扩展的注册方法$.util.flash.regist，提高了灵活性，降低耦合度 ---- 2011.06.14 
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('ui-flash', function(){
+    $('...').flash(options);
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.flash.html">Try it!</a>
+            </p>
+            <h2>Statics</h2>
+            <dl>
+                <dt>
+                    (readonly)<b>jQuery.util.flash.available</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    判断浏览器是否支持flash。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    (readonly)<b>jQuery.util.flash.activeX</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    判断浏览器是否支持flash。<em>该属性暂时不要使用，用available代替</em>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    (readonly)<b>jQuery.util.flash.version</b>
+                    : Object
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>original</b>
+                            : 原生的flash版本的描述信息
+                        </li>
+                        <li>
+                            <b>array</b>
+                            : 数组格式的版本信息
+                        </li>
+                        <li>
+                            <b>string</b>
+                            : 字符串格式的版本信息
+                        </li>
+                        <li>
+                            <b>major</b>
+                            : 数字格式的版本信息
+                        </li>
+                        <li>
+                            <b>minor</b>
+                            : 数字格式的版本信息
+                        </li>
+                        <li>
+                            <b>release</b>
+                            : 数字格式的版本信息
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    提供各种格式的flash版本表示。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>jQuery.util.flash.encodeParams</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    全局配置，是否对flash的param进行encode
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>jQuery.util.flash.expressInstall</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : 'expressInstall.swf'
+                </dd>
+                <dd>
+                    当浏览器flash版本低于要求，并且"jQuery.util.flash.expressInstallIsActive"设置为true时，使用本配置指定的flash安装路径。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>jQuery.util.flash.expressInstallIsActive</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否通过expressInstall来升级flash版本
+                </dd>
+            </dl>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>module</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    使用flash扩展组件，需要先 use 对应的flash扩展组件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>*</b>
+                    : *
+                </dt>
+                <dd>
+                    所有配置将反映到flash的param上。
+					<pre class="prettyprint language-js">
+$.use('ui-flash', function(){
+    $('...').flash({
+        swf: '/fdevlib/static/flash/test_flashvars.swf',
+        wmode: 'transparent',
+        flashvars: {
+            name1: 'jQuery',
+            name2: 'jQuery.ui.flash',
+            name3: 'widget'
+        }
+    });
+});</pre>
+                </dd>
+            </dl>
+        </div>
+		<script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.flash</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-flash : flash组件</h1>
+            <h2>在指定容器中插入flash</h2>
+            <div id="demo1">
+            </div>
+            <pre class="prettyprint language-js">
+$.use('ui-flash', function(){
+    $('#demo1').flash({
+        swf: '../../static/flash/test_flashvars.swf',
+        flashvars: {
+            name1: 'jQuery',
+            name2: 'jQuery.ui.flash',
+            name3: 'Denis'
+        }
+    });
+});</pre>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($){
+                $.use('ui-flash', function(){
+                    $('#demo1').flash({
+                        swf: '../../static/flash/test_flashvars.swf',
+                        flashvars: {
+                            name1: 'jQuery',
+                            name2: 'jQuery.ui.flash',
+                            name3: 'Denis'
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+	<title>color: RGBA</title>
+    <meta name="description" content="阿里巴巴批发大市场"/>
+    <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+	<link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+    <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<base target="_blank" />
+</head>
+<body>
+    <div class="g-memo">
+        <h2>RGBA color values</h2>
+    </div>
+    <div class="g-detail">
+        <h3>定义：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>color: rgba(R,G,B,A)</u></i></th>
+            </tr>
+            <tr>    
+                <td rowspan="4"><span>值:</span></td>
+                <td><span class="ml8 mr8">R : 红色值； 正整数|百分比</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">G : 绿色值； 正整数|百分比</span></td>
+            </tr>
+            <tr>
+                <td><span class="ml8 mr8">B : 蓝色值； 正整数|百分比</span></td>
+            </tr>
+            <tr class="even">
+                <td><span class="ml8 mr8">A : 透明度； 取值 0~1 之间</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="g-detail">
+        <h3>浏览器兼容性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+            <tr>
+                <th align="left" width="56"><strong>浏览器</strong></th>
+                <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+            </tr>
+            <tr>
+                <td rowspan="2">兼容性</td>
+                <td rowspan="2"><span class="positive">(√)chrome 5+</span></td>
+                <td rowspan="2"><span class="positive">(√)firefox 3.6+</span></td>
+                <td rowspan="2"><span class="positive">(√)opera 10.6+</span></td>
+                <td rowspan="2"><span class="positive">(√)safari 5+</span></td>
+                <td><span class="negative">(×)IE 6-9</span></td>
+            </tr>
+            <tr>
+                <td><span class="positive">(√)IE 9</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>RGBA 是 RGB 模式 的一个扩展，可以指定颜色的透明度。</p>
+        <p>和 RGB 的值不同的是， RGBA 的颜色值不能使用16进制来表示。R,G,B的值可以指定0-255之间的一个整数或者0.0%-100.0% 之间的一个百分比。</p>
+    </div>
+    <div class="g-detail">
+        <h3>例子：</h3>
+        <h4>当前浏览器显示效果：</h4>
+        <div class="show">
+            <p class="transparent">Hello,我是黑色有透明度的。</p>
+            <p class="opaque">Hello,我是黑色没透明度的。</p>
+            <p class="trans-box">我有黑色半透明背景</p>
+            <p class="opaque-box">我有黑色不透明背景</p>
+            <p class="trans-box-2">我有黑色不透明背景&amp;我这个容器有透明度</p>
+        </div>
+        <style type="text/css">
+            .show { background-color:#0078AA; padding:10px; width:500px; }
+            .show .transparent { color:rgba(0,0,0,0.5); }
+            .show .opaque { color:rgba(0,0,0,1); }
+            .show .trans-box { background-color:rgba(0%,0%,0%,0.5); color:#FFF; }
+            .show .opaque-box { background-color:rgba(0,0,0,1); color:#FFF; }
+            .show .trans-box-2 { background-color:rgba(0,0,0,1); color:#FFF; opacity:0.5; }
+        </style>
+        <h4>chrome效果截图：</h4>
+        <img class="example-img" src="/fdevlib/static/img/css3/rgba.png" alt="chrome效果截图" />
+        <h4>code:</h4>
+        <pre class="brush:html">
+        &lt;div class="show"&gt;
+            &lt;p class="transparent"&gt;Hello,我是黑色有透明度的。&lt;/p&gt;
+            &lt;p class="opaque"&gt;Hello,我是黑色没透明度的。&lt;/p&gt;
+            &lt;p class="trans-box"&gt;我有黑色半透明背景&lt;/p&gt;
+            &lt;p class="opaque-box"&gt;我有黑色不透明背景&lt;/p&gt;
+            &lt;p class="trans-box-2"&gt;我有黑色不透明背景&amp;amp;我这个容器有透明度&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;style type="text/css"&gt;
+            .show .container { background-color:#0078AA; padding:10px; width:500px; }
+            .show .transparent { color:rgba(0,0,0,0.5); }
+            .show .opaque { color:rgba(0,0,0,1); }
+            .show .trans-box { background-color:rgba(0%,0%,0%,0.5); color:#FFF; }
+            .show .opaque-box { background-color:rgba(0,0,0,1); color:#FFF; }
+            .show .trans-box-2 { background-color:rgba(0,0,0,1); color:#FFF; opacity:0.5; }
+        &lt;/style&gt;
+            
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>相关文档：</h3>
+        <ul>
+            <li><a href="http://www.w3.org/TR/css3-color/#rgba-color" title="w3c Working Draft">CSS Color Module Level 3 (w3c Working Draft)</a></li>
+            <li><a href="http://www.findmebyip.com/litmus" title="HTML5 & CSS support">HTML5 &amp; CSS support</a></li>
+        </ul>
+    </div>
+</body>
+</html>

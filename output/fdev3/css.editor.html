@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdev3.css.editor</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>editor：编辑器优化样式</h2>
+        <p>editor.css文件为了保证编辑器操作页面和内容展示页面的样式统一。</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>TODO: 2010-8-04 发布1.0的beta版本</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>开始：</h3>
+        如果你想引用editor，请在页面中加入以下片段片段:
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/editor/editor-min.css");
+	    </pre>
+        <strong>注意：</strong> editor不包含在fdev.css的css合集文件中，在采用了编辑器和编辑器生效的页面上<strong>必须</strong>引用该文件。
+        <h3>内容说明:</h3>
+        <p>editor文件是为了解决编辑器编辑页面和内容展示页面的样式不统一而生的。因为alibaba的编辑器基于Tiny mce，很多样式的产生是通过原始标签产生的。比如li列表
+        前面的缩进和圆点等。但是展示页面往往是加上了全站通用的reset文件，reset会将li的默认样式重置掉，这样一来就会造成编辑内容页面和展示页面上样式的不统一。</p>
+        <p>editor文件的所有样式设定都依赖于 <strong>.fd-editor</strong> 的类名。所以需要给编辑器和编辑器的内容展示区域加上类名"fd-editor"。</p>
+        <h3>代码展示</h3>
+        <pre class="brush:css;">
+/*** 标题样式 ***/
+.fd-editor h1{
+	font-size:32px;
+}
+.fd-editor h2{
+	font-size:24px;
+}
+.fd-editor h3{
+	font-size:20px;
+}
+.fd-editor h4{
+	font-size:16px;
+}
+.fd-editor h5{
+	font-size:14px;
+}
+.fd-editor h6{
+	font-size:12px;
+}
+
+/*** 加粗 ***/
+.fd-editor b, .fd-editor strong{
+	font-weight:bold;
+}
+
+/*** 斜体 ***/
+.fd-editor i, .fd-editor em{
+	 font-style: italic;
+}
+
+/*** 上标 ***/
+.fd-editor sup{
+	vertical-align:top;
+}
+
+/*** 下标 ***/
+.fd-editor sub{
+	vertical-align:bottom;
+}
+
+/*** 列表样式 ***/
+.fd-editor ul{
+	list-style-type:disc;
+}
+
+.fd-editor ol{
+	list-style-type:decimal;
+}
+
+.fd-editor li{
+	margin-left:4px;
+	padding:0;
+	list-style-position:inside;
+}
+
+.fd-editor p{
+	line-height:1.5;
+}
+
+/*** 表格样式 ***/
+.fd-editor table {
+	cursor:default;
+}
+
+.fd-editor table td, .fd-editor table th {
+	cursor:text;
+}
+
+fd-editor table th{background: #e0e0e0;font-size: 13px;}
+
+/*** 其他表现样式 ***/
+.fd-editor ins {
+	border-bottom:1px solid green; 
+	text-decoration: none;
+	color:green;
+}
+.fd-editor del {
+	color:red; 
+	text-decoration:line-through;
+}
+.fd-editor cite {
+	border-bottom:1px dashed blue;
+}
+.fd-editor acronym {
+	border-bottom:1px dotted #ccc; 
+	cursor:help;
+}
+.fd-editor abbr {
+	border-bottom:1px dashed #ccc; 
+	cursor:help;
+}
+	    </pre>
+        <h3>提建议给开发者</h3>
+        作者：姚升亮<br />
+        邮件：<a href="mailto:shengliang.yaosl@alibaba-inc.com">shengliang.yaosl@alibaba-inc.com</a><br />
+        旺旺：yaosl1984
+    </div>
+</body>
+</html>

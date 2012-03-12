@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>AJAX & JSONP</title>
+    <!--CSS file (default YUI Sam Skin) -->
+    <link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/2.8.1/build/logger/assets/skins/sam/logger.css" />
+    <script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js" type="text/javascript"></script>
+    <!-- OPTIONAL: Drag and Drop (not required if not enabling drag and drop) -->
+    <script src="http://yui.yahooapis.com/2.8.1/build/dragdrop/dragdrop-min.js" type="text/javascript"></script>
+    <!-- Source file -->
+    <script src="http://yui.yahooapis.com/2.8.1/build/logger/logger-min.js" type="text/javascript"></script>
+    <script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/get-min.js" type="text/javascript"></script>
+    <script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/connection-min.js" type="text/javascript"></script>
+</head>
+<body class="yui-skin-sam">
+    <button id="btnJSONP" type="button">
+        JSONP!</button>
+    <button id="btnAJAX" type="button">
+        AJAX!</button>
+    <button id="btnMultiple" type="button">
+        Mulriple Resouces!</button>
+    <div id="myLogger">
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    FDEV.namespace('YAHOO.example.SiteExplorer');
+    FYE.onDOMReady(function() {
+        var myLogReader=new YAHOO.widget.LogReader("myLogger"),
+            btnJSONP=FYG('btnJSONP'),
+            btnAJAX=FYG('btnAJAX'),
+            btnMultiple=FYG('btnMultiple');
+        //jsonp
+        FYE.on(btnJSONP,'click',function() {
+            var param={};
+            param.appid='3wEDxLHV34HvAU2lMnI51S4Qra5m.baugqoSv4gcRllqqVZm3UrMDZWToMivf5BJ3Mom';
+            param.results=1;
+            param.output='json';
+            param.omit_inlinks='domain';
+            param.limitedId='sensitive_words';
+            param.query=encodeURIComponent('http://developer.yahoo.com/yui');
+            var configs={
+                onCallback: function(o) {
+                    FDEV.log('onCallback','warn');
+                },
+                onFailure: function(o) {
+                    FDEV.log('onFailure','warn');
+                },
+                onTimeout: function(o) {
+                    FDEV.log('onTimeout','warn');
+                },
+                onSuccess: function(o) {
+                    FDEV.log('onSuccess','warn');
+                },
+                //定义ns前请确保此命名空间的存在。默认为window
+                ns: YAHOO.example.SiteExplorer,
+                //ns的字符串形式
+                strNS: 'YAHOO.example.SiteExplorer',
+                //回调函数名，默认为rnd
+                fn: 'callback',
+                scope: { scope: 'mySope' }
+                //发送请求时，承载回调函数名的参数名，默认为callback。  http://.......?callbak=rnd23873652121&...
+                //key: 'param',
+                //cache=false时在回调函数名后追加时间戳，模式为false
+                //cache: true
+            };
+            var transaction=FD.common.request('jsonp','http://search.yahooapis.com/SiteExplorerService/V1/inlinkData',configs,param);
+        });
+        //ajax
+        FYE.on(btnAJAX,'click',function() {
+            var param={};
+            param.text='acb';
+            param.limitedId='sensitive_words';
+            var configs={
+                onSuccess: function(o) {
+                    FDEV.log('onSuccess','warn');
+                },
+                onFailure: function(o) {
+                    FDEV.log('onFailure','warn');
+                },
+                onTimeout: function(o) {
+                    FDEV.log('onTimeout','warn');
+                },
+                scope: { scope: 'mySope' }
+            };
+            var transaction=FD.common.request('POST','/fdevlib/static/js/ajax.js',configs,param);
+        });
+        //multiple
+        FYE.on(btnMultiple,'click',function() {
+            var configs={
+                onSuccess: function(o) {
+                    FDEV.log('onSuccess','warn');
+                },
+                onFailure: function(o) {
+                    FDEV.log('onFailure','warn');
+                },
+                onTimeout: function(o) {
+                    FDEV.log('onTimeout','warn');
+                }
+            };
+            var transaction=FD.common.request('jsonp',['http://style.china.alibaba.com/js/lib/fdev-v3/util/bom-min.js','http://style.china.alibaba.com/js/lib/fdev-v3/util/ali-min.js'],configs);
+        });
+    });
+</script>

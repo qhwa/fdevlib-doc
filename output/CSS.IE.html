@@ -1,0 +1,1377 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="gbk">
+    <title>Internet Explorer UA Style Sheets</title>
+    <style type="text/css">
+        body { background: url(images/CSS.IE/background.png); font: 12px/1.7 "Lucida Sans Unicode" , "Lucida Grande" , sans-serif; margin: 8px auto 32px; width: 900px; }
+        a { color: #00F; }
+        abbr { border-bottom: 1px dotted #CCC; }
+        h1 { font-size: 2em; font-weight: bold; margin: .67em 0; }
+        p { margin: 1em 0; }
+        ul { list-style: none; margin: 0; }
+        li { float: left; }
+        .rules { border-collapse: collapse; overflow: hidden; table-layout: fixed; width: 100%; }
+        .browser-row th { color: #339; font-weight: normal; padding: 12px; }
+        .selector-column { width: 12.5%; }
+        .declaration-head { border-left: 1px dashed #EEE; border-right: 1px dashed #EEE; }
+        .declaration-column { width: 21.875%; }
+        .declaration { margin: 0 auto; width: 184px; }
+        .icon { -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px; background: none no-repeat 6px 6px; display: inline-block; line-height: 32px; margin: 0 4px; padding: 6px 6px 6px 44px; }
+        .icon:hover { background-color: #b6f26d; }
+        .icon-ie6 { background-image: url(images/CSS.IE/ie6_32x32.png); }
+        .icon-ie7 { background-image: url(images/CSS.IE/ie7_32x32.png); }
+        .icon-ie8 { background-image: url(images/CSS.IE/ie8_32x32.png); }
+        .icon-ie9 { background-image: url(images/CSS.IE/ie9_32x32.png); }
+        .icon-ff { background-image: url(images/CSS.IE/ff_32x32.png); }
+        .icon-op { background-image: url(images/CSS.IE/op_32x32.png); }
+        .icon-wk { background-image: url(images/CSS.IE/wk_32x32.png); }
+        .icon-whatwg { background-image: url(images/CSS.IE/whatwg_32x32.png); }
+        .selector-cell, .declaration-cell { background: #D9E1FF; border-right: 1px solid #FFF; border-top: 1px solid #FFF; color: #669; padding: 9px 12px; vertical-align: top; }
+        .declaration-block { margin: 0 auto; }
+        .selector-cell { background: #E5EBFF; }
+        .selector { color: #6D79DE; }
+        .value { color: #06960E; }
+        .footer { text-align: right; }
+    </style>
+</head>
+<body>
+    <h1>Internet Explorer User Agent Style Sheets </h1>
+    <p>The
+        <abbr title="User Agent">
+            UA</abbr>
+        Style Sheet is a simple set of css styles that each web browser uses before any other css styles are applied. </p>
+    <p>This chart lists and compares the different default style sheets used to render HTML in the four major versions of Internet Explorer;
+        <abbr title="Internet Explorer 6">
+            IE6</abbr>,
+        <abbr title="Internet Explorer 7">
+            IE7</abbr>,
+        <abbr title="Internet Explorer 8">
+            IE8</abbr>, and
+        <abbr title="Internet Explorer 9">
+            IE9</abbr>
+        Platform Preview. </p>
+    <p>You can download each of these
+        <abbr title="User Agent">
+            UA</abbr>
+        stylesheets by using the links at the top of this chart. </p>
+    <table class="rules">
+        <colgroup>
+            <col class="selector-column">
+            <col class="declaration-column">
+            <col class="declaration-column">
+            <col class="declaration-column">
+            <col class="declaration-column">
+        </colgroup>
+        <thead>
+            <tr class="browser-row">
+                <th>
+                <th class="declaration-head"><a class="icon icon-ie6" href="http://www.iecss.com/ie-6.css" title="Download the IE6 UA Style Sheet" target="_blank">IE6</a> </th>
+                <th class="declaration-head"><a class="icon icon-ie7" href="http://www.iecss.com/ie-7.css" title="Download the IE7 UA Style Sheet" target="_blank">IE7</a> </th>
+                <th class="declaration-head"><a class="icon icon-ie8" href="http://www.iecss.com/ie-8.css" title="Download the IE8 UA Style Sheet" target="_blank">IE8</a> </th>
+                <th class="declaration-head"><a class="icon icon-ie9" href="http://www.iecss.com/ie-9.css" title="Download the IE9 UA Style Sheet" target="_blank">IE9</a> </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="rule-row">
+                <th class="selector-cell">a</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">color</span>: <span class="value">#00F</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-decoration</span>: <span class="value">underline</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="3">
+                    <div class="declaration">
+                        <span class="property">color</span>: <span class="value">#06C</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-decoration</span>: <span class="value">underline</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">a:visited</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">color</span>: <span class="value">#800080</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">address</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-style</span>: <span class="value">italic</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">b</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">bdo</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">direction</span>: <span class="value">rtl</span>;</div>
+                    <div class="declaration">
+                        <span class="property">unicode-bidi</span>: <span class="value">bidi-override</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">blockquote</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 30pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1em 40px</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">body</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">15px 10px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">8px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">button</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-style</span>: <span class="value">outset</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">3px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px 8px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">caption</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px 3px 5px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px 300zzz 500zzz</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-caption</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">cite</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-style</span>: <span class="value">italic</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">code</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">monospace</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">col</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-column</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">colgroup</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-column-group</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">dd</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">0 0 0 30pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">0 0 0 40px</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">[dir=rtl] dd</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">0 30pt 0 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">0 40px 0 0</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">del</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">text-decoration</span>: <span class="value">line-through</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">dfn</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-style</span>: <span class="value">italic</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">div</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">dl</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1em 0</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">dt</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">em</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-style</span>: <span class="value">italic</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">embed</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">fieldset</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-style</span>: <span class="value">groove</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-style</span>: <span class="value">groove</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 2px 3px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">border-style</span>: <span class="value">groove</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">0 2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 2px 3px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">form</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">h1</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">24pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">2em</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">0.67em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">page-break-after</span>: <span class="value">avoid</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">h2</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">18pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">1.5em</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">0.83em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">page-break-after</span>: <span class="value">avoid</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">h3</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">13.55pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">1.17em</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">page-break-after</span>: <span class="value">avoid</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">h4</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">1em</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1.33em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">page-break-after</span>: <span class="value">avoid</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">h5</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">0.83em</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1.67em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">page-break-after</span>: <span class="value">avoid</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">h6</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">7.55pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">0.67em</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">2.33em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">page-break-after</span>: <span class="value">avoid</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">head</th>
+                <td class="declaration-cell" colspan="2">
+                    <td class="declaration-cell" colspan="2">
+                        <div class="declaration">
+                            <span class="property">display</span>: <span class="value">none</span>;</div>
+                    </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">hr</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">outline</span>: <span class="value">0 none</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">border-style</span>: <span class="value">inset</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin-bottom</span>: <span class="value">0.5em</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin-top</span>: <span class="value">0.5em</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">html</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">overflow-x</span>: <span class="value">auto</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow-y</span>: <span class="value">scroll</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">i</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-style</span>: <span class="value">italic</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">iframe</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">height</span>: <span class="value">150px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">width</span>: <span class="value">300px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">img</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">input</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-style</span>: <span class="value">inset</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="3">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">ins</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">text-decoration</span>: <span class="value">underline</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">kbd</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">monospace</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">legend</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="3">
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">li</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">list-item</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">menu</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-image</span>: <span class="value">none</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-position</span>: <span class="value">outside</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-type</span>: <span class="value">disc</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0 14pt 30pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-image</span>: <span class="value">none</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-position</span>: <span class="value">outside</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-type</span>: <span class="value">disc</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 0 0 30pt</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">[dir=rtl] menu</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 30pt 14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 30pt 0 0</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">object</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">ol</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-image</span>: <span class="value">none</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-position</span>: <span class="value">outside</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-type</span>: <span class="value">decimal</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0 14pt 30pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-image</span>: <span class="value">none</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-position</span>: <span class="value">outside</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-type</span>: <span class="value">decimal</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 0 0 30pt</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">[dir=rtl] ol</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 30pt 14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 30pt 0 0</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">optgroup</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-style</span>: <span class="value">italic</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">option</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-style</span>: <span class="value">italic</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">p</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1em 0</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">pre</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">monospace</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">white-space</span>: <span class="value">pre</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">monospace</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">white-space</span>: <span class="value">pre</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">rp</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">6pt</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">rt</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">6pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">ruby-text</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">6pt</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">ruby</th>
+                <td class="declaration-cell" colspan="2">
+                    <td class="declaration-cell" colspan="2">
+                        <div class="declaration">
+                            <span class="property">display</span>: <span class="value">ruby</span>;</div>
+                    </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">samp</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">monospace</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">script</th>
+                <td class="declaration-cell" colspan="3">
+                    <td class="declaration-cell" colspan="1">
+                        <div class="declaration">
+                            <span class="property">display</span>: <span class="value">none</span>;</div>
+                        <div class="declaration">
+                            <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                    </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">select</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-style</span>: <span class="value">inset</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">sans-serif</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">small</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">0.83em</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">strong</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">style</th>
+                <td class="declaration-cell" colspan="3">
+                    <td class="declaration-cell" colspan="1">
+                        <div class="declaration">
+                            <span class="property">display</span>: <span class="value">none</span>;</div>
+                        <div class="declaration">
+                            <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                    </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">sub</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">0.83em</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">sup</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">0.83em</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">table</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-spacing</span>: <span class="value">2px 2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">tbody</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-row-group</span>;</div>
+                    <div class="declaration">
+                        <span class="property">vertical-align</span>: <span class="value">middle</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">td</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-cell</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">vertical-align</span>: <span class="value">middle</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">textarea</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-style</span>: <span class="value">inset</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">monospace</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow-x</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow-y</span>: <span class="value">scroll</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">white-space</span>: <span class="value">pre</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">monospace</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow-x</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow-y</span>: <span class="value">scroll</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">white-space</span>: <span class="value">pre</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">background-color</span>: <span class="value">#FFF</span>;</div>
+                    <div class="declaration">
+                        <span class="property">border-width</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-family</span>: <span class="value">monospace</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-size</span>: <span class="value">10pt</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow-x</span>: <span class="value">hidden</span>;</div>
+                    <div class="declaration">
+                        <span class="property">overflow-y</span>: <span class="value">scroll</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">2px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">white-space</span>: <span class="value">pre-wrap</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">tfoot</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-footer-group</span>;</div>
+                    <div class="declaration">
+                        <span class="property">vertical-align</span>: <span class="value">middle</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">th</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-cell</span>;</div>
+                    <div class="declaration">
+                        <span class="property">font-weight</span>: <span class="value">bold</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">1px</span>;</div>
+                    <div class="declaration">
+                        <span class="property">text-align</span>: <span class="value">center</span>;</div>
+                    <div class="declaration">
+                        <span class="property">vertical-align</span>: <span class="value">middle</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">thead</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-header-group</span>;</div>
+                    <div class="declaration">
+                        <span class="property">vertical-align</span>: <span class="value">middle</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">tr</th>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#D4D0C8</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="1">
+                    <div class="declaration">
+                        <span class="property">border-color</span>: <span class="value">#F0F0F0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">box-sizing</span>: <span class="value">border-box</span>;</div>
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">table-row</span>;</div>
+                    <div class="declaration">
+                        <span class="property">vertical-align</span>: <span class="value">middle</span>;</div>
+                    <div class="declaration">
+                        <span class="property">zoom</span>: <span class="value">1</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">ul</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-image</span>: <span class="value">none</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-position</span>: <span class="value">outside</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-type</span>: <span class="value">disc</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 0 14pt 30pt</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">display</span>: <span class="value">block</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-image</span>: <span class="value">none</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-position</span>: <span class="value">outside</span>;</div>
+                    <div class="declaration">
+                        <span class="property">list-style-type</span>: <span class="value">disc</span>;</div>
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">1em 0</span>;</div>
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 0 0 30pt</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">[dir=rtl] ul</th>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">margin</span>: <span class="value">14pt 30pt 14pt 0</span>;</div>
+                </td>
+                <td class="declaration-cell" colspan="2">
+                    <div class="declaration">
+                        <span class="property">padding</span>: <span class="value">0 30pt 0 0</span>;</div>
+                </td>
+            </tr>
+            <tr class="rule-row">
+                <th class="selector-cell">var</th>
+                <td class="declaration-cell" colspan="4">
+                    <div class="declaration">
+                        <span class="property">font-style</span>: <span class="value">italic</span>;</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Interested in other
+        <abbr title="User Agent">
+            UA</abbr>
+        Style Sheets? </p>
+    <p><a class="icon icon-ff" href="http://www.iecss.com/firefox-3.6.3.css" title="Download the Firefox 3.6.3 UA Style Sheet" target="_blank">Firefox 3.6.3</a> <a class="icon icon-wk" href="http://www.iecss.com/webkit-r61376.css" title="Download the latest Webkit UA Style Sheet" target="_blank">Webkit (r57042)</a> <a class="icon icon-op" href="http://www.iecss.com/opera-10.51.css" title="Download the Opera 10.51 UA Style Sheet" target="_blank">Opera 10.51</a> </p>
+    <p>This chart was last updated March 30th, 2010. </p>
+    <p>Internet Explorer and the Internet Explorer logo are either registered trademarks or trademarks of Microsoft Corporation in the United States and/or other countries. </p>
+    <p class="footer"><a href="http://twitter.com/jon_neal">Jonathan Neal</a> (<a href="http://www.liferay.com/web/jonathan.neal/blog">blog</a>) </p>
+</body>
+</html>

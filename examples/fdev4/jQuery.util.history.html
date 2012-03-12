@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>util-history</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    <style>
+        #demo1{
+            padding: 0;
+            font-size: 14px;
+        }
+        #menu{
+            margin: 0;
+            padding: 0;
+        }
+        #menu ul{
+            list-style:none;
+        }
+        #menu li{
+            width: 80px;
+            float: left;
+            margin-right: 4px;
+            list-style: none;
+            text-align: center;
+        }
+        #menu li a{
+            display: block;
+            text-decoration: none;
+            color: #666;
+            border: 1px solid #dbdbdb;
+            background: #f5f5f5;
+            padding: 4px 8px;
+        }
+        .active a{
+            border: 1px solid #ff9f05 ! important;
+            background: #ff8800 ! important;
+            color: white ! important;
+        }
+        #content div{
+            padding: 8px;
+            color : #b75200;
+            background: #FFE383;
+        }
+    </style>
+</head>
+<body>
+    <div id="doc">
+        <h1>util-history : 浏览器历史</h1>
+        <h2>1.试试点击下面的标签，每个都点几次，然后试试浏览器的前进和后退按钮。</h2>
+        <div id="demo1">
+            <ul id="menu" class="fd-clr">
+            	<li><a href="#/apricots">了解杏子</a></li>
+            	<li><a href="#/bananas">了解香蕉</a></li>
+            	<li><a href="#/coconuts">了解椰子</a></li>
+            </ul>
+            <div id="result">
+                <div id="content">
+                    <div id="apricots">
+                        杏子小小的橙色的 
+                    </div>
+                    <div id="bananas">
+                        香蕉长长的黄黄的 
+                    </div>
+                    <div id="coconuts">
+                        椰子圆圆的毛毛的 
+                    </div>
+                </div>
+                <div id="current"></div>
+            </div>
+            <pre class="prettyprint language-html">
+&lt;!--HTML--&gt;
+&lt;div id="demo1"&gt;
+    &lt;ul id="menu"&gt;
+        &lt;li&gt;&lt;a href="#/apricots"&gt;了解杏子&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#/bananas"&gt;了解香蕉&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#/coconuts"&gt;了解椰子&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div id="result"&gt;
+        &lt;div id="content"&gt;
+            &lt;div id="apricots"&gt;
+                杏子小小的橙色的 
+            &lt;/div&gt;
+            &lt;div id="bananas"&gt;
+                香蕉长长的黄黄的 
+            &lt;/div&gt;
+            &lt;div id="coconuts"&gt;
+                椰子圆圆的毛毛的 
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div id="current"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+    <pre class="prettyprint language-js">
+/* JavaScript */
+jQuery(function($){
+    $.use("util-history",function(){
+        var $result   = $('#result'),
+            $menu     = $('#menu'),
+            $content  = $('#content'),
+            $apricots = $('#apricots'), // 杏子
+            $bananas  = $('#bananas'),  // 香蕉
+            $coconuts = $('#coconuts'), // 椰子
+            $current  = $('#current');
+
+        var $tabs = $content.children();
+
+        $tabs.hide();
+        
+        var document_title = document.title;
+
+        var updateMenu = function(state){
+            $menu.children('li:has(a[href="#'+state+'"])')
+                 .addClass('active')
+                 .siblings('.active')
+                 .removeClass('active');
+        };
+
+        // 当状态发生变化时的处理函数，通用的 
+        $.History.bind(function(state){
+            // 更新current元素中的文字
+            $current.text('当前状态为：[ ' + state + ']');
+            // 更新title，将当前状态附加在后面
+            document.title = document_title + ' | ' + state;
+        });
+        
+        // 为apricots状态绑定处理函数
+        $.History.bind('/apricots', function(state){
+            // Update Menu
+            updateMenu(state);
+            // 显示apricots，隐藏其他
+            $tabs.hide();
+            $apricots.stop(true, true).fadeIn(200);
+        });
+
+        $.History.bind('/bananas', function(state){
+            updateMenu(state);
+            $tabs.hide();
+            $bananas.stop(true, true).fadeIn(200);
+        });
+         
+        $.History.bind('/coconuts', function(state){
+            updateMenu(state);
+            $tabs.hide();
+            $coconuts.stop(true, true).fadeIn(200);
+        });
+    });
+});</pre>
+</div>
+        
+        <script src="../../static/js/app-merge.js"></script>
+        <script>
+            jQuery(function($){
+                $.use("util-history",function(){
+                    var $result   = $('#result'),
+                        $menu     = $('#menu'),
+                        $content  = $('#content'),
+                        $apricots = $('#apricots'),
+                        $bananas  = $('#bananas'),
+                        $coconuts = $('#coconuts'),
+                        $current  = $('#current');
+
+                    var $tabs = $content.children();
+
+                    $tabs.hide();
+                    
+                    var document_title = document.title;
+
+                    var updateMenu = function(state){
+                        $menu.children('li:has(a[href="#'+state+'"])')
+                             .addClass('active')
+                             .siblings('.active')
+                             .removeClass('active');
+                    };
+
+                    // 当状态发生变化时的处理函数，通用的 
+                    $.History.bind(function(state){
+                        // 更新current元素中的文字
+                        $current.text('当前状态为：[ ' + state + ']');
+                        // 更新title，将当前状态附加在后面
+                        document.title = document_title + ' | ' + state;
+                    });
+                    
+                    // 为apricots状态绑定处理函数
+                    $.History.bind('/apricots', function(state){
+                        // Update Menu
+                        updateMenu(state);
+                        // 显示apricots，隐藏其他
+                        $tabs.hide();
+                        $apricots.stop(true, true).fadeIn(200);
+                    });
+
+                    $.History.bind('/bananas', function(state){
+                        updateMenu(state);
+                        $tabs.hide();
+                        $bananas.stop(true, true).fadeIn(200);
+                    });
+                     
+                    $.History.bind('/coconuts', function(state){
+                        updateMenu(state);
+                        $tabs.hide();
+                        $coconuts.stop(true, true).fadeIn(200);
+                    });
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

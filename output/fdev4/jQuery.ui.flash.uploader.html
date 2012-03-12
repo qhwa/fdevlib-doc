@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.flash.uploader</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-flash-uploader : flash上传组件</h1>
+            <h2>介绍</h2>
+            <p>
+                本组件扩展至ui-flash组件，提供了文件上传的功能。在IE下使用flash方式，在非IE下使用原生的form方式。注意：flash方式支持多文件上传的特性，原生的只支持单一文件上传。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    Denis: 升级flash文件版本至v2.7 ---- 2011.03.21 
+                </li>
+                <li>
+                    Denis: 使用新的flash注册方式 ---- 2011.06.14
+                </li>
+                <li>
+                    Denis: 新增interfaceReady事件，同步Flash事件 ---- 2011.06.15
+                </li>
+                <li>
+                    Denis: 将uploader处理函数挂在命名空间下，提供上传请求超时的监听逻辑 ---- 2011.09.17
+                </li>
+                <li>
+                    Denis: 上传组件使用新版的flash文件，更新API ---- 2012.02.23 <a title="切换至旧版本文档" href="jQuery.ui.flash.uploader.old.html">切换至旧版本文档</a>
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('ui-flash-uploader2', function(){
+    $('...').flash({
+        module: 'uploader2'
+    });
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.flash.uploader2.html">Demonstration</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>width</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 65
+                </dd>
+                <dd>
+                    上传按钮的宽度(px)
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>height</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 22
+                </dd>
+                <dd>
+                    上传按钮的高度(px)
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>flashvars</b>
+                    : Object
+                </dt>
+                <dd>
+                    Default : <pre class="prettyprint language-js">
+{
+    //设置flash功能初始激活状态，默认为激活
+    enable: false,
+    //按钮皮肤，需要从上至下提供“normal”“hover”“active”“disabled”四种状态图，且高度一致
+    buttonSkin: 'http://img.china.alibaba.com/cms/upload/2011/040/820/28040_548721671.gif',
+    //事件钩子，亲！该配置不要随意更改
+    eventHandler: 'jQuery.util.flash.triggerHandler',
+    //(flash有效)为了防止IE下跨域问题，统一设置为500，亲！不要随意更改
+    startDelay: 500
+}</pre>
+                </dd>
+                <dd>
+                    flashvars的配置
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.flash( 'uploadAll', url, param, fileFieldName, identity )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>url</b>
+                            : String 文件上传的接口URL
+                        </li>
+                        <li>
+                            <b>param</b>
+                            : Object 随文件上传的post参数
+                        </li>
+                        <li>
+                            <b>fileFieldName</b>
+                            : String 文件字段名称
+                        </li>
+                        <li>
+                            <b>identity</b>
+                            : String //在中国站使用时，使用'fname'
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    上传所有文件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'getFileStatuses' )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Array<pre class="prettyprint language-js">
+[{
+    id: "file0",    //由Flash生成的文件id
+    name: "screenshot.png",    //文件名
+    size: 340345,    //文件大小
+    /**
+     *文件状态
+     *'refused'            已被客户端检测到不符合上传条件，处于被拒绝状态
+     *'ready'             准备被处理 
+     *'cs_processing'     正在客户端处理文件 
+     *'cs_processed'      已经完成文件在客户端的处理 
+     *'not_transfered'    不符合上传条件,没有传输到服务器  
+     *'transfering'       正传往服务器 
+     *'transfer_fail'     传输过程中发生失败 
+     *'transfer_canceled' 传输过程中被取消 
+     *'transfered'        已传至服务器，等待服务器返回结果 
+     *'done'              上传成功，服务器端返回正确接收的响应  
+     */ 
+    status: "done",
+    finished: true,    //上传是否结束
+    failed: false,    //上传是否失败
+    status	msg 含义
+    /**
+     * 不同status对应的msg情况说明
+     * refused            --    不符合上传条件的原因
+     * ready              --    N/A
+     * csProcessing       --    进度(0-1的数值)
+     * csProcessed        --    N/A
+     * notTransfered      --    通过客户端处理但是为被上传的原因，目前只有 "COMPRESS_FAIL"
+     * transfering        --    进度(0-1的数值)
+     * transferFail       --    上传出错的原因日志
+     * transferCanceled   --    N/A
+     * transfered         --    N/A
+     * done               --    服务器返回的response
+     */
+    msg: "upload accepeted!"    //对应当前status的message
+},{
+    id: "file1",
+    name: "bear.png",
+    size: 2048345,
+    status: "transfering",
+    finished: false,
+    failed: false,
+    msg: 1.68345734         //progress
+}, ...
+]</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    返回当前所有上传文件状态
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'getFileStatus', id )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>id</b> 对应的由Flash自动指定的文件id
+                        </li>
+                        <li>
+                            <b>return</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    id: "file1",
+    name: "bear.png",
+    size: 2048345,
+    status: "transfering",
+    finished: false,
+    failed: false,
+    msg: 1.68345734
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    返回指定文件的状态
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'disable' )</b>
+                </dt>
+                <dd>
+                    禁用功能
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'enable' )</b>
+                </dt>
+                <dd>
+                    激活组件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'isEnabled' )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Bolean
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    返回组件激活状态。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'enableMultiple' )</b>
+                </dt>
+                <dd>
+                    允许用户一次选择多个文件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'disableMultiple' )</b>
+                </dt>
+                <dd>
+                    调用这个方法后，用户一次只能选择1个文件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'disableMultiple' )</b>
+                </dt>
+                <dd>
+                    调用这个方法后，用户一次只能选择1个文件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'isMultiple' )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Bolean
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    返回当前用户目前是否可以选择多个文件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'setParallelUploadCount', limit )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>limit</b>
+                            : Number 默认为0，不允许并发，1等同于0，只有大于1时才表示允许并行！
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置并发传输的文件数量控制。<em>PS:并发传输带来速度上的优势，可以节约客户上传文件的等待时间。但是也需要后端能应对并发带来的风险</em>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'getParallelUploadCount' )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Number
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    返回并发传输的数量限制。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'clear' )</b>
+                </dt>
+                <dd>
+                    清空上传队列。默认情况下，每次上传完毕后，原先的上传队列会保留。可以调用该方法清空上传队列。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'setBrowseFilter', filter )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>filter</b>
+                            : Array<pre class="prettyprint language-js">
+[{  
+        description: 'word文件(*.doc; *.docx)',
+        extensions: '*.doc; *.docx;'
+    },{
+        description: '所有文件',
+        extensions: '*.*'
+}]</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置浏览文件的类型过滤。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'setFileCountLimit', limit )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>limit</b>
+                            : Number 一次选择的文件个数
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置有多少个文件可以选择。多出的文件将会被排除在上传队列之外，文件状态是refused。
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt><b>fileSelect</b></dt>
+                <dd>
+                    文件选择后触发
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>processStart</b></dt>
+                <dd>
+                    在客户端对文件进行处理，开始后触发
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>processProgress</b></dt>
+                <dd>
+                    在客户端对文件进行处理
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>processFinish</b></dt>
+                <dd>
+                    在客户端对文件处理结束
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>transferStart</b></dt>
+                <dd>
+                    文件开始网络传输
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>transferProgress</b></dt>
+                <dd>
+                    网络传输进度事件
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>transferError</b></dt>
+                <dd>
+                    网络传输发生错误，通常是超时、服务器端返回非HTTP 200响应、连接中断
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>transferComplete</b></dt>
+                <dd>
+                    网络上行传输完毕
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>transferCompleteData</b></dt>
+                <dd>
+                    网络下行传输完毕，已收到服务器响应
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>finish</b></dt>
+                <dd>
+                    所有文件都处理完毕。队列中已经不存在需要处理的文件。
+                </dd>
+            </dl> 
+            <h2>后台设置要点</h2> 
+            <dl>
+                <dt>中文站后台应用需要配置相对应的文件上传服务，需要参考如下代码</dt>
+                <dd>
+            <pre class="prettyprint language-java">
+/**
+ * 支持flash压缩并上传的uploadService，由于flash10压缩图片后被目前的flashPlayer限制，不能按照RFC 1867的规范来提交文件数据，头信息：
+ * 
+ * &lt;pre>
+ * 正常： Content-Disposition: form-data; name=&quot;imgFile&quot;; filename=&quot;JFBQ00226070619A.gif&quot;
+ * 实际： Content-Disposition: attachment; name=&quot;imgFile&quot;; fname=&quot;JFBQ00226070619A.gif&quot;
+ * &lt;/pre>
+ * 
+ * 即缺少了RFC中规定的filename字眼，目前与前端开发工程师约定，使用
+ * 'fname'代替，此service调用ServletFileUploadWithFlashSupport在兼容正常的表单上传的同时也支持'fname'作为'filename'的上传
+ * 
+ * @author yue.weny 2009-4-1 下午04:59:33
+ */
+ public class UploadServiceWithFlashSupport extends DefaultUploadService {
+
+    @Override
+    public void init() throws ServiceInitializationException {
+        ResourceLoaderService resourceLoader = (ResourceLoaderService) getService(ResourceLoaderService.SERVICE_NAME);
+
+        // 取得暂存文件的目录
+        String repositoryPath = getConfiguration().getString(REPOSITORY_KEY);
+        File repositoryDir;
+
+        if (StringUtil.isEmpty(repositoryPath)) {
+            repositoryDir = new File(SystemUtil.getUserInfo().getTempDir());
+        } else {
+            try {
+                repositoryDir = resourceLoader.getResourceAsFile(repositoryPath, ResourceOption.NEED_NOT_EXIST);
+            } catch (ResourceNotFoundException e) {
+                throw new ServiceInitializationException("Upload repository " + REPOSITORY_KEY + " must be an directory", e);
+            }
+        }
+
+        if (!repositoryDir.mkdirs() && !repositoryDir.exists()) {
+            throw new ServiceInitializationException("Could not create target directory " + repositoryDir);
+        }
+
+        // 设置file upload对象
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+
+        factory.setRepository(repositoryDir);
+        factory.setSizeThreshold(getConfiguration().getInt(SIZE_THRESHOLD_KEY, SIZE_THRESHOLD_DEFAULT));
+
+        fileUpload = new ServletFileUploadWithFlashSupport(factory);// 换成支持'fname的'FileUpload
+
+        fileUpload.setSizeMax(getConfiguration().getLong(SIZE_MAX_KEY, SIZE_MAX_DEFAULT));
+
+        getLogger().info("Upload Path is now " + getRepository());
+        getLogger().info("Threshold Size " + getSizeThreshold());
+        getLogger().info("Max Size " + getSizeMax());
+
+        setInitialized(true);// 跳过DefaultUploadService的init，直接设置initialized
+        // super.init();
+    }
+
+}
+</pre>  
+                </dd>
+            </dl>         
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

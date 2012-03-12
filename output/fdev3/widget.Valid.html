@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.Valid</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>
+            验证组件：可以构造绝大部分验证情况，上手容易，灵活性和可扩展性比较强，适合初级和高级玩家。</h2>
+        <p>只支持表单控件验证，包括input（text，radio，checkbox），select，textarea</p>
+        <p>支持“字符串”“数值”“邮箱”“手机”“URL”“自定义正则”“自定义函数”“异步验证”</p>
+        <p>支持动态验证配置更改</p>
+        <p>支持多重验证，即临时更改验证条件而不影响配置</p>
+        <p>提供“设置”“获取”验证配置和状态的函数</p>
+        <p>提供动态增加/移除验证节点，激活/反激活验证节点</p>
+        <h3>
+            更新日志</h3>
+        <ul class="update-histroy">
+            <li>version 2.0 修复几处BUG，提升性能</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>
+            开始：</h3>
+        如果你想使用验证组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/valid/valid-min.js");
+	    </pre>
+        <h3>
+            使用说明</h3>
+        <p>1、需要在节点上添加默认配置并设置验证组： </p>
+        <p>2、验证组件只提供规范化的返回值，不提供具体的DOM操作，请自定义处理函数
+            <pre class="brush:html;">
+<input tabindex="40" valid="{type:'int',required:true,min:2,max:1000,key:'订购数量'}" vg="1" type="text" />
+        </pre>
+            <pre class="brush:js;">
+//onValid函数this指针指向validGroup1 参数el为当前验证对象o为对应的验证配置
+var validGroup1=new FD.widget.Valid(FYS('[vg=1]'),{
+    /**
+    * 验证处理函数
+    * @method onValid 
+    * @param {String} res   验证结果，对应"required", "int", "float", "min", "max", "email", "reg", "fun"，对于remote类型的可以自定义返回表标识。
+    * @param {Object} o     当前验证的节点的配置内容，见配置表
+    */
+    onValid: function (res,o) {
+
+    }
+});
+/**
+* 验证
+* @method valid 
+* @param {HTMLElement | Array | Number} els 需要进行验证的{ 对象 | 对象集合 | 索引 }，只有组内的对象能进行验证
+* @param {Object} configs 验证时临时统一更改验证配置
+* @param {Boolean} disFocus 是否聚焦
+*/
+validGroup1.valid(els,configs,disFocus);
+/**
+* 激活验证
+* @method valid 
+* @param {HTMLElement | Array | Number} els 需要进行激活的{ 对象 | 对象集合 | 索引 }，只有组内的对象能进行激活
+* @param {Boolean | String} mark (optional) true/false打开关闭激活状态 'op'相反选项(opposite的缩写)
+* @return {Boolean} 激活结果中包含有未验证通过的 则返回false
+*/
+validGroup1.active(els,mark);
+/**
+* 追加子元素
+* @method add 
+* @param {HTMLElement | Array} els 需要进行验证的对象或对象集合
+*/
+validGroup1.add(els);
+/**
+* 移除子元素
+* @method valid 
+* @param {HTMLElement | Array | Number} els 需要进行验证的{ 对象 | 对象集合 | 索引}，只有组内的对象能进行验证
+*/
+validGroup1.remove(els);
+/**
+* 获取选定对象的配置
+* @method getConfig 
+* @param {HTMLElement | Number} els 需要进行验证的{ 对象 | 对象集合 | 索引 }，只有组内的对象能重置
+* @param {Object} configs 配置
+*/
+validGroup1.getConfig(el);
+/**
+* 重置选定对象的配置
+* @method setConfig 
+* @param {HTMLElement | Array | Number} els 需要进行验证的{ 对象 | 对象集合 | 索引 }，只有组内的对象能重置
+* @param {Object} configs 配置
+*/
+validGroup1.setConfig(el);
+        </pre>
+        </p>
+        <h3>
+            节点配置参数列表</h3>
+        <table class="g-paramtable">
+            <thead>
+                <tr>
+                    <th>配置参数</th>
+                    <th>参数可选值</th>
+                    <th>作用说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>active</td>
+                    <td>true | false</td>
+                    <td>默认是否激活当前控件的验证。默认null</td>
+                </tr>
+                <tr class="even">
+                    <td>isValid</td>
+                    <td>true | false</td>
+                    <td>默认当前控件是否验证通过，当设为true时调用valid方法也不会对该控件强制验证。默认null</td>
+                </tr>
+                <tr>
+                    <td>lazy</td>
+                    <td>true | false</td>
+                    <td>是否开启被动模式，即当验证组件被实例化后，触发了该控件的验证事件，而该控件的值没有变动过，则不进行验证。但触发valid方法时则会被强制验证。默认true</td>
+                </tr>
+                <tr class="even">
+                    <td>required</td>
+                    <td>true | false</td>
+                    <td>是否允许控件值为空，select则判断当前选中项的值是否为空。默认false</td>
+                </tr>
+                <tr>
+                    <td>evt</td>
+                    <td>String</td>
+                    <td>验证注册事件，对应YUI的事件名，比如"blur", "click", "focus"...。默认为"blur"</td>
+                </tr>
+                <tr class="even">
+                    <td>type</td>
+                    <td>String</td>
+                    <td>设置验证类型，'float' 小数(包含整数) 'int' 整数 'email' 邮箱 'mobile' 手机 'url' 网络地址 'reg' 自定义正则表达式 'fun' 自定义验证方法'remote'异步验证。默认'string'</td>
+                </tr>
+                <tr>
+                    <td>trim</td>
+                    <td>true | false</td>
+                    <td>是否自动对输入框中的值进行最后去空格的操作（包括全角空格）。默认true</td>
+                </tr>
+                <tr class="even">
+                    <td>round</td>
+                    <td>Int</td>
+                    <td>当type为float时 精确的小数位数。默认2</td>
+                </tr>
+                <tr>
+                    <td>cache</td>
+                    <td>true | false</td>
+                    <td>是否缓存前一次的值，如果设为false，则每次触发事件无论值是否有变化都进行一次验证。默认true</td>
+                </tr>
+                <tr class="even">
+                    <td>min</td>
+                    <td>Number</td>
+                    <td>当type为string时，对应字符串的最小字长度；当type为float或int时，对应最小值</td>
+                </tr>
+                <tr>
+                    <td>max</td>
+                    <td>Number</td>
+                    <td>当type为string时，对应字符串的最大字长度；当type为float或int时，对应最大值</td>
+                </tr>
+                <tr class="even">
+                    <td>reg</td>
+                    <td>Regex</td>
+                    <td>自定义正则表达式</td>
+                </tr>
+                <tr>
+                    <td>fun</td>
+                    <td>Function</td>
+                    <td>自定义全局验证方法（可以是命名空间下），规则：方法返回值为true/'出错文案'</td>
+                </tr>
+                <tr class="even">
+                    <td>msg</td>
+                    <td>String</td>
+                    <td>当type为fun类型时有效，用来存储出错时返回的错误文案</td>
+                </tr>
+                <tr>
+                    <td>key</td>
+                    <td>String</td>
+                    <td>对当前控件的一个描述，比如"登录名", "手机号码"...用来在onValid函数中区分不同验证控件，并组织出错文案。</td>
+                </tr>
+                <tr class="even">
+                    <td>onValid</td>
+                    <td>Function</td>
+                    <td>取消实例化Valid对象时的全局验证处理函数，使用此独立验证函数来进行验证，慎用!</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>
+            Demo演示</h3>
+        这里提供了一个实际应用场景：<a target="_blank" href="/fdevlib/examples/fdev3/widget.Valid.html">example: Valid</a><br />
+        本组件适合更复杂的应用场景，件<a href="http://trade.china.alibaba.com/quotation/seller/quotation/add.htm" target="_blank">新增报价单</a><br />
+        欢迎在简单和复杂环境使用本组件。没有做不到，只有想不到。
+        <h3>
+            提建议给开发者</h3>
+        作者：施丹侠<br>
+        邮件：<a href="mailto:danxia.shidx@alibaba-inc.com">danxia.shidx@alibaba-inc.com</a><br>
+        旺旺：swainet
+    </div>
+</body>
+</html>

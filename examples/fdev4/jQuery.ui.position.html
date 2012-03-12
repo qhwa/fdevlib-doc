@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.position</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+        <style>
+            div#parent {
+                width: 60%;
+                margin: 10px auto;
+                padding: 5px;
+                border: 1px solid #777;
+                background-color: #fbca93;
+                text-align: center;
+            }
+            div.positionable {
+                width: 75px;
+                height: 75px;
+                display: block;
+                background-color: #bcd5e6;
+                text-align: center;
+            }
+            
+            #target{
+                width:200px;
+                height:200px;
+                border: 1px solid #777;
+                background-color: #fbca93;
+                text-align:center;
+                line-height:180px;
+                margin-left:80px;
+            }
+            #tip{
+                width:140px;
+                height:140px;
+                background-color:#BCD5E6;
+                padding:5px;
+                text-align: center;
+                display: none;
+            }
+            select, input {
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-position : 定位</h1>
+            <h2>Demo 1 定基点</h2>
+            <div id="demo1">
+                <div id="parent">
+                    <p>这是父元素</p>
+                </div>
+                <div class="positionable">
+                    <p>这是被定位的元素</p>
+                </div>
+                
+                <div style="padding: 20px; margin-top: 55px;">
+                    改变参数，查看定位
+                    <div style="padding-bottom: 20px;">
+                        <b>my:</b>
+                        <select id="my_horizontal">
+                            <option value="left">left</option>
+                            <option value="center">center</option>
+                            <option value="right">right</option>
+                        </select> 
+                        <select id="my_vertical">
+                            <option value="top">top</option>
+                            <option value="middle">center</option>
+                            <option value="bottom">bottom</option>
+                        </select>
+                    </div>
+                    <div style="padding-bottom: 20px;">
+                        <b>at:</b>
+                        <select id="at_horizontal">
+                            <option value="left">left</option>
+                            <option value="center">center</option>
+                            <option value="right">right</option>
+                        </select>
+                        <select id="at_vertical">
+                            <option value="top">top</option>
+                            <option value="middle">center</option>
+                            <option value="bottom">bottom</option>
+                        </select>
+                    </div>
+                    <div style="padding-bottom: 20px;">
+                        <b>offset:</b>
+                        <input id="offset" type="text" size="15"/>
+                    </div>
+                </div>
+                <pre class="prettyprint language-html">
+&lt;div id=&quot;parent&quot;&gt;
+    &lt;p&gt;这是父元素&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;positionable&quot;&gt;
+    &lt;p&gt;这是被定位的元素&lt;/p&gt;
+&lt;/div&gt;</pre>
+                <pre class="prettyprint language-css">
+/* 这里只列出与位置有关的内容  */
+#parent {
+    width: 60%;
+    margin: 10px auto;
+    border: 1px solid #777;
+}
+.positionable {
+    width: 75px;
+    height: 75px;
+    display: block;
+}</pre>
+                <pre class="prettyprint language-js">
+jQuery(function($){
+    $.use("ui-position",function(){
+        function position(){
+            $(".positionable").position({
+                of: $("#parent"),
+                my: $("#my_horizontal").val() + " " + $("#my_vertical").val(),
+                at: $("#at_horizontal").val() + " " + $("#at_vertical").val(),
+                offset: $("#offset").val(),
+                collision: "flip" 
+            });
+        }
+                            
+        $(".positionable").css("opacity", 0.6);
+                            
+        $(":input").bind("click keyup change",function(){
+            position();
+        });        
+        
+        position();
+    });
+});    
+</pre>
+                
+            </div>
+            <h2>Demo 2 停留位置</h2>
+            <div id="demo2">
+                <div>
+                    <label for="collision">
+                        更改collision，查看不同的collision的值对显示效果的影响:
+                    </label>
+                    <select id="collision">
+                        <option value="flip">flip</option>
+                        <option value="fit">fit</option>
+                        <option value="none">none</option>
+                    </select>
+                </div>
+                <div id="target">
+                    鼠标停留查看效果
+                </div>
+
+                <pre class="prettyprint language-html">
+&lt;div id=&quot;target&quot;&gt;
+    鼠标停留查看效果
+&lt;/div&gt;
+&lt;div id=&quot;tip&quot;&gt;
+    改变collision可以看到我的位置变化
+&lt;/div&gt;</pre>
+                <pre class="prettyprint language-css">
+#target{
+    width:200px;
+    height:200px;
+    border: 1px solid #777;
+    background-color: #fbca93;
+    margin-left:80px;
+}
+#tip{
+    width:140px;
+    height:140px;
+    background-color:#BCD5E6;
+    display: none;
+}</pre>
+                <pre class="prettyprint language-js">
+jQuery(function($){
+    $.use("ui-position",function(){
+        function position(){
+            $("#tip").position({
+                of: $("#target"),
+                my: "right center",
+                at: "left center",
+                collision: $("#collision").val()
+            });
+        }
+                    
+        $("#collision").bind("click keyup change",function(){
+            position();
+        });  
+                    
+        $("#target").mouseover(function(){
+            $("#tip").show();
+            position();
+        }).mouseout(function(){
+            $("#tip").hide();
+        });
+                    
+        position();
+    });
+})</pre>
+                <div id="tip">
+                    改变collision可以看到我的位置变化
+                </div>
+            </div>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script type="text/javascript">
+            /* Demo 1 */
+            jQuery(function($){
+               $.use("ui-position",function(){
+                    function position(using){
+                        $(".positionable").position({
+                            of: $("#parent"),
+                            my: $("#my_horizontal").val() + " " + $("#my_vertical").val(),
+                            at: $("#at_horizontal").val() + " " + $("#at_vertical").val(),
+                            offset: $("#offset").val(),
+                            using: using
+                        });
+                    }
+                    
+                    $(".positionable").css("opacity", 0.6);
+                    
+                    $(":input").bind("click keyup change",function(){
+                            position();
+                    });        
+                    
+                    position();
+               });
+            });
+            
+            /* Demo 2 */
+            jQuery(function($){
+                $.use("ui-position",function(){
+                    function position(){
+                        $("#tip").position({
+                            of: $("#target"),
+                            my: "right center",
+                            at: "left center",
+                            collision: $("#collision").val()
+                        });
+                    }
+                    
+                    $("#collision").bind("click keyup change",function(){
+                            position();
+                    });  
+                    
+                    $("#target").mouseover(function(){
+                        $("#tip").show();
+                        position();
+                    }).mouseout(function(){
+                        $("#tip").hide();
+                    });
+                    
+                    position();
+                });
+            })
+        </script>
+    </body>
+</html>

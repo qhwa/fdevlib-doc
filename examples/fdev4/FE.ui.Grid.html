@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.ui.Grid</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="grid-example" class="xui-simpleGrid-panel" style="WIDTH: 675px;">
+            <div class="xui-simpleGrid-panelHead">
+            </div>
+            <div class="xui-simpleGrid-panelBody">
+                <div class="xui-simpleGrid-header">
+                    <table style="WIDTH: 100%;">
+                        <tbody>
+                            <tr class="xui-simpleGrid-hd-row">
+                                <td class="xui-simpleGrid-hd-checkbox xui-simpleGrid-cell first" style="WIDTH:20px;">
+                                    <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">
+                                        <input class="xui-simpleGrid-hd-checkbox" name="" type="checkbox" value="" />
+                                    </div>
+                                </td>
+                                <td class="xui-simpleGrid-hd-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                    <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">
+                                        性别
+                                        <button class="xui-simpleGrid-sort ">
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="xui-simpleGrid-hd-age xui-simpleGrid-cell" style="WIDTH: 100px">
+                                    <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">
+                                        年龄
+                                        <button class="xui-simpleGrid-sort">
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="xui-simpleGrid-hd-birthday xui-simpleGrid-cell" style="WIDTH: 100px;">
+                                    <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">
+                                        日期
+                                        <button class="xui-simpleGrid-sort">
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="xui-simpleGrid-hd-name xui-simpleGrid-cell " style="WIDTH: 100px; ">
+                                    <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">
+                                        名字
+                                        <button class="xui-simpleGrid-sort">
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="xui-simpleGrid-hd-opt xui-simpleGrid-cell last" style="WIDTH: auto; ">
+                                    <div class="xui-simpleGrid-hd-inner xui-simpleGrid-hd-inner-default" unselectable="on">
+                                        操作
+                                        <button class="xui-simpleGrid-sort">
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="xui-simpleGrid-body" style="overflow-y:auto; overflow-x:hidden; ">
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-0 xui-simpleGrid-row-even">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-1 xui-simpleGrid-row-odd">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            0571-88888888
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-2 xui-simpleGrid-row-even">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-3 xui-simpleGrid-row-odd">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            0571-88888888
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-4 xui-simpleGrid-row-even">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-5 xui-simpleGrid-row-odd">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            0571-88888888
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-6 xui-simpleGrid-row-even">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-7 xui-simpleGrid-row-odd">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            0571-88888888
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-8 xui-simpleGrid-row-even">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="xui-simpleGrid-row xui-simpleGrid-rowIndex-9 xui-simpleGrid-row-odd">
+                        <table class="xui-simpleGrid-row-table" style="WIDTH: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="xui-simpleGrid-col-checkbox xui-simpleGrid-cell " style="WIDTH: 20px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-sex xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            0571-88888888
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-age xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            客户A
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-birthday xui-simpleGrid-cell " style="WIDTH: 100px">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            2010-12-12 15:11
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-name xui-simpleGrid-cell " style="WIDTH: 100px;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            名字
+                                        </div>
+                                    </td>
+                                    <td class="xui-simpleGrid-col-opt xui-simpleGrid-cell xui-simpleGrid-cell-last" style="WIDTH: auto;">
+                                        <div class="xui-simpleGrid-cell-inner xui-simpleGrid-cell-inner-default" unselectable="on">
+                                            操作
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="xui-simpleGrid-pagebar">
+                <div class="xui-simpleGrid-pagebar-first">
+                </div>
+                <div class="xui-simpleGrid-pagebar-detail">
+                    当前显示<span class="xui-pagebar-start"></span>- <span class="xui-pagebar-end"></span>条 共<span class="xui-pagebar-total"></span>条  共<span class="xui-pagebar-pages"></span>页 
+                </div>
+                <div class="xui-simpleGrid-pagebar-last">
+                </div>
+                <div class="xui-simpleGrid-page">
+                    <button class="xui-pagebar-btn-text xui-pagebar-btn-first" title="first Page">
+                        &nbsp;
+                    </button>
+                    <button class="xui-pagebar-btn-text xui-pagebar-btn-prev" title="prev Page">
+                        &nbsp;
+                    </button>
+                    <span>第</span>
+                    <input class="xui-pagebar-btn-number" type="text"/><span>页</span>
+                    <button class="xui-pagebar-btn xui-pagebar-btn-go" title="确定">
+                    </button>
+                    <button class="xui-pagebar-btn-text xui-pagebar-btn-next" title="Next Page">
+                        &nbsp;
+                    </button>
+                    <button class="xui-pagebar-btn-text xui-pagebar-btn-last" title="last Page">
+                        &nbsp;
+                    </button>
+                </div>
+            </div>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v4/widget/web/grid.js">
+        </script>
+        <script>
+            jQuery(function($) {
+                $.loadCSS('http://style.china.alibaba.com/css/lib/fdev-v4/widget/web/grid/tbcall/simple-grid/simple-grid.css');
+                
+                var dataUrl = 'FE.ui.Grid.data.json';
+                var schema = ['sex', 'age', 'birthday', 'name', 'status'];
+                
+                var colModel = new FE.ui.Grid.GridColModel({
+                    defaults: {
+                        width: '10%',
+                        sortable: true
+                    },
+                    columns: [{
+                        id: 'sex',
+                        header: '性别',
+                        dataIndex: 'sex'
+                    }, {
+                        id: 'age',
+                        header: '年龄',
+                        dataIndex: 'age'
+                    }, {
+                        id: 'birthday',
+                        header: '生日',
+                        dataIndex: 'birthday',
+                        align: 'left'
+                    }, {
+                        id: 'name',
+                        header: '名字',
+                        dataIndex: 'name',
+                        align: 'right'
+                    }, {
+                        id: 'opt',
+                        header: '操作',
+                        sortable: false
+                    }]
+                })
+                var g = new FE.ui.Grid('grid-example', {
+                    multiSelect: true,
+                    isRowAuto: true,
+                    toPageNum: 2,
+                    checkbox: true,
+                    defaultSort: 'sex',
+                    limit: 10,
+                    hasPagebar: true,
+                    hasPages: true
+                });
+                
+                g.init(dataUrl, colModel, schema);
+                $(g).bind('rowclick', function(e, o) {//console.log(o)
+                })
+                //$(g).bind('rowmouseover',function(e,o){console.log(o)})
+            
+            });
+        </script>
+    </body>
+</html>

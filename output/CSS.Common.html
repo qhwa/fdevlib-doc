@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>CSS.Type</title>
+    <link href="../resources/css/global-merge.css" rel="stylesheet" type="text/css" />
+    <script src="../resources/js/global-merge.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>常用样式命名规则</h2>
+        <p>本页提供了一些常用样式的命名方式和规则，旨在统一大家的编程习惯和风格。本文内容仅供参考，不作强制性要求。</p>
+        <p>1) 可语义化的样式命名，采取语义化单词命名</p>
+        <p>2) 不可语义化的单一属性样式，采取：属性名首字母+"-"+属性值首字母（有"-"符号的名/值取左右单词首字母） 的方式命名。</p>
+        <p>具体请参考下面列表：</p>
+    </div>
+    <div class="g-detail">
+        <h3>可语义化命名</h3>
+        <textarea name="code" class="css:collapse" cols="" rows="">
+        .current	/*当前项，多用于tab切换，nav当前高亮*/
+        .disabled	/*禁用，多用于模拟禁用效果*/
+        .enabled	/*启用，多用于模拟启用效果*/
+        .selected	/*当前选中项，多用于模拟select效果*/
+        .checked	/*选中项，多用于模拟checkbox和radio效果*/
+        .more		/*更多*/
+        .first		/*排行、步骤等有序队列，第一个*/
+        .second
+        .third
+        .forth
+        .fifth
+        .last       /*最后一个*/
+        .even       /*偶数的，常用于列表偶数行样式*/
+        .odd        /*奇数的*/
+        .pre		/*上一个、上一页*/
+        .next		/*下一个、下一页*/
+        .pause		/*暂停，动画*/
+        .play		/*运动，动画*/
+        .modal      /*相对独立的模块，比如浮层*/
+        .tips		/*提示类的总称，跟具体的提示样式结合使用*/
+        .warn		/*警告*/
+        .error	    /*错误*/
+        .success	/*正确*/
+        .info		/*信息*/
+        .title		/*标题区域*/
+        .context	/*内容区域*/
+        .ext		/*扩展内容区域，多用于扩展信息容器*/
+        .red        /*红色#F00;*/
+        .bold       /*加粗*/
+        /*组合命名*/
+        .pre-disabled
+        .next-disabled
+	    </textarea>
+        <h3>不可语义化命名</h3>
+        <textarea name="code" class="css:collapse" cols="" rows="">
+        .d-ib		/*display:inline-block;*/
+        .p-a		/*position:absolute; */
+        .p-r		/*position:relative;*/
+        .p-f		/*position:fixed;*/
+        .f-l		/*float:left;*/
+        .f-r		/*float:right;*/
+        .td-u		/*text-decoration:underline;*/
+        .va-t		/*vertical-align:top;*/
+        .va-m		/*vertical-align:middle;*/
+        .va-b		/*vertical-align:bottom;*/
+        .ta-l		/*text-align:left;*/
+        .ta-c		/*text-align:center;*/
+        .ta-r		/*text-align:right;*/
+        </textarea>
+    </div>
+</body>
+</html>

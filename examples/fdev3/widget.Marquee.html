@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: marquee</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+    <style>
+        .ep-marquee { width: 192px; height: 60px; overflow: hidden; float: left; }
+        .ep-marquee-v { width: 64px; height: 192px; overflow: hidden; }
+        .ep-marquee li, .ep-marquee-v li { width: 56px; height: 56px; overflow: hidden; float: left; text-align: center; line-height: 60px; padding-right: 8px; }
+        .ep-marquee li { padding-right: 8px; }
+        .ep-marquee-v li { padding-bottom: 8px; }
+        .pre, .next, .pre-g, .next-g { float: left; margin: 16px 8px 0 0; width: 24px; height: 24px; overflow: hidden; border: 0; line-height: 0; text-indent: -9999px; cursor: pointer; }
+        .next { background: url(/fdevlib/static/img/output/right.gif); margin-left: 8px; }
+        .pre { background: url(/fdevlib/static/img/output/left.gif); }
+        .next-g { background: url(/fdevlib/static/img/output/right-g.gif); margin-left: 8px; }
+        .pre-g { background: url(/fdevlib/static/img/output/left-g.gif); }
+        .pre-v, .next-v, .pre-v-g, .next-v-g { margin: 16px 0 8px 16px; width: 24px; height: 24px; overflow: hidden; border: 0; line-height: 0; text-indent: -9999px; cursor: pointer; }
+        .next-v { background: url(/fdevlib/static/img/output/down.gif); }
+        .pre-v { background: url(/fdevlib/static/img/output/up.gif); }
+        .next-v-g { background: url(/fdevlib/static/img/output/down-g.gif); }
+        .pre-v-g { background: url(/fdevlib/static/img/output/up-g.gif); }
+        #switch { float: left; margin: 16px 8px 0 0; cursor: pointer; }
+    </style>
+</head>
+<body>
+	<div id="doc">
+		<div id="hd">
+			<h1>fdevlib-example: marquee（走马灯效果）</h1>
+		</div>
+		<div id="bd">
+			<div class="layout">
+				<div class="main">
+					<h2>1、自动向左滚动、每次滚1格</h2>
+					<div class="ep-marquee clr" id="mar1">
+						<ul>
+							<li><img src="/fdevlib/static/img/output/mar1.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar2.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar3.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar4.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar5.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar6.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar7.jpg" /></li>
+						</ul>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var mar1 = new FD.widget.Marquee('mar1');
+					</pre>
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>2、自动(需启动)向上滚动、每次滚1格，存在暂停和启动按钮</h2>
+					<div class="ep-marquee-v clr" id="mar2">
+						<ul>
+							<li><img src="/fdevlib/static/img/output/mar1.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar2.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar3.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar4.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar5.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar6.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar7.jpg" /></li>
+						</ul>
+					</div>
+					<button id="pause">pause</button>
+					<button id="start">start</button>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var mar2 = new FD.widget.Marquee('mar2',{
+							direction: 'up',
+							isAutoPlay: false
+						});
+						$E.on('pause','click',function(){
+							mar2.pause();
+						});
+						$E.on('start','click',function(){
+							mar2.start();
+						});
+					</pre>				
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>3、自动向右滚动、每次滚3格</h2>
+					<div class="ep-marquee clr" id="mar3">
+						<ul>
+							<li><img src="/fdevlib/static/img/output/mar1.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar2.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar3.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar4.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar5.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar6.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar7.jpg" /></li>
+						</ul>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var mar3 = new FD.widget.Marquee('mar3',{
+						preItem: 3,
+						direction:'right'
+					});
+					</pre>				
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>4、匀速左滚、间隔5秒、每次滚动耗时0.6秒、有前/后按钮</h2>
+					<button class="pre" id="fw-pre">left</button>
+					<div class="ep-marquee clr" id="mar4">
+						<ul>
+							<li><img src="/fdevlib/static/img/output/mar1.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar2.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar3.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar4.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar5.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar6.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar7.jpg" /></li>
+						</ul>
+					</div>
+					<button class="next" id="fw-next">right</button>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var mar4 = new FD.widget.Marquee('mar4',{
+						preItem: 3,
+						timeDelay: 5,
+						easing: 'easeNone',
+						speed: 0.6
+					});
+					$E.on('fw-pre','click',function(){
+						mar4.getPre();
+					});
+					$E.on('fw-next','click',function(){
+						mar4.getNext();
+					});
+					</pre>				
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>5、不循环fill模式</h2>
+					<button class="pre-g" id="fw-pre3">left</button>
+					<div class="ep-marquee clr" id="mar5">
+						<ul>
+							<li><img src="/fdevlib/static/img/output/mar1.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar2.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar3.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar4.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar5.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar6.jpg" /></li>
+							<li><img src="/fdevlib/static/img/output/mar7.jpg" /></li>
+						</ul>
+					</div>
+					<button class="next" id="fw-next3">right</button>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var mar5 = new FD.widget.Marquee('mar5',{
+						isAutoPlay: false,
+						direction: 'left',
+						preItem: 3,
+						loopType: 'fill',
+						onNextEnd: function(){
+							FD.common.toggleClass('fw-next3','next','next-g');
+						},
+						onPreEnd: function(){
+							FD.common.toggleClass('fw-pre3','pre','pre-g');
+						},
+						onNextRs :function(){
+							FD.common.toggleClass('fw-next3','next','next-g');
+						},
+						onPreRs: function(){
+							FD.common.toggleClass('fw-pre3','pre','pre-g');
+						}
+					});	
+					$E.on('fw-pre3','click',function(){
+						mar5.getPre();
+					});
+					$E.on('fw-next3','click',function(){
+						mar5.getNext();
+					});	
+					</pre>				
+				</div>			
+			</div>		
+		</div>
+		<div id="ft">
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/animation-min.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/marquee/source/marquee.js"></script>
+	<script>
+	//Dom树构建完毕后开始执行
+	$E.onDOMReady(function(){
+		dp.SyntaxHighlighter.HighlightAll('code');	//代码高亮
+
+		var mar1 = new FD.widget.Marquee('mar1'); 
+		
+		var mar2 = new FD.widget.Marquee('mar2',{
+			direction: 'up',
+			isAutoPlay: false
+		});
+		$E.on('pause','click',function(){
+			mar2.pause();
+		});
+		$E.on('start','click',function(){
+			mar2.start();
+		});
+		
+		
+		var mar3 = new FD.widget.Marquee('mar3',{
+			preItem: 3,
+			direction:'right'
+		});
+		
+		var mar4 = new FD.widget.Marquee('mar4',{
+			preItem: 3,
+			timeDelay: 5,
+			easing: 'easeNone',
+			speed: 0.6
+		});
+		$E.on('fw-pre','click',function(){
+			mar4.getPre();
+		});
+		$E.on('fw-next','click',function(){
+			mar4.getNext();
+		});
+
+		
+		var mar5 = new FD.widget.Marquee('mar5',{
+			isAutoPlay: false,
+			direction: 'left',
+			preItem: 3,
+			loopType: 'fill',
+			onNextEnd: function(){
+				FD.common.toggleClass('fw-next3','next','next-g');
+			},
+			onPreEnd: function(){
+				FD.common.toggleClass('fw-pre3','pre','pre-g');
+			},
+			onNextRs :function(){
+				FD.common.toggleClass('fw-next3','next','next-g');
+			},
+			onPreRs: function(){
+				FD.common.toggleClass('fw-pre3','pre','pre-g');
+			}
+		});	
+		$E.on('fw-pre3','click',function(){
+			mar5.getPre();
+		});
+		$E.on('fw-next3','click',function(){
+			mar5.getNext();
+		});	
+	});
+	</script>
+</body>
+</html>

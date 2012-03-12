@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>text-shadow</title>
+        <meta name="description" content="阿里巴巴批发大市场"/>
+        <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+        <link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+        <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+        <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+        <base target="_blank" />
+    </head>
+    <body>
+        <div class="g-memo">
+            <h2>text-shadow</h2>
+        </div>
+        <div class="g-detail">
+            <h3>定义：</h3>
+            <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+                <tr>
+                    <th align="left" width="56"><strong>Name:</strong></th>
+                    <th align="left"><i class="ml8 mr8"><u>text-shadow</u></i></th>
+                </tr>
+                <tr>
+                    <td><span>值:</span></td>
+                    <td><span class="ml8 mr8">none | [<a href="#shadow" target="_blank"><var>&lt;shadow&gt;</var></a>, ] * <a href="#shadow" target="_blank"><var>&lt;shadow&gt;</var></a></span></td>
+                </tr>
+                <tr class="even">
+                    <td><span>初始值:</span></td>
+                    <td><span class="ml8 mr8">none</span></td>
+                </tr>
+                <tr>
+                    <td><span>适用于:</span></td>
+                    <td><span class="ml8 mr8">所有元素</span></td>
+                </tr>
+                <tr class="even">
+                    <td><span>继承性:</span></td>
+                    <td><span class="ml8 mr8">yes</span></td>
+                </tr>
+                <tr>
+                    <td><span>百分比:</span></td>
+                    <td><span class="ml8 mr8">N/A</span></td>
+                </tr>
+                <tr class="even">
+                    <td><span>媒体:</span></td>
+                    <td><span class="ml8 mr8">visual</span></td>
+                </tr>
+                <tr>
+                    <td><span>计算值:</span></td>
+                    <td><span class="ml8 mr8">每一个 &lt;length&gt;都是绝对值，颜色都是计算的，其他按照规定</span></td>
+                </tr>
+            </table>
+            <table border="0" cellpadding="0" cellspacing="0" width="99%" class="mt8 g-paramtable">
+                <tr>
+                    <th align="left" width="56"><strong>Name:</strong></th>
+                    <th align="left"><i id="shadow" class="ml8 mr8"><u>shadow</u></i></th>
+                </tr>
+                <tr>
+                    <td><span>值:</span></td>
+                    <td><span class="ml8 mr8">inset? &amp;&amp; [ <var>&lt;length&gt;</var>{2,4} &amp;&amp; <var>&lt;color&gt;</var>? ]</span></td>
+                </tr>
+            </table>
+            <p class="mt8">&lt;shadow&gt;的定义和 box-shadow 中的 <a href="box-shadow.html#ltshadowgt" target="_blank">&lt;shadow&gt;</a> 定义一样，但是不允许 inset 关键字。</p>
+        </div>
+        <div class="g-detail">
+            <h3>浏览器兼容性：</h3>
+            <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+                <tr>
+                    <th align="left" width="56"><strong>浏览器</strong></th>
+                    <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                    <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                    <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                    <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                    <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+                </tr>
+                <tr>
+                    <th>兼容性</th>
+                    <td><span class="positive">(√)chrome</span></td>
+                    <td><span class="positive">(√)firefox 3.6+</span></td>
+                    <td><span class="positive">(√)opera 10.6+</span></td>
+                    <td><span class="positive">(√)safari 5+</span></td>
+                    <td><span class="negative">(×)IE 9</span></td>
+                </tr>
+            </table>
+            <h3>说明：</h3>
+            <p>从测试结果看来不支持<a href="#shadow" target="_blank"><var>&lt;shadow&gt;</var></a>中的第四个长度值，即延伸距离</p>
+        </div>
+        <div class="g-detail">
+            <h3>例子：</h3>
+            <h4>当前浏览器显示效果：</h4>
+            <div class="show">
+                <p class="para1">阿里巴巴中国站UED</p>
+                <p class="para2">阿里巴巴中国站UED</p>
+                <p class="para3">阿里巴巴中国站UED</p>
+            </div>
+            <style type="text/css">
+                .show p {
+                    font-size:18px;
+                    font-weight:bold;
+                }
+                .show .para1 {
+                    text-shadow: rgba(0,0,0,0.4) 3px -3px;
+                }
+                .show .para2 {
+                    text-shadow: rgba(0,0,0,0.4) 3px -3px 2px;
+                }
+                .show .para3 {
+                    text-shadow:#C00 2px -2px 3px, rgba(0,0,0,0.4) 3px -3px 2px;
+                }
+            </style>
+            <h4>chrome效果截图：</h4>
+            <img class="example-img" src="/fdevlib/static/img/css3/chrome-text-shadow.png" alt="chrome效果截图" />
+            <h4>code:</h4>
+            <pre class="brush:html">
+&lt;div class=&quot;show&quot;&gt;
+	&lt;p class=&quot;para1&quot;&gt;阿里巴巴中国站UED&lt;/p&gt;
+	&lt;p class=&quot;para2&quot;&gt;阿里巴巴中国站UED&lt;/p&gt;
+	&lt;p class=&quot;para3&quot;&gt;阿里巴巴中国站UED&lt;/p&gt;
+&lt;/div&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+	.show p {
+		font-size:18px;
+		font-weight:bold;
+	}
+	.show .para1 {
+		text-shadow: rgba(0,0,0,0.4) 3px -3px;
+	}
+	.show .para2 {
+		text-shadow: rgba(0,0,0,0.4) 3px -3px 2px;
+	}
+	.show .para3 {
+		text-shadow:#C00 2px -2px 3px, rgba(0,0,0,0.4) 3px -3px 2px;
+	}
+&lt;/style&gt;
+            </pre>
+        </div>
+        <div class="g-detail">
+            <h3>相关文档：</h3>
+            <ul>
+                <li><a href="http://www.w3.org/TR/css3-text/#text-shadow" title="w3c Working Draft">CSS Text Level 3 (w3c Working Draft)</a></li>
+            </ul>
+        </div>
+    </body>
+</html>

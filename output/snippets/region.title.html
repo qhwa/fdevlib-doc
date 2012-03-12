@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Title</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .title-a { overflow: hidden; }
+        .title-a, .title-a h4, .title-a div { background: url(/fdevlib/static/img/output/SP.Region.Title1.gif); }
+        .title-a { background-repeat: repeat-x; background-position: left -60px; }
+        .title-a div { background-repeat: no-repeat; }
+        .title-a div, .title-a h4, .title-a dl, .title-a dt, .title-a dd { height: 100%; }
+        .title-a h4, .title-a .f-l, .title-a dl, .title-a dt, .title-a dd { float: left; }
+        .title-a .f-l { padding-left: 6px; background-position: left 0; }
+        .title-a .f-r { float: right; padding-right: 6px; background-position: right -30px; }
+        .title-a h4 { padding: 0 4px 0 12px; background-repeat: no-repeat; background-position: 4px -90px; }
+        .title-a { height: 30px; line-height: 2.4; }
+        .title-a dt, .title-a dd { padding: 0 4px; }
+        .content-a { border: solid 1px #CCC; border-top: 0 none; }
+    </style>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Title：标题</h2>
+    </div>
+    <div class="g-detail">
+        <h3>title-a：改良自波波和汉军提供的标题代码片段 </h3>
+        <div class="g-demo">
+            <div class="title-a" data-sp="title-a">
+                <div class="f-l">
+                    <h4>标题标题</h4>
+                </div>
+                <div class="f-r">
+                    <dl>
+                        <dt>文字：</dt>
+                        <dd>内容一</dd>
+                        <dd>内容二</dd>
+                        <dd>内容三</dd>
+                        <dd><a href="javascript:;">更多</a></dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="content-a">
+                <p>content here...</p>
+                <p>content here...</p>
+                <p>content here...</p>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <div class="title-a" data-sp="title-a">
+                <div class="f-l">
+                    <h4>标题标题</h4>
+                </div>
+                <div class="f-r">
+                    <dl>
+                        <dt>文字：</dt>
+                        <dd>内容一</dd>
+                        <dd>内容二</dd>
+                        <dd>内容三</dd>
+                        <dd><a href="javascript:;">更多</a></dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="content-a">
+                <p>content here...</p>
+                <p>content here...</p>
+                <p>content here...</p>
+            </div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .title-a { overflow: hidden; }
+        .title-a, .title-a h4, .title-a div { background: url(/fdevlib/static/img/output/SP.Region.Title1.gif); }
+        .title-a { background-repeat: repeat-x; background-position: left -60px; }
+        .title-a div { background-repeat: no-repeat; }
+        .title-a div, .title-a h4, .title-a dl, .title-a dt, .title-a dd { height: 100%; }
+        .title-a h4, .title-a .f-l, .title-a dl, .title-a dt, .title-a dd { float: left; }
+        .title-a .f-l { padding-left: 6px; background-position: left 0; }
+        .title-a .f-r { float: right; padding-right: 6px; background-position: right -30px; }
+        .title-a h4 { padding: 0 4px 0 12px; background-repeat: no-repeat; background-position: 4px -90px; }
+        .title-a { height: 30px; line-height: 2.4; }
+        .title-a dt, .title-a dd { padding: 0 4px; }
+        .content-a { border: solid 1px #CCC; border-top: 0 none; }
+        </pre>
+    </div>
+</body>
+</html>

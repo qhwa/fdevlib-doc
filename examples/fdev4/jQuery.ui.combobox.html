@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>fdevlib-example: Combobox</title>
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev4.js"></script>
+        <style>
+            #demo1 .result {
+                width: 80px;
+            }
+            
+            #demo1 .list {
+                width: 101px;
+            }
+            
+            #demo2 .result {
+                width: 180px;
+            }
+            
+            #demo2 .list {
+                margin-right: 8px;
+                padding: 8px;
+                width: 370px;
+            }
+            
+            #demo2 .ui-combobox-item {
+                float: left;
+                width: 70px;
+            }
+            
+            #demo2 .ui-combobox-selected, #demo2 .ui-combobox-hover {
+                color: #000;
+                background-color: #FFF;
+            }
+            
+            #demo2 .split-dotted, #demo2 .split-solid {
+                float: left;
+                margin: 3px;
+                width: 364px;
+                border-bottom: dotted 1px #7D7D7D;
+                font-size: 1px;
+                height: 1px;
+            }
+            
+            #demo2 .split-solid {
+                border-bottom: solid 1px #A3A7A8;
+            }
+            
+            #demo2 .azonic {
+                float: left;
+                padding-left: 8px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="doc" class="w952">
+            <div id="header">
+                <h1>Combobox</h1>
+            </div>
+            <div id="content">
+                <div id="demo1" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: css">
+#demo1 .result {
+    width: 80px;
+}
+
+#demo1 .list {
+    width: 101px;
+}                        		
+                        	</pre>
+                            <pre class="brush: js">
+$('div.combobox', '#demo1').combobox({
+    data: $('select')
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>1、带地select</h3>
+                        <div class="combobox">
+                            <select name="aaa">
+                                <option value="1">111</option>
+                                <option value="2" selected="selected">222</option>
+                                <option value="3">333</option>
+                                <option value="4">444</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo2" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: css">
+#demo2 .result {
+    width: 180px;
+}
+
+#demo2 .list {
+    margin-right: 8px;
+    padding: 8px;
+    width: 370px;
+}
+
+#demo2 .ui-combobox-item {
+    float: left;
+    width: 70px;
+}
+
+#demo2 .ui-combobox-selected, #demo2 .ui-combobox-hover {
+    color: #000;
+    background-color: #FFF;
+}
+
+#demo2 .split-dotted, #demo2 .split-solid {
+    float: left;
+    margin: 3px;
+    width: 364px;
+    border-bottom: dotted 1px #7D7D7D;
+    font-size: 1px;
+    height: 1px;
+}
+
+#demo2 .split-solid {
+    border-bottom: solid 1px #A3A7A8;
+}
+
+#demo2 .azonic {
+    float: left;
+    padding-left: 8px;
+    cursor: pointer;
+}                       		
+                        	</pre>
+                            <pre class="brush: js">
+var demo2 = $('div.combobox', '#demo2').combobox({
+    name: 'test',
+    closable: true,
+    multiple: true,
+    tpl: function(data){
+        var ul = $('&lt;ul>'), area = data.area, province = data.province, azonic = $('&lt;li>', {
+            'class': 'azonic',
+            html: '不限地区'
+        });
+        for (var i = 0, j = area.length; i < j; i++) {
+            var item = area[i], cbx = $('&lt;input>', {
+                type: 'checkbox',
+                name: 'test',
+                value: item.value
+            }), li = $('&lt;li>').addClass('ui-combobox-item').bind('click.combobox', item, function(e){
+                var node = $(this), ipt = $('input:checkbox', node);
+                if (node.hasClass('ui-combobox-selected')) {
+                    node.removeClass('ui-combobox-selected');
+                    ipt.prop('checked', false);
+                    demo2.combobox('remove', e.data.value);
+                }
+                else {
+                    node.addClass('ui-combobox-selected');
+                    ipt.prop('checked', true);
+                    demo2.combobox('select', e.data.value);
+                }
+            });
+            
+            ul.append(li.append(cbx).append(document.createTextNode(item.text)));
+        }
+        ul.append($('&lt;li>').addClass('split-dotted'));
+        for (var i = 0, j = province.length; i &lt; j; i++) {
+            var item = province[i], cbx = $('&lt;input>', {
+                type: 'checkbox',
+                name: 'test',
+                value: item.value
+            }), li = $('&lt;li>').addClass('ui-combobox-item').data('item', item);
+            
+            ul.append(li.append(cbx).append(document.createTextNode(item.text)));
+        }
+        ul.append($('&lt;li>').addClass('split-solid'));
+        ul.append(azonic);
+        return ul;
+    },
+    resultTpl: function(item){
+        return item.text + '&lt;a class="ui-combobox-remove" href="javascript:;">&lt;/a>'
+    },
+    listrender: function(){
+    
+    },
+    change: function(){
+        $.log($(this).combobox('val'));
+    },
+    data: {
+        area: [{
+            value: [6, 7],
+            text: '江浙沪',
+        }, {
+            value: [8, 9],
+            text: '华东区',
+        }, {
+            value: [10, 11],
+            text: '华南区',
+        }, {
+            value: [12, 13],
+            text: '华中区',
+        }, {
+            value: [14, 15],
+            text: '华北区'
+        }],
+        province: [{
+            value: 6,
+            text: '安徽'
+        }, {
+            value: 7,
+            text: '福建'
+        }, {
+            value: 8,
+            text: '广东'
+        }, {
+            value: 9,
+            text: '甘肃'
+        }, {
+            value: 10,
+            text: '广西'
+        }, {
+            value: 11,
+            text: '贵州'
+        }, {
+            value: 12,
+            text: '海南'
+        }, {
+            value: 13,
+            text: '河南'
+        }, {
+            value: 14,
+            text: '河北'
+        }, {
+            value: 15,
+            text: '湖北'
+        }, {
+            value: 16,
+            text: '湖南'
+        }, {
+            value: 17,
+            text: '江苏'
+        }, {
+            value: 18,
+            text: '江西'
+        }, {
+            value: 19,
+            text: '黑龙江'
+        }, {
+            value: 20,
+            text: '吉林'
+        }, {
+            value: 21,
+            text: '辽宁'
+        }, {
+            value: 22,
+            text: '内蒙古'
+        }, {
+            value: 23,
+            text: '青海'
+        }, {
+            value: 24,
+            text: '宁夏'
+        }, {
+            value: 25,
+            text: '山东'
+        }, {
+            value: 26,
+            text: '山西'
+        }, {
+            value: 27,
+            text: '陕西'
+        }, {
+            value: 28,
+            text: '西藏'
+        }, {
+            value: 29,
+            text: '四川'
+        }, {
+            value: 30,
+            text: '新疆'
+        }]
+    }
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>2、多选</h3>
+                        <div class="combobox"></div>
+                        <select>
+                            <option>1234567890</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">—— 阿里巴巴中文站前端开发团队</div>
+        </div>
+        <script>
+            jQuery(function($){
+                $.use('ui-combobox, util-debug', function(){
+                    $('div.combobox', '#demo1').combobox({
+                        data: $('select')
+                    });
+                    var demo2 = $('div.combobox', '#demo2').combobox({
+                        name: 'test',
+                        closable: true,
+                        multiple: true,
+                        tpl: function(data){
+                            var ul = $('<ul>'), area = data.area, province = data.province, azonic = $('<li>', {
+                                'class': 'azonic',
+                                html: '不限地区'
+                            });
+                            for (var i = 0, j = area.length; i < j; i++) {
+                                var item = area[i], cbx = $('<input>', {
+                                    type: 'checkbox',
+                                    name: 'test',
+                                    value: item.value
+                                }), li = $('<li>').addClass('ui-combobox-item').bind('click.combobox', item, function(e){
+                                    var node = $(this), ipt = $('input:checkbox', node), value = $.makeArray(e.data.value);
+                                    if (node.hasClass('ui-combobox-selected')) {
+                                        node.removeClass('ui-combobox-selected');
+                                        ipt.prop('checked', false);
+                                        e.data.selected = false;
+                                        $.each(area, function(m, ar){
+                                            if (ar.selected) {
+                                                $.each($.makeArray(ar.value), function(n, val){
+                                                    if (value.indexOf(val) > -1) {
+                                                        value.remove(val);
+                                                    }
+                                                    if (!value.length) {
+                                                        return false;
+                                                    }
+                                                });
+                                            }
+                                            if (!value.length) {
+                                                return false;
+                                            }
+                                        });
+                                        demo2.combobox('remove', value);
+                                    }
+                                    else {
+                                        node.addClass('ui-combobox-selected');
+                                        ipt.prop('checked', true);
+                                        demo2.combobox('select', e.data.value);
+                                        e.data.selected = true;
+                                    }
+                                });
+                                
+                                ul.append(li.append(cbx).append(document.createTextNode(item.text)));
+                            }
+                            ul.append($('<li>').addClass('split-dotted'));
+                            for (var i = 0, j = province.length; i < j; i++) {
+                                var item = province[i], cbx = $('<input>', {
+                                    type: 'checkbox',
+                                    name: 'test',
+                                    value: item.value
+                                }), li = $('<li>').addClass('ui-combobox-item').data('item', item);
+                                
+                                ul.append(li.append(cbx).append(document.createTextNode(item.text)));
+                            }
+                            ul.append($('<li>').addClass('split-solid'));
+                            ul.append(azonic);
+                            return ul;
+                        },
+                        resultTpl: function(item){
+                            return item.text + '<a class="ui-combobox-remove" href="javascript:;"></a>'
+                        },
+                        listrender: function(){
+                        
+                        },
+                        change: function(){
+                            $.log($(this).combobox('val'));
+                        },
+                        data: {
+                            area: [{
+                                value: [6, 7, 8],
+                                text: '江浙沪'
+                            }, {
+                                value: [6, 7, 8, 9],
+                                text: '华东区'
+                            }, {
+                                value: [10, 11, 12],
+                                text: '华南区'
+                            }, {
+                                value: [13, 14, 15, 16, 17, 18],
+                                text: '华中区'
+                            }, {
+                                value: [19, 20, 21],
+                                text: '华北区'
+                            }],
+                            province: [{
+                                value: 6,
+                                text: '江苏'
+                            }, {
+                                value: 7,
+                                text: '浙江'
+                            }, {
+                                value: 8,
+                                text: '上海'
+                            }, {
+                                value: 9,
+                                text: '福建'
+                            }, {
+                                value: 10,
+                                text: '广西'
+                            }, {
+                                value: 11,
+                                text: '广东'
+                            }, {
+                                value: 12,
+                                text: '海南'
+                            }, {
+                                value: 13,
+                                text: '河南'
+                            }, {
+                                value: 14,
+                                text: '河北'
+                            }, {
+                                value: 15,
+                                text: '湖北'
+                            }, {
+                                value: 16,
+                                text: '湖南'
+                            }, {
+                                value: 17,
+                                text: '安徽'
+                            }, {
+                                value: 18,
+                                text: '江西'
+                            }, {
+                                value: 19,
+                                text: '黑龙江'
+                            }, {
+                                value: 20,
+                                text: '吉林'
+                            }, {
+                                value: 21,
+                                text: '辽宁'
+                            }, {
+                                value: 22,
+                                text: '内蒙古'
+                            }, {
+                                value: 23,
+                                text: '青海'
+                            }, {
+                                value: 24,
+                                text: '宁夏'
+                            }, {
+                                value: 25,
+                                text: '山东'
+                            }, {
+                                value: 26,
+                                text: '山西'
+                            }, {
+                                value: 27,
+                                text: '陕西'
+                            }, {
+                                value: 28,
+                                text: '西藏'
+                            }, {
+                                value: 29,
+                                text: '四川'
+                            }, {
+                                value: 30,
+                                text: '新疆'
+                            }]
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

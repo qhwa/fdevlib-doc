@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Shadow</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .shadow-a { position: relative; width: 300px; }
+        .shadow-a .content { position: relative; height: 208px; overflow: hidden; z-index: 2; border: solid 5px #342B0F; background-color: #FFF; }
+        .shadow-a .shadow { position: absolute; width: 300px; height: 218px; top: 6px; left: 6px; z-index: 1; background: #666; opacity: 0.3; filter: alpha(opacity=30); }
+    </style>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Shadow：阴影</h2>
+    </div>
+    <div class="g-detail">
+        <h3>shadow-a：定高定宽容器矩形阴影（由丹爷友情赞助） </h3>
+        <div class="g-demo">
+            <div class="shadow-a" data-sp="shadow-a">
+                <div class="content">
+                    Content here...
+                </div>
+                <div class="shadow">
+                </div>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+        <div class="shadow-a" data-sp="shadow-a">
+            <div class="content">
+                Content here...
+            </div>
+            <div class="shadow">
+            </div>
+        </div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .shadow-a { position: relative; width: 300px; }
+        .shadow-a .content { position: relative; height: 208px; overflow: hidden; z-index: 2; border: solid 5px #342B0F; background-color: #FFF; }
+        .shadow-a .shadow { position: absolute; width: 300px; height: 218px; top: 6px; left: 6px; z-index: 1; background: #666; opacity: 0.3; filter: alpha(opacity=30); }
+        </pre>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Function.Image</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <script type="text/javascript">
+        /*
+        * auto resize image
+        * @param    img     img obj
+        * @param    w       custom width
+        * @param    h       custom height
+        */
+        var resizeImage=function(img,w,h) {
+            img.removeAttribute("width");
+            img.removeAttribute("height");
+            var pic;
+            if(window.ActiveXObject) {
+                pic=new Image();
+                pic.src=img.src;
+            } else pic=img;
+            if(pic&&pic.width&&pic.height&&w) {
+                if(!h) h=w;
+                if(pic.width>w||pic.height>h) {
+                    var scale=pic.width/pic.height,fit=scale>=w/h;
+                    //IE9下无效
+                    //if(window.ActiveXObject) img=img.style;
+                    img[fit?'width':'height']=fit?w:h;
+                    if(window.ActiveXObject) img[fit?'height':'width']=(fit?w:h)*(fit?1/scale:scale);
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>图片相关处理</h2>
+    </div>
+    <div class="g-detail">
+        <h3>resizeImage：图片自适应大小</h3>
+        <div class="g-demo">
+            <a href="images/SP.Function.Image1.jpg" target="_blank"><img alt="" width="400" height="400" src="/fdevlib/static/img/output/SP.Function.Image1.jpg" onload="resizeImage(this,400)" /></a><a href="images/SP.Function.Image2.jpg" target="_blank"><img alt="" width="200" height="200" src="/fdevlib/static/img/output/SP.Function.Image2.jpg" onload="resizeImage(this,200)" /></a>
+        </div>
+        html:
+        <pre class="brush:html;collapse:true">
+        <a href="images/SP.Function.Image1.jpg" target="_blank">
+            <img alt="" width="400" height="400" src="/fdevlib/static/img/output/SP.Function.Image1.jpg" onload="resizeImage(this,400)" />
+        </a>
+        <a href="images/SP.Function.Image2.jpg" target="_blank">
+            <img alt="" width="200" height="200" src="/fdevlib/static/img/output/SP.Function.Image2.jpg" onload="resizeImage(this,200)" />
+        </a>
+        </pre>
+        js:
+        <pre class="brush:js;collapse:true">
+/*
+* auto resize image
+* @param    img     img obj
+* @param    w       custom width
+* @param    h       custom height
+*/
+var resizeImage=function(img,w,h) {
+    img.removeAttribute("width");
+    img.removeAttribute("height");
+    var pic;
+    if(window.ActiveXObject) {
+        pic=new Image();
+        pic.src=img.src;
+    } else pic=img;
+    if(pic&&pic.width&&pic.height&&w) {
+        if(!h) h=w;
+        if(pic.width>w||pic.height>h) {
+            var scale=pic.width/pic.height,fit=scale>=w/h;
+            //IE9下无效
+            //if(window.ActiveXObject) img=img.style;
+            img[fit?'width':'height']=fit?w:h;
+            if(window.ActiveXObject) img[fit?'height':'width']=(fit?w:h)*(fit?1/scale:scale);
+        }
+    }
+};
+        </pre>
+    </div>
+</body>
+</html>

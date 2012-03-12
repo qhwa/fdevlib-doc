@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.web.WebSocket</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+        <h1>web-WebSocket：</h1>
+        <ul>
+            <li>
+                在支持 websocket 的浏览器上，使用原生的 websocket。不支持的浏览器使用 flash　既不支持 flash 也不支持 websocket 的浏览器不兼容。
+            </li>
+            <li>
+                整合websocket的属性，方法及监听事件。
+            </li>
+            <li>
+                flash 存储有域名限制，验证规则　/((taobao|alipay|alibaba|yahoo|alisoft|alimama|koubei|aliimg)\.(com|net|cn|com\.cn)|1688\.com)$/i 　 
+            </li>
+        </ul>
+        </p>
+        <h2>版本</h2>
+        <ul>
+            <li>
+                支持open,send,close方法，onmessage,onopen,onclose事件，readyState属性
+            </li>
+        </ul>
+        <h2>依赖</h2>
+        <pre class="prettyprint language-js">
+ImportJavscript.url('http://style.china.alibaba.com/js/lib/fdev-v4/widget/ui/flash-websocket-min.js');
+ImportJavscript.url('http://style.china.alibaba.com/js/lib/fdev-v4/widget/web/websocket-min.js');</pre>
+        <h2>开始</h2>
+        <pre class="prettyprint language-js">
+var mysocket = new FE.ui.WebSocket({
+    url : 'ws://node.remysharp.com:8001',//建立连接url
+    cid : '',//flash容器cid ,生成#flash-websocket-$cid dom
+    onopen : function (){//todo},//打开连接事件
+    onmessage : function (event){//event = {type:'message',data:'your data'}},//接收到消息事件
+    onclose : function (){//todo}//关闭连接事件
+});
+		</pre>
+        <h2>Properties</h2>
+        <dl>
+            <dt>
+                <b>readyState</b>
+                : Number
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        <b>0</b>:正在连接
+                    </li>
+                    <li>
+                        <b>1</b>：打开状态
+                    </li>
+                    <li>
+                        <b>2</b>：正在关闭
+                    </li>
+                    <li>
+                        <b>3</b>：已关闭
+                    </li>
+                </ul>
+            </dd>
+            <dd>
+                <pre class="prettyprint language-js">$.log(mysocket.readyState);</pre>
+            </dd>
+        </dl>
+        <h2>methods</h2>
+        <dl>
+            <dt>
+                <b>open</b>
+                : function
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        打开连接
+                    </li>
+                    <li>
+                        mysocket.open();
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <b>send</b>
+                : function
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        发送消息
+                    </li>
+                    <li>
+                        mysocket.send('what's i speaked');
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <b>close</b>
+                : function
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        关闭连接
+                    </li>
+                    <li>
+                        mysocket.close();
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <h2>event</h2>
+        <dl>
+            <dt>
+                <b>onopen</b>
+                : function
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        打开连接监听到的事件
+                    </li>
+                    <li>
+                        onopen = function (){
+                        //todo
+                        }
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <b>onopen</b>
+                : function
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        接收到消息监听到的事件
+                    </li>
+                    <li>
+                        onmessage = function (event){
+                        //event = {type:'message',data:'your data'
+                        }}
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <b>onopen</b>
+                : function
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        关闭连接监听到的事件
+                    </li>
+                    <li>
+                        onclose = function (event){
+                        //todo
+                        }}
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+    <script src="../../static/js/app-merge.js">
+    </script>
+    </body>
+</html>

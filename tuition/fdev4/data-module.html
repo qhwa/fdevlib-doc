@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>如何使用数据模块</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+        <style>
+                        #console {
+                            position: fixed;
+                            z-index: 1000;
+                            right: 8px;
+                            top: 8px;
+                            padding: 4px;
+                            border: solid 3px #666;
+                            background-color: #EEE;
+                            font-size: 16px;
+                            color: red;
+                        }
+                    
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>如何使用数据模块</h1>
+            <h2>注册 共享 刷新数据模块</h2>
+            <div id="console" style="display:none;">
+            </div>
+            <pre class="prettyprint language-js">
+//注册数据模块，一般在业务模块中都需要有数据模块注册操作
+$.add('data-test', {
+    url: 'ajax.php',
+	type: 'post',
+    dataType: 'json'
+});	
+		</pre>
+            <pre class="prettyprint language-php">
+//ajax.php  	
+&lt;?php
+$data = array(
+    'success' => true,
+    'data' => date('Y-m-d H:i:s'),
+    'dataType' => 'AJAX'
+);
+echo(json_encode($data));
+?>
+		</pre>
+            <button id="button1">
+                Mod1 - 获取数据
+            </button>
+            <pre class="prettyprint language-js">
+//Mod1 - 获取数据
+$('#button1').click(function(){
+    $.use('data-test', function(o){
+        log(o.data+'('+o.dataType+')');
+    });
+});	
+		</pre>
+            <button id="button2">
+                Mod2 - 获取数据
+            </button>
+            <pre class="prettyprint language-js">
+//Mod2 - 获取数据
+$('#button2').click(function(){
+    $.use('data-test', function(o){
+        log(o.data+'('+o.dataType+')');
+    });
+});	
+		</pre>
+            <button id="button3">
+                Mod3 - 更新数据
+            </button>
+            <pre class="prettyprint language-js">
+//Mod3 - 更新数据
+$('#button3').click(function(){
+    $.use('data-test', function(o){
+        log(o.data+'('+o.dataType+')');
+    }, true);
+});			
+		</pre>
+            <button id="button4">
+                Mod4 - 修改请求参数并更新数据
+            </button>
+            <pre class="prettyprint language-js">
+//Mod4 - 修改请求参数并更新数据
+$('#button4').click(function(){
+    $.use('data-test', function(o){
+        log(o.data+'('+o.dataType+')');
+    }, {
+    	url: 'jsonp.php',
+    	dataType: 'jsonp'
+    });
+});			
+		</pre>
+            <pre class="prettyprint language-php">
+//jsonp.php        	
+&lt;?php
+$data = array(
+    'success' => true,
+    'data' => date('Y-m-d H:i:s'),
+    'dataType' => 'JSONP'
+);
+echo($_GET['callback'].'('.json_encode($data).')');
+?>
+		</pre>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($){
+                var console = $('#console');
+                $.add('data-test', {
+                    url: 'ajax.php',
+                    type: 'post',
+                    dataType: 'json'
+                });
+                function log(data){
+                    console.hide().html(data).fadeIn();
+                }
+                
+                //Mod1 - 获取数据
+                $('#button1').click(function(){
+                    $.use('data-test', function(o){
+                        log(o.data + '(' + o.dataType + ')')
+                    });
+                });
+                //Mod2 - 获取数据
+                $('#button2').click(function(){
+                    $.use('data-test', function(o){
+                        log(o.data + '(' + o.dataType + ')')
+                    });
+                });
+                //Mod3 - 更新数据
+                $('#button3').click(function(){
+                    $.use('data-test', function(o){
+                        log(o.data + '(' + o.dataType + ')');
+                    }, {
+                        url: 'ajax.php',
+                        type: 'post',
+                        dataType: 'json'
+                    });
+                });
+                //Mod4 - 修改请求参数并更新数据
+                $('#button4').click(function(){
+                    $.use('data-test', function(o){
+                        log(o.data + '(' + o.dataType + ')');
+                    }, {
+                        url: 'jsonp.php',
+                        dataType: 'jsonp'
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

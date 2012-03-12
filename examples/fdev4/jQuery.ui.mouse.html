@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.mouse</title>
+        <link href="../../static/css/demo-merge.css" rel="stylesheet"/>
+        <style>
+            #demo1 {
+                width: 400px;
+                height: 400px;
+                border: solid 1px #ffba00;
+                background-color: #ffeec8;
+                text-align: center;
+                line-height:2;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-mouse : 鼠标行为扩展类</h1>
+            <h2>给DOM对象提供鼠标行为监控</h2>
+            <div id="demo1">
+                在黄色区域内点击鼠标<br/>在窗口内移动<br/>在窗口内释放释放<br/>PS:点击后超过1秒不释放鼠标，且点击后，鼠标移动相对原有坐标距离超过100像素，才触发后续事件
+                <br/>
+                <input type="text"/>
+                <br/>
+                <select>
+                    <option>option1</option>
+                </select>
+            </div>
+            <pre class="prettyprint language-js">
+$.widget('ui.test', $.ui.mouse, {
+    _create: function(){
+        this._mouseInit();
+    },
+    _mouseCapture: function(e){
+        //捕捉鼠标点击事件，并判断是否符合触发鼠标动作的条件。如果满足则return true; 不满足则return false;
+        return true;
+    },
+    _mouseStart: function(e){
+        //鼠标动作初始化函数，前提是在"_mouseCapture"中满足条件。
+    },
+    _mouseDrag: function(e){
+        //鼠标移动过程中持续触调用该方法
+    },
+    _mouseStop: function(){
+        //鼠标释放时触发该方法
+    }
+});
+
+$('#demo1').test({
+    distance: 100,
+    delay: 1000
+});                
+</pre>
+        </div>
+        <div id="achievement">
+            <h1 class="header">功能点测试</h1>
+            <h2 class="agent"></h2>
+            <h2 class="status"></h2>
+            <div class="list">
+            </div>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            //Dom树构建完毕后开始执行
+            jQuery(function($){
+                $.use('ui-mouse,util-achievement', function(){
+                    var Achievement = $.util.Achievement, dtCapture, pageX, pageY;
+                    $.widget('ui.test', $.ui.mouse, {
+                        _create: function(){
+                            this._mouseInit();
+                        },
+                        _mouseCapture: function(e){
+                            Achievement.check('handler-_mousedown', true);
+                            return true;
+                        },
+                        _mouseStart: function(e){
+                            var o = this.options;
+                            if (o.distance) {
+                                pageX = e.pageX;
+                                pageY = e.pageY;
+                                
+                            }
+                            if (o.delay) {
+                                dtCapture = new Date();
+                            }
+                            
+                            if (o.cancel) {
+                                if (e.target !== this.element[0] && $(e.target).closest(o.cancel).length) {
+                                    Achievement.check('property-cancel', false);
+                                }
+                                else {
+                                    Achievement.check('property-cancel', true);
+                                }
+                            }
+                        },
+                        _mouseDrag: function(e){
+                            var o = this.options;
+                            if (o.delay && dtCapture) {
+                                dtCapture = null;
+                                if (new Date() - dtCapture >= o.delay) {
+                                    Achievement.check('property-delay', true);
+                                }
+                                else {
+                                    Achievement.check('property-delay', true);
+                                }
+                            }
+                            if (o.distance && pageX && pageY) {
+                                pageX = pageY = null;
+                                if (Math.abs(e.pageX - pageX) >= o.distance || Math.abs(e.pageY - pageY) >= o.distance) {
+                                    Achievement.check('property-distance', true);
+                                }
+                                else {
+                                    Achievement.check('property-distance', false);
+                                }
+                            }
+                            Achievement.check('handler-_mousemove', true);
+                        },
+                        _mouseStop: function(){
+                            Achievement.check('handler-_mouseup', true);
+                        }
+                    });
+                    
+                    $('#demo1').test({
+                        distance: 100,
+                        delay: 1000
+                    });
+                    
+                    Achievement.add('property-cancel', '设置触点过滤', ['在监控区域内，过滤选择器指定的元素及它们对应的区域']);
+                    Achievement.add('property-distance', '设置偏移间隔', ['鼠标点击（不释放），移动的距离超过设定的值，才开始触发"_mouseDrag"']);
+                    Achievement.add('property-delay', '设置时间间隔', ['鼠标点击（不释放），超过设定的时间（ms），才开始触发"_mouseDrag"']);
+                    
+                    Achievement.add('handler-_mousedown', '鼠标点击的时候触发该回调函数');
+                    Achievement.add('handler-_mousemove', '鼠标点击后不释放，持续触发该回调函数');
+                    Achievement.add('handler-_mouseup', '鼠标释放后触发该回调函数');
+                    Achievement.init();
+                });
+            });
+        </script>
+    </body>
+</html>

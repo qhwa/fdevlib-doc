@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.CountDowner</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>CountDowner：倒计时、正计时</h2>
+        <p>CountDowner为倒计时、正计时等应用提供了便捷的js调用方法</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-6-20 发布1.0 alpha版本</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>新特性：</h3>
+        <ul>
+            <li>1、可以倒计时，也可以正计时，可以设定计时的步长。</li>
+            <li>2、引用anim动画效果后，可以用图片代替数字做动画翻滚效果。</li>
+            <li>3、当为倒计时，可以通过参数topBound 设定剩余时间的最高单位。</li>
+        </ul>
+        <h3>开始：</h3>
+        如果你想使用CountDowner组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/time/countdowner-min.js");
+	    </pre>
+		如果你希望有动画效果，请在页面中加入以下片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/animation-min.js");
+	    </pre>
+		如果你想使用CountDowner组件的默认样式，请加入以下片段:
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/widget/countdown.css");
+	    </pre>
+        <h3>使用说明</h3>
+        <p>1、本组件需要的html结构:（最外层的countDown务必保留，默认样式中使用了此命名；cd-year 到 cd-second 可通过参数配置，年到秒全部六个节点，如果用不到可去掉对应的html节点，比如去掉cd-year 节点后，就不会显示结果中的年份）
+        <pre class="brush:html;">
+			<div id="cd-1" class="countDown">
+				<div class="cd-year">
+					0
+				</div>
+				<div class="cd-month">
+					0
+				</div>
+				<div class="cd-day">
+					0
+				</div>
+				<div class="cd-hour">
+					0
+				</div>
+				<div class="cd-minute">
+					0
+				</div>
+				<div class="cd-second">
+					0 
+				</div>
+			</div>
+	    </pre>
+        </p>
+        <p>2、组件调用方法如下：初始化是需要提供2个参数，第一个参数为容器的id(必填)；第二个参数为配置对象(将覆盖默认的参数设定):
+        <pre class="brush:js;">
+			var CountDowner = FD.widget.CountDowner.init( 'cd-1',{
+                countUp:0,
+                outputType:0,
+                nowTime:new Date(),
+                desTime:new Date('2010','4','31','16','0','0'),
+                cdStep:1
+            });
+	    </pre>
+		（注：）nowTime和desTime 必须使用new Date生成的时间对象，其中的月份对应的数值从0开始，即设置月为0代表1月。
+	    </p>
+        <p>3、当需要使用对象的方法时，调用该已被实例化的对象即可:
+        <pre class="brush:js;">
+			/
+	    </pre>
+	    </p>
+        <h3>配置参数列表</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>配置参数</th><th>参数可选值</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+        			<td>countUp</td><td>0 | 1</td><td>countUp 设为0 时，即倒计时，设为1 则正常计时。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>classOfConts</td><td>Array</td><td>对应html 相关区域className 年、月、天、小时、分钟、秒，默认为['cd-year','cd-month','cd-day','cd-hour','cd-minute','cd-second']</td>
+        		</tr>
+	        	<tr>
+        			<td>topBound</td><td>0 | 1 | 2 | 3 | 4 | 5</td><td>如果是倒计时countUp==0 ，topBound表示输出时间的最高单位 5-秒; 4-分钟; 3-小时; 2-天; 1-月; 0-年</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>numClassPrefix</td><td>String</td><td>当outputType 设为1 即使用图片数字时候作为 className 的前缀，默认为'num'</td>
+        		</tr>
+	        	<tr>
+        			<td>outputType</td><td>0 | 1</td><td>输出数字格式，0- 纯数字  1-图片模拟的数字。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>nowTime</td><td>Date Object</td><td>当前时间，只需要在初始化时传入正确的当前时间即可，内部会有一个date对象 与该时间同步，因此，不需要反复取时间</td>
+        		</tr>
+	        	<tr>
+        			<td>desTime</td><td>Date Object</td><td>目标时间。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>cdStep</td><td>Number</td><td>数字跳动的时间步长，设置为1 则每隔1秒 跳动一次，默认为 1 秒</td>
+        		</tr>
+	        	<tr>
+        			<td>effect</td><td>'scroll'</td><td>如果outputType为1即用图片模拟数字，并设置为 effect:'scroll'，则会有动画效果。</td>
+        		</tr>		       		
+        	</tbody>
+        </table>
+        <h3>对象方法列表</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>方法名称</th><th>参数说明</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+	        		<td>/</td><td>/</td><td>/</td>
+	        	</tr>
+	        </tbody>
+        </table>
+        <h3>Demo演示</h3>
+        这里为开发者展示了CountDowner组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.CountDowner.html">example: CountDowner</a>
+        <h3>提建议给开发者</h3>
+        作者：陈波<br />
+        邮件：<a href="mailto:balibell.chenb@alibaba-inc.com">balibell.chenb@alibaba-inc.com</a><br />
+        旺旺：balibell
+    </div>
+</body>
+</html>

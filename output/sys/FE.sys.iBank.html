@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.sys.iBank</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>图片银行</h1>
+            <h2>介绍</h2>
+            <ul>
+                <li>
+                    图片银行的前身是Fdev3版本的编辑器中的“图片管家”功能，保留原有功能，并增强了组件的可配置程度。
+                </li>
+                <li>
+                    有两个参数必须配置：'token' 'source'
+                </li>
+            </ul>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    @update Denis 2011.08.23 提供初始化选中图片的数组配置
+                </li>
+                <li>
+                    @author Denis 2011.06
+                </li>
+                <li>
+                    @author Qijun 2011.09 BugFixed
+                </li>
+                <li>
+                    @author Denis 2011.09 增加allowMultiple配置
+                </li>
+                <li>
+                    @update Qijun 2011.10 增加图片选择上限的功能
+                </li>
+                <li>
+                    @update Qijun 2011.10 修改相册数据40 - 500
+                </li>
+                <li>
+                    @update Denis 2011.11.17 由组件控制allowMultiple的高度，修复在false下“创建相册”并选择“密码”模式时的高度问题。
+                                             当albumId无法匹配时默认选中“我的相册”
+                    @update Denis 2011.11.22 根据用户类型限定“创建相册”的类型
+                </li>
+                <li>
+                    @update hua.qiuh 2011.12.06 更改flash文件地址，使用2.9版本
+                    @update Denis 2011.12.01 提供uploadAlbumChange参数，为上传服务
+                                             提供可修改“插入图片”按钮的文案配置 submitText
+                                             提供可隐藏“创建相册”功能的配置 albumCreate
+                    @update Denis 2011.12.06 提供“albumAuth”参数，提供可隐藏相册创建权限选择
+                    @update Denis 2011.12.08 提供“watermark”参数，可设置是否勾选水印
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.add('sys-ibank', {
+    css: ['http://style.china.alibaba.com/css/sys/ibank/ibank-min.css'],
+    js: ['http://style.china.alibaba.com/js/sys/ibank/ibank-min.js'],
+    ver: '1.0'
+});
+$.use('sys-ibank', function(){
+    FE.sys.iBank(options);
+});           
+        </pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/sys/FE.sys.iBank.html">点击打开演示页面</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>albumAuth</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否允许用户在新增相册时设置相册权限
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>albumCreate</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否允许用户新增相册
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>albumId</b>
+                    : String
+                </dt>
+                <dd>
+                    默认选中的相册id（下拉框）
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>allowMultiple</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否能一次多选。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>appendTo</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : 'body'
+                </dd>
+                <dd>
+                    指定组件容器插入的文档位置，默认插入到body底部。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>dialog</b>
+                    : Object
+                </dt>
+                <dd>
+                    Default : <pre class="prettyprint language-js">
+{
+    center: true,
+    draggable: { handle: 'div.handle' },
+    fadeOut: 300,
+    fadeIn: 300
+}                        
+                    </pre>
+                </dd>
+                <dd>
+                    使容器具有拖动能力，配置参数跟<a href="jQuery.ui.draggable.html" target="_blank">ui-draggable</a>组件一致。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>pmDomain</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : 'picman.china.alibaba.com'
+                </dd>
+                <dd>
+                    接口域名，在测试或开发环境下请配置此项。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>selected</b>
+                    : Array
+                </dt>
+                <dd>
+                    Default : []
+                </dd>
+                <dd>
+                    默认选中的图片信息，注意图片的数据格式必须跟组件“insert”事件提供的参数格式一致。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>source</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : ''
+                </dd>
+                <dd>
+                    此项配置必须由应用提供，用于记录组件使用的应用名。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>submitText</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : '插入图片'
+                </dd>
+                <dd>
+                    此项配置供调用方修改提交按钮的文本。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>tab</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : 'album'
+                </dd>
+                <dd>
+                    组件打开后默认选中的标签。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>tabs</b>
+                    : Array
+                </dt>
+                <dd>
+                    Default : ['album', 'upload', 'online']
+                </dd>
+                <dd>
+                    组件激活的功能，包括“从相册选取” “本地上传图片” “使用线上图片”三个功能。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>token</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : ''
+                </dd>
+                <dd>
+                    提供页面的csrf值，必须提供此项配置。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>uploadAlbumChange</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否允许用户修改“图片上传”Tab页中的相册下拉菜单。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>watermark</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否默认选中“添加水印”的复选框。
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>insert</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>selected</b>
+                            : Array<pre class="prettyprint language-js">
+{
+    bigSrc: String, //大图地址 
+    desc: String,   //暂时只为空
+    id: String,     //图片在相册中的id
+    isOffer: Bolean,//是否offer图片
+    src: String,    //小图
+    status: String, //图片状态
+    title: string   //图片标题
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    图片选择完毕后触发，并返回所选图片的信息。不同方式选择的图片，信息字段详细程度不同。
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.Bom</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Bom：浏览器&cookie相关操作</h2>
+        <p>bom.js包含了常用的cookie读取方法和"设为首页"、"加入收藏"等浏览器相关操作。</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-6-11 发布bom.js 的beta版本</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>注意：</h3>
+        <p>前端能完全使用的cookie名为：<strong>alicnweb</strong>，而非alicnwb，请注意！容量限制为200字节</p>
+        <h3>开始：</h3>
+        如果你想引用bom-min.js，请在页面中加入以下片段片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+		 /*bom-min.js*/
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/util/bom-min.js");
+	    </pre>
+        <h3>方法说明</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>方法名</th><th>参数说明</th><th>返回值</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+        			<td>FD.Bom.getCookie(name)</td><td>{String} name cookie名称</td><td>{String} cookie 的值或者空字符串</td><td>获取cookie值</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>FD.Bom.getSubCookie(name,subname)</td><td>{String} name cookie名称<br />{String} subname 子cookie名称</td><td>{String} 子cookie 的值或者空字符串</td><td>获取子cookie值</td>
+        		</tr>
+	        	<tr>
+        			<td>FD.Bom.getSubCookies(name)</td><td>{String} name cookie名称</td><td>{Object} 子cookie的名/值对</td><td>获取包含子cookie名的cookie值</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>FD.Bom.setCookie(name, value, options)</td><td>{String} name cookie名称<br />{Variant} value cookie的值<br />{Object} options 额外参数</td><td>{String} 所设置的cookie内容</td><td>设置cookie的值</td>
+        		</tr>
+	        	<tr>
+        			<td>FD.Bom.setSubCookie(name, subName, value, options)</td><td>{String} name cookie名称<br />{String} subname 子cookie名称<br />{Variant} value 子cookie的值<br />{Object} options 额外参数</td><td>{String} 所设置的cookie内容</td><td>设置子cookie的值</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>FD.Bom.setSubCookies(name, value, options)</td><td>{String} name cookie名称<br />{Variant} value cookie的值<br />{Object} options 额外参数</td><td>所设置的cookie内容</td><td>设置包含子cookie名的cookie值</td>
+        		</tr>
+	        	<tr>
+        			<td>FD.Bom.removeCookie(name)</td><td>{String} name cookie名称</td><td>删除后的cookie内容</td><td>删除cookie</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>FD.Bom.removeSubCookie(name, subName)</td><td>{String} name cookie名称<br />{String} name 子cookie名称</td><td>删除后的cookie内容</td><td>删除子cookie</td>
+        		</tr>
+	        	<tr>
+        			<td>FD.Bom.setHome(url)</td><td>{String} url 需设为首页的url(默认为当前url))</td><td>/</td><td>将该url设为首页</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>FD.Bom.addBookmark(url, title)</td><td>{String} url 需加入收藏的url(默认为当前url)<br />{String} title 页面title(默认document.title)</td><td>/</td><td>将该url添加到收藏夹</td>
+        		</tr>
+	       	</tbody>
+        </table>
+        <h3>备注</h3>
+        <p>
+			<strong>1：</strong>options的设置包括。
+			<ul>
+				<li>a、expires: cookie过期时间，既可以设置某个具体时间也可以设置数字(代表天)</li>
+				<li>b、path: cookie路径</li>
+				<li>c、domain: cookie域名</li>
+				<li>d、secure: true|false 是否安全cookie（https协议时才传输）</li>
+			</ul>
+			options设置范例：
+			<pre class="brush:js;">
+				FD.Bom.setCookie('webck',1,{
+					path：'/',
+					domain: 'alibaba.com',
+					expires: 1
+				});
+			</pre>
+        </p>
+		<p>
+			<strong>2：</strong>cookie中保存的都是字符串格式，即使写入cookie值为true/false等布尔值时也会转化为字符串。所以
+			切记读取cookie时不要直接对读取的值进行真假判断，如下所示，
+			<pre class="brush:js;">
+				//现将webck设为"false"
+				FD.Bom.setCookie('webck',false);
+				
+				if(! FD.Bom.getCookie('webck')){
+					// 这里的代码不会被执行,因为FD.Bom.getCookie('webck')读取的结果时字符串“false”而不是布尔值false
+				}
+			</pre>
+		</p> 
+		<p>
+			<strong>3：</strong>在对已经设置了domanin、path等options的cookie进行值得变更时记得一定要设置相同的doman、path等options，
+			否则将会产生两个不同的cookie。
+			
+		</p>
+		<p>
+			<strong>4：</strong>因为cookie有限，中文站后台只给前端提供了一个cookie:"<strong>alicnweb</strong>"来使用。所以我们可以利用这个cookie
+			以"|"的方式：比如 alicnweb = firstv=1|abs=cn|welcome=a;来存取更多的相关内容(主要是做一些比如第一次访问之类的标记)。alicnweb这个cookie
+			必须设置path为"/",域名是".alibaba.com"。读取时可以FD.Bom.getSubCookie/FD.Bom.setSubCookie/FD.Bom.removeSubCookie的方法，例如:
+			<pre class="brush:js;">
+			//设置alicnweb的子cookie: firstv的值
+			FD.Bom.setSubCookie('alicnweb','firstv','1',{
+				path：'/',
+				domain: 'alibaba.com',
+				expires: new Date("January 1, 2050")
+			})
+			
+			//读取alicnweb的子cookie： firstv的值
+			FD.Bom.getSubCookie('alicnweb','firstv');
+			
+			//删除alicnweb的子cookie： firstv的值
+			FD.Bom.removeSubCookie('alicnweb','firstv');
+			</pre>
+		</p> 
+		<p>
+			<strong>5：</strong>记得一定不要将 js 的关键字做为cookie名。
+		</p>
+		<p>
+			<strong>6：</strong>默认的cookie内容(包括子cookie的值)都将进行escape和unescape编/解码。
+		</p>
+        <h3>提建议给开发者</h3>
+        作者：姚升亮<br />
+        邮件：<a href="mailto:shengliang.yaosl@alibaba-inc.com">shengliang.yaosl@alibaba-inc.com</a><br />
+        旺旺：yaosl1984
+    </div>
+</body>
+</html>

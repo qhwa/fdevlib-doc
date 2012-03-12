@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: Flash</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+    <style>
+        .ep-flash { float:left; }
+    </style>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/flash/flash-min.js"></script> 
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/swfstore/swfstore-min.js"></script> 
+	 
+</head>
+<body>
+	<div id="doc">
+		<div id="hd">
+			<h1>fdevlib-example: Flash本地存储示例</h1>
+		</div>
+		<div id="bd">
+			<div class="layout">
+				<div class="main">
+					<h2>自动保存文本框内的文字，</h2>
+					<div>输入的文字将会被自动保存到本地存储，可以跨浏览器通信，关闭后重新打开能恢复</div>
+					<style>#sample { width:330px; height:200px; }</style>
+					<textarea id="sample"></textarea>
+                    <p id="info"></p>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+
+/** 
+* Flash数据存储实例
+* 功能:
+* 1.刷新页面时自动载入上次保存的文字
+* 2.当文字有变化时，延迟1秒后保存到Flash存储
+*/
+
+FYE.onDOMReady(function() {
+
+    info('正在加载Flash本地存储引擎...');
+
+    var STORE = FD.SWFStore,
+        ta = $('sample'); //文本框
+
+    /**
+    * 每次按键盘后延时1秒保存
+    */
+    FYE.on(ta, 'keydown', function() {
+        try { clearTimeout(_saveINTV); } catch (e) { }
+        _saveINTV = setTimeout(function() {
+            if (FD.SWFStore.setItem('text', ta.value)) {
+                info('已保存于 ' + (new Date()));
+            }
+        }, 1000);
+    })
+
+    /**
+    * 本地存储引擎初始化完毕
+    */
+    STORE.on('engineReady', function() {
+        if (ta.value == '') {
+            //读取上次存的数据
+            ta.value = FD.SWFStore.getItem('text');
+        }
+        info('OK');
+    });
+
+    /**
+    * 网页所在的域名不在白名单内
+    */
+    STORE.on('securityError', function() {
+        warn('无法在这个域名中使用');
+    });
+
+    /**
+    * 超时或其他错误
+    */
+    STORE.on('error', function() {
+        warn('无法使用Flash本地存储功能');
+    });
+
+    /**
+    * 初始化
+    * 改用这个Flash，在aliued.cn域名下能使用
+    */
+    STORE.init({
+        swfUrl: '/fdevlib/static/flash/swfstore-with-ued.swf'
+    });
+});
+
+function info(msg) {
+    $('info').innerHTML = msg;
+}
+
+function warn(msg) {
+    info(msg);
+    $D.setStyle('info', 'color', '#F00');
+}
+
+					</pre>
+				</div>			
+			</div>
+			
+		</div>
+		<div id="ft">
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+	
+	<script>
+
+        /** 
+        * Flash数据存储实例
+        * 功能:
+        * 1.刷新页面时自动载入上次保存的文字
+        * 2.当文字有变化时，延迟1秒后保存到Flash存储
+        */
+
+	    FYE.onDOMReady(function() {
+
+	        dp.SyntaxHighlighter.HighlightAll('code'); //代码高亮
+
+	        info('正在加载Flash本地存储引擎...');
+
+	        var STORE = FD.SWFStore,
+                ta = $('sample');
+
+	        FYE.on(ta, 'keydown', function() {
+	            try { clearTimeout(_saveINTV); } catch (e) { }
+	            _saveINTV = setTimeout(function() {
+	                if (FD.SWFStore.setItem('text', ta.value)) {
+	                    info('已保存于 ' + (new Date()));
+	                }
+	            }, 1000);
+	        })
+
+	        STORE.on('engineReady', function() {
+	            if (ta.value == '') {
+	                ta.value = FD.SWFStore.getItem('text');
+	            }
+	            info('OK');
+	        });
+
+	        STORE.on('securityError', function() {
+	            warn('无法在这个域名中使用');
+	        });
+
+	        STORE.on('error', function() {
+	            warn('无法使用Flash本地存储功能');
+	        });
+
+	        STORE.init({
+	            swfUrl: '/fdevlib/static/flash/swfstore-with-ued.swf'
+	        });
+
+
+	    });
+
+        function info(msg) {
+            $('info').innerHTML = msg;
+        }
+
+        function warn(msg) {
+            info(msg);
+	        $D.setStyle('info', 'color', '#F00');
+        }
+        
+	</script>
+</body>
+</html>

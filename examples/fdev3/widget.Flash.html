@@ -1,0 +1,388 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: Flash</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+    <style>
+        .ep-flash { float:left; }
+    </style>
+    <script>
+(function(){
+	ImportJavscript = {
+		url:function(url){
+			document.write("<script type=\"text/javascript\" src=\""+url+"\"></scr"+"ipt>");
+		}
+	}
+})();
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shCore.js");
+ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shLegacy.js");
+ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shBrushXml.js");
+ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shBrushCss.js");
+ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shBrushJScript.js");
+ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shBrushAS3.js");
+ImportJavscript.url("/fdevlib/static/js/fdev3.js");
+    </script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/flash/flash-min.js"></script> 
+</head>
+<body>
+	<div id="doc">
+		<div id="hd">
+			<h1>fdevlib-example: Flash 嵌入与通信</h1>
+		</div>
+		<div id="bd">
+			<div class="layout">
+				<div class="main">
+					<h2>1、最简单Flash </h2>
+					<div class="ep-flash clr">
+						<div id="swf1" style="width:300px; height:200px;">
+						</div>					
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:html"><!-- 放置Flash的容器 -->
+<div id="swf1" style="width:300px; height:200px;"></div>
+
+&lt;script>
+    var flah = new FD.widget.Flash('swf1',{
+        url: '/fdevlib/static/flash/simpleswf.swf'
+    });
+&lt;/script>
+
+					</pre>
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>2、以document.write方式生成Flash （好处是不需要等到DOMReady之后）</h2>
+					<div class="ep-flash clr">
+						<div id="swf2" style="width:300px; height:200px;">
+						    <script>
+						        FD.widget.Flash.init(null, {
+                                    url:'/fdevlib/static/flash/simpleswf.swf'
+						        })
+						        .write();
+						    </script>
+						</div>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:html"><!-- 放置Flash的容器 -->
+<div id="swf2" style="width:300px; height:200px;">
+    &lt;script>
+        FD.widget.Flash.init(null, {
+            url: '/fdevlib/static/flash/simpleswf.swf'
+        })
+        .write();
+    &lt;/script>
+</div>
+					</pre>				
+				</div>			
+			</div>
+			<div class="layout">
+				<div class="main">
+					<h2>3、通过flashvars参数，将数据传递给Flash。Flash在开始运行的时候就可以接收到这些数据。</h2>
+					以优酷视频为例。在页面上插入优酷视频flash时，需要为这个flash提供一个叫做videoId的参数，flash根据这个videoId向服务器下载对应的视频内容。先看一下不提供这个参数会怎样：
+					<div class="ep-flash clr">
+					
+						<div id="yk_no_vid"></div>
+						
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">		
+		                //插入一个优酷的视频flash
+		                FD.widget.Flash.init('yk_no_vid', {
+		                    url: 'http://static.youku.com/v1.0.0057/v/swf/qplayer.swf',
+		                    width: 330, height: 300
+		                });
+		                
+					</pre>				
+				</div>			
+			</div>
+			
+			<div class="layout">
+			    <div class="main">
+			        利用flashvars加入运行参数后的，这个flash就可以正常工作了：
+					<div class="ep-flash clr">
+					
+						<div id="yk_with_vid"></div>
+						
+					</div>
+			    </div>
+			    <div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">		
+		                //插入一个优酷的视频flash
+		                FD.widget.Flash.init('yk_no_vid', {
+		                    url: 'http://static.youku.com/v1.0.0057/v/swf/qplayer.swf',
+		                    width: 330, height: 300,
+		                    flashvars: {
+		                        //这些参数会传到Flash中，Flash程序会进行处理
+		                        VideoIDS: '23063688',  //这个ID对应的影片是《国王新传》 
+		                        isAutoPlay: false, 
+		                        Version: '/v1.0.0461', 
+		                        winType: 'interior'
+		                    }
+		                });
+		                
+					</pre>		
+			    </div>
+			</div>
+			
+			<div class="layout">
+			    <div class="main">
+			        <h2>4、Flash与JS的相互通信</h2>
+					<div class="ep-flash clr">
+					
+						<div id="swf3"></div>
+						以下为HTML内容：
+						<div id="test3-html-control"></div>
+						
+					</div>
+			    </div>
+			    <div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+	                //创建一个Flash
+	                _flash =  FD.widget.Flash.init('swf3', {
+	                    url: '/fdevlib/static/flash/miniapp.swf',
+	                    width: 330, height: 300
+	                });
+
+	                $('test3-html-control').innerHTML = '\
+							          <p>\
+							              方块当前坐标：\
+								          <input type="text" id="xtf" style="width:50px" />\
+								          <input type="text" id="ytf" style="width:50px" /><br/>\
+								          <input type="button" id="set-btn" value="随机设置方块的坐标" />\
+							          </p>';
+							          
+	                //处理来自Flash的事件
+	                _flash.on('dragging', function(evt) {
+	                    $('xtf').value = evt.x;
+	                    $('ytf').value = evt.y;
+	                });
+	                
+	                //用JS控制Flash的内容
+	                FYE.on('set-btn', 'click', function(evt) {
+	                    _flash.getFlash().setDragPosition(Math.random() * 250, Math.random() * 250);
+	                });
+	                
+					</pre>	
+					
+					<h2>Flash程序：</h2>
+					<pre class="brush:as3">package  
+{
+	import cn.alibaba.core.BasicApplication;
+	import flash.display.Graphics;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.external.ExternalInterface;
+	import flash.geom.Rectangle;
+	import flash.text.TextField;
+	
+	/**
+	 * Flash与JS通信的简单实例
+	 * @author qhwa, http://china.alibaba.com
+	 */
+	public class MiniApplication extends BasicApplication
+	{
+		public var W:int = 300;
+		public var H:int = 200;
+		
+		private var _mc:Sprite = new Sprite();
+		private var _dragging:Boolean = false;
+		private var _tf:TextField = new TextField();
+		
+		public function MiniApplication() 
+		{
+		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Public Functions		
+		
+		/**
+		 * 设置黄色方块的坐标
+		 * @param	x	Number
+		 * @param	y	Number
+		 */
+		public function setPosition(x:Number=0, y:Number=0):void
+		{
+			_mc.x = x;
+			_mc.y = y;
+			
+			updateText();
+		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Private Functions
+		
+		override protected function initApplication():void 
+		{
+			//ui
+			stage.scaleMode = "noScale";
+			stage.align = "TL";
+			
+			//画一个黄色方块
+			var g:Graphics = _mc.graphics;
+			g.lineStyle(0, 0xF5C428);
+			g.beginFill(0xF9EF6B);
+			g.drawRect(0, 0, 50, 50);
+			g.endFill();
+			
+			//添加拖动事件处理
+			_mc.addEventListener(MouseEvent.MOUSE_DOWN, msDownHandler);
+			stage.addEventListener(MouseEvent.MOUSE_UP, msUpHandler);
+			_mc.addEventListener(MouseEvent.MOUSE_MOVE, msMoveHandler);
+			_mc.x = _mc.y = 1;
+			_mc.buttonMode = true;
+			addChild(_mc);
+			
+			_tf.text = "拖动黄色方块看看";
+			_tf.selectable = false;
+			addChild(_tf);
+			
+			//添加给外部调用的接口
+			if(ExternalInterface.available){
+				ExternalInterface.addCallback("setDragPosition", setPosition);
+			}
+			
+			
+			stage.addEventListener(Event.RESIZE, relayOut);
+			relayOut();
+			
+		}
+		
+		private function updateText():void
+		{
+			_tf.text = "x:" + _mc.x + ", y:" + _mc.y;
+		}
+		
+		private function relayOut(e:Event=null):void 
+		{			
+			W = stage.stageWidth -1;
+			H = stage.stageHeight -1;
+			
+			//background
+			var g:Graphics = this.graphics;
+			g.clear();
+			g.lineStyle(0, 0x368AC8);
+			g.beginFill(0xE1EEF9);
+			g.drawRect(0, 0, W, H);
+			g.endFill();
+			
+			_tf.x = 5;
+			_tf.y = H - 20;
+			
+		}
+		
+		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		// Event Handlers		
+		
+		private function msMoveHandler(e:MouseEvent = null):void 
+		{	
+			if(_dragging){
+				var evt:Object = { };
+				evt.type = "dragging";
+				evt.x = _mc.x;
+				evt.y = _mc.y;
+				this.dispatchEventToJavascript(evt);
+				
+				updateText();
+			}
+		}
+		
+		private function msUpHandler(e:MouseEvent):void 
+		{
+			if(_dragging){
+				_mc.stopDrag();
+				_dragging = false;
+				this.dispatchEventToJavascript( { type: "dragStop"} );
+				e.updateAfterEvent();			
+			}
+		}
+		
+		private function msDownHandler(e:MouseEvent):void 
+		{
+			var rect:Rectangle = new Rectangle(1, 1, W-_mc.width-2, H-_mc.height-2);
+			_mc.startDrag(false, rect);
+			_dragging = true;
+			this.dispatchEventToJavascript( { type: "dragStart"} );
+		}
+		
+		
+		
+	}
+
+}
+					</pre>	
+			    </div>
+			</div>
+			
+		</div>
+		<div id="ft">
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+	
+	<script>
+	//Dom树构建完毕后开始执行
+	    $E.onDOMReady(function() {
+	        dp.SyntaxHighlighter.HighlightAll('code'); //代码高亮
+
+	        new FD.widget.Flash('swf1', {
+	            url: '/fdevlib/static/flash/simpleswf.swf'
+	        });
+
+	        //插入一个优酷的视频flash （无参数）
+	        FD.widget.Flash.init('yk_no_vid', {
+	            url: 'http://static.youku.com/v1.0.0057/v/swf/qplayer.swf',
+	            width: 330, height: 300
+	        });
+
+	        //插入一个优酷的视频flash （带参数）
+	        FD.widget.Flash.init('yk_with_vid', {
+	            url: 'http://static.youku.com/v1.0.0057/v/swf/qplayer.swf',
+	            width: 330, height: 300,
+	            flashvars: {
+	                VideoIDS: '23063688', isAutoPlay: false, Version: '/v1.0.0461', winType: 'interior'
+	            }
+	        });
+
+
+	        //创建一个Flash
+	        _flash = FD.widget.Flash.init('swf3', {
+	            url: '/fdevlib/static/flash/miniapp.swf',
+	            width: 330, height: 300,
+	            id: 'app-swf'
+	        });
+
+	        $('test3-html-control').innerHTML = '\
+							  <p>\
+							      方块当前坐标：\
+								  <input type="text" id="xtf" style="width:50px" />\
+								  <input type="text" id="ytf" style="width:50px" /><br/>\
+								  <input type="button" id="set-btn" value="随机设置方块的坐标" />\
+							  </p>';
+							  
+	        //处理来自Flash的事件
+	        _flash.on('dragging', function(evt) {
+	            $('xtf').value = evt.x;
+	            $('ytf').value = evt.y;
+	        });
+	        
+	        //用JS控制Flash的内容
+	        FYE.on('set-btn', 'click', function(evt) {
+	            _flash.getFlash().setDragPosition(Math.random() * 250, Math.random() * 250);
+	        });
+	    });
+	</script>
+</body>
+</html>

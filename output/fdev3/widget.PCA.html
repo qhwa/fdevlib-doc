@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.PCA</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/cascade/pcaData1.js"></script>
+    <script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/cascade/pca-min.js"></script>
+    <script type="text/javascript">
+        FYE.onDOMReady(function() {
+            new FD.widget.PCA(FYS('select','demo1'),{
+                store: FD.widget.PCAStore,
+                vals: ['330000','330100','330108'],
+                onPSelected: function() {
+                    var op=this.options[this.selectedIndex];
+                    alert('text:'+op.text+' value:'+op.value);
+                },
+                onCSelected: function() {
+                    var op=this.options[this.selectedIndex];
+                    alert('text:'+op.text+' value:'+op.value);
+                },
+                onASelected: function() {
+                    var op=this.options[this.selectedIndex];
+                    alert('text:'+op.text+' value:'+op.value);
+                }
+            });
+            new FD.widget.PCA(FYS('select','demo2'),{
+                showTitle: false,
+                vals: ['330000','330100','330108'],
+                //texts: ['浙江省','杭州市','滨江区'],
+                store: FD.widget.PCAStore
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>cascade 系列一：固定数据，1/2/3级联动</h2>
+        <p>最多支持3级联动</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>version 2.0.1 优化逻辑，修复BUG</li>
+            <li>version 2.0.2 添加通过text初始化下拉的配置项</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>开始：</h3>
+        如果你想使用cascade系列的pca组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+/*下拉框数据源，可以通过其他方式载入，需要在初始化组件的时候进行store配置项的配置*/
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/cascade/pcaData1.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/cascade/pca-min.js");
+	    </pre>
+        <h3>使用说明</h3>
+        <p>1、本组件所需HTML结构很简单，只需要select标签即可：
+            <pre class="brush:html;">
+            <select>
+            </select>
+            <select>
+            </select>
+            <select>
+            </select>
+	    </pre>
+        </p>
+        <p>2、组件调用方法如下：初始化是需要提供2个参数，第一个参数为select的数组DOM对象(必填)；第二个参数为配置对象(将覆盖默认的参数设定):
+            <pre class="brush:js;">
+var pca=new FD.widget.PCA([p,c,a],{  
+   vals: ['330000','330100','330106'],  //初始值，必须匹配数据级联关系
+   //texts: ['浙江省','杭州市','滨江区'], //初始值，值或文本初始值两者存一
+   showTitle: true,    //是否显示标题
+   title: ['--请选择--','--请选择--','--请选择--'],           
+   store: FD.widget.PCAStore,   //级联数据
+   onPSelected: function() {    //第一个下拉框选项变动后触发 this指向下拉框本身
+   },  
+   onCSelected: function() {    //第二个下拉框选项变动后触发 this指向下拉框本身
+   },  
+   onASelected: function() {    //第三个下拉框选项变动后触发 this指向下拉框本身
+   }  
+});  
+        </pre>
+        </p>
+        <h3>配置参数列表</h3>
+        <table class="g-paramtable">
+            <thead>
+                <tr>
+                    <th>配置参数</th>
+                    <th>参数可选值</th>
+                    <th>作用说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>vals</td>
+                    <td>Array</td>
+                    <td>下拉框初始值，对应option的value值。（['330000','330100','330106']）</td>
+                </tr>
+                <tr class="even">
+                    <td>texts</td>
+                    <td>Array</td>
+                    <td>下拉框初始值，对应option的text值，不可同时设置vals参数。（['浙江省','杭州市','滨江区']）</td>
+                </tr>
+                <tr>
+                    <td>showTitle</td>
+                    <td>true | false</td>
+                    <td>是否显示下拉框的默认标题项</td>
+                </tr>
+                <tr class="even">
+                    <td>title</td>
+                    <td>Array</td>
+                    <td>默认标题项的文本值。（['--请选择--','--请选择--','--请选择--']）</td>
+                </tr>
+                <tr>
+                    <td>store</td>
+                    <td>Array</td>
+                    <td>必需设置，下拉数据来源，格式请参考pcaData1.js</td>
+                </tr>
+                <tr class="even">
+                    <td>onPSelected</td>
+                    <td>Function</td>
+                    <td>第一个下拉框触发change时间时触发此方法，this指针指向select本身。</td>
+                </tr>
+                <tr>
+                    <td>onCSelected</td>
+                    <td>Function</td>
+                    <td>第二个下拉框触发change时间时触发此方法，this指针指向select本身。</td>
+                </tr>
+                <tr class="even">
+                    <td>onASelected</td>
+                    <td>Function</td>
+                    <td>第三个下拉框触发change时间时触发此方法，this指针指向select本身。</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Demo演示</h3>
+        <div id="demo1" class="g-demo">
+            <select>
+            </select>
+            <select>
+            </select>
+            <select>
+            </select>
+        </div>
+        js:
+        <!--<textarea name="code" class="js:collapse" cols="" rows="">-->
+        <pre class="brush:js;">
+new FD.widget.PCA(FYS('select','demo1'),{
+    store: FD.widget.PCAStore,
+    onPSelected: function() {
+        var op=this.options[this.selectedIndex];
+        alert('text:'+op.text+' value:'+op.value);
+    },
+    onCSelected: function() {
+        var op=this.options[this.selectedIndex];
+        alert('text:'+op.text+' value:'+op.value);
+    },
+    onASelected: function() {
+        var op=this.options[this.selectedIndex];
+        alert('text:'+op.text+' value:'+op.value);
+    }
+});
+        </pre>
+        <div id="demo2" class="g-demo">
+            <select>
+            </select>
+            <select>
+            </select>
+            <select>
+            </select>
+        </div>
+        js:
+        <!--<textarea name="code" class="js:collapse" cols="" rows="">-->
+        <pre class="brush:js;">
+new FD.widget.PCA(FYS('select','demo2'),{
+    showTitle: false,
+    //vals: ['330000','330100','330108'],
+    texts: ['浙江省','杭州市','滨江区'],
+    store: FD.widget.PCAStore
+});
+        </pre>
+        <h3>提建议给开发者</h3>
+        作者：施丹侠<br />
+        邮件：<a href="mailto:danxia.shidx@alibaba-inc.com">danxia.shidx@alibaba-inc.com</a><br />
+        旺旺：swainet
+    </div>
+</body>
+</html>

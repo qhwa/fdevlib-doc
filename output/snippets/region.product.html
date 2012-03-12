@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Product</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .product-a li { float: left; padding: 4px; width: 100px; background-color: #EEF3FA; }
+        .product-a dt img { display: block; }
+        .product-a .cny { font-family: Helvetica; }
+        .product-a .price { color: #333; }
+        .product-a .describe { color: #666; }
+        .product-b li { float: left; padding: 4px; width: 300px; height: 128px; background-color: #EEF3FA; }
+        .product-b dt { float: left; }
+        .product-b dl, .product-b dt { height: 100%; }
+        .product-b dt { width: 100px; }
+        .product-b .cny { font-family: Helvetica; }
+        .product-b .price { color: #333; }
+        .product-b .describe { color: #666; }
+        .product-c li { float: left; padding: 4px; width: 100px; background-color: #EEF3FA; }
+        .product-c dt { width: 100px; height: 100px; overflow: hidden; line-height: 1; }
+        .product-c dt a { display: table-cell; vertical-align: middle; text-align: center; width: 100px; height: 100px; *display:block;*font-family:Arial;*font-size:88px;}
+        .product-c dt img { vertical-align: middle; }
+        .product-c .cny { font-family: Helvetica; }
+        .product-c .price { color: #333; }
+        .product-c .describe { color: #666; }
+    </style>
+    <script type="text/javascript">
+        /*
+        * auto resize image
+        * @param    img     img obj
+        * @param    w       custom width
+        * @param    h       custom height
+        */
+        var resizeImage=function(img,w,h) {
+            img.removeAttribute("width");
+            img.removeAttribute("height");
+            var pic;
+            if(window.ActiveXObject) {
+                var pic=new Image();
+                pic.src=img.src;
+            } else pic=img;
+            if(pic&&pic.width&&pic.height&&w) {
+                if(!h) h=w;
+                if(pic.width>w||pic.height>h) {
+                    var scale=pic.width/pic.height,fit=scale>=w/h;
+                    if(window.ActiveXObject) img=img.style;
+                    img[fit?'width':'height']=fit?w:h;
+                    if(window.ActiveXObject) img[fit?'height':'width']=(fit?w:h)*(fit?1/scale:scale);
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Product：产品展示</h2>
+    </div>
+    <div class="g-detail">
+        <h3>product-a：固定大小图片，纵向产品展示（谢谢汉军友情赞助）</h3>
+        <div class="g-demo">
+            <ul class="product-a" data-sp="product-a">
+                <li>
+                    <dl>
+                        <dt><a href="javascript:;"><img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="100" height="100" width="100" height="100" onload="resizeImage(this,100)" /><span>Product Title</span></a></dt>
+                        <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+                        <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+                        <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+                        <dd class="describe">Product Describe<br />
+                            Product Describe<br />
+                            Product Describe<br />
+                            Product Describe </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><a href="javascript:;"><img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="100" height="100" onload="resizeImage(this,100)" /><span>Product Title</span></a></dt>
+                        <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+                        <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+                        <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+                        <dd class="describe">Product Describe<br />
+                            Product Describe<br />
+                            Product Describe<br />
+                            Product Describe </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+        <dl class="product-a" data-sp="product-a">
+            <dt>
+                <a href="javascript:;">
+                    <img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="100" height="100"<!-- onload="resizeImage(this,100)"--> />
+                    <span>Product Title</span>
+                </a>
+            </dt>
+            <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+            <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+            <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+            <dd class="describe">
+                Product Describe<br />
+                Product Describe<br />
+                Product Describe<br />
+                Product Describe
+            </dd>
+        </dl>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .product-a li { float: left; padding: 4px; width: 100px; background-color: #EEF3FA; }
+        .product-a dt img { display: block; }
+        .product-a .cny { font-family: Helvetica; }
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>product-b：固定大小图片，横向产品展示（谢谢汉军友情赞助）</h3>
+        <div class="g-demo">
+            <ul class="product-b" data-sp="product-b">
+                <li>
+                    <dl>
+                        <dt><a href="javascript:;"><img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="100" height="100" onload="resizeImage(this,100)" /></a></dt>
+                        <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+                        <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+                        <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+                        <dd class="describe">Product Describe<br />
+                            Product Describe<br />
+                            Product Describe<br />
+                            Product Describe </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><a href="javascript:;"><img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="100" height="100" onload="resizeImage(this,100)" /></a></dt>
+                        <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+                        <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+                        <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+                        <dd class="describe">Product Describe<br />
+                            Product Describe<br />
+                            Product Describe<br />
+                            Product Describe </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+        <dl class="product-b" data-sp="product-b">
+            <dt><a href="javascript:;"><img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="100" height="100" onload="resizeImage(this,100)" /></a></dt>
+            <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+            <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+            <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+            <dd class="describe">
+                Product Describe<br />
+                Product Describe<br />
+                Product Describe<br />
+                Product Describe
+            </dd>
+        </dl>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .product-b li { float: left; padding: 4px; width: 300px; height: 128px; background-color: #EEF3FA; }
+        .product-b dt { float: left; }
+        .product-b dl, .product-b dt { height: 100%; }
+        .product-b dt { width: 100px; }
+        .product-b .cny { font-family: Helvetica; }
+        .product-b .price { color: #333; }
+        .product-b .describe { color: #666; }
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>product-c：非固定大小图片，图片水平垂直居中</h3>
+        <div class="g-demo">
+            <ul class="product-c" data-sp="product-c">
+                <li>
+                    <dl>
+                        <dt><a href="javascript:;"><img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="50" height="50" onload="resizeImage(this,50)" /></a></dt>
+                        <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+                        <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+                        <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+                        <dd class="describe">Product Describe<br />
+                            Product Describe<br />
+                            Product Describe<br />
+                            Product Describe </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt><a href="javascript:;"><img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="50" height="50" onload="resizeImage(this,50)" /></a></dt>
+                        <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+                        <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+                        <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+                        <dd class="describe">Product Describe<br />
+                            Product Describe<br />
+                            Product Describe<br />
+                            Product Describe </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+        <dl class="product-c" data-sp="product-c">
+            <dt><a href="javascript:;"><img alt="" src="/fdevlib/static/img/output/SP.Region.Product1.jpg" width="50" height="50" onload="resizeImage(this,50)" /></a></dt>
+            <dd class="title"><a href="javascript:;" title="Product Title">Product Title</a></dd>
+            <dd class="price"><span class="cny">&yen;</span><em>123.45</em></dd>
+            <dd class="price"><del>原价<span class="cny">&yen;</span>543.21</del></dd>
+            <dd class="describe">
+                Product Describe<br />
+                Product Describe<br />
+                Product Describe<br />
+                Product Describe
+            </dd>
+        </dl>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .product-c li { float: left; padding: 4px; width: 100px; background-color: #EEF3FA; }
+        .product-c dt { width: 100px; height: 100px; overflow: hidden; line-height: 1; }
+        /*TODO: a 的 font-size 是根据高度计算的 公式为 size=(0.875*height).toFixed(0) */
+        .product-c dt a { display: table-cell; vertical-align: middle; text-align: center; width: 100px; height: 100px; *display:block;*font-family:Arial;*font-size:88px;}
+        .product-c dt img { vertical-align: middle; }
+        .product-c .cny { font-family: Helvetica; }
+        .product-c .price { color: #333; }
+        .product-c .describe { color: #666; }
+        </pre>
+    </div>
+</body>
+</html>

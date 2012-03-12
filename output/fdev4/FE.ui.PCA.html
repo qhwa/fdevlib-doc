@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.ui.PCA</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>FE.ui.PCA : 省市区三级联动菜单</h1>
+            
+            <h2>介绍</h2>
+            <p>
+                该插件提供省市区三级联动菜单，最多支持3级联动
+            </p>
+            
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    施丹侠：创建
+                </li>
+                <li>
+                    倪朱国：修改----2011.11.4
+                </li>
+            </ul>
+            
+            <h2>开始</h2>
+            <pre class="prettyprint language-html">
+&lt;!--HTML--&gt;
+&lt;!--本组件所需的HTML结构很简单，只需要select标签即可：--&gt;
+&lt;select&gt;&lt;/select&gt;
+&lt;select&gt;&lt;/select&gt;
+&lt;select&gt;&lt;/select&gt;</pre>
+            <pre class="prettyprint language-js">
+// JavaScript
+// 模块动态载入
+jQuery(function($){
+    $.add("web-pca-data",{
+        requires: ["web-pca"],
+        js: ["http://" + $.styleDomain + "/js/lib/fdev-v4/widget/web/pca-data-min.js"]
+    });
+    $.use('web-pca-data',function(){
+        // 组件调用方法如下：初始化时需要提供2个参数，
+        // 第一个参数为select的数组DOM对象（必填），
+        // 第二个参数为配置对象（将覆盖默认的参数设定）。
+        var pca=new FE.ui.PCA([p,c,a],{  
+            vals: ['330000','330100','330106'],  //初始值，必须匹配数据级联关系
+            //texts: ['浙江省','杭州市','滨江区'], //初始值，值或文本初始值两者存一
+            showTitle: true,    //是否显示标题
+            title: ['--请选择--','--请选择--','--请选择--'],           
+            store: FE.ui.PCA.data,   //级联数据
+            onPSelected: function() {    //第一个下拉框选项变动后触发 this指向下拉框本身
+            },  
+            onCSelected: function() {    //第二个下拉框选项变动后触发 this指向下拉框本身
+            },  
+            onASelected: function() {    //第三个下拉框选项变动后触发 this指向下拉框本身
+            }  
+        });  
+          
+    });
+});</pre>
+            
+            <h2>Demo</h2>
+            <p>
+                <a href="../../examples/fdev4/FE.ui.PCA.html">Try it</a>
+            </p>
+            
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>vals</b> : Array</dt>
+                <dd>Default : []</dd>
+                <dd>下拉框初始值，对象option的value值。 例如：</dd>
+                <dd>['330000', '330100', '330106']</dd>
+            </dl>
+            <dl>
+                <dt><b>texts</b> : Array</dt>
+                <dd>Default : []</dd>
+                <dd>下拉框初始值，对应option的text值，不可同时设置vals参数。例如:</dd>
+                <dd>['浙江省', '杭州市', '滨江区']</dd>
+            </dl>
+            <dl>
+                <dt><b>showTime</b> : Boolean</dt>
+                <dd>Default : true</dd>
+                <dd>是否显示下拉框的默认标题项</dd>
+            </dl>
+            <dl>
+                <dt><b>title</b> : Array</dt>
+                <dd>Default : ['--请选择--', '--请选择--', '--请选择--']</dd>
+                <dd>默认标题项的文本值</dd>
+            </dl>
+            <dl>
+                <dt><b>store</b> : Array</dt>
+                <dd>Default : null</dd>
+                <dd>必须设置，下拉数据来源，格式请参考<a href="http://style.china.alibaba.com/js/lib/fdev-v4/widget/web/pca-data.js" target="_blank">pca-data.js</a></dd>
+            </dl>
+
+            <h2>Events</h2>
+            <dl>
+                <dt><b>onPSelected</b> : Function</dt>
+                <dd>第一个下拉框出发change事件时触发此方法，this指针指向slect本身</dd>
+            </dl>
+            <dl>
+                <dt><b>onCSelected</b> : Function</dt>
+                <dd>第二个下拉框出发change事件时触发此方法，this指针指向slect本身</dd>
+            </dl>
+            <dl>
+                <dt><b>onASelected</b> : Function</dt>
+                <dd>第三个下拉框出发change事件时触发此方法，this指针指向slect本身</dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js"></script>
+    </body>
+</html>

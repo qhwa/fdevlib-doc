@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>SP.Region.Paging</title>
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+        <style type="text/css">        
+            .paging-a li {
+                float: left;
+                padding: 0 2px;
+                color: #666;
+                font-family: Tahoma;
+            }
+            
+            .paging-a input {
+                margin: 0 2px;
+                padding: 3px 2px;
+                width: 30px;
+                height: 14px;
+                border: solid 1px #A8ACAD;
+                background: #FFF url(http://img.china.alibaba.com/images/trade/quotation/100426/bg1.gif) repeat-x;
+                line-height: 1.2;
+                text-align: right;
+                *margin-top: -1px;
+                * margin-bottom: -1px;
+            }
+            
+            .paging-a .pagination a {
+                display: block;
+                float: left;
+                margin-right: 3px;
+                padding: 0 4px;
+                min-width: 12px;
+                _width: 12px;
+                height: 20px;
+                border: solid 1px #CCC;
+                color: #06C;
+                text-decoration: none !important;
+                line-height: 1.6;
+                text-align: center;
+                word-break: keep-all;
+            }
+            
+            .paging-a .pagination a:hover {
+                border-color: #FF7300;
+                color: #FF7300;
+            }
+            
+            .paging-a .pagination a.omit, .paging-a .pagination a.indic {
+                padding: 1px 4px;
+                border: 0 none;
+                color: #666 !important;
+                cursor: default;
+            }
+            
+            .paging-a .pagination a.current {
+                border-color: #FFF !important;
+                font-weight: bold;
+                color: #FF7300 !important;
+                cursor: default;
+            }
+            
+            .paging-a .pagination a.pre, .paging-a .pagination a.pre-disabled, .paging-a .pagination a.next, .paging-a .pagination a.next-disabled {
+                background: url(http://img.china.alibaba.com/images/trade/quotation/100426/icon2.gif) no-repeat;
+            }
+            
+            .paging-a .pagination a.pre {
+                width: 10px;
+                background-position: 6px 5px;
+            }
+            
+            .paging-a .pagination a.pre:hover {
+                border-color: #FF7300;
+                background-position: 6px -15px;
+            }
+            
+            .paging-a .pagination a.pre-disabled {
+                width: 10px;
+                border-color: #CCC !important;
+                background-position: 6px -35px;
+                color: #CCC;
+                cursor: default;
+            }
+            
+            .paging-a .pagination a.next {
+                padding-right: 16px;
+                background-position: 45px -55px;
+            }
+            
+            .paging-a .pagination a.next:hover {
+                border-color: #FF7300;
+                background-position: 45px -75px;
+            }
+            
+            .paging-a .pagination a.next-disabled {
+                padding-right: 16px;
+                border-color: #CCC !important;
+                background-position: 45px -95px;
+                color: #CCC !important;
+                cursor: default;
+            }
+            
+            .paging-a .pagination span {
+                padding: 0 4px;
+            }
+            
+            .btn-b {
+                display: block;
+                float: left;
+                overflow: hidden;
+                height: 22px;
+                text-decoration: none !important;
+            }
+            
+            .btn-b span {
+                display: block;
+                float: left;
+                height: 22px;
+                background: url(http://img.china.alibaba.com/images/trade/quotation/100426/btn1.png) no-repeat;
+                cursor: pointer;
+            }
+            
+            .btn-b .btn-l {
+                padding-left: 2px;
+                background-position: left top;
+            }
+            
+            .btn-b .btn-r {
+                width: 2px;
+                background-position: right top;
+            }
+            
+            .btn-b button {
+                margin: 0;
+                padding: 0;
+                outline: none;
+                border: 0 none;
+                background: none;
+                cursor: pointer;
+                *margin-left: -8px;
+                * margin-right: -8px;
+            }
+            
+            .btn-b em {
+                padding: 0 8px;
+                font: normal 12px \5B8B\4F53; color: #333 !important; line-height: 1.8; }
+                                .btn-b:hover .btn-l { background-position: left -22px; }
+                                .btn-b:hover .btn-r { background-position: right -22px; }
+                                .btn-b-disabled .btn-l { background-position: left top !important; }
+                                .btn-b-disabled .btn-r { background-position: right top !important; }
+                                .btn-b-disabled em { color: #999 !important; }
+                                .paging-a { margin-top: 8px; }
+                            
+                    
+        </style>
+        <script type="text/javascript">
+            //paging
+            var Paging = function(paging, configs){
+                this.pagination = FYS('li.pagination', paging, true);
+                this.pagem = FYS('em', paging, true);
+                this.pagenum = FYS('input', paging, true);
+                this.pagesubmit = FYS('a.btn-b', paging, true);
+                this.configs = configs || {};
+            };
+            Paging.prototype = {
+                init: function(cur, total){
+                    //valid page number
+                    var pnReg = /^[1-9]\d*$/, pnCache = ''
+                    function vPn(){
+                        if (this.value) {
+                            if (pnReg.test(this.value)) {
+                                pnCache = this.value;
+                            }
+                            else this.value = pnCache;
+                        }
+                        else pnCache = '';
+                        
+                    }
+                    FYE.on(this.pagenum, 'focus', function(){
+                        this.select();
+                    });
+                    FYE.on(this.pagenum, 'keydown', function(e, scope){
+                        if (e.keyCode && e.keyCode == 13) {
+                            scope.pagesubmit.click();
+                            this.select();
+                        }
+                    }, this);
+                    FYE.on(this.pagenum, 'keyup', vPn);
+                    FYE.on(this.pagenum, 'blur', vPn);
+                    //jump event handler
+                    FYE.on(this.pagesubmit, 'click', function(e, scope){
+                        if (!scope.pagenum.value) 
+                            return;
+                        var num = (scope.pagenum.value || 0) * 1, max = scope.pagenum.max * 1;
+                        if (num > max) 
+                            num = max;
+                        scope.render.call(scope, num, max);
+                    }, this);
+                    //render
+                    this.render(cur, total);
+                },
+                /*
+                 *   creat page info
+                 *   @param  cur         index of page from 1
+                 *   @param  total       total page number from 1
+                 *   @param  pagination   dom that render paging
+                 */
+                render: function(cur, total){
+                    if (cur < 1) 
+                        cur = 1;
+                    if (total < 1) 
+                        total = 1;
+                    if (cur > total) 
+                        cur = total;
+                    var html = [], pre, next;
+                    //total page
+                    this.pagem.innerHTML = total;
+                    this.pagenum.max = total;
+                    
+                    if (cur == 1) {
+                        html.push('<a class="pre-disabled" href="javascript:;">&nbsp;</a>');
+                        html.push('<a class="current" href="javascript:;">1</a>');
+                    }
+                    else {
+                        html.push('<a class="pre" href="javascript:;" page="' + (cur - 1) + '">&nbsp;</a>');
+                        html.push('<a href="javascript:;" page="1">1</a>');
+                    }
+                    if (total > 1) {
+                        if (cur > 4 && total > 7) 
+                            html.push('<a class="omit" href="javascript:;">...</a>');
+                        //cur==1?
+                        if (cur < 3) {
+                            pre = 0;
+                            next = cur == 1 ? 5 : 4;
+                            if (cur + next > total) 
+                                next = total - cur;
+                        }
+                        else if (cur == 3) {
+                            pre = 1;
+                            next = 3;
+                            if (cur + next > total) 
+                                next = total - cur;
+                        }
+                        else {
+                            pre = 2;
+                            next = 2;
+                            if (cur + next > total) 
+                                next = total - cur;
+                            pre = 4 - next;
+                            if (cur + 3 > total) 
+                                pre++;
+                            if (cur - pre < 2) 
+                                pre = cur - 2;
+                        }
+                        
+                        for (var i = pre; 0 < i; i--) 
+                            html.push('<a href="javascript:;" page="' + (cur - i) + '">' + (cur - i) + '</a>');
+                        if (cur > 1) 
+                            html.push('<a class="current" href="javascript:;">' + cur + '</a>');
+                        for (var i = 1; i < next + 1; i++) 
+                            html.push('<a href="javascript:;" page="' + (cur + i) + '">' + (cur + i) + '</a>');
+                        
+                        if (cur + next < total - 1) {
+                            html.push('<a class="omit" href="javascript:;">...</a>');
+                            html.push('<a href="javascript:;" page="' + total + '">' + total + '</a>');
+                        }
+                        if (cur + next == total - 1) 
+                            html.push('<a href="javascript:;" page="' + total + '">' + total + '</a>');
+                    }
+                    if (cur == total) 
+                        html.push('<a class="next-disabled" href="javascript:;">下一页</a>');
+                    else {
+                        html.push('<a class="next" href="javascript:;" page="' + (cur + 1) + '">下一页</a>');
+                    }
+                    this.pagination.innerHTML = html.join('');
+                    //trigger onRender
+                    if (this.configs.onRender) 
+                        this.configs.onRender.call(this);
+                    //set nomarl
+                    if (this.pagenum.value && this.pagenum.value * 1 > total) 
+                        this.pagenum.value = cur;
+                    FYE.on(FYS('a[page]', this.pagination), 'click', function(e, scope){
+                        FYE.preventDefault(e);
+                        var page = FYD.getAttribute(this, 'page') * 1;
+                        scope.render(page, total);
+                    }, this);
+                }
+            };
+            FYE.onDOMReady(function(){
+                var modPaging = new Paging(FYG('ftPaging'));
+                modPaging.init(1, 9);
+            });
+        </script>
+    </head>
+    <body>
+        <div class="g-memo">
+            <h2>Paging：分页</h2>
+        </div>
+        <div class="g-detail">
+            <h3>paging-a：大部分分页都适用 </h3>
+            <div class="g-demo">
+                <ul class="paging-a fd-clr" data-sp="paging-a">
+                    <li class="pagination">
+                        <a href="javascript:;" class="indic">12/100</a>
+                        <a href="javascript:;" class="pre">&nbsp;</a>
+                        <a page="2" href="javascript:;" class="next">下一页</a>
+                    </li>
+                </ul>
+                <ul class="paging-a fd-clr" data-sp="paging-a">
+                    <li class="pagination">
+                        <a href="javascript:;" class="pre-disabled"></a>
+                        <a href="javascript:;">1</a>
+                        <a href="javascript:;" class="omit">...</a>
+                        <a href="javascript:;">10</a>
+                        <a href="javascript:;">11</a>
+                        <a href="javascript:;" class="current">12</a>
+                        <a href="javascript:;">13</a>
+                        <a href="javascript:;">14</a>
+                        <a href="javascript:;" class="omit">...</a>
+                        <a href="javascript:;">100</a>
+                        <a href="javascript:;" class="next">下一页</a>
+                    </li>
+                    <li>
+                        共<em>100</em>页&nbsp;到<input class="pnum" type="text" maxlength="4" autocomplete="off" />页
+                    </li>
+                    <li>
+                        <a class="btn-b" href="javascript:;"><span class="btn-l"><em>确&nbsp;定</em>
+                            </span><span class="btn-r"></span></a>
+                    </li>
+                </ul>
+            </div>
+            html:<pre class="brush:html;collapse:true">
+            <ul class="paging-a fd-clr" data-sp="paging-a">
+                <li class="pagination">
+                    <a href="javascript:;" class="indic">12/100</a>
+                    <a href="javascript:;" class="pre"></a>
+                    <a href="javascript:;" class="next">下一页</a>
+                </li>
+            </ul>
+            <ul class="paging-a fd-clr" data-sp="paging-a">
+                <li class="pagination">
+                    <a href="javascript:;" class="pre-disabled"></a>
+                    <a href="javascript:;">1</a>
+                    <a href="javascript:;" class="omit">...</a>
+                    <a href="javascript:;">10</a>
+                    <a href="javascript:;">11</a>
+                    <a href="javascript:;" class="current">12</a>
+                    <a href="javascript:;">13</a>
+                    <a href="javascript:;">14</a>
+                    <a href="javascript:;" class="omit">...</a>
+                    <a href="javascript:;">100</a>
+                    <a href="javascript:;" class="next">下一页</a>
+                </li>
+                <li>共<em>100</em>页&nbsp;到<input class="pnum" type="text" maxlength="4" autocomplete="off" />页</li>
+                <li><a class="btn-b" href="javascript:;"><span class="btn-l"><em>确&nbsp;定</em></span><span class="btn-r"></span></a></li>
+            </ul>
+        </pre>
+            css:<pre class="brush:css;collapse:true">
+        .paging-a li { float: left; padding: 0 2px; color: #666; font-family: Tahoma; }
+        .paging-a input { margin: 0 2px; padding: 3px 2px; width: 30px; height: 14px; border: solid 1px #A8ACAD; background: #FFF url(http://img.china.alibaba.com/images/trade/quotation/100426/bg1.gif) repeat-x; line-height: 1.2; text-align: right; *margin-top:-1px;*margin-bottom:-1px;}
+        .paging-a .pagination a { display: block; float: left; margin-right: 3px; padding:0 4px; min-width: 12px; _width: 12px; height: 20px; border: solid 1px #CCC; color: #06C; text-decoration: none !important; line-height: 18px; text-align:center; word-break: keep-all; }
+        .paging-a .pagination a:hover { border-color: #FF7300; color: #FF7300; }
+        .paging-a .pagination a.omit, .paging-a .pagination a.indic { padding: 1px 4px; border: 0 none; color: #666 !important; cursor: default; }
+        .paging-a .pagination a.current { border-color: #FFF !important; font-weight: bold; color: #FF7300 !important; cursor: default; }
+        .paging-a .pagination a.pre, .paging-a .pagination a.pre-disabled, .paging-a .pagination a.next, .paging-a .pagination a.next-disabled { background: url(http://img.china.alibaba.com/images/trade/quotation/100426/icon2.gif) no-repeat; }
+        .paging-a .pagination a.pre { width: 10px; background-position: 6px 5px; }
+        .paging-a .pagination a.pre:hover { border-color: #FF7300; background-position: 6px -15px; }
+        .paging-a .pagination a.pre-disabled { width: 10px; border-color: #CCC !important; background-position: 6px -35px; color: #CCC; cursor: default; }
+        .paging-a .pagination a.next { padding-right: 16px; background-position: 45px -55px; }
+        .paging-a .pagination a.next:hover { border-color: #FF7300; background-position: 45px -75px; }
+        .paging-a .pagination a.next-disabled { padding-right: 16px; border-color: #CCC !important; background-position: 45px -95px; color: #CCC !important; cursor: default; }
+        .paging-a .pagination span { padding: 0 4px; }
+        </pre>
+            <h3>增加JS动态生成功能</h3>
+            <div class="g-demo">
+                <ul id="ftPaging" class="paging-a fd-clr" data-sp="paging-a">
+                    <li class="pagination">
+                        <a href="javascript:;" class="pre-disabled"></a>
+                        <a href="javascript:;" class="current">1</a>
+                        <a page="2" href="javascript:;">2</a>
+                        <a page="3" href="javascript:;">3</a>
+                        <a page="4" href="javascript:;">4</a>
+                        <a page="5" href="javascript:;">5</a>
+                        <a page="6" href="javascript:;">6</a>
+                        <a href="javascript:;" class="omit">...</a>
+                        <a page="2" href="javascript:;" class="next">下一页</a>
+                    </li>
+                    <li>
+                        共<em>17</em>页&nbsp;到<input class="pnum" type="text" value="" max="17" maxlength="4" autocomplete="off" />页
+                    </li>
+                    <li>
+                        <a class="btn-b" href="javascript:;"><span class="btn-l"><em>确&nbsp;定</em>
+                            </span><span class="btn-r"></span></a>
+                    </li>
+                </ul>
+            </div>
+            js:<pre class="brush:js;collapse:true">
+//paging
+var Paging = function(paging, configs){
+    this.pagination = FYS('li.pagination', paging, true);
+    this.pagem = FYS('em', paging, true);
+    this.pagenum = FYS('input', paging, true);
+    this.pagesubmit = FYS('a.btn-b', paging, true);
+    this.configs = configs || {};
+};
+Paging.prototype = {
+    init: function(cur, total){
+        //valid page number
+        var pnReg = /^[1-9]\d*$/, pnCache = ''
+        function vPn(){
+            if (this.value) {
+                if (pnReg.test(this.value)) {
+                    pnCache = this.value;
+                }
+                else this.value = pnCache;
+            }
+            else pnCache = '';
+            
+        }
+        FYE.on(this.pagenum, 'focus', function(){
+            this.select();
+        });
+        FYE.on(this.pagenum, 'keydown', function(e, scope){
+            if (e.keyCode && e.keyCode == 13) {
+                scope.pagesubmit.click();
+                this.select();
+            }
+        }, this);
+        FYE.on(this.pagenum, 'keyup', vPn);
+        FYE.on(this.pagenum, 'blur', vPn);
+        //jump event handler
+        FYE.on(this.pagesubmit, 'click', function(e, scope){
+            if (!scope.pagenum.value) 
+                return;
+            var num = (scope.pagenum.value || 0) * 1, max = scope.pagenum.max * 1;
+            if (num > max) 
+                num = max;
+            scope.render.call(scope, num, max);
+        }, this);
+        //render
+        this.render(cur, total);
+    },
+    /*
+     *   creat page info
+     *   @param  cur         index of page from 1
+     *   @param  total       total page number from 1
+     *   @param  pagination   dom that render paging
+     */
+    render: function(cur, total){
+        if (cur < 1) 
+            cur = 1;
+        if (total < 1) 
+            total = 1;
+        if (cur > total) 
+            cur = total;
+        var html = [], pre, next;
+        //total page
+        this.pagem.innerHTML = total;
+        this.pagenum.max = total;
+        
+        if (cur == 1) {
+            html.push('&lt;a class="pre-disabled" href="javascript:;"&gt;&nbsp;&lt;/a&gt;');
+            html.push('&lt;a class="current" href="javascript:;"&gt;1&lt;/a&gt;');
+        }
+        else {
+            html.push('&lt;a class="pre" href="javascript:;" page="' + (cur - 1) + '"&gt;&nbsp;&lt;/a&gt;');
+            html.push('&lt;a href="javascript:;" page="1"&gt;1&lt;/a&gt;');
+        }
+        if (total > 1) {
+            if (cur > 4 && total > 7) 
+                html.push('&lt;a class="omit" href="javascript:;"&gt;...&lt;/a&gt;');
+            //cur==1?
+            if (cur < 3) {
+                pre = 0;
+                next = cur == 1 ? 5 : 4;
+                if (cur + next > total) 
+                    next = total - cur;
+            }
+            else if (cur == 3) {
+                pre = 1;
+                next = 3;
+                if (cur + next > total) 
+                    next = total - cur;
+            }
+            else {
+                pre = 2;
+                next = 2;
+                if (cur + next > total) 
+                    next = total - cur;
+                pre = 4 - next;
+                if (cur + 3 > total) 
+                    pre++;
+                if (cur - pre < 2) 
+                    pre = cur - 2;
+            }
+            
+            for (var i = pre; 0 < i; i--) 
+                html.push('&lt;a href="javascript:;" page="' + (cur - i) + '"&gt;' + (cur - i) + '&lt;/a&gt;');
+            if (cur > 1) 
+                html.push('&lt;a class="current" href="javascript:;"&gt;' + cur + '&lt;/a&gt;');
+            for (var i = 1; i < next + 1; i++) 
+                html.push('&lt;a href="javascript:;" page="' + (cur + i) + '"&gt;' + (cur + i) + '&lt;/a&gt;');
+            
+            if (cur + next < total - 1) {
+                html.push('&lt;a class="omit" href="javascript:;"&gt;...&lt;/a&gt;');
+                html.push('&lt;a href="javascript:;" page="' + total + '"&gt;' + total + '&lt;/a&gt;');
+            }
+            if (cur + next == total - 1) 
+                html.push('&lt;a href="javascript:;" page="' + total + '"&gt;' + total + '&lt;/a&gt;');
+        }
+        if (cur == total) 
+            html.push('&lt;a class="next-disabled" href="javascript:;"&gt;下一页&lt;/a&gt;');
+        else {
+            html.push('&lt;a class="next" href="javascript:;" page="' + (cur + 1) + '"&gt;下一页&lt;/a&gt;');
+        }
+        this.pagination.innerHTML = html.join('');
+        //trigger onRender
+        if (this.configs.onRender) 
+            this.configs.onRender.call(this);
+        //set nomarl
+        if (this.pagenum.value && this.pagenum.value * 1 > total) 
+            this.pagenum.value = cur;
+        FYE.on(FYS('a[page]', this.pagination), 'click', function(e, scope){
+            FYE.preventDefault(e);
+            var page = FYD.getAttribute(this, 'page') * 1;
+            scope.render(page, total);
+        }, this);
+    }
+};
+FYE.onDOMReady(function(){
+    var modPaging = new Paging(FYG('ftPaging'));
+    modPaging.init(1, 9);
+});
+			</pre>
+        </div>
+    </body>
+</html>

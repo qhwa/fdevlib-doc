@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="GBK">
+        <title>FE.ui.Valid</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+        <style>
+            pre{clear:both;}
+            fieldset{float:left;margin-bottom:8px;padding:8px;border:solid 1px #999;}
+            legend{font-weight:700;font-size:14px;}
+            table{table-layout: fixed;width:600px; border-collapse: separate; border-spacing: 1px; background-color: #999; word-wrap: break-word; word-break: break-all; }
+            table th,table td{padding:4px 8px;line-height:22px;}
+            table th{width:80px;text-align:right;vertical-align:top;background-color:#ddd;}
+            table td{width:auto;background-color:#fff;}
+            table input{padding: 2px;border: solid 1px #A2A9AF;height: 19px;background: #FFF url(http://img.china.alibaba.com/images/common/icon_v02/bg5.gif) repeat-x;line-height: 19px;}
+            .action{text-align:center;}
+            .col-field{width:150px;}
+            .col-tips{color:#ff7300;}
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>web-valid : 表单验证</h1>
+            <h2>1.基本应用:配置由HTML模版提供</h2>
+            <div id="demo1">
+                <form action="#" onsubmit="return false">
+                    <fieldset>
+                        <legend>
+                            fieldset 1
+                        </legend>
+                        <table>
+                            <tr>
+                                <th>字段1</th>
+                                <td class="col-field">
+                                    <input type="text" maxlength="20" data-valid="{required:true,type:'reg',reg:/^[a-z]\w{3,}$/i,key:'field1'}" />
+                                </td>
+                                <td class="col-tips"></td>
+                            </tr>
+                            <tr>
+                                <th>字段2</th>
+                                <td class="col-field">
+                                    <input type="password" maxlength="20" data-valid="{required:true,key:'field2'}" />
+                                </td>
+                                <td class="col-tips"></td>
+                            </tr>
+                            <tr>
+                                <th>字段3</th>
+                                <td class="col-field">
+                                    <input type="password" maxlength="20" data-valid="{type:'fun',cache:false,required:true,fun:Page.Demo1.valid3,key:'field3'}" />
+                                </td>
+                                <td class="col-tips"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="action">
+                                    <button type="submit">
+                                        提交表单
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
+            </div>
+            <pre class="prettyprint language-html">
+&lt;form action="#" onsubmit="return false">
+    &lt;fieldset>
+        &lt;legend>
+            fieldset 1
+        &lt;/legend>
+        &lt;table>
+            &lt;tr>
+                &lt;th>字段1&lt;/th>
+                &lt;td class="col-field">
+                    &lt;input type="text" maxlength="20" data-valid="{required:true,type:'reg',reg:/^[a-z]\w{3,}$/i,key:'field1'}" />
+                &lt;/td>
+                &lt;td class="col-tips">&lt;/td>
+            &lt;/tr>
+            &lt;tr>
+                &lt;th>字段2&lt;/th>
+                &lt;td class="col-field">
+                    &lt;input type="password" maxlength="20" data-valid="{required:true,key:'field2'}" />
+                &lt;/td>
+                &lt;td class="col-tips">&lt;/td>
+            &lt;/tr>
+            &lt;tr>
+                &lt;th>字段3&lt;/th>
+                &lt;td class="col-field">
+                    &lt;input type="password" maxlength="20" data-valid="{type:'fun',cache:false,required:true,fun:Page.Demo1.valid3,key:'field3'}" />
+                &lt;/td>
+                &lt;td class="col-tips">&lt;/td>
+            &lt;/tr>
+            &lt;tr>
+                &lt;td colspan="3" class="action">
+                    &lt;button type="submit">
+                        提交表单
+                    &lt;/button>
+                &lt;/td>
+            &lt;/tr>
+        &lt;/table>
+    &lt;/fieldset>
+&lt;/form></pre>
+            <pre class="prettyprint language-js">
+jQuery(function($) {
+    $.namespace('Page.Demo1');
+    
+    $.extend(Page.Demo1, {
+        valid3: function(){
+            var tr = $(this).closest('tr'), preTr = tr.prev(), password = $('input', preTr);
+            if(this.value === password.val()){
+                return true;
+            }
+            return '字段2和3的输入不匹配';
+        }
+    });
+    
+    var handlers = {
+        init: function(){
+            this.demo1Init();
+        },
+        demo1Init: function(){
+            var demo1 = $('#demo1');
+            $.use("web-valid", function() {
+                var validDemo1 = new FE.ui.Valid($('input', demo1), {
+                    onValid : function(res, o) {
+                        var tr = $(this).closest('tr'), td = $('td:last-child', tr), msg = '';
+                        
+                        switch(res){
+                            case 'required':
+                                msg = '请填写该字段';
+                                break;
+                            case 'reg':
+                                msg = '请填写以字母开头，只包含字母和数字的4-20位长度的值';
+                                break;
+                            case 'fun':
+                                msg = o.msg;
+                                break;
+                        }
+                        
+                        td.html(msg);
+                    }
+                });
+                $('form', demo1)[0].onsubmit = function(){
+                    if(validDemo1.valid()){
+                        alert('恭喜你！通过了所有验证');
+                    }
+                    return false;
+                };
+            });
+        }
+    };
+    handlers.init();
+});                
+</pre>
+            <h2>2.动态增减、配置、激活</h2>
+            <div id="demo2"></div>
+            <script src="../../static/js/app-merge.js"></script>
+            <script>
+                jQuery(function($) {
+                    $.namespace('Page.Demo1');
+                    
+                    $.extend(Page.Demo1, {
+                        valid3: function(){
+                            var tr = $(this).closest('tr'), preTr = tr.prev(), password = $('input', preTr);
+                            if(this.value === password.val()){
+                                return true;
+                            }
+                            return '字段2和3的输入不匹配';
+                        }
+                    });
+                    
+                    var handlers = {
+                        init: function(){
+                            this.demo1Init();
+                        },
+                        demo1Init: function(){
+                            var demo1 = $('#demo1');
+                            $.use("web-valid", function() {
+                                var validDemo1 = new FE.ui.Valid($('input', demo1), {
+                                    onValid : function(res, o) {
+                                        var tr = $(this).closest('tr'), td = $('td:last-child', tr), msg = '';
+                                        
+                                        switch(res){
+                                            case 'required':
+                                                msg = '请填写该字段';
+                                                break;
+                                            case 'reg':
+                                                msg = '请填写以字母开头，只包含字母和数字的4-20位长度的值';
+                                                break;
+                                            case 'fun':
+                                                msg = o.msg;
+                                                break;
+                                        }
+                                        
+                                        td.html(msg);
+                                    }
+                                });
+                                $('form', demo1)[0].onsubmit = function(){
+                                    if(validDemo1.valid()){
+                                        alert('恭喜你！通过了所有验证');
+                                    }
+                                    return false;
+                                };
+                            });
+                        }
+                    };
+                    handlers.init();
+                });
+
+            </script>
+        </div>
+    </body>
+</html>

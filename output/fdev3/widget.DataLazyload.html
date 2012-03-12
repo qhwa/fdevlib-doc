@@ -1,0 +1,85 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="gbk" /> 
+    <title>FD.widget.FoldList</title> 
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/> 
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script> 
+</head> 
+<body> 
+    <div class="g-memo"> 
+        <h2>DataLazyLoad：数据延迟加载组件</h2> 
+        <p>非常实用的组件，提高页面的访问速度，目前支持图片的延迟加载。</p> 
+        <h3>更新日志</h3> 
+        <ul class="update-histroy"> 
+            <li>2010-11-4 发布1.0 beta版本</li> 
+        </ul> 
+    </div> 
+    <div class="g-detail"> 
+        <h3>开始：</h3> 
+        如果你想使用DataLazyLoad组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+			ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+			ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/datalazyload/datalazyload-min.js");
+	    </pre> 
+        <h3>使用说明</h3> 
+        <p>1、本组件对页面结构没有依赖</p> 
+        <pre class="brush:html;"> 
+			<div style="height:20000px;" id="J_dataLazyLoadContainer">
+				<img data-lazyload-src="http://i05.c.aliimg.com/news/upload/5003292/472x160_1287492672101.png"/>
+			<div style="height:880px;"></div>
+				<span><img class="lazyme2" data-lazyload-src="http://img04.taobaocdn.com/bao/uploaded/i4/T1rgXyXapcXXXOGXI7_063417.jpg_sum.jpg"/></span>
+			<div style="height:800px;"></div>
+				<span><img class="lazyme" data-lazyload-src="http://img04.taobaocdn.com/tps/i4/T1_fVOXiXoXXXXXXXX-470-150.jpg" width="470" height="150"/></span>
+				<span><img class="lazyme" data-lazyload-src="http://davidwalsh.name/dw-content/mexico-2009/large/102_1140.jpg" id="J_img"/></span>
+			<div>
+				<img class="aa2" data-lazyload-src="http://i03.c.aliimg.com/news/upload/!/banner-470x160_1287366798118.gif"/>
+			</div>
+			</div>
+	    </pre> 
+	    </p> 
+	    <p>2、组件调用方法如下：第一个参数为图片的父级容器(必填)；第二个参数为配置对象(将覆盖默认的参数设定): </p>
+	    <pre class="brush:js;"> 
+	    	var dataLazyLoad = new FD.widget.DataLazyload('J_dataLazyLoadContainer',{
+				threshold:100,
+				elements:'img',
+				onComplete:function(){//延迟项全部被加载完毕后执行的回调函数
+					//to do 
+				},
+				onLoad:function(){//绑定img的onload事件
+					//to do
+				}
+				
+			});
+	    </pre>
+        <h3>配置参数列表</h3> 
+        <table class="g-paramtable"> 
+        	<thead> 
+	        	<tr> 
+	        		<th>配置参数</th><th>参数可选值</th><th>作用说明</th> 
+	        	</tr> 
+	        </thead> 
+	        <tbody> 
+	        	<tr> 
+        			<td>threshold</td><td>Int</td><td>阀值，距离视窗顶部多少像素开始加载延迟项,默认为视窗两倍高度。</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>elements</td><td>String</td><td>选择器,例如img.lazyme，默认为img。</td> 
+        		</tr> 
+	        	<tr> 
+        			<td>onComplete</td><td>Function</td><td>延迟项全部被加载完毕后执行的回调函数，默认为NULL。</td> 
+        		</tr> 
+	        	<tr class="even"> 
+        			<td>onLoad</td><td>Function</td><td>绑定img的onload事件，默认为NULL。</td> 
+        		</tr> 
+        	</tbody> 
+        </table> 
+        <h3>Demo演示</h3>
+        这里为开发者展示了DataLazyLoad组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.DataLazyLoad.html">example: DataLazyLoad</a>
+        <h3>提建议给开发者</h3>
+        作者：谢传贵<br />
+        邮件：<a href="mailto:chuangui.xiecg@alibaba-inc.com">chuangui.xiecg@alibaba-inc.com</a><br />
+        旺旺：alixiecg
+    </div> 
+</body> 
+</html> 

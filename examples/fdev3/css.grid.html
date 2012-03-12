@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk"/>
+	<title>栅格系统说明</title>
+	<link rel="stylesheet" href="http://style.china.alibaba.com/css/lib/fdev-v3/reset/reset.css" />
+	<link rel="stylesheet" href="http://style.china.alibaba.com/css/lib/fdev-v3/grid/grid.css" />
+	<style>
+	#doc{background:url(/fdevlib/static/img/output/grid-bg.png);padding-bottom:16px;}
+	h1{ font-size:16px; text-align:center; font-weight:bold;padding:16px;}
+	h2{ font-size:14px; font-weight:bold;}
+	.memo{
+		line-height:150%;
+		padding-left:40px;
+		margin-bottom:8px;
+		font-size:14px;
+	}
+	.memopic{
+		float:right;
+		margin-right:40px;
+		margin-left:8px;
+	}
+	.layout-p32a24 div{
+		background:#A6D0F8;
+		height:32px;
+		line-height:32px;
+		text-align:center;
+	}
+	</style>
+</head>
+<body>
+<div id="doc" class="w952">
+	<h1>栅格系统理论说明(32px为单位)</h1>
+	<h2>一、fdev栅格系统构建理论</h2>
+	<p class="memo" style="height:420px;">
+	<img src="/fdevlib/static/img/output/grid-memo.png" class="memopic" />
+	1)、概念<br />
+	Flowline: 流线<br />
+	Margin: 边距<br />
+	Gutter: 槽<br />
+	Column: 列<br /><br />
+	2)、基准设定<br />
+	Gutter(g) = 8px (8为计算机的最小单位)<br />
+	Margin(m) = 1/2 * Gutter = 4px<br />
+	Column(c) = 4 * Gutter = 32px<br /><br />
+	3)、公式推导<br />
+	设Flowline总宽度为w，Flowline本身由<strong>n</strong>个column组成<br />
+	w = c * <strong>n</strong> + g * (<strong>n</strong> - 1) + 2 * c<br />
+	w = 40 * <strong>n</strong><br />
+	设Flowline实际可视宽度为<strong>W</strong><br />
+	<strong>W</strong> = w - 2m = 40 * <strong>n</strong> - 8<br /><br />
+	<p>
+	<div class="layout-p32a24">
+		<div class="grid-1">01</div>
+		<div class="grid-1">02</div>
+		<div class="grid-1">03</div>
+		<div class="grid-1">04</div>
+		<div class="grid-1">05</div>
+		<div class="grid-1">06</div>
+		<div class="grid-1">07</div>
+		<div class="grid-1">08</div>
+		<div class="grid-1">09</div>
+		<div class="grid-1">10</div>
+		<div class="grid-1">11</div>
+		<div class="grid-1">12</div>
+		<div class="grid-1">13</div>
+		<div class="grid-1">14</div>
+		<div class="grid-1">15</div>
+		<div class="grid-1">16</div>
+		<div class="grid-1">17</div>
+		<div class="grid-1">18</div>
+		<div class="grid-1">19</div>
+		<div class="grid-1">20</div>
+		<div class="grid-1">21</div>
+		<div class="grid-1">22</div>
+		<div class="grid-1">23</div>
+		<div class="grid-1 grid-fixed">24</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-1">n=1</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-2">n=2</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-3">n=3</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-4">n=4</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-5">n=5</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-6">n=6</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-7">n=7</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-8">n=8</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-9">n=9</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-10">n=10</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-11">n=11</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-12">n=12</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-13">n=13</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-14">n=14</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-15">n=15</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-16">n=16</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-17">n=17</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-18">n=18</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-19">n=19</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-20">n=20</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-21">n=21</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-22">n=22</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-23">n=23</div>
+	</div>
+	<div class="layout-p32a24">
+		<div class="grid-24">n=24</div>
+	</div>
+</div>
+</body>
+</html>

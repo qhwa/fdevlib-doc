@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>web-alitalk</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>web-alitalk : 网站旺旺组件</h1>
+            <h2>简单的应用</h2>
+            <div id="demo1">
+                <a href="#" data-alitalk="{id:'swainet'}"></a>
+            </div>
+            <pre class="prettyprint language-js">
+$.use('web-alitalk', function() {
+    FE.util.alitalk($('a[data-alitalk]', '#demo1'));
+});                
+            </pre>
+            <h2>同时初始化多个旺旺状态</h2>
+            <div id="demo2">
+                <a href="#" data-alitalk="{id:'swainet'}"></a>
+                <a href="#" data-alitalk="{id:'swainet',siteID:'cntaobao'}"></a>
+                <a href="#" data-alitalk="{id:'alixujia'}"></a>
+            </div>
+            <pre class="prettyprint language-js">
+$.use('web-alitalk', function() {
+    FE.util.alitalk($('a[data-alitalk]', '#demo2'));
+});                
+            </pre>
+            <h2>附加聊天信息</h2>
+            <div id="demo3">
+                <a href="#" data-alitalk="{id:'szjurenkeji',offerid:'793078910'}">和我联系</a>
+            </div>
+            <pre class="prettyprint language-js">
+$.use('web-alitalk', function() {
+    FE.util.alitalk($('a[data-alitalk]', '#demo3'), {
+        prop: function(){
+            var data = $(this).data('alitalk');
+            return '&gid=' + data.offerid;
+        }
+    });                             
+});                
+            </pre>
+            <h2>自定义节点信息</h2>
+            <div id="demo4">
+                <a href="#" data-alitalk="{id:'swainet'}"></a>
+                <a href="#" data-alitalk="{id:'swainet',siteID:'cntaobao'}"></a>
+                <a href="#" data-alitalk="{id:'alixujia'}"></a>
+            </div>
+            <pre class="prettyprint language-js">
+$.use('web-alitalk', function() {
+    FE.util.alitalk($('a[data-alitalk]', '#demo4'), {
+        onRemote: function(data) {
+            var el = $(this);
+            el.html(data.id);
+            switch (data.online) {
+                case 0:
+                case 2:
+                case 6:
+                default: //不在线
+                    el.addClass(data.cls.off);
+                    break;
+                case 1: //在线
+                    el.addClass(data.cls.on);
+                    break;
+                case 4:
+                case 5: //手机在线
+                    el.addClass(data.cls.mb);
+                    break;
+            }
+            
+        }
+    });
+});                
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($) {
+                $.use('web-alitalk', function() {
+                    FE.util.alitalk($('a[data-alitalk]', '#demo1'));
+                    FE.util.alitalk($('a[data-alitalk]', '#demo2'));
+                    FE.util.alitalk($('a[data-alitalk]', '#demo3'), {
+                        prop: function() {
+                            var data = $(this).data('alitalk');
+                            return '&gid=' + data.offerid;
+                        }
+                    });
+                    FE.util.alitalk($('a[data-alitalk]', '#demo4'), {
+                        onRemote: function(data) {
+                            var el = $(this);
+                            el.html(data.id);
+                            switch (data.online) {
+                                case 0:
+                                case 2:
+                                case 6:
+                                default: //不在线
+                                    el.addClass(data.cls.off);
+                                    break;
+                                case 1: //在线
+                                    el.addClass(data.cls.on);
+                                    break;
+                                case 4:
+                                case 5: //手机在线
+                                    el.addClass(data.cls.mb);
+                                    break;
+                            }
+                            
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

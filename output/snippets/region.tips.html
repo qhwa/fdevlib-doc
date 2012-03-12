@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Tips</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .tips-a h4 { font-weight: bold; font-size: 14px; line-height: 2; }
+        .tips-a p { line-height: 1.5 !important; }
+        .tips-a em { font-weight: bold; color: #F00; }
+        .tips-a a { padding: 0 2px; }
+        .tips-a div { margin: 8px auto; padding: 2px 0 2px 56px; width: 360px; }
+        .tips-a .info { background: url(http://img.china.alibaba.com/images/common/icon_v02/warn5.png) no-repeat; }
+        .tips-a .success { background: url(http://img.china.alibaba.com/images/common/icon_v02/success1.png) no-repeat; }
+        .tips-a .error { background: url(http://img.china.alibaba.com/images/common/icon_v02/warn2.png) no-repeat; }
+        .tips-a .warning { background: url(http://img.china.alibaba.com/images/common/icon_v02/warn9.png) no-repeat; }
+        .tips-a .fix h4 { line-height: 3.2 !important; }
+        .tips-b { padding: 6px 16px; border: solid 1px #FFC590; background: #FFF7EB; color: #333; }
+        .tips-b p { padding-left: 16px; text-indent: -16px; }
+        .tips-b .caution { padding: 0 0 1px 16px; background: url(http://img.china.alibaba.com/images/common/icon_v02/caution1.gif) no-repeat; color: #FF7300; font-weight: bold; }
+        .tips-c { position: absolute; }
+        .tips-c span { display: block; position: absolute; top: -5px; left: 80px; width: 10px; height: 7px; overflow: hidden; background: url(http://img.china.alibaba.com/images/common/icon_v02/arrow3.gif) no-repeat; }
+        .tips-c div { padding: 4px 6px; border: solid 2px #0F86DF; line-height: 18px; }
+        .tips-c .info { text-indent: 16px; background: url(http://img.china.alibaba.com/images/common/icon_v02/warn6.png) no-repeat 0 4px; }
+        #tip1, #tip2 { width: 172px; background-color: #FFF; }
+    </style>
+    <script type="text/javascript">
+        FYE.onDOMReady(function() {
+            //Mouse Click
+            (function() {
+                var link1=FYG('link1'),
+                    tip1=FYG('tip1');
+                FYE.on(link1,'click',function(e) {
+                    FYE.preventDefault(e);
+                    if(FYD.getStyle(tip1,'display')!='none') return;
+                    var rlink=FYD.getRegion(this);
+                    FYD.setStyle(tip1,'left',rlink.left-80+'px');
+                    FYD.setStyle(tip1,'top',rlink.top+22+'px');
+                    FYD.setStyle(tip1,'display','');
+                    function rHandler(e) {
+                        var target=FYE.getTarget(e);
+                        if(link1!=target&&tip1!=target&&!FYD.isAncestor(tip1,target)) {
+                            FYD.setStyle(tip1,'display','none');
+                            FYE.removeListener(document,'click',rHandler);
+                        }
+                    }
+                    FYE.on(document,'click',rHandler);
+                });
+            })();
+            //Mouse Leave
+            (function() {
+                var link2=FYG('link2'),
+                    tip2=FYG('tip2'),
+                    timer;
+
+                function clear() {
+                    if(timer) {
+                        clearTimeout(timer);
+                        timer=null;
+                    }
+                }
+                function hide() {
+                    clear();
+                    timer=setTimeout(function() {
+                        FYD.setStyle(tip2,'display','none');
+                    },500);
+                }
+                FYE.on(link2,'mouseover',function(e) {
+                    clear();
+                    if(FYD.getStyle(tip2,'display')!='none') return;
+                    var rlink=FYD.getRegion(this);
+                    FYD.setStyle(tip2,'left',rlink.left-80+'px');
+                    FYD.setStyle(tip2,'top',rlink.top+22+'px');
+                    FYD.setStyle(tip2,'display','');
+                });
+                FYE.on(link2,'mouseout',hide);
+                FYE.on(tip2,'mouseenter',clear);
+                FYE.on(tip2,'mouseleave',hide);
+            })();
+        });
+    </script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Tips：提示</h2>
+    </div>
+    <div class="g-detail">
+        <h3>tips-a：大型提示信息 </h3>
+        <div class="g-demo">
+            <div class="tips-a" data-sp="tips-a">
+                <div class="success">
+                    <h4>双行提示！</h4>
+                    <p>系统<em>5</em>秒后会自动跳转到<a href="#">管理报价单</a>或继续<a href="#">新建报价单&gt;&gt;</a></p>
+                </div>
+                <div class="success fix">
+                    <h4>单行提示！</h4>
+                </div>
+                <div class="error">
+                    <h4>错误提示！</h4>
+                    <p>系统已自动保存，系统<em>5</em>秒后会自动跳转到<a href="#">未发送报价单</a></p>
+                </div>
+                <div class="info">
+                    <h4>信息提示！</h4>
+                    <p>系统已自动保存，系统<em>5</em>秒后会自动跳转到<a href="#">未发送报价单</a></p>
+                </div>
+                <div class="warning">
+                    <h4>警告提示！</h4>
+                    <p>系统已自动保存，系统<em>5</em>秒后会自动跳转到<a href="#">未发送报价单</a></p>
+                </div>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <div class="tips-a">
+                <div class="success">
+                    <h4>双行提示！</h4>
+                    <p>系统<em>5</em>秒后会自动跳转到<a href="#">管理报价单</a>或继续<a href="#">新建报价单&gt;&gt;</a></p>
+                </div>
+                <div class="success fix">
+                    <h4>单行提示！</h4>
+                </div>
+                <div class="error">
+                    <h4>错误提示！</h4>
+                    <p>系统已自动保存，系统<em>5</em>秒后会自动跳转到<a href="#">未发送报价单</a></p>
+                </div>
+                <div class="info">
+                    <h4>信息提示！</h4>
+                    <p>系统已自动保存，系统<em>5</em>秒后会自动跳转到<a href="#">未发送报价单</a></p>
+                </div>
+                <div class="warning">
+                    <h4>警告提示！</h4>
+                    <p>系统已自动保存，系统<em>5</em>秒后会自动跳转到<a href="#">未发送报价单</a></p>
+                </div>
+            </div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .tips-a h4 { font-weight: bold; font-size: 14px; line-height: 2; }
+        .tips-a p { line-height: 1.5 !important; }
+        .tips-a em { font-weight: bold; color: #F00; }
+        .tips-a a { padding: 0 2px; }
+        .tips-a div { margin: 8px auto; padding: 2px 0 2px 56px; width:360px; }
+        .tips-a .info { background: url(http://img.china.alibaba.com/images/common/icon_v02/warn5.png) no-repeat; }
+        .tips-a .success { background: url(http://img.china.alibaba.com/images/common/icon_v02/success1.png) no-repeat; }
+        .tips-a .error { background: url(http://img.china.alibaba.com/images/common/icon_v02/warn2.png) no-repeat; }
+        .tips-a .warning { background: url(http://img.china.alibaba.com/images/common/icon_v02/warn9.png) no-repeat; }
+        .tips-a .fix h4 { line-height: 3.2 !important; }
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>tips-b：页头提示框 </h3>
+        <div class="g-demo">
+            <div class="tips-b" data-sp="tips-b">
+                <p><span class="caution">友情提醒：</span>提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容</p>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+<div class="tips-b">
+    <p><span class="caution">友情提醒：</span>提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容提醒内容</p>
+</div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+.tips-b { padding: 6px 16px; border: solid 1px #FFC590; background: #FFF7EB; color:#333; }
+.tips-b p { padding-left:16px; text-indent:-16px; }
+.tips-b .caution { padding:0 0 1px 16px; background: url(http://img.china.alibaba.com/images/common/icon_v02/caution1.gif) no-repeat; color:#FF7300; font-weight:bold; }
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>tips-c：浮出提示框，用于替代系统alert、confirm </h3>
+        <div class="g-demo">
+            <p>前半段是无关紧要的文字。接下来，请 <a id="link1" href="javascript:;">点击</a> 或者 <span id="link2" style="color:#369">鼠标经过</span> 查看效果。</p>
+            <div id="tip1" class="tips-c" style="display: none;">
+                <span></span>
+                <div>
+                    <p class="info">内容内容内容内容内容内容内容内容内容</p>
+                </div>
+            </div>
+            <div id="tip2" class="tips-c" style="display: none;">
+                <span></span>
+                <div>
+                    <p class="info">内容内容内容内容内容内容内容内容内容, 鼠标leave500ms后浮层消失</p>
+                </div>
+            </div>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+<p>请 <a id="link1" href="javascript:;">点击</a> 或者 <a id="link2" href="javascript:;">鼠标经过</a> 查看效果。</p>
+<div id="tip1" class="tips-c" style="display: none;">
+    <span></span>
+    <div>
+        <p class="info">Content Here...Click其他区域关闭浮层</p>
+    </div>
+</div>
+<div id="tip2" class="tips-c" style="display: none;">
+    <span></span>
+    <div>
+        <p class="info">Content Here...Mouse Leave 500ms后浮层消失</p>
+    </div>
+</div>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+.tips-c { position: absolute; }
+.tips-c span { display: block; position: absolute; top: -5px; left: 80px; width: 10px; height: 7px; overflow: hidden; background: url(http://img.china.alibaba.com/images/common/icon_v02/arrow3.gif) no-repeat; }
+.tips-c div { padding: 4px 6px; border: solid 2px #0F86DF; line-height: 18px; }
+.tips-c .info { text-indent: 16px; background: url(http://img.china.alibaba.com/images/common/icon_v02/warn6.png) no-repeat 0 4px; }
+#tip1, #tip2 { width: 172px; background-color: #FFF; }
+        </pre>
+        js:
+        <pre class="brush:js;collapse:true">
+//Mouse Click
+(function() {
+    var link1=FYG('link1'),
+        tip1=FYG('tip1');
+    FYE.on(link1,'click',function(e) {
+        FYE.preventDefault(e);
+        if(FYD.getStyle(tip1,'display')!='none') return;
+        var rlink=FYD.getRegion(this);
+        FYD.setStyle(tip1,'left',rlink.left-80+'px');
+        FYD.setStyle(tip1,'top',rlink.top+22+'px');
+        FYD.setStyle(tip1,'display','');
+        function rHandler(e) {
+            var target=FYE.getTarget(e);
+            if(link1!=target&&tip1!=target&&!FYD.isAncestor(tip1,target)) {
+                FYD.setStyle(tip1,'display','none');
+                FYE.removeListener(document,'click',rHandler);
+            }
+        }
+        FYE.on(document,'click',rHandler);
+    });
+})();
+//Mouse Leave
+(function() {
+    var link2=FYG('link2'),
+        tip2=FYG('tip2'),
+        timer;
+
+    function clear() {
+        if(timer) {
+            clearTimeout(timer);
+            timer=null;
+        }
+    }
+    function hide() {
+        clear();
+        timer=setTimeout(function() {
+            FYD.setStyle(tip2,'display','none');
+        },500);
+    }
+    FYE.on(link2,'mouseover',function(e) {
+        clear();
+        if(FYD.getStyle(tip2,'display')!='none') return;
+        var rlink=FYD.getRegion(this);
+        FYD.setStyle(tip2,'left',rlink.left-80+'px');
+        FYD.setStyle(tip2,'top',rlink.top+22+'px');
+        FYD.setStyle(tip2,'display','');
+    });
+    FYE.on(link2,'mouseout',hide);
+    FYE.on(tip2,'mouseenter',clear);
+    FYE.on(tip2,'mouseleave',hide);
+})();
+        </pre>
+    </div>
+</body>
+</html>

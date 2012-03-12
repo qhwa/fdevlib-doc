@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>alibar.standard.v2.5.110531</title>
+        <link href="http://style.china.alibaba.com/css/lib/fdev-v4/core/fdev-float.css" rel="stylesheet"/>
+        <link href="http://style.china.alibaba.com/css/sys/universal/alibar/standard-v2.css" rel="stylesheet"/>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v4/core/fdev-min.js"></script>
+        <script src="http://style.china.alibaba.com/js/sys/universal/alibar/standard-v2-min.js"></script>
+        <base target="_blank" />
+    </head>
+    <body>
+        <div id="doc" class="system-alibar">
+            <!--#include virtual="standard.html"-->
+        </div>
+    </body>
+</html>

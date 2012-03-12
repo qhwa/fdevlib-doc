@@ -1,0 +1,24 @@
+/**
+ * @package FD.sys.head.masthead.logo
+ * @version 1.0.110110
+ * @version 1.0.110113
+ * @author  Edgar
+ */
+#ali-logo{
+    float:left;
+}
+#ali-logo .logo{
+    width:367px;
+    height:38px;
+    margin-top:28px;
+    overflow:hidden;
+    background:url(http://img.china.alibaba.com/images/logo/logo.png) no-repeat;
+}
+#ali-logo .alibaba-logo{
+    float:left;
+    display:inline-block;
+    width:154px;
+    height:38px;
+    line-height:160px;
+    overflow:hidden;
+}

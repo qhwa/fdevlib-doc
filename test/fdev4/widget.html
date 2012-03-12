@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>Widget Test Suite</title>
+        <link rel="stylesheet" href="/fdevlib/static/css/qunit.css"/>
+        <script src="/fdevlib/static/js/qunit.js">
+        </script>
+    </head>
+    <body>
+        <h1 id="qunit-header">Widget Test Suite</h1>
+        <h2 id="qunit-banner"></h2>
+        <div id="qunit-testrunner-toolbar">
+        </div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests">
+        </ol>
+        <div id="qunit-fixture">
+            test markup
+        </div>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v4/core/fdev-min.js">
+        </script>
+        <script>
+            jQuery(function($) {
+                $.DEBUG = true;
+                module('util-cookie');
+                asyncTest('util-cookie', 1, function() {
+                    $.use('util-cookie', function() {
+                        $.util.cookie('test', 'a1中!@#$%^&*()\'";<>/?');
+                        equal($.util.cookie('test'), 'a1中!@#$%^&*()\'";<>/?', 'cookie读写');
+                        start();
+                    });
+                });
+                module('util-json');
+                asyncTest('util-json', 5, function() {
+                    $.use('util-json', function() {
+                        var o = {
+                            a: 1,
+                            b: true,
+                            c: '!@#$%^&*()_+\\/.,;\'"',
+                            d: {
+                                a: 1,
+                                b: false
+                            }
+                        };
+                        var p = JSON.parse(JSON.stringify(o));
+                        equal(o.a, p.a);
+                        equal(o.b, p.b);
+                        equal(o.c, p.c);
+                        equal(o.d.a, p.d.a);
+                        equal(o.d.b, p.d.b);
+                        start();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

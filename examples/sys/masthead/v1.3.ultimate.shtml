@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>masthead.ultimate.v1.4.110603</title>
+        <link href="http://style.china.alibaba.com/css/lib/fdev-v4/core/fdev-float.css" rel="stylesheet"/>
+        <link href="http://style.china.alibaba.com/css/sys/universal/alibar/standard-v2.css" rel="stylesheet"/>
+        <link href="http://style.china.alibaba.com/css/sys/universal/masthead/ultimate-v1.3.css" rel="stylesheet"/>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v4/core/fdev-min.js"></script>
+        <script src="http://style.china.alibaba.com/js/sys/universal/alibar/standard-v2-min.js"></script>
+        <script src="http://style.china.alibaba.com/js/sys/universal/masthead/standard-v1.3-min.js"></script>
+        <base target="_blank" />
+    </head>
+    <body>
+        <div id="doc" class="system-masthead">
+            <!--#include virtual="/fdevlib/examples/sys/alibar/standard.html"-->
+            <div id="header">
+                <div id="ali-masthead" class="w952">
+                    <div class="ali-masthead-container">
+                        <div id="ali-logo">
+                            <h1 class="logo">
+                                <a class="alibaba-logo" href="http://china.alibaba.com/" title="商人的网站" target="_self">阿里巴巴</a>
+                                <a class="sub-logo" href="http://fuzhuang.china.alibaba.com/" title="服装服饰批发" target="_self">
+                                    <span class="sub-logo-txt">服装服饰批发</span>
+                                    <span class="sub-logo-url">FuZhuang.1688.com</span>
+                                </a>
+                            </h1>
+                        </div>
+                        <!--#include virtual="search.bar.html"-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.util.dataLazyload</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>web-dataLazyload : 资源懒加载器</h1>
+            <h2>介绍</h2>
+            <p>
+                按需加载网页上的资源，提升网页加载性能。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    @update yu.yuy 2011.09.28 v1.0
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('web-datalazyload', function(){
+    FE.util.datalazyload.register({
+        containers : $('.layout')
+    });
+}
+            </pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/FE.util.datalazyload.html">Try it!</a>
+            </p>
+            <h2>Statics</h2>
+            <dl>
+                <dt><b>FE.util.datalazyload.register( options )</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>options</b>
+                            : Object 组件配置参数                            
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    批量注入包含懒加载资源的容器
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>FE.util.datalazyload.add( el )</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>el</b>
+                            :  jQuery HTML对象、选择器或jQuery对象                    
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    单个注入包含懒加载资源的容器
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>FE.util.datalazyload.bind( el, fn )</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>el</b>
+                            :  jQuery HTML对象、选择器或jQuery对象                    
+                        </li>
+                        <li>
+                            <b>fn</b>
+                            :  Function 事件函数                    
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    单个注入包含懒加载资源的容器
+                </dd>
+            </dl>
+            <h2>格式约定</h2>
+            <dl>
+                <dt><b>图片</b></dt>
+                <dd>
+                    <pre class="prettyprint language-html">
+&lt;img alt="需要懒加载的图片" data-lazyload-src="http://fd.aliued.cn/i/300-300.png" src="http://img.china.alibaba.com/cms/upload/other/lazyload.png"/>
+                    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>textarea</b></dt>
+                <dd>
+                    <pre class="prettyprint language-html">
+&lt;div class="lazyload-textarea">
+    &lt;textarea style="display: none;">&lt;a title="阿里巴巴" href="#">阿里巴巴&lt;/a>&lt;/textarea>
+&lt;/div>
+                    </pre>
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>        
+    </body>
+</html>

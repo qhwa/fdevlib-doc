@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>fdev4.css.core</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>core</h1>
+            <h2>介绍</h2>
+            <p>
+                此文件是reset、common、grid三类文件的merge版本，也是平时开发中最常用的框架级样式文件。一般页面开发都需要引入此文件。其功能如下：
+            </p>
+            <ul>
+                <li>
+                    用来重置浏览器样式，统一各大浏览器的默认表现形式，解决部分兼容性问题。详细请参考reset章节
+                </li>
+                <li>
+                    提供全站公共的样式，样式名称以"fd-"为前缀。详细请参考common章节
+                </li>
+                <li>
+                    提供对应的Grid布局样式。详细请参考grid章节
+                </li>
+            </ul>
+            <p>
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    汉军: 提供了初始版本 ---- 2011-02-23
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-css">
+//浮动布局页面需要引入                
+@import url("http://style.china.alibaba.com/css/lib/fdev-v4/core/fdev-float.css");
+//双飞翼布局页面需要引入
+@import url("http://style.china.alibaba.com/css/lib/fdev-v4/core/fdev-flying.css");
+</pre>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

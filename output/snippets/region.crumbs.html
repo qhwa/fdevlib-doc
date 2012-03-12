@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Crumbs</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <style type="text/css">
+        .crumbs-a { clear: both; overflow: hidden; height: 24px; margin-bottom: 8px; }
+        .crumbs-a li, .crumbs-a span, .crumbs-a em { float: left; height: 24px; line-height: 2; overflow: hidden; color: #404040; }
+        .crumbs-a li, .crumbs-a .first span, .crumbs-a .first-current span { background: url(/fdevlib/static/img/output/SP.Region.Crumbs1.png) no-repeat; }
+        .crumbs-a li { width: 120px; background-position: right -75px; }
+        .crumbs-a span { padding-left: 16px; }
+        .crumbs-a .first span, .crumbs-a .done span, .crumbs-a .current-prev span { color: #0061B7; }
+        .crumbs-a .first-current span, .crumbs-a .current span, .crumbs-a .last-current span { color: #FFF; font-weight: bold; }
+        .crumbs-a em { visibility: hidden; width: 24px; background: url(/fdevlib/static/img/output/SP.Region.Crumbs2.gif) no-repeat center; }
+        .crumbs-a .first em, .crumbs-a .done em, .crumbs-a .current-prev em { visibility: visible; }
+        .crumbs-a .first, .crumbs-a .done { background-position: right top; }
+        .crumbs-a .first span { background-position: left -200px; }
+        .crumbs-a .first-current { background-position: right -50px; }
+        .crumbs-a .first-current span { background-position: left -175px; }
+        .crumbs-a .last { background-position: right -100px; }
+        .crumbs-a .last-current { background-position: right -125px; }
+        .crumbs-a .current-prev { background-position: right -25px; }
+        .crumbs-a .current { background-position: right -50px; }
+    </style>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Crumbs：面包屑</h2>
+    </div>
+    <div class="g-detail">
+        <h3>crumbs-a：步骤型面包屑（谢谢琳MM友情赞助） </h3>
+        <div class="g-demo">
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first-current"><span>1.Step1</span><em></em></li>
+                <li><span>2. Step2</span><em></em></li>
+                <li><span>3. Step3</span><em></em></li>
+                <li><span>4. Step4</span><em></em></li>
+                <li class="last"><span>5. Step5</span></li>
+            </ol>
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first current-prev"><span>1.Step1</span><em></em></li>
+                <li class="current"><span>2. Step2</span><em></em></li>
+                <li><span>3. Step3</span><em></em></li>
+                <li><span>4. Step4</span><em></em></li>
+                <li class="last"><span>5. Step5</span></li>
+            </ol>
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first"><span>1.Step1</span><em></em></li>
+                <li class="current-prev"><span>2. Step2</span><em></em></li>
+                <li class="current"><span>3. Step3</span><em></em></li>
+                <li><span>4. Step4</span><em></em></li>
+                <li class="last"><span>5. Step5</span></li>
+            </ol>
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first"><span>1.Step1</span><em></em></li>
+                <li class="done"><span>2. Step2</span><em></em></li>
+                <li class="current-prev"><span>3. Step3</span><em></em></li>
+                <li class="current"><span>4. Step4</span><em></em></li>
+                <li class="last"><span>5. Step5</span></li>
+            </ol>
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first"><span>1.Step1</span><em></em></li>
+                <li class="done"><span>2. Step2</span><em></em></li>
+                <li class="done"><span>3. Step3</span><em></em></li>
+                <li class="current-prev"><span>4. Step4</span><em></em></li>
+                <li class="last-current"><span>5. Step5</span></li>
+            </ol>
+        </div>
+        html:
+                <pre class="brush:html;collapse:true">
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first-current"><span>1.Step1</span><em></em></li>
+                <li><span>2. Step2</span><em></em></li>
+                <li><span>3. Step3</span><em></em></li>
+                <li><span>4. Step4</span><em></em></li>
+                <li class="last"><span>5. Step5</span></li>
+            </ol>
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first current-prev"><span>1.Step1</span><em></em></li>
+                <li class="current"><span>2. Step2</span><em></em></li>
+                <li><span>3. Step3</span><em></em></li>
+                <li><span>4. Step4</span><em></em></li>
+                <li class="last"><span>5. Step5</span></li>
+            </ol>
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first"><span>1.Step1</span><em></em></li>
+                <li class="current-prev"><span>2. Step2</span><em></em></li>
+                <li class="current"><span>3. Step3</span><em></em></li>
+                <li><span>4. Step4</span><em></em></li>
+                <li class="last"><span>5. Step5</span></li>
+            </ol>
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first"><span>1.Step1</span><em></em></li>
+                <li class="done"><span>2. Step2</span><em></em></li>
+                <li class="current-prev"><span>3. Step3</span><em></em></li>
+                <li class="current"><span>4. Step4</span><em></em></li>
+                <li class="last"><span>5. Step5</span></li>
+            </ol>
+            <ol class="crumbs-a" data-sp="crumbs-a">
+                <li class="first"><span>1.Step1</span><em></em></li>
+                <li class="done"><span>2. Step2</span><em></em></li>
+                <li class="done"><span>3. Step3</span><em></em></li>
+                <li class="current-prev"><span>4. Step4</span><em></em></li>
+                <li class="last-current"><span>5. Step5</span></li>
+            </ol>
+        </pre>
+        css:
+        <pre class="brush:css;collapse:true">
+        .crumbs-a { clear: both; overflow: hidden; height: 24px; margin-bottom: 8px; }
+        .crumbs-a li, .crumbs-a span, .crumbs-a em { float: left; height: 24px; line-height: 2; overflow: hidden; color: #404040; }
+        .crumbs-a li, .crumbs-a .first span, .crumbs-a .first-current span { background: url(/fdevlib/static/img/output/SP.Region.Crumbs1.png) no-repeat; }
+        .crumbs-a li { width: 120px; background-position: right -75px; }
+        .crumbs-a span { padding-left: 16px; }
+        .crumbs-a .first span, .crumbs-a .done span, .crumbs-a .current-prev span { color: #0061B7; }
+        .crumbs-a .first-current span, .crumbs-a .current span, .crumbs-a .last-current span { color: #FFF; font-weight: bold; }
+        .crumbs-a em { visibility: hidden; width: 24px; background: url(/fdevlib/static/img/output/SP.Region.Crumbs2.gif) no-repeat center; }
+        .crumbs-a .first em, .crumbs-a .done em, .crumbs-a .current-prev em { visibility: visible; }
+        .crumbs-a .first, .crumbs-a .done { background-position: right top; }
+        .crumbs-a .first span { background-position: left -200px; }
+        .crumbs-a .first-current { background-position: right -50px; }
+        .crumbs-a .first-current span { background-position: left -175px; }
+        .crumbs-a .last { background-position: right -100px; }
+        .crumbs-a .last-current { background-position: right -125px; }
+        .crumbs-a .current-prev { background-position: right -25px; }
+        .crumbs-a .current { background-position: right -50px; }
+        </pre>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>subcookie</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>subcookie：前端专属cookie相关操作</h2>
+        <p>subcookie.js包含了子cookie的读取、写入、删除方法。</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2011-03-17 发布 beta版</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>注意：</h3>
+        <p>前端能完全使用的cookie名为：<strong>alicnweb</strong>，而非alicnwb，请注意！容量限制为200字节</p>
+        <p>原有的alicnwb将限期删除</p>
+        <p><strong>写入子cookie请跟相关责任应用架构确认，并将子cookie相关信息录入<a href="http://fd.aliued.cn/fdevlib/output/rules/cookie.html">前端专属cookie使用规则</a>页</strong></p>
+        <h3>开始：</h3>
+        如果你想引用subcookie-min.js，请在页面中加入以下片段片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+		 /*subcookie-min.js*/
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/util/subcookie-min.js");
+	    </pre>
+        <h3>方法说明</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>方法名</th><th>参数说明</th><th>返回值</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+        			<td>FD.common.getSubCookie(name)</td><td>{String} name 子cookie名称</td><td>{String} 子cookie 的值或者空字符串</td><td>获取子cookie值</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>FD.common.setSubCookie(name,value)</td><td>{String} name 子cookie名称<br />{Variant} value 子cookie的值</td><td>{String} 所设置的子cookie内容</td><td>设置子cookie的值</td>
+        		</tr>
+	        	<tr>
+        			<td>FD.common.removeSubCookie(name)</td><td>{String} name 子cookie名称</td><td>删除后的子cookie内容</td><td>删除子cookie</td>
+        		</tr>
+	       	</tbody>
+        </table>
+        <h3>备注</h3>
+        <p>
+            <strong>1：</strong>可在setSubCookie附加第三个参数，removeSubCookie附加第二个参数options，options的设置包括：
+			<ul>
+				<li>a、expires: cookie过期时间，既可以设置某个具体时间也可以设置数字(代表天)</li>
+				<li>b、path: cookie路径</li>
+				<li>c、domain: cookie域名</li>
+				<li>d、secure: true|false 是否安全cookie（https协议时才传输）</li>
+			</ul>
+			options设置范例（以下是默认设置，一般options可不传）：
+			<pre class="brush:js;">
+				FD.common.setSubCookie('webck',1,{
+					path：'/',
+					domain: 'alibaba.com',
+					expires: new Date('January 1, 2050')
+				});
+			</pre>
+        </p>
+		<p>
+			<strong>2：</strong>cookie中保存的都是字符串格式，即使写入cookie值为true/false等布尔值时也会转化为字符串。所以
+			切记读取cookie时不要直接对读取的值进行真假判断，如下所示，
+			<pre class="brush:js;">
+				//现将webck设为"false"
+				FD.common.setSubCookie('webck',false);
+				
+				if(! FD.common.getSubCookie('webck')){
+					// 这里的代码不会被执行,因为FD.common.getSubCookie('webck')读取的结果时字符串“false”而不是布尔值false
+				}
+			</pre>
+		</p> 
+		<p>
+			<strong>3：</strong>记得一定不要将 js 的关键字做为子cookie名。
+		</p>
+		<p>
+			<strong>4：</strong>默认的cookie内容(包括子cookie的值)都将进行escape和unescape编/解码。
+		</p>
+        <h3>提建议给开发者</h3>
+        作者：Edgar<br />
+        邮件：<a href="mailto:mail@edgarhoo.net">mail@edgarhoo.net</a><br />
+        旺旺：edgarhoo
+    </div>
+</body>
+</html>

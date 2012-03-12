@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>FE.ui.StyleSheet</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div id="doc">
+        <h1>FE.ui.StyleSheet : CSS Rule</h1>
+        
+        <h2>介绍</h2>
+        <p>提供动态管理页面级别的Style</p>
+
+        <h2>版本</h2>
+        <ul>
+            <li>Denis: 创建</li>
+            <li>倪朱国： 修改表现样式----2011.10.28</li>
+        </ul>
+
+        <h2>开始</h2>
+        <pre class="prettyprint langage-js">
+jQuery(function($){
+    // 模块动态载入
+    $.use('web-stylesheet', function(){
+        //可以传入一个现有的style HTMLDOMElement节点
+        var ss = new FE.ui.StyleSheet([node]);
+
+        //设置样式
+        ss.set(selectors, styleObject);
+        //取消样式
+        ss.unset(selectors[, styleName]);
+        //删除style节点
+        ss.destroy();
+
+        //属性
+        //保存通过set定义的css规则，可以判断规则是否存在
+        ss.cssRules
+    });
+});</pre>
+
+        <h2>Demo</h2>
+        <p><a target="_blank" href="../../examples/fdev4/FE.ui.StyleSheet.html">Try it</a></p>
+
+        <h2>Configs</h2>
+        <dl>
+            <dt><b>node</b> : HTMLDOMElement</dt>
+            <dd>Default: undefined</dd>
+            <dd>需要修改的style节点</dd>
+        </dl>
+
+        <h2>Statics</h2>
+        <dl>
+            <dt><b>cssRules</b></dt>
+            <dd>通过set定义的css规则，可以判断规则是否存在</dd>
+        </dl>
+        
+        <h2>Methods</h2>
+        <dl>
+            <dt><b>destory()</b></dt>
+            <dd>销毁节点</dd>
+        </dl>
+        <dl>
+            <dt><b>set( selectors, styleObject )</b></dt>
+            <dd>
+               <ul>
+                    <li><b>selectors</b> : String 应用样式的元素</li>
+                    <li><b>styleObejct</b> : Object 样式 (键值对)。</li>
+               </ul>
+            </dd>
+            <dd>设置样式</dd>
+        </dl>
+        <dl>
+        	<dt><b>unset( selectors[, styleName] )</b></dt>
+        	<dd>
+                <ul>
+                	<li><b>selectors</b> : String 取消样式的元素</li>
+                	<li><b>styleName</b> : String | Array 样式名称或样式名称数组</li>
+                </ul>
+            </dd>
+            <dd>取消样式</dd>
+            <dd>
+                <p>如果选中器中包含逗号，将分割成单个选择器，分别适用。</p>
+                <p>如果取消了样式后，规则中没有其他样式，则该规则将被删除。</p>
+                <p>styleName(样式名称）该为JavaScript中的样式名称，例如应该是fontSize，而不是font-szie。</p>
+            </dd>
+        </dl>
+        <dl>
+            <dt><b>enable()</b></dt>
+            <dd>使样式规则可用</dd>
+        </dl>
+        <dl>
+            <dt><b>disable()</b></dt>
+            <dd>使样式规则不可用</dd>
+        </dl>
+        <script src="../../static/js/app-merge.js"></script>
+    </div>
+</body>
+</html>

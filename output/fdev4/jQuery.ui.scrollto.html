@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>jQuery.ui.scrollTo</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div id="doc">
+        <h1>ui-scrollTo : 平滑滚动</h1>
+        
+        <h2>介绍</h2>
+        <p>这个插件提供各种配置的动画滚动。</p>
+        <p><strong>谁滚动？</strong></p>
+        <p>简单的说，全部匹配的元素，例如:</p>
+        <pre class="prettyprint lang-js">
+$("div.pane").scrollTo(...);</pre>
+        <p>如果你想要让窗口滚动可以这样：</p>
+        <pre class="prettyprint lang-js">
+$.scrollTo(...);    // the plugin will take care of this</pre>
+        <p><strong>滚到哪里去</strong></p>
+        <p>这个插件提供了很多方式让你轻松的指定目的地:</p>
+        <ul>
+            <li>一个数字</li>
+            <li>一个字符串 ('44','100px','+=30px',等)</li>
+            <li>一个DOM元素 (从逻辑上讲，应该为滚动元素的子元素)</li>
+            <li>一个选择器</li>
+            <li>一个特定的字符串"max"，滚到最底部</li>
+            <li>一个百分数 (例如: 50% ，滚到中间)</li>
+            <li>一个对象 {top:x, left:y}, x 和 y 可以为上面任何方式的数字和字符串</li>
+        </ul>
+
+        <h2>版本</h2>
+        <ul>
+            <li>施丹侠：创建</li>
+            <li>倪朱国：修改----2011.11.17</li>
+        </ul>
+
+        <h2>开始</h2>
+        <pre class="prettyprint langage-js">
+jQuery(function(){
+    $.use("ui-scrollto",function(){
+        // scrollTo 和 $.animate() 方法类似，有两种调用方式
+        $(...).scrollTo( target, duration, settings);
+        $(...).scrollTo( target, settings);
+        // 如果使用第二种方法，可以在settings里指定duration的值
+    });
+});
+        </pre>
+
+        <h2>Demo</h2>
+        <p><a target="_blank" href="../../examples/fdev4/jQuery.ui.scrollto.html">Try it</a></p>
+
+        <h2>Configs</h2>
+        <dl>
+            <dt><b>axis</b> : String</dt>
+            <dd>Default : 'xy'</dd>
+            <dd>滚动轴，可选的值有 'x', 'y', 'xy', 'yx'</dd>
+        </dl>
+        <dl>
+            <dt><b>duration</b> : Number | String</dt>
+            <dd>Default : 0</dd>
+            <dd>动画的时间长度</dd>
+        </dl>
+        <dl>
+            <dt><b>easing</b> : String</dt>
+            <dd>动画效果的名字（或者说动画的函数）</dd>
+        </dl>
+        <dl>
+            <dt><b>margin</b> : Boolean</dt>
+            <dd>Default : false</dd>
+            <dd>如果为值为true，则目的地的计算将会加上元素的border和margin值。</dd>
+        </dl>
+        <dl>
+            <dt><b>offset</b> : Number | Hash</dt>
+            <dd>偏移量，可以为数值也可以为包含left和top的hash值，例如 {offset:50}, {offset:{ left:x, top:y }} </dd>
+        </dl>
+        <dl>
+            <dt><b>over</b> : Number | Hash</dt>
+            <dd>加一小部分元素的高度、宽度，例如{over:0.5}, {over:{left:0.2, top:-0.5}}</dd>
+        </dl>
+        <dl>
+            <dt><b>queue</b> : Boolean</dt>
+            <dd>Default : false</dd>
+            <dd>将动作分解，加入到队列中，按先后次序执行，比如 {axis:'xy', queue:true} ，先在X轴上移动，完成后再在Y轴上移动。</dd>
+            <dd><b>axis</b> 的值必须为 'xy' 或者 'yx' 才有意义</dd>
+        </dl>
+
+        <h2>Events</h2>
+        <dl>
+            <dt><b>onAfterFirst</b> : Function</dt>
+            <dd>如果 <b>queue</b> 的值为 true，则在第一个轴上完成动画时触发。</dd>
+        </dl>
+        <dl>
+            <dt><b>onAfter</b> : Function</dt>
+            <dd>动画完成后触发。</dd>
+        </dl>
+        <script src="../../static/js/app-merge.js"></script>
+    </div>
+</body>
+</html>
+

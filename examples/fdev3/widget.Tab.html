@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: tab</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+    <style>
+	#tab1,#tab2,#tab3{
+		width:310px;
+		border:1px solid #385F95;
+	}
+	.f-tab-t{
+		width:62px;
+		text-align:center;
+		float:left;
+		height:22px;
+		line-height:22px;
+		background:#D0D0D0;
+	}
+	.f-tab-t.current{
+		background:#fff;
+	}
+	.f-tab-b{
+		height:160px;
+		line-height:160px;
+		text-align:center;
+	}
+	
+	#tab4 {
+		border:1px solid #385f95;
+		width:328px;
+		overflow:hidden;
+	}
+	#tab4 .f-tab-b {
+		width:328px;
+		height:168px;
+	}
+	#tab4 .f-tab-t {
+		width:109px;
+		height:22px;
+	}
+    </style>
+</head>
+<body>
+	<div id="doc">
+		<div id="hd">
+			<h1>fdevlib-example: tab（tab切换）</h1>
+		</div>
+		<div id="bd">
+			<div class="layout">
+				<div class="main">
+					<h2>1、默认状态，自动切换，相应鼠标移动事件</h2>
+					 <div id="tab1">
+						<ul class="clr">
+							<li class="f-tab-t current">tab1</li>
+							<li class="f-tab-t">tab2</li>
+							<li class="f-tab-t">tab3</li>
+							<li class="f-tab-t">tab4</li>
+							<li class="f-tab-t">tab5</li>
+						</ul>
+						<div class="f-tab-b">tab1</div>
+						<div class="f-tab-b">tab2</div>
+						<div class="f-tab-b">tab3</div>
+						<div class="f-tab-b">tab4</div>
+						<div class="f-tab-b">tab5</div>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+						var tab = new FD.widget.Tab('tab1');
+					</pre>
+				</div>			
+			</div>
+			
+			<div class="layout">
+				<div class="main">
+					<h2>2、无自动切换效果，初始化时定位在第3个内容</h2>
+					<div id="tab2">
+						<ul class="clr">
+							<li class="f-tab-t current">tab1</li>
+							<li class="f-tab-t">tab2</li>
+							<li class="f-tab-t">tab3</li>
+							<li class="f-tab-t">tab4</li>
+							<li class="f-tab-t">tab5</li>
+						</ul>
+						<div class="f-tab-b">tab1</div>
+						<div class="f-tab-b">tab2</div>
+						<div class="f-tab-b">tab3</div>
+						<div class="f-tab-b">tab4</div>
+						<div class="f-tab-b">tab5</div>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var tab2 = new FD.widget.Tab('tab2',{
+						isAutoPlay:false,
+						startItem: 2
+					});
+					</pre>
+				</div>			
+			</div>
+			
+			<div class="layout">
+				<div class="main">
+					<h2>3、自动切换、间隔5秒，触发事件为鼠标点击</h2>
+					 <div id="tab3">
+						<ul class="clr">
+							<li class="f-tab-t current">tab1</li>
+							<li class="f-tab-t">tab2</li>
+							<li class="f-tab-t">tab3</li>
+							<li class="f-tab-t">tab4</li>
+							<li class="f-tab-t">tab5</li>
+						</ul>
+						<div class="f-tab-b">tab1</div>
+						<div class="f-tab-b">tab2</div>
+						<div class="f-tab-b">tab3</div>
+						<div class="f-tab-b">tab4</div>
+						<div class="f-tab-b">tab5</div>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var tab3 = new FD.widget.Tab('tab3',{
+						timeDelay : 5,
+						eventType:'click'
+					});
+					</pre>
+				</div>			
+			</div>
+            
+            <div class="layout">
+				<div class="main">
+					<h2>4、使用lazy load 的形式加载图片</h2>
+					 <div id="tab4">
+						<div class="f-tab-b">
+                            <img alt="示例图片一" src="/fdevlib/static/img/output/slider-a.jpg" />
+                        </div>
+						<div class="f-tab-b">
+                            <img alt="示例图片二" data-lazyimg="/fdevlib/static/img/output/slider-b.jpg" />
+                        </div>
+						<div class="f-tab-b">
+                            <img alt="示例图片三" data-lazyimg="/fdevlib/static/img/output/slider-c.jpg" />
+                        </div>
+                        <ul class="clr">
+							<li class="f-tab-t current">tab1</li>
+							<li class="f-tab-t">tab2</li>
+							<li class="f-tab-t">tab3</li>
+						</ul>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var tab4 = new FD.widget.Tab('tab4',{
+						isLazy : true
+					});
+					</pre>
+				</div>			
+			</div>
+		</div>
+		<div id="ft">
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/animation-min.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/tab/tab-min.js"></script>
+	<script>
+	//Dom树构建完毕后开始执行
+	$E.onDOMReady(function(){
+		dp.SyntaxHighlighter.HighlightAll('code');	//代码高亮
+
+		var tab = new FD.widget.Tab('tab1');
+		
+		var tab2 = new FD.widget.Tab('tab2',{
+			isAutoPlay:false,
+			startItem: 2
+		});
+		
+		var tab3 = new FD.widget.Tab('tab3',{
+			timeDelay : 5,
+			eventType:'click'
+		});
+		
+		var tab4 = new FD.widget.Tab('tab4',{
+			isLazy : true
+		});
+	});
+	</script>
+</body>
+</html>

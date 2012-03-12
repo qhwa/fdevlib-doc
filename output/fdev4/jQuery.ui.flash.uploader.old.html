@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.flash.uploader</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-flash-uploader : flash上传组件</h1>
+            <h2>介绍</h2>
+            <p>
+                本组件扩展至ui-flash组件，提供了文件上传的功能。在IE下使用flash方式，在非IE下使用原生的form方式。注意：flash方式支持多文件上传的特性，原生的只支持单一文件上传。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    Denis: 升级flash文件版本至v2.7 ---- 2011.03.21 
+                </li>
+                <li>
+                    Denis: 使用新的flash注册方式 ---- 2011.06.14
+                </li>
+                <li>
+                    Denis: 新增interfaceReady事件，同步Flash事件 ---- 2011.06.15
+                </li>
+                <li>
+                    Denis: 将uploader处理函数挂在命名空间下，提供上传请求超时的监听逻辑 ---- 2011.09.17
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('ui-flash-uploader', function(){
+    $('...').flash({
+        module: 'uploader'
+    });
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.flash.uploader.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>width</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 65
+                </dd>
+                <dd>
+                    上传按钮的宽度(px)
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>height</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 22
+                </dd>
+                <dd>
+                    上传按钮的高度(px)
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>inputName</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : 'imgFile'
+                </dd>
+                <dd>
+                    上传文件的 post key
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>fileFilters</b>
+                    : Array
+                </dt>
+                <dd>
+                    Default : <pre class="prettyprint language-js">
+[{
+    description: "图片(*.jpg, *.jpeg, *.gif, *.png, *.bmp)",
+    extensions: "*.jpg;*.jpeg;*.gif;*.png;*.bmp;"
+}]</pre>
+                </dd>
+                <dd>
+                    上传文件的类型 <em>必须严格按照以上格式</em>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>flashvars</b>
+                    : Object
+                </dt>
+                <dd>
+                    Default : <pre class="prettyprint language-js">
+{
+    //(flash有效)允许多选
+    allowMultiple: false,
+    //(flash有效)是否允许并行上传多个文件
+    allowSimul: true,
+    //按钮皮肤，需要从上至下提供“normal”“hover”“active”“disabled”四种状态图，且高度一致
+    buttonSkin: 'http://img.china.alibaba.com/cms/upload/2011/040/820/28040_548721671.gif',
+    //事件钩子，亲！该配置不要随意更改
+    eventHandler: 'jQuery.util.flash.triggerHandler',
+    //以秒为单位的超时时间
+    dataTimeoutDelay: 60,
+    //(flash有效)并发请求的数量
+    simUploadLimit: 1,
+    //(flash有效)单个文件的大小限制（Bytes）
+    sizeLimitEach: 0,
+    //(flash有效)上传的大小总和限制（Bytes）
+    sizeLimitTotal: 0,
+    //(flash有效)是否允许上传之前进行压缩
+    allowCompress: false,
+    //(flash有效)压缩后图片都将转换为JPG格式，图片质量比
+    compressQuality: 80,
+    //(flash有效)在此大小之下的文件，进行压缩处理。0代表不压缩
+    compressSize: 0,
+    //(flash有效)压缩时缩小到此宽度之内
+    compressWidth: 800,
+    //(flash有效)压缩时缩小到此高度之内
+    compressHeight: 800,
+    //(flash有效)单次上传的文件最大数量
+    fileNumLimit: 1,
+    //(flash有效)为了防止IE下跨域问题，统一设置为500，亲！不要随意更改
+    startDelay: 500
+}</pre>
+                </dd>
+                <dd>
+                    flashvars的配置
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.flash( 'uploadAll', url, param )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>url</b>
+                            : String 文件上传的接口URL
+                        </li>
+                        <li>
+                            <b>param</b>
+                            : Object 随文件上传的post参数
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    该方法提供了jQueryUI组件的制作方式，以及一套简单的组件开发模式。所有组件默认都扩展自"jQuery.Widget"。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'getFileStatus' )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Array<pre class="prettyprint language-js">
+[{
+    id: '...',
+    name: '...',
+    status: '...'
+}]</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    返回当前所有上传文件状态
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    (flash有效)<b>.flash( 'setFileCountLimit', num )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>num</b>
+                            : Number
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    修改文件上传的个数限额
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'disable' )</b>
+                </dt>
+                <dd>
+                    禁用组件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'enable' )</b>
+                </dt>
+                <dd>
+                    激活组件。
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt><b>fileSelect</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    numFiles: Number,
+    filesRefused: Array,
+    fileList: [{
+        id: String,
+        name: String
+    }]
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    文件选择后触发
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>uploadCompleteData</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    id: String,
+    fileName: String,
+    data: String | Object   //接口返回的数据
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    每一个文件上传后，得到接口的回传信息
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>finish</b></dt>
+                <dd>
+                    所有文件上传完成后触发
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>uploadStart</b></dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object<pre class="prettyprint language-js">
+{
+    id: String,
+    fileName: String
+}</pre>
+                        </li>
+                    </ul>
+                </dd>                
+                <dd>
+                    每一个文件上传开始时触发
+                </dd>
+            </dl>            
+            <dl>
+                <dt><b>interfaceReady</b></dt>
+                <dd>
+                    flash对象的方法可用后触发
+                </dd>
+            </dl>            
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

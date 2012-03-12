@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>util-cookie</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>util-cookie : 浏览器cookie操作</h1>
+            <h2>介绍</h2>
+            <ul>
+                <li>
+                    提供完整的浏览器cookie操作（读/写）
+                </li>
+                <li>
+                    由于Core中提供的方法"jQuery.util.subCookie()"依赖于jQuery.util.cookie, 所以附带此方法具有读/写操作
+                </li>
+            </ul>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    Denis: 移植自jQuery官方的cookie插件
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('util-cookie', function(){
+    $.util.cookie();
+    $.util.subCookie();
+});</pre>
+            <h2>Statics</h2>
+            <dl>
+                <dt>
+                    <b>jQuer.util.cookie( key[, value, options] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>key</b>
+                            : String 需要获取/设置的cookie的key
+                        </li>
+                        <li>
+                            <b>value</b>
+                            : String Cookie的值
+                        </li>
+                        <li>
+                            <b>options</b>
+                            : Object 目前只提供"raw"配置，{raw:true}
+                            <ul>
+                                <li>
+                                    <b>raw</b>
+                                    : Bolean 是否对value进行encode(escape/unescape)处理，默认false。
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    读/写cookie
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>jQuery.util.subCookie( key[, value, options] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>key</b>
+                            : String 需要获取/设置的子cookie的key
+                        </li>
+                        <li>
+                            <b>value</b>
+                            : String 子Cookie的值
+                        </li>
+                        <li>
+                            <b>options</b>
+                            : Object
+                            <ul>
+                                <li>
+                                    <b>raw</b>
+                                    : Bolean 是否对value进行encode(escape/unescape)处理，默认false。
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    该方法原理是先通过jQuery.util.cookie方法获取到"alicnweb"的值，然后调用"jQuery.param"方法将值转化为json，最后根据key操作json中的key/value。
+                </dd>
+            </dl>
+            <h2>单元测试</h2>
+            <p>
+                <a href="../../test/fdev4/widget.html" target="_blank">Go!</a>
+            </p>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

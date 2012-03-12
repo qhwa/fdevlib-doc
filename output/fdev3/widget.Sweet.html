@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.Sweet</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>
+            Sweet：Javascript模板语言</h2>
+        <h3>
+            更新日志</h3>
+        <ul class="update-histroy">
+            <li>
+                @version 1.00 2010-12-17 增加组件。</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>
+            开始：</h3>
+        如果你想使用Sweet组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/template/sweet-min.js");
+	    </pre>
+        <h3>
+            使用说明</h3>
+        <p>
+            1、改组件提供静态方法，传入模板数据，处理后返回HTML内容。
+            <pre class="brush:js;">
+//定义模板数据
+var data = [
+    {showMe: true, name: "Jerry"}, 
+    {showMe: false, name: "Mark"}, 
+    {showMe: true, name: "Scotti"},
+    {showMe: true, name: "Carol"}, 
+    {showMe: false, name: "Tina"}, 
+    {showMe: true, name: "Owen"}
+];
+//定义模板，模板语言分隔符“&lt;% ... %&gt;”
+var tpl = '&lt;ul&gt;'
+    + '&lt;%foreach ($data as item) { if (item.showMe) { %&gt;'
+    // &lt;%= value %&gt; is the assignment statement
+    + '&lt;li&gt;&lt;%= item.name %&gt;&lt;/li&gt;'
+    + '&lt;% } } %&gt;'    
+    + '&lt;/ul&gt;';
+//处理模板，返回最终HTML
+var html = FD.widget.Sweet(tpl).applyData(data);
+//也可以先保存实例化后的模板对象，分布处理数据
+var St = FD.widget.Sweet(tpl);
+var html = varSt.applyData(data);
+        </pre>
+        </p>
+        <p>
+            2、语法
+            <pre class="brush:js;">
+//条件语句
+&lt;% if (condition) {%&gt;
+   Do something...
+&lt;% } else if (condition2) { %&gt;
+   Do something else...
+&lt;% } else { %&gt;
+   Do something else else...
+&lt;% } %&gt;
+
+//循环语句
+&lt;% for (var i = 0, l = data.length; i < l; i++) { %&gt;
+   //Loop here...
+&lt;% } %&gt;
+//或者
+&lt;% foreach (arrData as item) { %&gt;
+    //循环内部可以通过&lt;%=$index%&gt;获得索引
+   &lt;%= item.name %&gt;
+&lt;% } %&gt;
+// Or
+&lt;% foreach (arrData) { %&gt;
+   // arrData必需有name这个属性
+   &lt;%= name %&gt;
+&lt;% } %&gt;
+        </pre>
+        </p>
+        <p>
+            3、调用内置方法。
+            <pre class="brush:js;">
+// $util.print, 输出值
+<div>
+ // 这种情况等同 &lt;%= name %&gt;
+ <p> &lt;% $util.print(name) %&gt; </p>
+ // 这种情况无法用 “=”
+ <p> &lt;% My name is $util.print(name). %&gt; </p>
+</div>
+// $util.trim, 去掉左右空格
+&lt;% $util.trim(name) %&gt;
+// $util.escape，过滤html标签
+&lt;% $util.escape(htmlString) %&gt;
+        </pre>
+        </p>
+        <p>
+            3、调用外部方法。
+            <pre class="brush:js;">
+function someMethod() {}
+var tpl = FD.widget.Sweet("<p><[ someMethod(); ]></p>");
+tpl.applyData(data);
+        </pre>
+        </p>
+        <p>
+            4、设置上下文环境。
+            <pre class="brush:js;">
+//这里的this指向scope这个对象
+var tpl = FD.widget.Sweet("<p><[ this.someMethod(); ]></p>"),
+    scope = {
+        someMethod: function（） {}
+    };
+tpl.applyData(data, scope);
+        </pre>
+        </p>
+        <p>
+            5、扩展内部方法。
+            <pre class="brush:js;">
+//后期通过 $util.method1() 直接在模板内部调用
+FDEV.lang.augmentObject(FD.widget.Sweet.util,{
+    method1:function(arg1,arg2){...},
+    method2:function(){...}
+});
+        </pre>
+        </p>        <h3>
+            配置参数列表</h3>
+        <table class="g-paramtable">
+            <thead>
+                <tr>
+                    <th>
+                    配置参数
+                    </th>
+                    <th>
+                    参数可选值
+                    </th>
+                    <th>
+                    作用说明
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        tpl
+                    </td>
+                    <td>
+                        FD.widget.Sweet的参数String
+                    </td>
+                    <td>
+                        传入模板字符串
+                    </td>
+                </tr>
+                <tr class="even">
+                    <td>
+                        data
+                    </td>
+                    <td>
+                        applyData的第一个参数
+                    </td>
+                    <td>
+                        可以是任意类型的变量。一般为Array，Object。
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        scope
+                    </td>
+                    <td>
+                        applyData的第二个参数，可选
+                    </td>
+                    <td>
+                        指定了scope，将会替换模板中this的指向
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>
+            提建议给开发者</h3>
+        作者：施丹侠<br />
+        邮件：<a href="mailto:danxia.shidx@alibaba-inc.com">danxia.shidx@alibaba-inc.com</a><br />
+        旺旺：swainet
+    </div>
+</body>
+</html>

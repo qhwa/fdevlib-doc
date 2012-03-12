@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk">
+        <title>jQuery.ui.sortable</title>
+        <link href="../../static/css/demo-merge.css" rel="stylesheet"/>
+        <style>
+            ul{
+                list-style: none;
+                margin: 0;
+                width: 260px;
+            }
+            li{
+                margin: 0 3px 3px 3px;
+                padding: 0.4em;
+                padding-left: 1.5em;
+                border: 1px solid #CCCCCC;
+                background: #F6F6F6;
+                font-weight: bold;
+                font-size:1.4em;
+                color: #1C94C4;
+                outline: none;
+                height:25px;
+            }
+            #demo2-sortable1{
+                float:left;
+            }
+            #demo2-sortable2{
+                margin-left:270px;
+            }
+            .demo2-item{
+                background: #FFE45C;
+                border: 1px solid #FED22F;
+                color: #363636;
+            }
+            .placeholder{
+                background: #FAEDA1;
+                border: 1px solid #E5CF7D;
+                height:25px;
+            }
+            .clear{
+                clear: both;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-sortable : 排序</h1>
+            <h2>Demo 1 基础应用</h2>
+            <div id="demo1">
+                <ul id="sortable">
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                    <li>item 4</li>
+                </ul>
+                <pre class="prettyprint language-html">
+&lt;ul id="sortable"&gt;
+    &lt;li&gt;item 1&lt;/li&gt;
+    &lt;li&gt;item 2&lt;/li&gt;
+    &lt;li&gt;item 3&lt;/li&gt;
+    &lt;li&gt;item 4&lt;/li&gt;
+&lt;/ul&gt;</pre>
+                <pre class="prettyprint language-js">
+jQuery(function($){
+    $.use("ui-sortable",function(){
+        $("#sortable").sortable(); 
+    });
+});</pre>
+            </div>
+            
+            <h2>Demo 2 相联系的sortable对象</h2>
+            <div id="demo2">
+                <ul id="demo2-sortable1" class="demo2">
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                    <li>item 4</li>
+                </ul>
+                <ul id="demo2-sortable2" class="demo2">
+                    <li class="demo2-item">item 1</li>
+                    <li class="demo2-item">item 2</li>
+                    <li class="demo2-item">item 3</li>
+                    <li class="demo2-item">item 4</li>
+                </ul>
+                <pre class="prettyprint language-css clear">
+.placeholder{
+    background: #FAEDA1;
+    border: 1px solid #E5CF7D;
+    height: 25px;
+}</pre>
+                <pre class="prettyprint language-html clear">
+&lt;div id="demo2"&gt;
+    &lt;ul id="demo2-sortable1" class="demo2"&gt;
+        &lt;li&gt;item 1&lt;/li&gt;
+        &lt;li&gt;item 2&lt;/li&gt;
+        &lt;li&gt;item 3&lt;/li&gt;
+        &lt;li&gt;item 4&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul id="demo2-sortable2" class="demo2"&gt;
+        &lt;li class="demo2-item"&gt;item 1&lt;/li&gt;
+        &lt;li class="demo2-item"&gt;item 2&lt;/li&gt;
+        &lt;li class="demo2-item"&gt;item 3&lt;/li&gt;
+        &lt;li class="demo2-item"&gt;item 4&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</pre>
+                <pre class="prettyprint language-js">
+jQuery(function($){
+    $.use("ui-sortable",function(){
+        $("#demo2-sortable1,#demo2-sortable2").sortable({
+            connectWith: ".demo2",      // 就是靠这个属性将两个list联系起来的
+            placeholder: "placeholder"  // 给的是类名,名字前面不用带"."
+        });
+    });
+});</pre>
+            </div>
+            
+            <h2>Demo 3 序列化</h2>
+            <div id="demo3">
+                <ul id="demo3-sortable">
+                    <li id="demo3-item-1">item 1</li>
+                    <li id="demo3-item-2">item 2</li>
+                    <li id="demo3-item-3">item 3</li>
+                    <li id="demo3-item-4">item 4</li>
+                </ul>
+                <button id="serialize">获取序列化后的值</button>
+                <button id="toArray">To Array</button>
+                <p>结果也可以在控制台查看</p>
+                <pre class="prettyprint language-html">
+&lt;div id="demo3"&gt;
+    &lt;ul id="demo3-sortable"&gt;
+        &lt;li id="demo3-item-1"&gt;item 1&lt;/li&gt;
+        &lt;li id="demo3-item-2"&gt;item 2&lt;/li&gt;
+        &lt;li id="demo3-item-3"&gt;item 3&lt;/li&gt;
+        &lt;li id="demo3-item-4"&gt;item 4&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;button id="serialize"&gt;获取序列化后的值&lt;/button&gt;
+    &lt;button id="toArray"&gt;To Array&lt;/button&gt;
+&lt;/div&gt;</pre>
+                <pre class="prettyprint language-js">
+jQuery(function($){
+    $.use("ui-sortable",function(){
+        $("#demo3-sortable").sortable(); 
+                    
+        $("#serialize").click(function(){
+            alert($("#demo3-sortable").sortable("serialize"));
+            console.log($("#demo3-sortable").sortable("serialize"));
+        });
+                    
+        $("#toArray").click(function(){
+            alert($("#demo3-sortable").sortable("toArray"));
+            console.log($("#demo3-sortable").sortable("toArray"));
+        });
+    });
+});</pre>
+              
+            </div>
+        </div>
+        
+        <script src="../../static/js/app-merge.js"></script>
+        <script type="text/javascript">
+            /* Demo 1 */
+            jQuery(function($){
+                $.use("ui-sortable",function(){
+                    $("#sortable").sortable(); 
+                });
+            });
+            
+            /* Demo 2 */
+            jQuery(function($){
+                $.use("ui-sortable",function(){
+                    $("#demo2-sortable1,#demo2-sortable2").sortable({
+                        connectWith: ".demo2",      // 就是靠这个属性将两个list联系起来的
+                        placeholder: "placeholder"  // 给的是类名,名字前面不用带"."
+                    });
+                });
+            });
+            
+            /* Demo 3 */
+            jQuery(function($){
+                $.use("ui-sortable",function(){
+                    $("#demo3-sortable").sortable(); 
+                    
+                    $("#serialize").click(function(){
+                        alert($("#demo3-sortable").sortable("serialize"));
+                        console.log($("#demo3-sortable").sortable("serialize"));
+                    });
+                    
+                    $("#toArray").click(function(){
+                        alert($("#demo3-sortable").sortable("toArray"));
+                        console.log($("#demo3-sortable").sortable("toArray"));
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

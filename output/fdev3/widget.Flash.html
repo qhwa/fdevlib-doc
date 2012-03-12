@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.Flash</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Flash: 嵌入Flash内容</h2>
+        <p>使用Flash嵌入组件可以在HTML页面内方便地插入带有各种配置的Flash内容，并且JS可以和Flash进行通信。</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-9-29 发布1.1 版本, 增加了全屏功能支持</li>
+            <li>2010-6-23 发布1.0 版本</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>什么情况下使用这个widget:</h3>
+        <ul>HTML页面内嵌入Flash，可以用HTML或者js方式嵌入Flash, 两者各有优缺点。
+          <li><strong>HTML嵌入Flash的方式</strong>，适合在没有特别的配置的情况下嵌入Flash，否则配置Flash的各项参数是一件很繁琐的事情，如果要加上兼容各个浏览器，那就更加复杂。</li>
+          <li><strong>JS方式嵌入</strong>，可以对客户端安装播放器的情况进行综合考虑，当不满足最低要求时，可以给出一些提示，或者提供一些js替代功能。</li>
+        </ul>
+        这个组件使用js方式嵌入Flash，对各项参数配置进行了简化，并对js与flash通信进行了接口封装，js可以方便地与Flash进行通信。
+        <h3>开始：</h3>
+        如果你想使用Flash组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/flash/flash-min.js");
+	    </pre>
+        <h3>使用说明</h3>
+        <p>1、本组件需要的html结构:需要嵌入Flash的对象作为一个容器中。如下所示：
+        <pre class="brush:html;">
+          <div id="flash-container" />
+	    </pre>
+      在1.0以前版本的Flash组件中，外层容器会被删除，以Flash标签(&lt;OBJECT&gt;)代替。1.0或以后的版本，新增了一个insert的配置，指定是否不替换掉外层HTML容器，如果不指定该配置，则使用默认值true，即保留外层容器。
+        </p>
+        <p>2、组件调用方法如下：初始化是需要提供2个参数，第一个参数为容器(必填)，可以是DOMElement或容器的id属性；第二个参数为配置对象(可选，将覆盖默认的参数设定):
+        <pre class="brush:js;">
+          var flash = new FD.widget.Flash('flash-container',{ url: 'simpleswf.swf' });
+	    </pre>
+	    </p>
+
+      <p>
+        3、当需要调用Flash内部方法时，请确保flash已经初始化完毕。如果Flash使用CCBU前端的AS框架制作，初始化完毕时会发出一个"contentReady"事件，接收到这个事件之后就可以安全地调用flash内部定义的方法。
+        <pre class="brush:js">
+          flash.on('contentReady', function(){
+            alert( flash.callSwf('some_method_defined_by_flash', 'some arguments'));
+          });
+        </pre>
+      </p>
+
+        <p>4、当需要接收flash传出的事件与数据时，可以利用on或addListener方法，侦听该事件。具体可见事件部分的说明。
+        <pre class="brush:js;">
+          flash.on('some_event_from_flash', function(evt){
+            alert('evt.type'); 
+          });
+	    </pre>
+	    </p>
+      <h3>配置参数列表</h3>
+      <table class="g-paramtable" ><thead><tr><th>配置</th><th>默认值</th><th>说明</th></tr></thead>
+        
+        <tr><td>url</td><td> '' </td><td>swf文件地址</td></tr>
+        <tr><td>width</td><td> "100%"			</td> <td>宽度</td></tr><tr><td>height</td><td> "100%"				</td><td>高度</td></tr>
+        <tr><td>version</td><td> "9.0.0"			</td><td>要求版本</td></tr>
+        <tr><td>id</td><td>	自动生成				</td><td>Flash element id</td></tr>
+        <tr class="even">
+          <td>insert</td><td>Boolean</td><td>是否以插入方式生成flash元素，即保留container。默认为true (1.0+版本变动)</td>
+        </tr>
+        <tr><td>expressinstall</td><td> null							</td><td>是否用expressInstall方式。如启用，如果用户已安装低于要求版本的Flash播放器，会看到一个升级播放器的界面</td></tr>
+        <tr><td>devicefont</td><td>	默认（不使用）					</td><td>使用设备字体</td></tr>
+        <tr><td>swliveconnect</td><td>默认（不允许）</td><td>允许java连接，在非IE中有效</td></tr>
+        <tr><td>play</td><td>默认（播放）</td><td> 是否自动播放动画</td></tr>
+        <tr><td>loop</td><td>默认（循环）</td><td>是否循环播放动画</td></tr>
+        <tr><td>quality</td><td> 默认（高）		</td><td> 质量选择，可选择<ul>	
+              <li><b>Low</b> 使回放速度优先于外观，而且从不使用消除锯齿功能。</li> 
+              <li><b>Autolow</b> 优先考虑速度，但是也会尽可能改善外观。 回放开始时，消除锯齿功能处于关闭状态。 如果 Flash Player 检测到处理器可以处理消除锯齿功能，就会打开该功能。注意：用 ActionScript 3.0 制作的 SWF 文件不能识别 autolow 值。</li> 
+              <li><b>Autohigh</b> 开始时回放速度和外观两者并重，必要时会牺牲外观来保证回放速度。 回放开始时，消除锯齿功能处于打开状态。 如果实际帧频降到指定帧频之下，就会关闭消除锯齿功能以提高回放速度。 使用此设置可模拟“消除锯齿”命令（“视图”>“预览模式”>“消除锯齿”）。</li> 
+              <li><b>Medium</b> 会应用一些消除锯齿功能，但并不会平滑位图。 该设置生成的图像品质要高于“Low”设置生成的图像品质，但低于“High”设置生成的图像品质。</li> 
+              <li><b>High</b> 使外观优先于回放速度，并始终应用消除锯齿功能。 如果 SWF 文件不包含动画，则会对位图进行平滑处理；如果 SWF 文件包含动画，则不会对位图进行平滑处理。</li> 
+              <li><b>Best</b> 提供最佳的显示品质，而不考虑回放速度。 对所有输出都进行消除锯齿处理，并且对所有位图都进行平滑处理。</li> 
+            </ul> 
+        </td></tr>
+        <tr><td>bgcolor</td><td> 默认（"#FFFFFF"）				</td><td>Flash背景色</td></tr>
+        <tr><td>scale</td><td>默认（"showAll"）				</td><td>缩放模式
+            <ul><li><b>Showall</b>（默认值） 使全部内容显示在指定区域中，且不会发生扭曲，同时保持应用程序的原始高宽比。 应用程序的两侧可能会显示边框。</li> 
+              <li><b>Noborder</b> 对内容进行缩放以填充指定区域，不发生扭曲，保持应用程序原始高宽比，但可能会进行一些裁剪。</li> 
+              <li><b>Exactfit</b> 全部内容在指定区域中可见，但不尝试保持原始高宽比。 可能会发生扭曲。</li> 
+              <li><b>NoScale</b>不缩放，始终以100%显示</li></ul> 
+        </td></tr>
+        <tr><td>align</td><td>默认（"DEFAULT"）			</td><td>类似于img标签的align属性，指定Flash Elment相对于其他浏览器元素的对齐方式。可选：
+            <ul><li><b>Default</b> 使应用程序在浏览器窗口内居中显示，如果浏览器窗口小于应用程序，则会裁剪边缘。</li> 
+              <li><b> L、R、T 和 B </b>使应用程序分别沿着浏览器窗口的左、右、上、下边缘对齐，并根据需要裁剪其余三条边。</li></ul> 
+        </td></tr>
+        <tr><td>salign</td><td>默认（居中）</td><td>指定缩放的 SWF 文件在由 width 和 height 设置定义的区域内的位置。
+            <ul><li><b>L、R、T 和 B </b>使应用程序分别沿着浏览器窗口的左、右、上、下边缘对齐，并根据需要裁剪其余三条边。</li> 
+              <li><b>TL 和 TR </b>使应用程序分别与浏览器窗口的左上角和右上角对齐，并根据需要裁剪底边和剩余的右侧或左侧边缘。</li> 
+              <li><b>BL 和 BR </b>使应用程序分别与浏览器窗口的左下角和右下角对齐，并根据需要裁剪顶边和剩余的右侧或左侧边缘。</li></ul> 
+        </td></tr>
+        <tr><td>base</td><td>		默认（null）			</td><td>指定用于解析 SWF 文件中的所有相对路径语句的基本目录或 URL。 如果要在其它文件中将 SWF 文件保存到另一个文件夹，此属性十分有用。
+            值：基本目录或 URL</td></tr>
+        <tr><td>menu</td><td>默认（true）</td><td>是否显示完整的右键菜单</td></tr>
+        <tr><td>wmode</td><td> 默认（window）					</td><td> 
+            允许使用透明 Flash 内容、绝对定位和分层显示功能。wmode 参数还用于 Flash Player 9 以及更高版本中的硬件加速。<ul> 
+              <li><b>Window</b> 在网页上用应用程序自己的矩形窗口来播放应用程序。 “窗口”指示 Flash 应用程序与 HTML 层没有任何交互，并且始终位于最顶层。</li> 
+              <li><b>Opaque </b>使Flash置于HTML页面上其他内容的下方。</li> 
+              <li><b>Transparent </b>使 HTML 页的背景可以透过应用程序的所有透明部分显示出来，可能会降低动画性能。</li> 
+              <li><b>Direct</b>  - 打开 Direct 模式硬件加速。仅当硬件加速关闭时才应用其它窗口模式设置。</li> 
+              <li><b>GPU</b> - 打开 GPU 模式硬件加速。仅当硬件加速关闭时才应用其它窗口模式设置。</li></ul> 
+        </td></tr>
+
+        <tr><td>allowscriptaccess</td><td> 默认（"sameDomain"）</td><td>设定是否允许Flash访问页面内的Javascript。这与跨域安全性有着重要关系。<ul> 
+              <li><b>always</b> 允许随时执行脚本操作。</li> 
+              <li><b>never</b> 禁止所有脚本操作。</li> 
+              <li><b>samedomain</b> 只有在 Flash 应用程序来自与 HTML 页相同的域时才允许执行脚本操作。</li></ul></td></tr>
+
+        <tr><td>allowfullscreen</td><td> 默认（"false"）</td><td>设定是否允许Flash可以全屏播放。<ul> 
+              <li><b>true</b> 允许全屏显示</li> 
+              <li><b>false</b> 禁止全屏显示</li> </ul></td></tr>
+
+        <tr><td>seamlesstabbing</td><td> 默认（true）</td><td>设定在Flash中按Tab键是否将焦点移出Flash</td></tr></table>
+
+      <h3>对象方法列表</h3>
+      <table class="g-paramtable">
+        <thead>
+          <tr>
+            <th>方法名称</th><th>参数说明</th><th>作用说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>addEventListener</td><td>eventType : String <br />
+              listener: function<br />
+              scope: Object</td><td>增加事件处理侦听</td>
+          </tr>
+          <tr class="even">
+            <td>on</td><td>eventType : String <br />
+              listener: function<br />
+              scope: Object</td><td>addEventListener的便捷方式</td>
+          </tr>
+          <tr>
+            <td>removeEventListener</td><td>eventType: String<br />
+              listener: function</td><td>取消事件侦听</td>
+          </tr>
+          <tr class="even">
+            <td>getFlash</td><td>&nbsp;</td><td>获取flash元素</td>
+          </tr>
+          <tr>
+            <td>callSwf</td><td>fn: String
+              <br />
+              arg: * </td><td>调用Flash内部为js开放的接口</td>
+          </tr>
+          <tr>
+            <td>write</td><td>&nbsp;</td><td>以 document.write 的方式输出Flash元素</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Tip: </h3>
+      <p>Flash组件使用swfobject作为核心，在swfobject的基础上进行二次封装，swfobject的接口可以继续使用。</p>
+      <p>Flash类继承自YAHOO.util.EventProvider，可以调用继承的事件。</p>
+      <h3>Demo演示</h3>
+      这里为开发者展示了Flash组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.Flash.html">example: 
+        Flash</a>
+      <h3>提建议给开发者</h3>
+        作者：邱华<br />
+      邮件：<a href="mailto:hua.qiuh@alibaba-inc.com">hua.qiuh@alibaba-inc.com</a><br />
+      旺旺：qhwa2009
+    </div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>Javascript 模版</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>JS通用书写模版</h1>
+            <h2>介绍</h2>
+            <p>
+                这里的模版提供一个基础的书写框架，同学们可以针对不同的业务需求做细微的优化，千万不要成为完全照搬的无脑主义者。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    Denis: 模版文档建立 ---- 2011.11.11
+                </li>
+            </ul>
+            <h2>使用jQuery的DOM ready函数定义并执行页面功能</h2>
+            <pre class="prettyprint language-js">
+jQuery.namespace('Namespace');             
+/**
+ * 使用闭包控制业务逻辑的变量作用范围，避免意外的全局变量影响其他功能
+ * 本例中直接使用jQuery的DOM ready函数来创建一个闭包环境，在HTML文档加载完毕后将执行环境的逻辑
+ */
+jQuery(function($){
+    /**
+     * 1. 闭包内的引用简写
+     * 2. 闭包内的全局变量
+     * 3. 枚举常量
+     */
+    var NS = Namespace, $util = $.util, someGlobalVar = '.';
+    /**
+     * 定义该部分业务逻辑的处理函数集合
+     * 如有必要，比如需要后期重写这些方法，则需要将对象定义到命名空间下。否则局部变量是无法在匿名函数外访问到的。
+     * ps:假如该JS文件是页面的主逻辑，可以定义模块名称为“page”
+     *      var page = NS.page = ...;
+     * 合理规划不同模块所处的命名空间，有利于你和他人了解整个应用逻辑的关系结构
+     */
+    var module = NS.module1 = {
+        /**
+         * 这是静态模块的初始化入口
+         */
+        init: function(){
+            this.aHandler();
+            this.bHandler();
+        },
+        /**
+         * 模块的主要逻辑处理函数
+         */
+        aHandler: function(){
+            var priVar = 'A';
+            this._workForAB(this._workForA(priVar));
+        },
+        /**
+         * 模块的主要逻辑处理函数
+         */
+        bHandler: function(){
+            var priVar = 'B';
+            this._workForAB(this._workForB(priVar));
+        },
+        /**
+         * 模块的次要逻辑处理函数，为主要逻辑服务
+         */
+        _workForA: function(key){
+            return key + ' like java';
+        },
+        /**
+         * 模块的次要逻辑处理函数，为主要逻辑服务
+         */
+        _workForB: function(key){
+            return key + ' don\'t like php'
+        },
+        /**
+         * 模块的次要逻辑处理函数，为主要逻辑服务
+         */
+        _workForAB: function(text){
+            alert(text + someGlobalVar);
+        }
+    };
+    /**
+     * 对模块进行初始化。如果模块挂在命名空间下，则可以在外部进行模块初始化，在闭包内则不需要再执行init函数。
+     */
+    module.init();
+});
+                
+            </pre>
+            <h2>使用闭包定义普通的类</h2>
+            <pre class="prettyprint language-js">
+jQuery.namespace('Namespace');
+/**
+ * 此例使用闭包控制业务逻辑的变量作用范围，避免意外的全局变量影响其他功能
+ * 将jQuery对象传入匿名函数，并以“$”的形式在函数中使用
+ * 如果有需要，可以将已经定义的命名空间作为参数传递进函数
+ */
+(function($, NS){
+    /**
+     * 1. 闭包内的引用简写
+     * 2. 闭包内的全局变量
+     * 3. 枚举常量
+     */
+    var $util = $.util, someGlobalVar = '!',
+        /**
+         * 类的默认配置
+         */ 
+        defaults = {
+            config1: true,
+            config2: '',
+            config3: 2
+        };
+    /**
+     * 定义类
+     * @param {Object} configs 实例化类时传入的配置参数
+     */
+    function Class1(configs){
+        this.init(configs);
+    }
+    /**
+     * 扩展类的原型函数，使类的实例具有这些方法
+     */
+    $.extend(Class1.prototype, {
+       init: function(configs){
+           /**
+            * 配置参数并存放在类实例的属性中
+            */
+           this.options = $.extend(true, {}, defaults, configs);
+       },
+       /**
+        * 公有方法，允许通过类的实例调用
+        * @param {Object} text
+        */
+       pubMethod: function(text){
+           alert(this._priMethod(text));
+       },
+       /**
+        * 私有方法，不允许通过类的实例调用
+        * @param {Object} text
+        */
+       _priMethod: function(text){
+           return ['Hello', text, someGlobalVar].join(' ');
+       }
+    });
+    /**
+     * 假如需要在闭包外部使用该类，则需要将类定义在命名空间下。
+     */
+    NS.Class1 = Class1;
+    /**
+     * 假如需要在闭包定义结束时就使用类的功能，可以直接实例化类，并根据需要调用类的公有方法
+     * 如果该类的功能是外部调用的，则不需要以下代码
+     */
+    var inst = new Class1();
+    inst.pubMethod('World');
+})(jQuery, Namespace);
+            </pre>
+        </div>
+        <script src="../../static/js/app-merge.js"></script>
+    </body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.widget.ColumStater</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>ColumStater：简单柱状图</h2>
+        <p>ColumStater为简单的柱状图统计提供了方便快捷的js调用方法</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-6-20 发布1.0 alpha版本</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>新特性：</h3>
+        <ul>
+            <li>1、修补了原 <strong>ColumStater</strong> html代码片断固定不可更改的顽疾。</li>
+            <li>2、可以通过template参数自定义柱状图的展示结构，比如在统计数后面加上单位。</li>
+            <li>3、增加了参数topclass，可以给统计数最高的选项加上特殊的className使之与众不同。</li>
+            <li>4、增加了参数ctype，可设置0或1，当设置为0时，柱体的最大长度对应所有选项的统计总数，当设置为1时，柱体的最大长度对应最大的选项数值。</li>
+            <li>5、增加了方法getDataB，可获取经过计算的纯数据数组，比之最初作为参数导入的数据数组[['A.选项文案1',888],['B.选项文案2',300]]，多了百分占比。</li>
+        </ul>
+        <h3>开始：</h3>
+        如果你想使用ColumStater组件，请在页面中加入以下片段:
+        <pre class="brush:js;">
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+		ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/widget/stat/columstater-min.js");
+	    </pre>如果你想使用ColumStater组件的默认样式，请加入以下片段:
+        <pre class="brush:css;">
+		@import url("http://style.china.alibaba.com/css/lib/fdev-v3/widget/columstater.css");
+	    </pre>
+        <h3>使用说明</h3>
+        <p>1、本组件需要的html结构:仅需要一个容器
+        <pre class="brush:html;">
+			<div id="colum-1">
+				
+			</div>
+	    </pre>
+        </p>
+        <p>2、组件调用方法如下：初始化是需要提供2个参数，第一个参数为容器的id(必填)；第二个参数为配置对象(将覆盖默认的参数设定):
+        <pre class="brush:js;">
+			var ColumStater = FD.widget.ColumStater.init('colum-1',{data:[['很好',100],['较好',100],['一般',100],['较差',100],['很差',100]],clength:130,topclass:'topest']});
+	    </pre><br />
+		可通过template参数，导入你希望的html结构，如下
+		<pre class="brush:js;">
+			var ColumStater = FD.widget.ColumStater.init('colum-1',{data:[['很好',100],['较好',100],['一般',100],['较差',100],['很差',100]],clength:130,topclass:'topest',
+			template:['<div class="columStat"><ul>','<li class="[%topclass%]"><s>[%title%]</s><div class="[%holes0%]" style="width:0px"></div><u class="[%holes1%]">0</u>分<i class="[%holes2%]">0%</i></li>','</ul></div>']
+			]});
+	    </pre>
+		（注：）template[0]是前缀html，template[2]是后缀html，template[1]是循环体部分，其中[%topclass%]指代数值最高选项的className，[%title%]指代选项内容，[%holes0%]指代有宽度的柱体层，[%holes1%]指代选项数值，[%holes2%]指代百分比。
+	    </p>
+        <p>3、当需要使用对象的方法时，调用该已被实例化的对象即可:
+        <pre class="brush:js;">
+			ColumStater.getDataB();
+	    </pre>
+	    </p>
+        <h3>配置参数列表</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>配置参数</th><th>参数可选值</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+        			<td>data</td><td>Array</td><td>导入的数据数组，例如：[['很好',100],['较好',100],['一般',100],['较差',100],['很差',100]]</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>clength</td><td>Number</td><td>柱体显示区域的总长度，px为单位，其表示可能出现的最长柱体的长度。</td>
+        		</tr>
+	        	<tr>
+        			<td>step</td><td>Number</td><td>步骤数，即柱体从0宽度增长到最大宽度需要的步骤数。默认是10，数值越大，数值上涨的速度越慢。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>delay</td><td>Number</td><td>时间间隔，即柱体长度每次增长间隔的时间，默认是20，数值越大，数值上涨的速度越慢。</td>
+        		</tr>
+	        	<tr>
+        			<td>topclass</td><td>String</td><td>数值最高选项的className。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>ctype</td><td>0 | 1</td><td>可设置0或1，当设置为0时，柱体的最大长度对应所有选项的统计总数，当设置为1时，柱体的最大长度对应最大的选项数值。</td>
+        		</tr>
+	        	<tr>
+        			<td>template</td><td>Array</td><td>例：template:['&lt;div class="columStat"&gt;&lt;ul&gt;','&lt;li class="[%topclass%]"&gt;&lt;s&gt;[%title%]&lt;/s&gt;&lt;div class="[%holes0%]" style="width:0px"&gt;&lt;/div&gt;&lt;u class="[%holes1%]"&gt;0&lt;/u&gt;分&lt;i class="[%holes2%]"&gt;0%&lt;/i&gt;&lt;/li&gt;','&lt;/ul&gt;&lt;/div&gt;']。 <br />template[0]是前缀html；template[2]是后缀html；template[1]是循环体部分，其中[%topclass%]指代数值最高选项的className，[%title%]指代选项内容，[%holes0%]指代有宽度的柱体层，[%holes1%]指代选项数值，[%holes2%]指代百分比。</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>holes</td><td>Array</td><td>例：holes:['thecolum','thenum','therate'] <br />holes[0]是柱体节点的className；holes[1]是选项数值节点的className；holes[2]是选项占百分比节点的className。</td>
+        		</tr>
+	        			       		
+        	</tbody>
+        </table>
+        <h3>对象方法列表</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>方法名称</th><th>参数说明</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+	        		<td>.getDataB()</td><td>/</td><td>获取纯数据数组，里面包含有选项百分比数据。</td>
+	        	</tr>
+	        </tbody>
+        </table>
+        <h3>Demo演示</h3>
+        这里为开发者展示了ColumStater组件的种种用法：<a target="_blank" href="/fdevlib/examples/fdev3/widget.ColumStater.html">example: ColumStater</a>
+        <h3>提建议给开发者</h3>
+        作者：陈波<br />
+        邮件：<a href="mailto:balibell.chenb@alibaba-inc.com">balibell.chenb@alibaba-inc.com</a><br />
+        旺旺：balibell
+    </div>
+</body>
+</html>

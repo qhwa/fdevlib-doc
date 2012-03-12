@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>Alibar</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>Alibar</h1>
+            <h2>介绍</h2>
+            <ul>
+                <li>
+                    页头窄条通栏，包括用户登录状态和网站导航，称为alibar
+                </li>
+                <li>
+                    目前alibar不可个性化，全站通用一套
+                </li>
+            </ul>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    @create Edgar 2010.12.23 2.2版
+                </li>
+                <li>
+                    @author Edgar 2011.03.09 2.3版
+                </li>
+                <li>
+                    @author Edgar 2011.05.31 2.5版
+                </li>
+                <li>
+                    @create Denis 2012.02.04 4.0版
+                </li>
+            </ul>
+            <h2>使用说明</h2>
+            <ul>
+                <li>
+                    alibar目前暂时由前端架构组负责维护，且只有一套版本
+                </li>
+                <li>
+                    目前全站alibar标准请移步 <a title="中国站公共导航应用规范" href="http://share.aliued.cn/ued/guideline/CommonNavigation/assets/player/KeynoteDHTMLPlayer.html">中国站公共导航应用规范</a>
+                </li>
+                <li>
+                    alibar对应的CSS及JS文件需要产品自己引入：<br/>
+<b>CSS文件：</b>                          
+                    <pre class="prettyprint language-html">
+&lt;link href="http://style.china.alibaba.com/css/sys/universal/alibar/standard-v4-min.css" rel="stylesheet"/>                        
+</pre>
+
+<b>JS文件：</b><br/>
+<b>基于FDev4前端框架的页面：</b>                    
+                    <pre class="prettyprint language-html">
+&lt;script src="http://style.china.alibaba.com/js/sys/universal/alibar/standard-v4-min.js">&lt;/script>
+</pre>
+<b>基于FDev3前端框架的页面：</b>                    
+                    <pre class="prettyprint language-html">
+&lt;script src="http://style.china.alibaba.com/js/sys/head/alibar/standard-v4-min.js">&lt;/script>
+</pre>
+                </li>
+                <li>
+                    调用方式及合理位置如下：
+                    <pre class="prettyprint language-html">
+&lt;head>
+    ...
+    &lt;link href="http://style.china.alibaba.com/css/sys/universal/alibar/standard-v4-min.css" rel="stylesheet"/>
+    ...
+&lt;/head>
+&lt;body>
+    &lt;div id="doc">
+        &lt;!--本行为CMS调用代码-->$!sandBoxRender.bandingTemplate("110350_110350_alibar_standard")
+        &lt;!--本行为外部应用调用代码-->$cmsTemplate.setTemplate("alibar/standard.vm")
+        ...
+        &lt;script src="对应FDev框架版本的JS地址">&lt;/script>
+    &lt;/div>
+&lt;/body>
+</pre>
+                </li>
+                <li>
+                    老版Alibar文档，请移步 <a title="老版Alibar文档" href="alibar.old.html">老版Alibar文档</a>
+                </li>
+            </ul>
+            <h2>Demo</h2>
+            <ul>
+                <li><a title="Alibar+Masthead" href="http://page.china.alibaba.com/denis/test1.html" target="_blank">Alibar+Masthead</a></li>
+            </ul>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

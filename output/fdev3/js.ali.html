@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>FD.Ali</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Ali：阿里巴巴相关操作集合</h2>
+        <p>ali.js包含了常用的判断是否安装旺旺、安装阿里工具条和是否登录、是否是老用户等相关操作。</p>
+        <h3>更新日志</h3>
+        <ul class="update-histroy">
+            <li>2010-6-24 发布ali.js 的beta版本</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>开始：</h3>
+        如果你想引用ali-min.js，请在页面中加入以下片段片段:
+        <pre class="brush:js;">
+		 ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+		 /*ali-min.js*/
+		 ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/util/ali-min.js");
+	    </pre>
+        <h3>方法说明</h3>
+        <table class="g-paramtable">
+        	<thead>
+	        	<tr>
+	        		<th>方法名</th><th>参数说明</th><th>返回值</th><th>作用说明</th>
+	        	</tr>
+	        </thead>
+	        <tbody>
+	        	<tr>
+        			<td>FD.Ali.checkAliTalk()</td><td>/</td><td>{boolean} 是否安装旺旺</td><td>判断是否安装了阿里旺旺，只在IE中有效</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>FD.Ali.checkAliTool()</td><td>/</td><td>{boolean} 是否安装阿里工具条</td><td>判断是否安装了阿里工具条，只在IE中有效</td>
+        		</tr>
+	        	<tr>
+        			<td>FD.Ali.checkLogin()</td><td>/</td><td>{String} 登录返回用户id，未登录返回false</td><td>判断是否登录</td>
+        		</tr>
+	        	<tr class="even">
+        			<td>FD.Ali.checkUser()</td><td>/</td><td>{String} 老用户返回用户id，新用户返回false</td><td>判断是否是老用户（是否曾经登录过）</td>
+        		</tr>
+	       	</tbody>
+        </table>
+        <h3>备注</h3>
+        <p>
+			<strong>1：</strong>checkLogin()和checkUser()。
+			<ul>
+				<li>checkLogin()是判断用户当前是否登录，而checkUser()判断用户是否曾经登录过</li>
+				<li>checkLogin()和checkUser()都可能返回用户id，或者返回false,所以可以用这两个方法取当前用户的id</li>
+			</ul>
+        </p>
+		<br/>
+		<p>
+			<strong>2：</strong>checkAliTalk()检查是否安装旺旺，该方法是根据旺旺安装后基于的ActiveX来判断,如果旺旺版本基于的ActiveX更改，就需要更新该方法。
+		</p> 
+        <h3>提建议给开发者</h3>
+        作者：吴雷君<br />
+        邮件：<a href="mailto:leijun.wulj@alibaba-inc.com">leijun.wulj@alibaba-inc.com</a><br />
+        旺旺：wuleijun990
+    </div>
+</body>
+</html>

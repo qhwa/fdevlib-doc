@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Function.Regex</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+    <script type="text/javascript">
+        //匹配前后空格，包括全角空格^(\s|\u00A0)+|(\s|\u00A0)+$
+        new RegExp('^[\s\u00A0\u3000]+|[\s\u00A0\u3000]+$','g');
+        //中文站统一E-mail地址，同步工程后台的验证
+        new RegExp('^[\w\-]+(\.[\w\-]*)*@[\w\-]+([\.][\w\-]+)+$');      
+        //匹配中文
+        new RegExp('^[\u0391-\uFFE5]+$');      
+        //数值，包括正负及浮点
+        new RegExp('^[-+]?\d+(\.\d+)?$');      
+        //手机号码
+        new RegExp('^[1][3|5|8]\d{9}$');      
+        //邮政编码
+        new RegExp('^\d{6}$');      
+    </script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>正则</h2>
+    </div>
+    <div class="g-detail">
+        <h3>Regex：常用正则表达式（部分由俞雨友情赞助）</h3>
+        js:
+        <pre class="brush:js">
+        //匹配前后空格，包括全角空格
+        new RegExp('^[\s\u00A0\u3000]+|[\s\u00A0\u3000]+$','g');
+        //中文站统一E-mail地址
+        new RegExp('^[\w\-]+(\.[\w\-]*)*@[\w\-]+([\.][\w\-]+)+$');      
+        //匹配中文
+        new RegExp('^[\u0391-\uFFE5]+$');      
+        //数值，包括正负及浮点
+        new RegExp('^[-+]?\d+(\.\d+)?$');      
+        //手机号码
+        new RegExp('^[1][3|5|8]\d{9}$');      
+        //邮政编码
+        new RegExp('^\d{6}$');      
+        </pre>
+    </div>
+</body>
+</html>

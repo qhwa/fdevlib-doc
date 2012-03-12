@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>Fdev4.css.common</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>common.css : 网站共用样式</h1>
+            <h2>介绍</h2>
+            <p>
+                使用统一的“fd-”class前缀提供网站常用的样式，任何业务不得重写此类样式。该样式整合在core中。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    汉军: 提供了初始版本 ---- 2011-02-23
+                </li>
+            </ul>
+            <h2>源代码</h2>
+            <pre class="prettyprint language-css">
+/**
+ * common.css
+ * @author  Edgar &lt;mail@edgarhoo.net>
+ * @version 201000806
+ */
+/** 浮动相关 **/
+.fd-left{
+    float:left;
+}
+.fd-right{
+    float:right;
+}
+.fd-clear{
+    clear:both;
+}
+.fd-clr{
+    zoom:1;
+}
+.fd-clr:after{
+    display:block;
+    clear:both;
+    height:0;
+    content:"\0020";
+}
+/** 显示相关 **/
+.fd-hide{
+    display:none;
+}
+.fd-show{
+    display:block;
+}
+.fd-inline{
+    display:inline;
+}
+.fd-lump{
+	display:inline-block; 
+	display:-moz-inline-stack;
+	zoom:1; 
+	*display:inline;
+}
+/** 对象相关 **/
+.fd-visible{
+    visibility:visible;
+}
+.fd-hidden{
+    visibility:hidden;
+}
+/** 定位相关 **/
+.fd-locate{
+    position:relative;
+}
+/**
+ * 人民币符号
+ * 使用方法：<span class="fd-cny">&yen;</span>
+ */
+.fd-cny{
+    font-family:Helvetica,Arial;
+}
+/** 文字相关 **/
+.fd-gray{
+    color:#666;
+}
+.fd-bold{
+    font-weight:700;
+}
+</pre>
+        </div>
+        <script src="../../static/js/app-merge.js"></script>
+    </body>
+</html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.ui.Gird</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>grid.js : 列表组件</h1>
+            <h2>介绍</h2>
+            <p>
+                grid组件迁移自xui的simple-grid组件，基于jQuery和后台宏函数实现，提供了列表的方法及属性。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    盛鼎：初始版1.0 ---- 2011-09-26
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-html">
+&lt;--引入对应的主题样式文件。注意：目前在grid组件目录下包含多套主题，请使用的同学根据不同应用进行匹配，若新的应用需要使用本组件，请另行创建新的样式文件-->
+&lt;link href="http://style.china.alibaba.com/css/lib/fdev-v4/widget/web/grid/tbcall/simple-grid/simple-grid.css" rel="stylesheet"/>
+&lt;--引入组件功能JS文件-->
+&lt;script src="http://style.china.alibaba.com/js/lib/fdev-v4/widget/web/grid.js">&lt;/script>                
+            </pre>
+            <pre class="prettyprint language-js">
+ #SimpleGrid("grid-example" ,[["width","675px"],["limit",10],["hasPagebar",true],["checkbox",true],["colModel",[["sex","100px","性别"],["age","100px","年龄"],["birthday","100px","生日"],["name","100px","姓名"],["opt","100px","操作"]]]])
+
+var grid = new FE.ui.Grid('grid-example',options);
+grid.init(options);
+</pre>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>limit</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 10
+                </dd>
+                <dd>
+                    分页显示的数目
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>toPageNum</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 1
+                </dd>
+                <dd>
+                    初始化之后显示第几页数据，默认是第一页
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>checkbox</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否有checkbox选择项
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>hasPages</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否有总页数显示
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>hasPagebar</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否有翻页条
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>isRowAuto</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    是否根据数据的数目显示多少行 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>defaultSort</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : ''
+                </dd>
+                <dd>
+                    默认排序字段设置
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>dir</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : 'desc'
+                </dd>
+                <dd>
+                    排序顺序 , 'desc'或者‘asc’
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>multiSelect</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否可以多选 
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>checkboxclick</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象 
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            :Object 单行数据json对象，如{"nanme":"jack","age":19}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    checkbox点击时候事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>rowmouseover</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象 
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            :Object 单行数据json对象，如{"nanme":"jack","age":19}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    单行鼠标移入事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>rowmouseout</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象 
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            :Object 单行数据json对象，如{"nanme":"jack","age":19}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    单行鼠标移除事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>rowclick</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象 
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            :Object 单行数据json对象，如{"nanme":"jack","age":19}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    单行鼠标单击事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>rowdblclick</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event 事件对象 
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            :Object 单行数据json对象，如{"nanme":"jack","age":19}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    单行鼠标双击事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>sort</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            :Event 事件对象 
+                        </li>
+                        <li>
+                            <b>hdId</b>
+                            :String  排序的列id
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    排序时候触发事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>rowselect</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            :Event 事件对象 
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            :Object 单行数据json对象，如{"nanme":"jack","age":19}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    行选中事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>unrowselect</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            :Event 事件对象 
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            :Object 单行数据json对象，如{"nanme":"jack","age":19}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    取消选择的行事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>dsload</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            :Event 事件对象 
+                        </li>
+                        <li>
+                            <b>obj</b>
+                            :Object 当前对象实例
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    数据装载完成后事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>dserror</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            :Event 事件对象 
+                        </li>
+                        <li>
+                            <b>message</b>
+                            :String 错误信息
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    后台数据装载错误后事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>ajaxerror</b>
+                    : undefined
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            :Event 事件对象 
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    ajax请求数据错误后事件
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>init(sUrl,oColModel,oSchema)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>sUrl</b>
+                            : String  请求数据地址的url
+                        </li>
+                        <li>
+                            <b>oColModel</b>
+                            : Object  列模型对象实例
+                        </li>
+                        <li>
+                            <b>oSchema</b>
+                            : Object  数据模型
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    初始化Grid。<pre class="prettyprint language-js">
+    var dataUrl = 'http://style.china.alibaba.com/data.html';
+    var schema =['sex','age','birthday','name','status'];
+    
+    var colModel = new FE.ui.GridColModel({
+                defaults: { 
+                    width: '10%',
+                    sortable: true 
+                },
+                columns: [
+                    {id: 'sex', header: '性别', dataIndex: 'sex'} ,
+                    {id: 'age', header: '年龄', dataIndex: 'age'} ,
+                    {id: 'birthday', header: '日期', dataIndex: 'birthday',align:'left'},
+                    {id: 'name', header: '名字', dataIndex: 'name',align:'right'},
+                    {id: 'opt', header: '操作',sortable: false }  
+                ]
+            })
+    var g = new FE.ui.Grid('grid-example'); 
+    g.init(dataUrl,colModel,schema)
+                    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>sort(hdId,dir,beFirst)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>hdId</b>
+                            : String  列的ID
+                        </li>
+                        <li>
+                            <b>dir</b>
+                            : String  排序方式 'desc'和'asc',
+                        </li>
+                        <li>
+                            <b>beFirst</b>
+                            : Boolean  排序是否回到第一页，默认为false
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    给Grid排序。<pre class="prettyprint language-js">
+    g.sort('sex','asc',true);
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>load()</b>
+                </dt>
+                <dd>
+                    <ul>
+                    </ul>
+                </dd>
+                <dd>
+                    刷新当前页数据。<pre class="prettyprint language-js">
+    g.load();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>reload(oParams)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>oParams</b>
+                            : Object  如 {"searchKeyWord":"test"}
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置获取数据的参数,并返回第一页。<pre class="prettyprint language-js">
+    var oparms = {"searchKeyWord":"test"};
+    g.reload(oparms);
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>selectAll()</b>
+                </dt>
+                <dd>
+                    <ul>
+                    </ul>
+                </dd>
+                <dd>
+                    选中所有行。<pre class="prettyprint language-js">
+    g.selectAll();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>selectRowByIndex(rowIndex)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>rowIndex</b>
+                            : Number  根据制定的序号选中行
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    根据指定的序号选中行。<pre class="prettyprint language-js">
+    g.selectRowByIndex(10);
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>getSelectRowIndex()</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Number  行的序号
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    返回当前选中行的序号。<pre class="prettyprint language-js">
+    g.getSelectRowIndex();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>getMouseoverRowIndex()</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Number  行的序号
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    返回当前鼠标移动上行的序号。<pre class="prettyprint language-js">
+    g.getMouseoverRowIndex();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>unselectRowByIndex(rowIndex)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>rowIndex</b>
+                            : Number  行的序号
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    取消选择的行。<pre class="prettyprint language-js">
+    g.unselectRowByIndex(2);
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>cleanRow()</b>
+                </dt>
+                <dd>
+                    <ul>
+                    </ul>
+                </dd>
+                <dd>
+                    清除全部选中。<pre class="prettyprint language-js">
+    g.cleanRow();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>setParams(oParams)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>oParams</b>
+                            : Object 获取数据的参数对象 如 {"searchKeyWord":"test"};
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置dataSource的参数。<pre class="prettyprint language-js">
+    var oparms = {"searchKeyWord":"test"};
+    g.setParams(oparms);
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>toPage(pageNumber)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>pageNumber</b>
+                            : Number 页码
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    转到制定的页码。<pre class="prettyprint language-js">
+    g.toPage(2);
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>setRowData(rowIndex,rowData)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>rowIndex</b>
+                            : Number 行序号
+                        </li>
+                        <li>
+                            <b>rowData</b>
+                            : Object 行数据对象
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置指定行里面的内容。<pre class="prettyprint language-js">
+   var rowData ={"sex":"1","age":"10","birthday":"2008-10-11","name":"test","status":"1"}
+    g.setRowData(1,rowData);
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>setCellData(rowIndex,colId,v)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>rowIndex</b>
+                            : Number 行序号
+                        </li>
+                        <li>
+                            <b>colId</b>
+                            : String 列ID
+                        </li>
+                        <li>
+                            <b>v</b>
+                            : String cell里面的值
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置指定cell里面的内容。<pre class="prettyprint language-js">
+    g.setCellData(1,'name','Jack');
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>getRowDomByIndex(rowIndex)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Object jQuery Element
+                        </li>
+                        <li>
+                            <b>rowIndex</b>
+                            : Number 行序号
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    根据行号返回指定行jQuery Element对象。<pre class="prettyprint language-js">
+    g.getRowDomByIndex(1);
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>getCellDomByIndex(rowIndex,colId)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Object jQuery Element
+                        </li>
+                        <li>
+                            <b>rowIndex</b>
+                            : Number 行序号
+                        </li>
+                        <li>
+                            <b>colId</b>
+                            : String 列id
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    根据行号和列的id得到一格的jQuery Element对象。<pre class="prettyprint language-js">
+    g.getCellDomByIndex(1,'name');
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>getSelect()</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Array 如[{"name":"jack"},{"name","mike"}] 
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    获取当前选中行数据Array对象。<pre class="prettyprint language-js">
+    g.getSelect();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>toNextPage()</b>
+                </dt>
+                <dd>
+                    <ul>
+                    </ul>
+                </dd>
+                <dd>
+                    向下翻页。<pre class="prettyprint language-js">
+    g.toNextPage();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>toPrevPage()</b>
+                </dt>
+                <dd>
+                    <ul>
+                    </ul>
+                </dd>
+                <dd>
+                    向上翻页。<pre class="prettyprint language-js">
+    g.toPrevPage();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>toFirstPage()</b>
+                </dt>
+                <dd>
+                    <ul>
+                    </ul>
+                </dd>
+                <dd>
+                    回到第一页。<pre class="prettyprint language-js">
+    g.toFirstPage();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>toLastPage()</b>
+                </dt>
+                <dd>
+                    <ul>
+                    </ul>
+                </dd>
+                <dd>
+                    到最后页。<pre class="prettyprint language-js">
+    g.toLastPage();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>isFirstPage()</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Boolean 
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    是否在第一页。<pre class="prettyprint language-js">
+    g.isFirstPage();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>isLastPage()</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Boolean 
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    是否在最后页。<pre class="prettyprint language-js">
+    g.isFirstPage();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>getCurrentPage()</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Number 
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    得到当前的页码。<pre class="prettyprint language-js">
+    g.getCurrentPage();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>getTotalCount()</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Number 
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    得到总页码。<pre class="prettyprint language-js">
+    g.getTotalCount();
+    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>getPageCount()</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>return</b>
+                            : Number 
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    得到当前页的数据数目。<pre class="prettyprint language-js">
+    g.getPageCount();
+    </pre>
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

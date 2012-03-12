@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>SP.Region.Nav</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>Nav：导航</h2>
+    </div>
+    <div class="g-detail">
+        <h3>Category：自适应类目</h3>
+        <p>根据用户的视窗大小来显示子类目，使用户看到更多的内容</p>
+        <h3>案例</h3>
+        <ul>
+            <li><a href="http://yl.china.alibaba.com/" target="_blank">原材料首页</a></li>
+            <li><a href="http://page.china.alibaba.com/industrial/electron/index.html" target="_blank">电子元器件频道</a></li>
+        </ul>
+        <h3>JS依赖:</h3>
+        <pre class="brush:js;collapse:true">
+        <script src="http://static.c.aliimg.com/js/lib/fdev-v4/core/fdev-min.js"></script>  
+        <script src="http://static.c.aliimg.com/js/app/operation/module/category/category-min.js"></script>
+        </pre>
+        <h3>HTML结构:</h3>
+        <pre class="brush:html;collapse:true">
+        <ul id="materialCategory">
+            <li>
+                <h2>一级类目</h2>
+                <div class="sub-category">二级类目</div>
+            </li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+        </ul>
+        </pre>
+        <h3>配置</h3>
+        <ol>
+            <li>1. parentCategoriesListId ：类目容器ID</li>
+            <li>2. parentCategoriesSelector ：一级类目选择器</li>
+            <li>3. subCategorySelector ：二级类目选择器</li>
+        </ol>
+        <pre class="brush:js;collapse:true">
+        new FE.operation.module.Category({
+            parentCategoriesListId : ‘materialCategory',
+            parentCategoriesSelector : ‘li',
+            subCategorySelector : ‘sub-category'
+        });
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>浮动导航</h3>
+        <p>浮动导航组件，给用户更加舒服的浏览感受</p>
+        <h3>案例</h3>
+        <ul>
+            <li><a href="http://view.china.alibaba.com/cms/bangbang/yangpinku.html?asker=ATC_message" target="_blank">样品库</a></li>
+        </ul>
+        <h3>CSS依赖</h3>
+        <pre class="brush:css;collapse:true">
+        <link href="http://static.c.aliimg.com/css/app/operation/module/floatnav/float-nav-v4.css" rel="stylesheet"/> 
+        </pre>
+        <h3>JS依赖:</h3>
+        <pre class="brush:js;collapse:true">
+        <script src="http://static.c.aliimg.com/js/lib/fdev-v4/core/fdev-min.js"></script>  
+        <script src="http://static.c.aliimg.com/js/app/operation/module/floatnav/float-nav-min.js"></script>
+        </pre>
+        <h3>HTML结构:</h3>
+        <pre class="brush:html;collapse:true">
+        <nav>
+            <div class="nav-container" id="navContainer">
+                <ul class="list">
+                    <li><a title="导航一" href="#booth1">导航一</a></li>
+                    <li><a title="导航二" href="#booth2">导航二</a></li>
+                    <li><a title="导航三" href="#booth3">导航三</a></li>
+                    <li><a title="导航一" href="#booth4">导航四</a></li>
+                    <li><a title="导航二" href="#booth5">导航五</a></li>
+                    <li><a title="导航三" href="#booth6">导航六</a></li>
+                    <li><a title="导航三" href="#booth7">导航七</a></li>
+                </ul>
+            </div>
+        </nav>
+        <section class="layout">
+            <article id="booth1">
+                xxx
+            </article>
+        </section>
+        <section class="layout">
+            <article id="booth2">
+                xxx
+            </article>
+        </section>
+        ...
+        <section class="layout">
+            <article id="booth7">
+                xxx
+            </article>
+        </section>
+        </pre>
+        <p>这里必须给nva标签加上高度，防止#navContainer元素浮动而脱离当前文本上下文时出现页面高度抖动情况。</p>
+        <h3>配置</h3>
+        <ol>
+            <li>1. navContainer : 导航元素ID</li>
+            <li>2. navSelector ：导航元素选择器</li>
+        </ol>
+        <pre class="brush:js;collapse:true">
+        new FE.operation.module.FloatNav({
+            floatNavId : 'navContainer',
+            navSelector : 'a'
+        });
+        </pre>
+    </div>
+</body>
+</html>

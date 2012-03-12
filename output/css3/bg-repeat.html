@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+	<title>background-repeat</title>
+    <meta name="description" content="阿里巴巴批发大市场"/>
+    <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+	<link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+    <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<base target="_blank" />
+</head>
+<body>
+    <div class="g-memo">
+        <h2>background-repeat</h2>
+    </div>
+    <div class="g-detail">
+        <h3>定义：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>background-repeat</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">&lt;repeat-style&gt; [ ,&lt;repeat-style&gt; ]*</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">repeat</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">所有元素</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">N/A</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">按照指定值</span></td>
+            </tr>
+        </table>
+        <h4>指定值:</h4>
+        <pre class="brush:html">
+        &lt;repeat-style&gt; = repeat-x | repeat-y | [repeat | space | round | no-repeat]{1,2}
+            
+        </pre>
+        <dl class="value-desc">
+            <dt>repeat-x:</dt>
+            <dd>等价于'<code>repeat no-repeat</code>'。背景图会横向上重复直到铺满背景绘图区域。</dd>
+            <dt>repeat-y:</dt>
+            <dd>等价于'<code>no-repeat repeat</code>'。背景图会纵向上重复直到铺满背景绘图区域。</dd>
+            <dt>repeat:</dt>
+            <dd>等价于'<code>repeat repeat</code>'。背景图会横向和纵向同时重复直到铺满背景绘图区域。</dd>
+            <dt>space:</dt>
+            <dd>等价于'<code>space space</code>'。背景图会在不被剪切的情况下铺满整个背景位置区域，重复的背景图之间用空白区域隔开。</dd>
+            <dt>round:</dt>
+            <dd>等价于'<code>round round</code>'。背景图会在不被剪切的情况下铺满整个背景位置区域，如果重复次数不是一个整数，则缩放背景图让它符合整数次重复。</dd>
+            <dt>no-repeat:</dt>
+            <dd>背景图不重复。</dd>
+        </dl>
+    </div>
+    <div class="g-detail">
+        <h3>浏览器兼容性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+            <tr>
+                <th align="left" width="56"><strong>浏览器</strong></th>
+                <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+            </tr>
+            <tr>
+                <td>background-repeat:space;</td>
+                <td><span class="negative">(×)chrome</span></td>
+                <td><span class="negative">(×)firefox 3.6+</span></td>
+                <td><span class="negative">(×)opera 10.6+</span></td>
+                <td><span class="negative">(×)safari 5+</span></td>
+                <td><span class="positive">(√)IE 9</span></td>
+            </tr>
+            <tr>
+                <td>background-repeat:round;</td>
+                <td><span class="negative">(×)chrome</span></td>
+                <td><span class="negative">(×)firefox 3.6+</span></td>
+                <td><span class="negative">(×)opera 10.6+</span></td>
+                <td><span class="negative">(×)safari 5+</span></td>
+                <td><span class="positive">(√)IE 9</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>space 和 round 是CSS3中定义的 background-repeat 属性，在 opera中，space 有比较诡异的支持，并不符合定义，所以做不支持处理。</p>
+    </div>
+    <div class="g-detail">
+        <h3>例子：</h3>
+        <h4>当前浏览器显示效果：</h4>
+        <div class="show">
+            <div class="space"></div>
+            <div class="round"></div>
+        </div>
+        <style type="text/css">
+            .show { display:inline-block; }
+            .show .space { width:100px; height:100px; background-image: url(/fdevlib/static/img/css3/flower-min.png); background-repeat:space; border:1px solid #000; float:left; margin:8px; }
+            .show .round { width:100px; height:100px; background-image: url(/fdevlib/static/img/css3/flower-min.png); background-repeat:round; border:1px solid #000; float:left; margin:8px; }
+        </style>
+        <h4>IE9效果截图：</h4>
+        <img class="example-img" src="/fdevlib/static/img/css3/ie9-repeat.png" alt="IE9效果截图" />
+        <h4>code:</h4>
+        <pre class="brush:html">
+        &lt;div class="show"&gt;
+            &lt;div class="space"&gt;&lt;/div&gt;
+            &lt;div class="round"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;style type="text/css"&gt;
+            .show div {
+                width:100px;
+                height:100px;
+                float:left;
+                background-image:url(/fdevlib/static/img/css3/flower-min.png);
+                border:1px solid #000;
+                margin:8px;
+            }
+            .show .space {
+                background-repeat:space;
+            }
+            .show .round {
+                background-repeat:round;
+            }
+        &lt;/style&gt;
+            
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>相关文档：</h3>
+        <ul>
+            <li><a href="http://www.w3.org/TR/css3-background/#background-repeat" title="w3c Working Draft">CSS Backgrounds and Borders Module Level 3 (w3c Working Draft)</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+	<title>box-shadow</title>
+    <meta name="description" content="阿里巴巴批发大市场"/>
+    <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+	<link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+    <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<base target="_blank" />
+</head>
+<body>
+    <div class="g-memo">
+        <h2>box-shadow</h2>
+    </div>
+    <div class="g-detail">
+        <h3>定义：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>box-shadow</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">none | <a href="#ltshadowgt" target="_self">&lt;shadow&gt;</a> [ , <a href="#ltshadowgt">&lt;shadow&gt;</a> ]*</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>初始值:</span></td>
+                <td><span class="ml8 mr8">none</span></td>
+            </tr>
+            <tr>
+                <td><span>适用于:</span></td>
+                <td><span class="ml8 mr8">所有元素</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>继承性:</span></td>
+                <td><span class="ml8 mr8">no</span></td>
+            </tr>
+            <tr>
+                <td><span>百分比:</span></td>
+                <td><span class="ml8 mr8">N/A</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>媒体:</span></td>
+                <td><span class="ml8 mr8">visual</span></td>
+            </tr>
+            <tr>
+                <td><span>计算值:</span></td>
+                <td><span class="ml8 mr8">每一个 &lt;length&gt;都是绝对值，颜色都是计算的，其他按照规定</span></td>
+            </tr>
+        </table>
+        <h4 id="ltshadowgt">指定值:</h4>
+        <pre class="brush:html">
+        &lt;shadow&gt; = inset? &amp;&amp; [ &lt;length&gt;{2,4} &amp;&amp; &lt;color&gt;? ]
+
+        </pre>
+        <p>'box-shadow'属性用来在box上附加一个或者多个下落式阴影。这个属性值是用逗号隔开的&lt;shadow&gt;列表，每一个 shadow 指定 2-4 个长度值，一个可选择的颜色值，一个可选择的'inset'关键字。省略了的长度为0，省略了的颜色值由用户代理来决定。先定义的 shadow 在上层，后定义的再下层。</p>
+        <dl class="value-desc">
+            <dt>每一个&lt;shadow&gt;的组成部分的意思为：</dt>
+            <dd>第一个长度值代表水平方向上的阴影偏移量，正值向右偏移，负值向左偏移。</dd>
+            <dd>第二个长度值代表竖直方向上的阴影偏移量，正值向下偏移，负值向上偏移。</dd>
+            <dd>第三个长度值代表模糊长度。不允许为负值。如果此值为0，则阴影边缘是锐利的，值越大，阴影的边缘越模糊。</dd>
+            <dd>第四个长度值代表延伸距离，正值会让阴影往所有方向上扩散指定的半径。负值会让阴影收缩。</dd>
+            <dd>颜色值代表阴影的颜色</dd>
+            <dd>如果出现了 inset 关键字，则把外阴影变成内阴影。</dd>
+        </dl>
+    </div>
+    <div class="g-detail">
+        <h3>浏览器兼容性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+            <tr>
+                <th align="left" width="56"><strong>浏览器</strong></th>
+                <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+            </tr>
+            <tr>
+                <td>兼容性</td>
+                <td><span class="positive">(√)chrome</span></td>
+                <td><span class="positive">(√)firefox 3.6+</span></td>
+                <td><span class="positive">(√)opera 10.6+</span></td>
+                <td><span class="positive">(√)safari 5+</span></td>
+                <td><span class="positive">(√)IE 9</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>firefox中通过 -moz- 前缀获得支持，chrome和safari中通过 -webkit- 前缀获得支持。</p>
+    </div>
+    <div class="g-detail">
+        <h3>例子：</h3>
+        <h4>当前浏览器显示效果：</h4>
+        <div class="show">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+            <div class="box4"></div>
+            <div class="box5"></div>
+            <div class="box6"></div>
+            <div class="box7"></div>
+        </div>
+        <style type="text/css">
+            .show {
+                display:inline-block;
+            }
+            .show div {
+                width:100px;
+                height:80px;
+                float:left;
+                margin:10px;
+                border:10px solid #0938A1;
+            }
+            .show .box1 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px;
+            }
+            .show .box2 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px;
+            }
+            .show .box3 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: #C00 5px 5px 5px, rgba(0,0,0,0.4) 10px 10px 5px;
+                -moz-box-shadow: #C00 5px 5px 5px, rgba(0,0,0,0.4) 10px 10px 5px;
+                box-shadow: #C00 5px 5px 5px, rgba(0,0,0,0.4) 10px 10px 5px;
+            }
+            .show .box4 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px;
+            }
+            .show .box5 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px -5px;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px -5px;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px -5px;
+            }
+            .show .box6 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px inset;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px inset;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px inset;
+            }
+            .show .box7 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px inset;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px inset;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px inset;
+            }
+        </style>
+        <h4>chrome效果截图：</h4>
+        <img class="example-img" src="/fdevlib/static/img/css3/chrome-box-shadow.png" alt="chrome效果截图" />
+        <h4>code:</h4>
+        <pre class="brush:html">
+        &lt;div class=&quot;show&quot;&gt;
+            &lt;div class=&quot;box1&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;box2&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;box3&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;box4&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;box5&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;box6&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;box7&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;style type=&quot;text/css&quot;&gt;
+            .show {
+                display:inline-block;
+            }
+            .show div {
+                width:100px;
+                height:80px;
+                float:left;
+                margin:10px;
+                border:10px solid #0938A1;
+            }
+            .show .box1 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px;
+            }
+            .show .box2 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px;
+            }
+            .show .box3 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: #C00 5px 5px 5px, rgba(0,0,0,0.4) 10px 10px 5px;
+                -moz-box-shadow: #C00 5px 5px 5px, rgba(0,0,0,0.4) 10px 10px 5px;
+                box-shadow: #C00 5px 5px 5px, rgba(0,0,0,0.4) 10px 10px 5px;
+            }
+            .show .box4 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px;
+            }
+            .show .box5 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px -5px;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px -5px;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px -5px;
+            }
+            .show .box6 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px inset;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px inset;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px inset;
+            }
+            .show .box7 {
+                -moz-border-radius: 22px / 18px;
+                border-radius: 22px / 18px;
+                -webkit-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px inset;
+                -moz-box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px inset;
+                box-shadow: rgba(0,0,0,0.4) 10px 10px 5px 5px inset;
+            }
+        &lt;/style&gt;
+            
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>相关文档：</h3>
+        <ul>
+            <li><a href="http://www.w3.org/TR/css3-background/#the-box-shadow" title="w3c Working Draft">CSS Backgrounds and Borders Module Level 3 (w3c Working Draft)</a></li>
+            <li><a href="https://developer.mozilla.org/en/CSS/box-shadow" title="MDC">MDC box-shadow</a></li>
+        </ul>
+    </div>
+</body>
+</html>

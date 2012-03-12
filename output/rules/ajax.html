@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>Rule.ajax</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>异步请求数据的双方约定</h2>
+        <p>本约定目的在规范前台和后台需要进行异步通信时数据的传递格式。</p>
+        <br />
+        <ul class="update-histroy">
+            <li>约定最新修改时间：2010-1-1</li>
+            <li>约定最新修改时间：2010-8-5</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+        <h3>一、禁止使用IFrame来实现无刷新的请求。（安全部门严令禁止）</h3>
+        <p>常见的案例：form表单提交target指定隐藏iframe框，即form表单提交后刷新隐藏iframe页面，然后从iframe页面里取数据，实现无刷新请求。
+            <br />
+            <strong>UED前端妥协约定：</strong>UED前端在有替代方案的情况下杜绝使用iframe 实现无刷新的请求；在无替代方案的情况下可以使用iframe 实现无刷新的请求（例如：用js实现无刷新上传文件功能），但是必须得在项目或需求中告知安全部门，并提交测试部门测试该功能。 </p>
+        <h3>二、统一使用fdev库中提供的同步/异步请求方案</h3>
+        <p>库中封装的方法，在进行跨域数据请求时，使用了JSONP这种协议，也就是通常我们所讲的callback方式。<br />这种方式相比较原来的var定义变量的方式有以下优点：<br />1、避免全局变量冲突；<br />2、使用完回传的数据之后能正确销毁数据释放内存；<br />3、能够正确捕获数据成功接收、请求超时、请求失败三种状态；<br />4、与国际标准接轨，有利于做公共接口用于其它设备。</p>
+        <strong>结合ajax和jsonp的方法</strong>
+        <pre class="brush:js;collapse:true">
+/*
+* when JSONP, use as encodeURIComponent. use if necessary
+*/
+function dealURL(txt) {
+    return txt
+        .replace(/%/g,'%25')
+        .replace(/\//g,'%2F')
+        .replace(/&/g,'%26')
+        .replace(/#/g,'%23')
+		.replace(/\+/g,'%2B')
+		.replace(/\s/g,'+');
+}
+/*
+* integrate Get.script & Connect.asyncRequest!
+* @ param method    GET POST or JSONP
+* @ param url       request url
+* @ param configs   when AJAX define 'onSuccess' replace 'success', 'onFailure' & 'onTimeout' replace 'failure'
+*                   when JSONP define 'ns' 'strNS' 'fn' & 'key' if nesessary
+* @ param parameters    the parameters send to server, when AJAX this param can use String, otherwise Object
+*/
+FD.common.request=function(method,url,configs,parameters) {
+    var EMPTYFUN=function () {
+    },hash=function (o) {
+        var res=[];
+        for(p in o) {
+            res.push(p+'='+o[p]+'');
+        }
+        return res.join('&');
+    },op={
+        cache: false,
+        timeout: 10000
+    };
+    FD.common.apply(op,configs);
+    parameters=parameters||{};
+    method=method.toUpperCase();
+    if(method=='JSONP') {
+        //set default configs
+        if(configs.onCallback) {
+            if(!op.ns) {
+                op.ns=window;
+                op.strNS=null;
+            }
+            if(!op.fn) op.fn='rnd';
+            if(!op.cache) op.fn+=new Date().getTime();
+            if(!op.key) op.key='callback';
+        }
+        op.attributes=op.attributes||{};
+        if(!op.attributes.charset) op.attributes.charset=op.charset||'gbk';
+        if(op.attributes.async!==false) op.attributes.async=true;
+        //rewrite handler
+        op.onSuccess=function (o) {
+            if(configs.onSuccess) configs.onSuccess.call(this,o);
+            //if FF or Opera, wrong http request will tirgger onTimerout, manually trigger onTimeout in other browsers
+            //invalid in request Multiple resource
+            if(configs.onCallback&&op.ns[op.fn]!=null&&op.ns[op.fn]!=EMPTYFUN)
+                FDEV.lang.later(op.timeout,this,op.onTimeout,o);
+        };
+        op.onFailure=function (o) {
+            if(configs.onFailure) configs.onFailure.call(this,o);
+            if(configs.onCallback) op.ns[op.fn]=EMPTYFUN;
+        };
+        op.onTimeout=function (o) {
+            if(configs.onTimeout) configs.onTimeout.call(this,o);
+            if(configs.onCallback) op.ns[op.fn]=EMPTYFUN;
+        };
+        //define callback handler
+        if(configs.onCallback) {
+            op.ns[op.fn]=function (o) {
+                configs.onCallback.call(configs.scope||this,o);
+                op.ns[op.fn]=null;
+            };
+            parameters[op.key]=(op.strNS?op.strNS+'.':'')+op.fn;
+        }
+        var param=hash(parameters);
+        if(param) {
+            var parts=url.split('?');
+            url=[url,param].join(parts.length>1?'&':'?');
+        }
+        return FDEV.util.Get.script(url,op);
+    } else {
+        if(configs.onSuccess) op.success=function (o) {
+            configs.onSuccess.call(this,o);
+        };
+        op.failure=function (o) {
+            if(o.status== -1) {
+                if(configs.onTimeout) configs.onTimeout.call(this,o);
+            } else {
+                if(configs.onFailure) configs.onFailure.call(this,o);
+            }
+        };
+        var param=(FDEV.lang.isObject(parameters)?FD.common.formSerialize(null,parameters):parameters),data;
+        if(param) {
+            if(method=='GET') {
+                var parts=url.split('?');
+                url=[url,param].join(parts.length>1?'&':'?');
+            } else
+                data=param;
+        }
+        return FDEV.util.Connect.asyncRequest(method,url,op,data);
+    }
+};
+	    </pre>
+        <strong>1、ajax方式:</strong>
+        <p>需要引入的文件：
+            <pre class="brush:js">
+/* 核心js包 */
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js" type="text/javascript");
+/* FYU.Connect 处理ajax请求的类包，选择性引入 */
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/connection-min.js" type="text/javascript");
+/* FYU.Get.script 处理跨域请求的类包，选择性引入 */
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/get-min.js" type="text/javascript");
+		</pre>
+            AJAX代码范例：
+            <pre class="brush:js">
+//param是一个组成你向服务器发送请求的参数的集合      
+var param={};
+param.text='acb';
+param.limitedId='sensitive_words';
+var configs={
+    onSuccess: function(o) {
+        FDEV.log('onSuccess','warn');
+    },
+    onFailure: function(o) {
+        FDEV.log('onFailure','warn');
+    },
+    onTimeout: function(o) {
+        FDEV.log('onTimeout','warn');
+    },
+    scope: { scope: 'mySope' }
+};
+var transaction=FD.common.request('POST','/fdevlib/static/js/ajax.js',configs,param);
+	    </pre>
+            JSONP代码范例：
+            <pre class="brush:js">
+//param是一个组成你向服务器发送请求的参数的集合（比如page,memberId,keywords）,这个DEMO中，需要向服务器传输appid,results,output,omit_inlinks,query这些参数，          
+var param={};
+param.appid='3wEDxLHV34HvAU2lMnI51S4Qra5m.baugqoSv4gcRllqqVZm3UrMDZWToMivf5BJ3Mom';
+param.results=1;
+param.output='json';
+param.omit_inlinks='domain';
+param.limitedId='sensitive_words';
+param.query=encodeURIComponent('http://developer.yahoo.com/yui');
+
+var configs={
+    onCallback: function(o) {
+        //o={"ResultSet":{"totalResultsAvailable":"1052836","firstResultPosition":"1","totalResultsReturned":"1","Result":{"Title":"Yahoo! Developer Network Blog","Url":"http:\/\/developer.yahoo.net\/","ClickUrl":"http:\/\/developer.yahoo.net\/"}}
+        FDEV.log('onCallback','warn');
+    },
+    onFailure: function(o) {
+        FDEV.log('onFailure','warn');
+    },
+    onTimeout: function(o) {
+        FDEV.log('onTimeout','warn');
+    }
+    //onSuccess: function(o) {
+    //    FDEV.log('onSuccess','warn');
+    //}
+    //定义ns前请确保此命名空间的存在。默认为window
+    //ns: YAHOO.example.SiteExplorer,
+    //ns的字符串形式
+    //strNS: 'YAHOO.example.SiteExplorer',
+    //回调函数名，默认为rnd，注意：工程需要对callback的参数进行规则验证，以防止XSS攻击。
+    //验证规则参考如下：以字母开头，只包含字母、数字、下划线和小数点“.”，长度不超过50。
+    //当工程检测到参数值不符合以上规则时，则直接结束请求，不返回任何数据。
+    //fn: 'callback',
+    //scope: window,
+    //发送请求时，承载回调函数名的参数名，默认为callback。  http://.......?callbak=rnd23873652121&...
+    //key: 'param',
+    //cache=false时在回调函数名后追加时间戳，模式为false
+    //cache: true
+};
+var transaction=FD.common.request('jsonp','http://search.yahooapis.com/SiteExplorerService/V1/inlinkData',configs,param);
+	    </pre>
+            资源载入代码范例：
+            <pre class="brush:js">
+var configs={
+    onSuccess: function(o) {
+        FDEV.log('onSuccess','warn');
+    },
+    onFailure: function(o) {
+        FDEV.log('onFailure','warn');
+    },
+    onTimeout: function(o) {
+        FDEV.log('onTimeout','warn');
+    }
+};
+var transaction=FD.common.request('jsonp',['http://style.china.alibaba.com/js/lib/fdev-v3/util/bom-min.js','http://style.china.alibaba.com/js/lib/fdev-v3/util/ali-min.js'],configs);
+	    </pre>
+        </p>
+        <strong>3、Json 解析:</strong>
+        <p>直接使用YAHOO.lang.JSON这个类。 需要引入的文件：
+            <pre class="brush:js">
+/* 核心js包 */
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js");
+/* json处理包 */
+ImportJavscript.url("http://style.china.alibaba.com/js/lib/fdev-v3/core/yui/json-min.js");
+	</pre>
+            代码范例：
+            <pre class="brush:js">
+//string to json
+var json = FDEV.lang.JSON.parse('{"success":true,"data":{"url":"http://1688.com/"}}');
+//json to string
+var str = FDEV.lang.JSON.stringify({success:true,data:{url:"http://1688.com/"}});
+	    </pre>
+            <del>代码范例：
+            <pre class="brush:js">
+		var jsn = FD.common.parse('{success:true,data:{url:"http://1688.com/"}}')
+	    </pre>
+            </del></p>
+        <h3>三、请求返回数据格式约定</h3>
+        <strong>1、ajax异步请求返回数据格式 </strong>
+        <p>
+            <pre class="brush:js">
+		{ 
+			success:true, 
+			data:xxxxxx 
+		}
+	    </pre>
+            任何情况下，必须返回json格式的数据 {success:[true/false]} ，前端开发者会根据success 字段进行后面的操作。<br />
+            data:xxxxxx 数据中如有字符串，<strong>必须使用双引号而不能使用单引号。 </strong></p>
+        <strong>2、Get script 方法返回 js 数据格式 </strong>
+        <p>
+            <pre class="brush:js">
+		[Namespase]callback[timespan](xxx);
+	    </pre>
+            请求时url后带参数callback=[Namespace]callbackname，发送方法名到服务器端。服务器端仅返回该方法名的调用语句。 </p>
+        <h3>四、请求返回数据格式约定</h3>
+        <p>接口的URL后面也需要进行打点，以确定接口是从哪里调用的 例如："xxx.htm?param=xxxxx&fromClient=p4p_bp" 暂定打点参数名 fromClient ，参数值具体应用具体对待。 </p>
+        <h3>五、关于请求参数form化</h3>
+        <p>参数form化要求：发送请求的页面必须埋入对应该请求的form表单:
+            <pre class="brush:html">
+		<form id="form-askforcardcheck" method="post" action="?_input_charset=UTF-8"> 
+		<input type="hidden" name="action" value="ContactAction"/>
+		<input type="hidden" id="event_submit_do_ask_for_card" name="event_submit_do_ask_for_card_check" value="true"/>
+		<input name='_csrf_token' type='hidden' value='400eee4707e282224391ffbaa2eecaaf'>
+		</form>
+
+		<!--对应的请求js -->
+		&lt;script>
+		    var configs={
+		        onSuccess: function() { },
+		        onFailure: function() { },
+		        timeout: 10000
+		    };
+		    FD.common.request(
+		    'POST',
+		    FD.common.getFormAction('form-askforcardcheck'),
+		    configs,
+		    FD.common.formSerialize('form-askforcardcheck')+'&friendId=balibell&attentionType=1'
+		);  
+		&lt;/script>
+	    </pre>
+        </p>
+        <h3>六、关于发送数据、返回数据的编码UED前端的声明</h3>
+        <p>1、UED前端不对发送数据进行除encodeURIComponent 以外的编码。<br />
+            2、请求返回数据UED前端不做任何解码操作。<br />
+            3、UED前端不对任何已经编码过的数据进行解码，如有此类需求一概拒绝。 </p>
+        <h3>七、UED前端补充要求</h3>
+        <p>1、form表单控件name、id 的取值不能使用保留字。目前中文站普遍存在的 name="action" 是不合UED前端要求的。同理禁止 name="id" name="class" name="method" 等等。<br />
+            2、针对css、js，程序员请勿修改、添加，如要修改，务必在前端的协助下进行。 </p>
+        <p>
+            <h3>七、Demo演示</h3>
+            这里为开发者展示了请求代码的用法：<a target="_blank" href="/fdevlib/examples/rules/ajax.html">example: FD.common.request</a>
+            <h3>提建议给开发者</h3>
+            作者：施丹侠<br />
+            邮件：<a href="mailto:danxia.shidx@alibaba-inc.com">danxia.shidx@alibaba-inc.com</a><br />
+            旺旺：swainet </p>
+    </div>
+</body>
+</html>

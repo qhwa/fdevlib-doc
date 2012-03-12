@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="GBK">
+		<title>jQuery.ui.droppable</title>
+ 		<link href="../../static/css/app-merge.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div id="doc">
+			<h1>ui-droppable : 拖放</h1>
+			<h2>介绍</h2>
+			<p>
+				配合draggable插件，允许拖放到任何DOM元素内
+			</p>
+
+			<h2>版本</h2>
+			<ul>
+				<li>倪朱国： 创建----2011.10.25</li>
+			</ul>
+
+			<h2>开始</h2>
+			<pre class="prettyprint language-js">
+jQuery(function($){
+    $.use("ui-droppable",function(){    // 引入ui-droppable的时候，会自动载入依赖项ui-draggable
+        $("#draggable").draggable();
+        $("#droppable").droppable({
+            drop: function( event, ui ){
+                $(this).addClass("ui-state-highlight")
+                       .find("p")
+                       .html("Dropped!");
+            }
+        });
+    });
+});</pre>
+            
+            <h2>Dome</h2>
+            <p>
+                <a target="_black" href="../../examples/fdev4/jQuery.ui.droppable.html">Try it!</a>
+            </p>
+
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>disabled</b> : Boolean</dt>
+                <dd>Default: false </dd>
+                <dd>启用或禁用droppable。</dd>
+            </dl>
+            <dl>
+                <dt><b>accept</b> : Selector, Function</dt>
+                <dd>Default: *</dd>
+                <dd>仅允许符合选择器的元素激活拖放的事件。</dd>
+            </dl>
+            <dl>
+                <dt><b>activeClass</b> : String</dt>
+                <dd>Default: false</dd>
+                <dd>如果设置值，则当有被允许的可拖动元素(acceptable draggable)拖动时，
+                样式会被添加到该可拖放元素(droppable)中。</dd>
+            </dl>
+            <dl>
+                <dt><b>addClasses</b> : Boolean</dt>
+                <dd>Default: true</dd>
+                <dd>设置为false，可以阻止ui-droppable样式添加至可拖放元素中。</dd>
+            </dl>
+            <dl>
+                <dt><b>greedy</b> : Boolean</dt>
+                <dd>Default: false</dd>
+                <dd>是否防止嵌套的droppable事件被传播。</dd>
+            </dl>
+            <dl>
+                <dt><b>hoverClass</b> : String</dt>
+                <dd>Default: false</dd>
+                <dd>当有被允许的可拖动元素(accptable draggable)移至可拖放元素(droppable)上(hover)时，
+                为该可拖放元素元添加指定的样式。</dd>
+            </dl>
+            <dl>
+                <dt><b>scope</b> : String</dt>
+                <dd>Default: 'default'</dd>
+                <dd>设置元素只允许具有相同scope值的可拖动元素激活此可拖放元素。</dd>
+            </dl>
+            <dl>
+                <dt><b>tolerance</b> : String</dt>
+                <dd>Default: 'intersect'</dd>
+                <dd>指定一个可拖动元素被[放到]一个可拖放元素的模式。</dd>
+                <dd>可选值：'fit', 'intersect', 'pointer', 'touch'
+                    <ul>
+                        <li>fit:        可拖动元素完全覆盖可拖放元素</li>
+                        <li>intersect:  可拖动元素至少50%覆盖可拖放元素</li>
+                        <li>pointer:    鼠标指针重叠在可拖放元素上</li>
+                        <li>touch:      只要有任何重叠即发生</li>
+                    </ul>
+                </dd>
+            </dl>
+
+            <h2>Events</h2>
+            <dl>
+                <dt><b>create</b> Type: dropcreate</dt>
+                <dd>droppable的所有事件回调函数都有两个参数： event和ui，浏览器自有event对象，
+                    和经过封装的ui对象。
+                    <ul>
+                        <li>event : Event</li>
+                        <li>ui : Object
+                            <pre class="prettyprint language-js">
+{
+    draggable:  // 表示当前被拖动的元素的jQuery对象
+    helper:     // 表示当前被拖动的元素的helper对象，即一个jQuery对象（可能就是本身的一个拷贝）
+    position:   // 表示当前拖动元素的相对位置(position:relative) { top, left }
+    offset:     // 表示被拖动元素的绝对位置(position:absolute) { top, left }
+}</pre>
+                </dd>
+                <dd>创建droppable元素时被触发。</dd>
+            </dl>
+            <dl>
+                <dt><b>activate</b> Type: dropactivate</dt>
+                <dd>一个被允许的(accepted)可拖动元素被拖动时，触发此事件。</dd>
+            </dl>
+            <dl>
+                <dt><b>deactivate</b> Type: dropdeactivate</dt>
+                <dd>一个被允许的(accepted)可拖动元素停止拖动时，触发此事件。</dd>
+            </dl>
+            <dl>
+                <dt><b>over</b> Type: dropover</dt>
+                <dd>当一个被允许(accepted)的可拖动元素移动并覆盖可拖放元素时激活。</dd>
+            </dl>
+            <dl>
+                <dt><b>out</b> Type: dropout</dt>
+                <dd>当一个被允许(accepted)的可拖动元素移出可拖放元素时激活。</dd>
+            </dl>
+            <dl>
+                <dt><b>drop</b> Type: drop</dt>
+                <dd>当一个被允许(accepted)的可拖动元素移动并覆盖可拖放元素，松开鼠标时激活。</dd>
+            </dl>
+
+            <h2>Methods</h2>
+            <dl>
+                <dt>.droppable("destory")</dt>
+                <dd>从元素中移除拖放功能。</dd>
+            </dl>
+            <dl>
+                <dt>.droppable("disable")</dt>
+                <dd>禁用元素的拖放功能。</dd>
+            </dl>
+            <dl>
+                <dt>.droppable("enable")</dt>
+                <dd>启用元素的拖放功能。</dd>
+            </dl>
+            <dl>
+                <dt>.droppable("option", optionName, [value])</dt>
+                <dd>获取或设置元素的参数。</dd>
+            </dl>
+            <dl>
+                <dt>.droppable("option", options)</dt>
+                <dd>设置元素的参数。</dd>
+            </dl>
+		</div>
+		<script src="../../static/js/app-merge.js"></script>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>FE.ui.PCA</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div id="doc">
+        <h1>web-pac :  三级联动</h1>
+        <h2>Demo</h2>
+        <div id="demo">
+            <select></select>
+            <select></select>
+            <select></select>
+        </div>
+        <pre class="prettyprint lang-html">
+&lt;!--HTML--&gt;
+&lt;div id="demo"&gt;
+    &lt;select&gt;&lt;/select&gt;
+    &lt;select&gt;&lt;/select&gt;
+    &lt;select&gt;&lt;/select&gt;
+&lt;/div&gt;</pre>
+        <pre class="prettyprint lang-js">
+// JavaScript
+jQuery(function($){
+    // 动态载入PCA数据
+    $.add("web-pca-data",{
+        requires: ["web-pca"],
+        js: ["http://" + $.styleDomain + "/js/lib/fdev-v4/widget/web/pca-data-min.js"]
+    });
+    $.use("web-pca-data",function(){
+        new FE.ui.PCA($("select","#demo"),{
+            store: FE.ui.PCA.data,
+            onPSelected: function(){    
+                // 第一个下拉框选项变动后触发，this指向下拉框本身 
+            },
+            onCSelected: function(){
+                // 第二个下拉框选项变动后触发，this指向下拉框本身 
+            },
+            onASelected: function(){
+                // 第三个下拉框选项变动后触发，this指向下拉框本身 
+            }
+        });
+    });
+});</pre>
+    </div>
+    <script src="../../static/js/app-merge.js"></script>
+    <script>
+        jQuery(function($){
+            // 动态载入PCA数据
+            $.add("web-pca-data",{
+                requires: ["web-pca"],
+                js: ["http://" + $.styleDomain + "/js/lib/fdev-v4/widget/web/pca-data-min.js"]
+            });
+            $.use("web-pca-data",function(){
+                new FE.ui.PCA($("select","#demo"),{
+                    store: FE.ui.PCA.data,
+                    onPSelected: function(){    
+                        // 第一个下拉框选项变动后触发，this指向下拉框本身 
+                    },
+                    onCSelected: function(){
+                        // 第二个下拉框选项变动后触发，this指向下拉框本身 
+                    },
+                    onASelected: function(){
+                        // 第三个下拉框选项变动后触发，this指向下拉框本身 
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

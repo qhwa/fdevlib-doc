@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>jQuery.ui.timer</title>
+    <link href="../../static/css/app-merge.css" rel="stylesheet">
+</head>
+<body>
+    <div id="doc">
+        <h1>ui-timer : 计时器</h1>
+        
+        <h2>介绍</h2>
+        <p>提供倒计时功能。</p>
+        <p>注意：本组件最大计数时间必须小于10年。</p>
+        <p>组件会只能查找容器中的year month day hour minute second的样式并渲染结构和数据。</p>
+        
+        <h2>版本</h2>
+        <ul>
+            <li>Denis: 创建----2011.07.04</li>
+            <li>倪朱国: 修改表现形式---2011.10.26</li>
+        </ul>
+        
+        <h2>开始</h2>
+        <pre class="prettyprint language-js">
+// 模块动态载入
+jQuery(function($){
+    $.use('ui-timer',function(){
+        // ...
+    });
+});</pre>
+
+        <h2>Demo</h2>
+        <p>
+            <a target="_blank" href="../../examples/fdev4/jQuery.ui.timer.html">Try it!</a>
+        </p>
+
+        <h2>Configs</h2>
+        <dl>
+            <dt><b>format</b> : String</dt>
+            <dd>Default : 'y-M-d hh:mm:ss'</dd>
+            <dd>设置时间的显示格式，双字母需要在一位数时补0</dd>
+        </dl>
+        <dl>
+            <dt><b>to</b> : Date</dt>
+            <dd>Default : new Date()</dd>
+            <dd>截止时间</dd>
+        </dl>
+        <dl>
+            <dt><b>step</b> : Integer</dt>
+            <dd>Default : 1</dd>
+            <dd>跳动频率（单位秒）</dd>
+        </dl>
+        <dl>
+            <dt><b>animate</b> : Boolean</dt>
+            <dd>Default : false</dd>
+            <dd>是否动画显示（动画显示需要配合样式文件）</dd>
+        </dl>
+        <dl>
+            <dt><b>autoStart</b> : Boolean</dt>
+            <dd>Default : false</dd>
+            <dd>是否自动开始</dd>
+        </dl>
+        <h2>Methods</h2>
+        <dl>
+            <dt>
+                <b>.timer("start")</b>
+            </dt>
+            <dd>
+                开始计时。ps:只有在倒计时停止状态时才能开始。
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <b>.timer("stop")</b>
+            </dt>
+            <dd>
+                结束计时，将会触发stop事件。
+            </dd>
+        </dl>
+        <h2>Events</h2>
+        <dl>
+            <dt><b>stop</b></dt>
+            <dd>
+                倒计时结束时触发
+            </dd>
+        </dl>
+        
+    </div>
+    <script src="../../static/js/app-merge.js"></script>
+</body>
+</html>

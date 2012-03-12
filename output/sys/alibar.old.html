@@ -1,0 +1,210 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+        <meta charset="gbk"/>  
+        <title>alibar</title>  
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+        <style>
+        iframe{border:0 none;}
+        .g-detail h2{font-size:20px;font-weight:700;margin-top:15px;}
+        </style>
+    </head>  
+    <body>  
+        <div class="g-memo">
+            <h2>alibar: 中文站统一topbar</h2>
+            <h3>
+                更新日志</h3>
+            <ul class="update-histroy">
+                <li>2010.12.23 发布2.2</li>
+                <li>2011.03.09 发布2.3</li>
+                <li>2011.05.31 发布2.5</li>
+            </ul>
+        </div>
+        <div class="g-detail">
+            <h2>使用者须知</h2>
+            <h3>alibar模板位置：</h3>
+            <pre>
+CMS: global_alibar_v2（建议在产品线级的头部模块引用）
+VM: templates/external/common/alibar/alibar.vm （建议在layout或头部control中引用）
+            </pre>
+            <h3>示图</h3>
+            <p>demo请见 <a href="/fdevlib/examples/sys/alibar/v2.standard.shtml">http://fd.aliued.cn/fdevlib/examples/sys/alibar/v2.standard.shtml</a></p>
+            <iframe src="/fdevlib/examples/sys/alibar/v2.standard.shtml" width="1000px" height="100px"></iframe>
+            <h3>CSS/JS依赖：</h3>
+            <p><strong>默认使用style.china.alibaba.com，若使用static，请自行更换</strong></p>
+            <p>fdev-v4版</p>
+            <pre class="brush:css">
+/* CSS */
+@import url("http://style.china.alibaba.com/css/sys/universal/alibar/standard-v2.css");
+/* 此CSS基于fdev-v4，优先使用 */
+
+@import url("http://style.china.alibaba.com/css/sys/universal/alibar/independent-v2.css");
+/* 此CSS不依赖于任何css，独立使用 */
+            </pre>
+            <pre class="brush:js">
+/* JS */
+ImportJavscript.url("http://style.china.alibaba.com/js/sys/universal/alibar/standard-v2-min.js");
+/* 此JS基于fdev-v4 */
+            </pre>
+            <p>fdev-v3版</p>
+            <pre class="brush:css">
+/* CSS */
+@import url("http://style.china.alibaba.com/css/sys/head/alibar/v2/standard.css");
+/* 此CSS依赖于任何版本的reset.css及fdev-v3的type.css，优先使用 */
+
+@import url("http://style.china.alibaba.com/css/sys/head/alibar/v2/independent.css");
+/* 此CSS不依赖于任何css，独立使用 */
+            </pre>
+            <pre class="brush:js">
+/* JS */
+ImportJavscript.url("http://style.china.alibaba.com/js/sys/head/alibar/v2/standard.js");
+/* 此JS依赖于fdev.js、get.js，fdevlib/fdev-v3版本均可，但fdev、get须同版本 */
+            </pre>
+            <h3>alibar位置</h3>
+            <pre class="brush:html">
+            <!-- 推荐位置，新建页面请按此位置放置 -->
+            &lt;body>
+                <div id="doc">
+                    alibar模板
+                    <div id="header"></div>
+                </div>
+            &lt;/body>
+
+            <!-- 权衡位置 -->
+            &lt;body>
+                alibar模板
+                <div id="doc">
+                    <div id="header"></div>
+                </div>
+            &lt;/body>
+            </pre>
+            <h3>旺旺分流</h3>
+            <p>当鼠标初次hover“诚信通服务”时，需要初始化旺旺分流，逻辑如下(这是fdev-v3版本，fdev-v4自行处理)：</p>
+            <pre class="brush:js">
+      var urls = [], configs, alitalk;
+      if ( typeof FD.widget.Alitalk === 'undefined' ){
+          ( ( FD.version.charAt(0) - 0 ) === 3 ) ?
+              urls.push('http://style.china.alibaba.com/js/lib/fdev-v3/widget/alitalk/alitalk-min.js') :
+              urls.push('http://style.china.alibaba.com/js/fdevlib/widget/alitalk/fdev-alitalk-v3.js');
+      }
+      if ( typeof FD.widget.ShuntAlitalk === 'undefined' ){
+          urls.push('http://style.china.alibaba.com/js/lib/fdev-v3/widget/alitalk/shuntalitalk-v2.js');
+      }
+      if ( urls.length > 0 ){
+          configs = {
+              onSuccess: function(o){
+                  //初始化旺旺分流
+              }
+          };
+          alitalk = FD.common.request('jsonp',urls,configs);
+      } else {
+          //初始化旺旺分流
+      }
+            </pre>
+            <p><strong>注：</strong>若页面已有shuntalitalk-min.js（此JS必须依赖fdev-v3/alitalk.js，fdev-v3/alitalk.js必须依赖fdev-v3/fdev.js），可用shuntalitalk-v2.js替换之</p>
+        </div>
+        <div class="g-detail">
+            <h2>开发者须知</h2>
+            <h3>alibar所有分身</h3>
+            <pre>
+CMS:
+    global_alibar_v2
+    global_alibar_v2_cxt（诚信通版，目前未用，但修改时需修改）
+    homepage_alibar_101020（首页专用）
+VM:
+    templates/external/common/alibar/alibar.vm
+    templates/external/common/alibar/alibarCXT.vm（诚信通版，目前貌似未用，但修改时需修改）
+SHTML:
+    shtml/sites/header/alibar-v2.html</pre>
+            <h3>alibar所有css/js</h3>
+            <p><strong>static下不能发布sys和首页，在style发布之后，更新static即可</strong></p>
+            <pre>
+<strong>fdev-v4版：</strong>
+http://style.china.alibaba.com/css/sys/universal/alibar/standard-v2.css
+http://style.china.alibaba.com/css/sys/universal/alibar/independent-v2.css
+
+http://style.china.alibaba.com/js/sys/universal/alibar/standard-v2.js(source版，线上不允许直接使用)
+http://style.china.alibaba.com/js/sys/universal/alibar/standard-v2-min.js
+
+<strong>fdev-v3版：</strong>
+http://style.china.alibaba.com/css/sys/head/alibar/v2/standard.source.css(source版，线上不允许直接使用)
+http://style.china.alibaba.com/css/sys/head/alibar/v2/standard.css
+http://style.china.alibaba.com/css/sys/head/alibar/v2/independent.source.css(source版，线上不允许直接使用)
+http://style.china.alibaba.com/css/sys/head/alibar/v2/independent.css
+
+http://style.china.alibaba.com/js/sys/head/alibar/v2/standard.source.js(source版，线上不允许直接使用)
+http://style.china.alibaba.com/js/sys/head/alibar/v2/standard.js
+
+<strong>首页：</strong>
+http://style.china.alibaba.com/css/app/homepage/201009/source/alibar.v2.css(source版，线上不允许直接使用)
+http://style.china.alibaba.com/css/app/homepage/201009/alibar.v2-min.css
+
+http://style.china.alibaba.com/js/app/homepage/201009/source/alibar.v2.js(source版，线上不允许直接使用)
+http://style.china.alibaba.com/js/app/homepage/201009/alibar.v2-min.js</pre>
+            <h3>alibar测试功能点</h3>
+            <ol>
+                <li>
+                    <pre>
+1、欢迎词
+    未登录，不存在上次登录用户名：您好，欢迎来到阿里巴巴
+    未登录，存在上次登录用户名：您好，lastLoginId
+    已登录：您好，loginId
+                    </pre>
+                </li>
+                <li>
+                    <pre>
+2、memberid的链接
+    当能取得memberid（lastLoginId和loginId）时，给memberid添加链接 http://work.china.alibaba.com/app/contact.htm
+                    </pre>
+                </li>
+                <li>
+                    <pre>
+3、“请登录”等快捷链接
+    未登录：“请登录”、“免费注册”显示，“退出”隐藏
+    已登录：“请登录”、“免费注册”隐藏，“退出”显示
+
+    “请登录”的链接为：http://china.alibaba.com/member/signin.htm?Done=url
+    若当前页面href存在&amp;字符，则url为“http://china.alibaba.com/”，反之，则url为当前href
+    “免费注册”的链接为：http://china.alibaba.com/member/join/common_join.htm?tracelog=common_toolbar_reg&leadUrl=url
+    若当前页面href存在&amp;字符，则leadUrl字段去掉，反之，则url为当前href
+                    </pre>
+                </li>
+                <li>
+                    <pre>
+4、新用户注册引导
+    未登录且不存在上次登录用户名的即为新用户，出现tips引导注册
+    当点击“关闭（叉）”，tips在当天不再出现，无论刷新，次日仍出现
+                    </pre>
+                </li>
+                <li>
+                    <pre>
+5、前端cookie使用
+    子cookie字段名：bar，值（当前日期）：20110309。
+                    </pre>
+                </li>
+                <li>
+                    <pre>
+6、下拉菜单
+    鼠标hover“诚信通服务”（含右侧箭头）、“阿里助手”（含右侧箭头）、“提建议”右侧的箭头（只箭头）均为下拉菜单
+                    </pre>
+                </li>
+                <li>
+                    <pre>
+7、“在线订购申请”旺旺及其分流
+    当鼠标hover“诚信通服务”（含右侧箭头）时，初始化旺旺及其分流（fdev-v3版只在IE浏览器下生效，非IE浏览器暂不作处理；fdev-v4版全浏览器兼容）
+    具体逻辑可见上文“旺旺分流”部分
+                    </pre>
+                </li>
+            </ol>
+        </div>
+        <div class="g-detail">
+            <h3>注意点</h3>
+            <p>因alibar.js需要全站引用，且目前全站页面所引用js基础框架不统一，需要考虑各版本的通用，故，fdev-v3版alibar.js自行处理前端cookie</p>        
+            <h3>提建议给开发者</h3>
+            作者：Edgar<br />
+            邮件：<a href="mailto:mail@edgarhoo.net">mail@edgarhoo.net</a><br />
+            旺旺：edgarhoo（中文站）
+        </div>
+    </body>  
+</html>

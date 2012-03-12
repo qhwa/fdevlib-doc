@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk">
+        <title>jQuery.ui.sortable</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-sortable : 排序</h1>
+            <h2>介绍</h2>
+            <p>
+                使用这个插件可以用鼠标拖动list中的元素进行排序      
+            </p>
+            
+            
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    倪朱国: 创建----2011.10.20
+                </li>
+            </ul>
+            
+            
+            <h2>开始</h2>
+            <pre class="prettyprint language-html">
+&lt;ul id=&quot;sortable&quot;&gt;
+    &lt;li&gt;item 2&lt;/li&gt;
+    &lt;li&gt;item 3&lt;/li&gt;
+    &lt;li&gt;item 4&lt;/li&gt;
+&lt;/ul&gt;</pre>
+            <pre class="prettyprint language-js">
+jQuery(function($){
+    $.use("ui-sortable",function(){
+        $("#sortable").sortable(); 
+    });
+});</pre>
+            
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.sortable.html">Try it!</a>
+            </p>
+            
+            
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>disabled</b> : Boolean</dt>
+                <dd>Default: false</dd>
+                <dd>使用(false)或禁用(true) sortable，可以在初始化sortable的时候设置。</dd>
+            </dl>
+            <dl>
+                <dt><b>appendTo</b> : String</dt>
+                <dd>Default: "parent"</dd>
+                <dd>指定helper追加在哪个元素后面</dd>
+            </dl>
+            <dl>
+                <dt><b>axis</b> : String</dt>
+                <dd>Default: false</dd>
+                <dd>如果被定义了，则选项只能被水平或者垂直托动,可选的值："x","y"</dd>
+            </dl>
+            <dl>
+                <dt><b>cancel</b> : Selector</dt>
+                <dd>Default: ":input,button"</dd>
+                <dd>阻止排序动作在匹配的元素上发生</dd>
+            </dl>
+            <dl>
+                <dt><b>connectWith</b> : Selector</dt>
+                <dd>Default: false</dd>
+                <dd>
+                    允许sortable对象连接另一个sortable对象，可将item元素拖拽到另一个中。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>containment</b> : Element, String, Selector</dt>
+                <dd>Default: false</dd>
+                <dd>约束排序动作只能在一个指定范围内发生。</dd>
+                <dd>
+                    注意：给定的元素必须要有确切的宽和高。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>cursor</b> : String</dt>
+                <dd>Default: "auto"</dd>
+                <dd>指定在排序时光标的显示样式</dd>
+            </dl>
+            <dl>
+                <dt><b>cursorAt</b> : Object</dt>
+                <dd>Default: false</dd>
+                <dd>
+                    排序时光标相对元素所在的位置，值为{ top, left, right, bottom}中的一
+                    个或两个。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>delay</b> : Integer</dt>
+                <dd>Default: 0</dd>
+                <dd>以毫秒为单位，设置延迟多久才激活排序动作。此参数可防止误点击。</dd>
+            </dl>
+            <dl>
+                <dt><b>distance</b> : Integer</dt>
+                <dd>Default: 1</dd>
+                <dd>决定至少要在元素上面拖动多少像素后，才正式触发排序动作。</dd>
+            </dl>
+            <dl>
+                <dt><b>dropOnEmpty</b> : Boolean</dt>
+                <dd>Default: true</dd>
+                <dd>是否允许拖拽到一个空的sortable对象中。</dd>
+            </dl>
+            <dl>
+                <dt><b>forceHelperSize</b> : Boolean</dt>
+                <dd>Default: false</dd>
+                <dd>If true, forces the helper to have a size.</dd>
+            </dl>
+            <dl>
+                <dt><b>forcePlaceholderSize</b> : Boolean</dt>
+                <dd>Default: false</dd>
+                <dd>If true, forces the placeholder to have a size.</dd>
+            </dl>
+            <dl>
+                <dt><b>grid</b> : Array</dt>
+                <dd>Default: false</dd>
+                <dd>将排序对象的item元素视为一个格子处理，每次移动都按一个格子大小移动，数组值：[x, y]
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>handle</b> : Selector, Element</dt>
+                <dd>Default: false</dd>
+                <dd>限制排序的动作只能在item元素的某个元素开始。</dd>
+            </dl>
+            <dl>
+                <dt><b>helper</b> : String, Function</dt>
+                <dd>Default: "original"</dd>
+                <dd>设置是否在拖拽元素时，显示一个辅助的元素。可选值： 'original','clone'</dd>
+            </dl>
+            <dl>
+                <dt><b>items</b> : Selector</dt>
+                <dd>Default: "> *"</dd>
+                <dd>指定在排序对象中，哪些元素可以进行拖拽排序的。</dd>
+            </dl>
+            <dl>
+                <dt><b>opacity</b> : Float</dt>
+                <dd>Default: false</dd>
+                <dd>指定helper的透明度。从 0.01 到 1</dd>
+            </dl>
+            <dl>
+                <dt><b>placeholder</b> : String</dt>
+                <dd>Default: false</dd>
+                <dd>设置当排序动作发生时，空白占位符的CSS样式。</dd>
+            </dl>
+            <dl>
+                <dt><b>revert</b> : Boolean/Integer</dt>
+                <dd>Default: false</dd>
+                <dd>
+                    如果设置为true，则被拖拽的元素在返回新位置时，会有一个动画效果。<br />
+                    参数也可以是一个数字，指定动画的时间。
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>scroll</b> : Boolean</dt>
+                <dd>Default: true</dd>
+                <dd>如果为true，则元素被拖动到页面边缘时，会自动滚动。</dd>
+            </dl>
+            <dl>
+                <dt><b>scrollSensitivity</b> : Integer</dt>
+                <dd>Default: 20</dd>
+                <dd>设置当元素移动至边缘多少像素时，便开始滚动页面。</dd>
+            </dl>
+            <dl>
+                <dt><b>scrollSpeed</b> : Integer</dt>
+                <dd>Default: 20</dd>
+                <dd>设置页面的滚动速度。</dd>
+            </dl>
+            <dl>
+                <dt><b>tolerance</b> : String</dt>
+                <dd>Default: "intersect"</dd>
+                <dd>
+                    设置当拖动元素越过其他元素多少时便对元素进行重新排序。有两个可选值'intersect','pointer'.
+                </dd>
+                <dd>
+                    <b>intersect</b>:  和另一个元素重叠部分超过50%<br/>
+                    <b>pointer</b>: 光标和两一个元素重叠
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>zIndex</b> : integer</dt>
+                <dd>Default: 1000</dd>
+                <dd>设置在排序动作发生时，元素的z-index值。</dd>
+            </dl>
+            
+            
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.sortable("destroy")</b>
+                </dt>
+                <dd>
+                    彻底删除sortable。这将使元素返回到初始状态
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.sortable("disable")</b>
+                </dt>
+                <dd>
+                    使sortable失效
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.sortable("enable")</b>
+                </dt>
+                <dd>
+                    使sortable生效
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.sortable("option",optionName,[value])</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>optionName</b>
+                            : String 参数名
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    获得或更改sortable的参数
+                    <pre class="prettyprint language-js">
+//getter
+var optionName = $("...").sortable("option",optionName);
+//setter
+$("...").sortable("option",optionName,value);
+                    </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.sortable("option", options)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>options</b>
+                            : Object 参数对象
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    提供了一个选项object，一次设置多个sortable元素。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.sortable("widget")</b>
+                </dt>
+                <dd>
+                    返回  .ui-sortable 元素
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>.sortable("serialize", [options])</b></dt>
+                <dd>
+                    获取或设置序列化后每个item元素的id属性。
+                <dd>
+            </dl>
+            <dl>
+                <dt><b>.sortable("toArray")</b></dt>
+                <dd>获取序列化后的每个item元素的id属性的数组。<dd>
+            </dl>
+            <dl>
+                <dt><b>.sortable("refresh")</b></dt>
+                <dd>
+                    手动刷新当前sortable对象的item元素排序。
+                <dd> 
+            </dl>
+            <dl>
+                <dt><b>.sortable("refreshPositions")</b></dt>
+                <dd>
+                    手动重新刷新当前sortable对象的item元素的坐标，此方法可能会降低性能。
+                <dd>
+            </dl>
+            <dl>
+                <dt><b>.sortable("cancel")</b></dt>
+                <dd>取消当前sortable对象中item元素的排序改变。<dd>
+            </dl>
+            
+            
+            <h2>Events</h2>
+            <dl>
+                <dt><b>create</b> Type: sortcreate</dt>
+                <dd>
+                    <p>sortable全部事件的参数都如下，其他事件的参数也请参考这里的。</p>
+                    <ul>
+                        <li><b>event</b> : Event</li>
+                        <li><b>ui</b> : Obecjt
+                            <pre class="prettyprint language-js">
+{
+    helper:         // 表示sortable元素的jQuery对象，通常是当前元素的克隆对象
+    position:       // 当前helper元素的位置
+    offset:         // 当前helper元素的绝对位置
+    item:           // 当前拖动的元素
+    placeholder:    // 占位符(如果有的话)
+    sender:         // 当前拖动的元素从哪个list而来。(只有在多个list之间拖动时才有用)
+}</pre>    
+                        </li>
+                    </ul> 
+                <dd>
+                <dd>在sortable创建时触发</dd>
+            </dl>
+            <dl>
+                <dt><b>start</b> Type: sortstart</dt>
+                <dd>当排序动作开始时触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>sort</b> Type: sort</dt>
+                <dd>当元素发生排序时触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>change</b> Type: sortchange</dt>
+                <dd>当元素发生排序且坐标已发生改变时触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>beforeStop</b> Type: sortbeforestop</dt>
+                <dd>在排序动作结束之前触发此事件。此时占位符元素和辅助元素仍有效。<dd>
+            </dl>
+            <dl>
+                <dt><b>stop</b> Type: sortstop</dt>
+                <dd>当排序结束时被触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>update</b> Type: sortupdate</dt>
+                <dd>当排序动作结束时且元素坐标已经发生改变时触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>receive</b> Type: sortreceive</dt>
+                <dd>当一个已连接的sortable对象接收到另一个sortable对象的元素后触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>remove</b> Type: sortremove</dt>
+                <dd>当元素从自己的sortable对象中移出，到了另一个sortable对象中时触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>over</b> Type: sortover</dt>
+                <dd>当元素移动到另一个sortable对象中时触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>out</b> Type: sortout</dt>
+                <dd>当元素从一个连接的sortable对象中移出时触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>activate</b> Type: sortactivate</dt>
+                <dd>当一个有使用连接的sortable对象开始排序动作时，所有相联的sortable都触发此事件。<dd>
+            </dl>
+            <dl>
+                <dt><b>deactivate</b> Type: sortdeactivate</dt>
+                <dd>当一个有使用连接的sortable对象结束排序动作时，所有相联的sortable都触发此事件。<dd>
+            </dl>
+        </div>
+        
+        <script src="../../static/js/app-merge.js"></script>
+    </body>
+</html>

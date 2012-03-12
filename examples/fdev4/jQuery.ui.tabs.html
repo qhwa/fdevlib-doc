@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>fdevlib-example: Portlets</title>
+        <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+        <script src="/fdevlib/static/js/merge-fdev4.js"></script>
+        <style>
+.layout { margin-bottom:12px;}
+.layout h3 { font-weight:bolder; height:24px; line-height:24px; color:#666;}
+        
+ul, li { padding:0; margin:0; font-size:12px; list-type:none;}
+.clr { zoom:1;}
+.clr:after { display:block; clear:both; height:0; content:"\0020";}
+.tab { border:1px solid #bbb; width:390px; height:220px; overflow:hidden;}
+.tab .clr li { float:left; width:150px; list-style:none;}
+.tab .clr .f-tab-t { float:left; width:78px; text-align:center; height:20px; background-color:#ddd; line-height:20px; cursor:pointer; overflow:hidden;}
+.tab .clr li.current { background-color:#c00; color:#fff;}
+.tab .f-tab-b { width:390px; height:200px; overflow:hidden;}
+
+.tab-imgs { border:1px solid #bbb; width:327px; height:188px; overflow:hidden;}
+.tab-imgs .f-tab-t { float:left; width:109px; height:20px; line-height:20px; background-color:#ddd; cursor:pointer; text-align:center; overflow:hidden;}
+.tab-imgs li.current { background-color:#c00; color:#fff;}
+.tab-imgs li.blue { background-color:blue;}
+.tab-imgs .f-tab-b { width:327px; height:168px; overflow:hidden;}
+
+.list { float:left; padding-left:12px; width:40%; list-style:none;}
+.list li { height:22px; line-height:22px; color:#380; font-weight:bolder;}
+
+/*滚动效果*/
+.main {overflow:hidden;}
+.ep-marquee { width: 192px; height: 60px; overflow: hidden; float: left; }
+.ep-marquee-v { width: 64px; height: 192px; overflow: hidden; }
+.ep-marquee li, .ep-marquee-v li { width: 56px; height: 56px; overflow: hidden; float: left; text-align: center; line-height: 60px; padding-right: 8px; }
+.ep-marquee li { padding-right: 8px; }
+.ep-marquee-v li { padding-bottom: 8px; }
+.pre, .next, .pre-g, .next-g { float: left; margin: 16px 8px 0 0; width: 24px; height: 24px; overflow: hidden; border: 0; line-height: 0; text-indent: -9999px; cursor: pointer; }
+.next { background: url(http://fd.aliued.cn/fdevlib/static/img/output/right.gif); margin-left: 8px; }
+.pre { background: url(http://fd.aliued.cn/fdevlib/static/img/output/left.gif); }
+.next-g { background: url(http://fd.aliued.cn/fdevlib/static/img/output/right-g.gif); margin-left: 8px; }
+.pre-g { background: url(http://fd.aliued.cn/fdevlib/static/img/output/left-g.gif); }
+.pre-v, .next-v, .pre-v-g, .next-v-g { margin: 16px 0 8px 16px; width: 24px; height: 24px; overflow: hidden; border: 0; line-height: 0; text-indent: -9999px; cursor: pointer; }
+.next-v { background: url(http://fd.aliued.cn/fdevlib/static/img/output/down.gif); }
+.pre-v { background: url(http://fd.aliued.cn/fdevlib/static/img/output/up.gif); }
+.next-v-g { background: url(http://fd.aliued.cn/fdevlib/static/img/output/down-g.gif); }
+.pre-v-g { background: url(http://fd.aliued.cn/fdevlib/static/img/output/up-g.gif); }
+#switch { float: left; margin: 16px 8px 0 0; cursor: pointer; }
+        </style>
+    </head>
+    <body>
+        <div id="doc" class="w952">
+            <div id="header">
+                <h1>Tabs</h1>
+            </div>
+            <div id="content">
+                <div id="demo1" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+jQuery(function($){
+    $.use('ui-tabs', function(){
+        $('#tab1').tabs();
+    });
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>1、tabs切换 - 默认配置</h3>
+                        <div id="tab1" class="tab">
+                            <ul class="clr">
+                                <li class="f-tab-t"><a href="#">tab1</a></li>
+                                <li class="f-tab-t"><a href="#">tab2</a></li>
+                                <li class="f-tab-t"><a href="#">tab3</a></li>
+                                <li class="f-tab-t"><a href="#">tab4</a></li>
+                                <li class="f-tab-t"><a href="#">tab5</a></li>
+                            </ul>
+                            <div class="f-tab-b">tab1</div>
+                            <div class="f-tab-b">tab2</div>
+                            <div class="f-tab-b">tab3</div>
+                            <div class="f-tab-b">tab4</div>
+                            <div class="f-tab-b">tab5</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo2" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+jQuery(function($){
+    $.use('ui-tabs', function(){
+        $('#tab2').tabs({
+			isAutoPlay:false, 
+			event:'click'
+		});
+    });
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>2、tabs切换 - 不自动播放，点击触发</h3>
+                        <div id="tab2" class="tab">
+                            <ul class="clr">
+                                <li class="f-tab-t">tab1</li>
+                                <li class="f-tab-t">tab2</li>
+                                <li class="f-tab-t">tab3</li>
+                                <li class="f-tab-t">tab4</li>
+                                <li class="f-tab-t">tab5</li>
+                            </ul>
+                            <div class="f-tab-b">tab1</div>
+                            <div class="f-tab-b">tab2</div>
+                            <div class="f-tab-b">tab3</div>
+                            <div class="f-tab-b">tab4</div>
+                            <div class="f-tab-b">tab5</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo3" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+图片代码：
+
+<img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/slider-c.jpg" />
+                        	</pre>
+                        </div>
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+JS代码：
+
+jQuery(function($){
+    $.use('ui-tabs-lazyload', function(){
+        var tab3 = $('#tab3').tabs({
+			isAutoPlay:false
+		});
+    });
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>3、tabs切换 - 图片懒加载</h3>
+                        <div id="tab3" class="tab-imgs">
+                            <ul class="clr">
+                                <li class="f-tab-t">tab A</li>
+                                <li class="f-tab-t">tab B</li>
+                                <li class="f-tab-t">tab C</li>
+                            </ul>
+                            <div class="f-tab-b">
+                                <img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/slider-c.jpg" />
+                            </div>
+                            <div class="f-tab-b">
+                                <img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/slider-b.jpg" />
+                            </div>
+                            <div class="f-tab-b">
+                                <img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/slider-a.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo4" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+HTML 代码：
+<textarea class="fe-lazy-html">
+    //HTML 代码
+</textarea>
+                        	</pre>
+                        </div>
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+JS 代码：
+jQuery(function($){
+    $.use('ui-tabs-lazyload', function(){
+        var tab4 = $('#tab4').tabs({
+			isAutoPlay:false
+		});
+    });
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>4、tabs切换 - HTML懒加载</h3>
+                        <div id="tab4" class="tab">
+                            <ul class="clr">
+                                <li class="f-tab-t">tab1</li>
+                                <li class="f-tab-t">tab2</li>
+                                <li class="f-tab-t">tab3</li>
+                                <li class="f-tab-t">tab4</li>
+                                <li class="f-tab-t">tab5</li>
+                            </ul>
+                            <div class="f-tab-b">
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>一二三四五</li>
+                                        <li>一二三四五</li>
+                                        <li>一二三四五</li>
+                                        <li>一二三四五</li>
+                                    </ul>
+                                </textarea>
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>黑夜给了我黑色的眼睛</li>
+                                        <li>黑夜给了我黑色的眼睛</li>
+                                        <li>黑夜给了我黑色的眼睛</li>
+                                        <li>黑夜给了我黑色的眼睛</li>
+                                    </ul>
+                                </textarea>
+                            </div>
+                            <div class="f-tab-b">
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>黑夜给了我黑色的眼睛</li>
+                                        <li>黑夜给了我黑色的眼睛</li>
+                                        <li>黑夜给了我黑色的眼睛</li>
+                                        <li>黑夜给了我黑色的眼睛</li>
+                                    </ul>
+                                </textarea>
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>我却用她来寻找光明</li>
+                                        <li>我却用她来寻找光明</li>
+                                        <li>我却用她来寻找光明</li>
+                                        <li>我却用她来寻找光明</li>
+                                    </ul>
+                                </textarea>
+                            </div>
+                            <div class="f-tab-b">
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>你站在桥上看风景</li>
+                                        <li>你站在桥上看风景</li>
+                                        <li>你站在桥上看风景</li>
+                                        <li>你站在桥上看风景</li>
+                                    </ul>
+                                </textarea>
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>看风景人在楼上看你</li>
+                                        <li>看风景人在楼上看你</li>
+                                        <li>看风景人在楼上看你</li>
+                                        <li>看风景人在楼上看你</li>
+                                    </ul>
+                                </textarea>
+                            </div>
+                            <div class="f-tab-b">
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>等待是两个人的坚持</li>
+                                        <li>等待是两个人的坚持</li>
+                                        <li>等待是两个人的坚持</li>
+                                        <li>等待是两个人的坚持</li>
+                                    </ul>
+                                </textarea>
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>放弃只是一个人的转身</li>
+                                        <li>放弃只是一个人的转身</li>
+                                        <li>放弃只是一个人的转身</li>
+                                        <li>放弃只是一个人的转身</li>
+                                    </ul>
+                                </textarea>
+                            </div>
+                            <div class="f-tab-b">
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>最远的距离</li>
+                                        <li>最远的距离</li>
+                                        <li>最远的距离</li>
+                                        <li>最远的距离</li>
+                                    </ul>
+                                </textarea>
+                                <textarea class="fe-lazy-html">
+                                    <ul class="list">
+                                        <li>不是生离死别</li>
+                                        <li>不是生离死别</li>
+                                        <li>不是生离死别</li>
+                                        <li>不是生离死别</li>
+                                    </ul>
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo5" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+jQuery(function($){
+    $.use('ui-tabs-effect', function(){
+        var tab5 = $('#tab5').tabs({
+            isAutoPlay:false,
+            effect:'fade',
+            //自定义select事件
+            select: function(e, data){
+                if(data.index===1){
+                    alert('select');
+                }
+            }
+        });
+        //自定义select事件
+        /*tab5.bind('tabsselect', function(e, data){
+            if(data.index===1){
+                alert('select');
+            }
+        });*/
+    });
+});
+
+/* 注：以上两种方式都可以调用自定义事件；使用bind方式调用自定义事件，初始化时不会触发 */
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>5、tabs切换 - 渐隐渐现动画效果</h3>
+                        <div id="tab5" class="tab-imgs">
+                            <ul class="clr">
+                                <li class="f-tab-t"><a href="#">tab A</a></li>
+                                <li class="f-tab-t"><a href="#">tab B</a></li>
+                                <li class="f-tab-t"><a href="#">tab C</a></li>
+                            </ul>
+                            <div class="f-tab-b">
+                                <img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/slider-c.jpg" />
+                            </div>
+                            <div class="f-tab-b">
+                                <img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/slider-b.jpg" />
+                            </div>
+                            <div class="f-tab-b">
+                                <img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/slider-a.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="demo6" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+jQuery(function($){
+    $.use('ui-tabs-effect', function(){
+        var tab6 = $('#tab6').tabs({
+            isAutoPlay:false,
+            boxSelector:'li',
+            effect:'scroll',
+            scrollType:'loop',
+            perItem:3
+        });
+        //绑定左右滚动事件
+        $('#fw-pre6').bind('click', function(){
+            tab6.tabs('prev');
+        });
+        $('#fw-next6').bind('click', function(){
+            tab6.tabs('next');
+        });
+    });
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>6、tabs切换 - 滚动效果</h3>
+                        <div class="main mar6">
+                            <button class="pre" id="fw-pre6">left</button>
+                            <div class="ep-marquee clr" id="tab6">
+                                <ul>
+                                    <li><img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/mar1.jpg" /></li>
+                                    <li><img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/mar2.jpg" /></li>
+                                    <li><img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/mar3.jpg" /></li>
+                                    <li><img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/mar4.jpg" /></li>
+                                    <li><img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/mar5.jpg" /></li>
+                                    <li><img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/mar6.jpg" /></li>
+                                    <li><img data-lazy-src="http://fd.aliued.cn/fdevlib/static/img/output/mar7.jpg" /></li>
+                                </ul>
+                            </div>
+                            <button class="next" id="fw-next6">right</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="demo7" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+jQuery(function($){
+    $.use('ui-tabs-effect', function(){
+        var tabs7 = $('#tabs7').tabs({
+            isAutoPlay:false,
+            boxSelector:'li',
+            effect:'scroll',
+            perItem:3
+        });
+        var tabs7L = tabs7.tabs('length');
+        tabs7.bind('tabsshow', function(e, data){
+            $('#fw-next7').toggleClass('next-g', data.index===tabs7L-1);
+            $('#fw-next7').toggleClass('next', data.index!==tabs7L-1);
+            
+            $('#fw-pre7').toggleClass('pre-g', data.index===0);
+            $('#fw-pre7').toggleClass('pre', data.index!==0);
+        });
+        //绑定左右滚动事件
+        $('.mar7 .pre').live('click', function(){
+            tabs7.tabs('prev');
+        });
+        $('.mar7 .next').live('click', function(){
+            tabs7.tabs('next');
+        });
+    });
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <div class="grid-sub">
+                        <h3>7、tabs切换 - 滚动效果</h3>
+                        <div class="main mar7">
+                            <button class="pre-g" id="fw-pre7">left</button>
+                            <div class="ep-marquee clr" id="tabs7">
+                                <ul>
+                                    <li><img src="http://fd.aliued.cn/fdevlib/static/img/output/mar1.jpg" /></li>
+                                    <li><img src="http://fd.aliued.cn/fdevlib/static/img/output/mar2.jpg" /></li>
+                                    <li><img src="http://fd.aliued.cn/fdevlib/static/img/output/mar3.jpg" /></li>
+                                    <li><img src="http://fd.aliued.cn/fdevlib/static/img/output/mar4.jpg" /></li>
+                                    <li><img src="http://fd.aliued.cn/fdevlib/static/img/output/mar5.jpg" /></li>
+                                    <li><img src="http://fd.aliued.cn/fdevlib/static/img/output/mar6.jpg" /></li>
+                                    <li><img src="http://fd.aliued.cn/fdevlib/static/img/output/mar7.jpg" /></li>
+                                </ul>
+                            </div>
+                            <button class="next" id="fw-next7">right</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="demo8" class="layout p32-s10m0">
+                    <div class="grid-main">
+                        <div class="main-wrap">
+                            <pre class="brush: js">
+jQuery(function($){
+    $.use('ui-tabs', function(){
+        var tabs8 = $('#tabs8').tabs({
+            event: 'click',
+            titleSelector: 'ul.list-ul li',
+            boxSelector: '.tab-c'
+        });
+        $('#insert').click(function(e){
+            var li = $('<li>'),
+            box = $('<div>');
+            li.html('新的TAB');
+            $('#tabs8 .list-ul').append(li);
+            box.html('新TAB的内容');
+            box.addClass('tab-c');
+            $('#tabs8').append(box);
+            
+            tabs8.tabs('reset');
+        });
+    });
+});
+                        	</pre>
+                        </div>
+                    </div>
+                    <style type="text/css">
+                        .tabs8 { float:left; width:300px; height:230px; overflow:hidden; margin-right:20px;}
+                        .tabs8 .list-ul { position:relative; width:300px; height:32px; overflow:hidden;}
+                        .tabs8 .list-ul li { float:left; width:76px; height:30px; border:1px solid #666; text-align:center; cursor:pointer; line-height:30px;}
+                        .tabs8 .list-ul .current { border-bottom:1px solid #fff;}
+                        .tabs8 .tab-c { display:none; clear:both; width:298px; height:197px; line-height:190px; border:1px solid #666; margin-top:-1px; font-size:16px; text-align:center;}
+                    </style>
+                    <div class="grid-sub">
+                        <h3>7、tabs切换 - 动态插入tab</h3>
+                        <div class="tabs8" id="tabs8">
+                            <ul class="list-ul">
+                                <li class="current"><a href="#">tab1</a></li>
+                                <li><a href="#">tab2</a></li>
+                            </ul>
+                            <div class="tab-c" style="display:block;">
+                                TAB 1 内容
+                            </div>
+                            <div class="tab-c">
+                                TAB 2 内容
+                            </div>
+                        </div>
+                        <button id="insert">插入TAB</button>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div id="footer">—— 阿里巴巴中文站前端开发团队</div>
+        </div>
+        <script>
+            //Dom树构建完毕后开始执行
+            jQuery(function($){
+                $.use('ui-tabs', function(){
+                    $('#tab1').tabs();
+                    
+                    $('#tab2').tabs({
+                        isAutoPlay:false, 
+                        event:'click'
+                    });
+                    
+                    var tabs8 = $('#tabs8').tabs({
+                        isAutoPlay: false,
+                        //event:'click',
+                        titleSelector: 'ul.list-ul li',
+                        boxSelector: '.tab-c'
+                    });
+                    $('#insert').click(function(e){
+                        var li = $('<li>'),
+                        box = $('<div>');
+                        li.html('新的TAB');
+                        $('#tabs8 .list-ul').append(li);
+                        box.html('新TAB的内容');
+                        box.addClass('tab-c');
+                        $('#tabs8').append(box);
+                        
+                        tabs8.tabs('reset');
+                    });
+                });
+                
+                $.use('ui-tabs-lazyload', function(){
+                    var tab3 = $('#tab3').tabs({
+                        isAutoPlay:false
+                    });
+                    
+                    var tab4 = $('#tab4').tabs({
+                        isAutoPlay:false
+                    });
+                });
+                
+                $.use('ui-tabs-effect', function(){
+                    var tab5 = $('#tab5').tabs({
+                        isAutoPlay:false,
+                        effect:'fade',
+                        select: function(e, data){
+                            if(data.index===1){
+                                alert('select');
+                            }
+                        }
+                    });
+                    //自定义select事件
+                    /*tab5.bind('tabsselect', function(e, data){
+                        if(data.index===1){
+                            alert('select');
+                        }
+                    });*/
+                    
+                    var tab6 = $('#tab6').tabs({
+                        isAutoPlay:false,
+                        boxSelector:'li',
+                        effect:'scroll',
+                        scrollType:'loop',
+                        perItem:3
+                    });
+                    //绑定左右滚动事件
+                    $('#fw-pre6').bind('click', function(){
+                        tab6.tabs('prev');
+                    });
+                    $('#fw-next6').bind('click', function(){
+                        tab6.tabs('next');
+                    });
+                    
+                    
+                    var tabs7 = $('#tabs7').tabs({
+                        isAutoPlay:false,
+                        boxSelector:'li',
+                        effect:'scroll',
+                        perItem:3
+                    });
+                    var tabs7L = tabs7.tabs('length');
+                    tabs7.bind('tabsshow', function(e, data){
+                        $('#fw-next7').toggleClass('next-g', data.index===tabs7L-1);
+                        $('#fw-next7').toggleClass('next', data.index!==tabs7L-1);
+                        
+                        $('#fw-pre7').toggleClass('pre-g', data.index===0);
+                        $('#fw-pre7').toggleClass('pre', data.index!==0);
+                    });
+                    //绑定左右滚动事件
+                    $('.mar7 .pre').live('click', function(){
+                        tabs7.tabs('prev');
+                    });
+                    $('.mar7 .next').live('click', function(){
+                        tabs7.tabs('next');
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

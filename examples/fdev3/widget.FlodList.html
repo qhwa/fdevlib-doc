@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>fdevlib-example: FlodList</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <link href="/fdevlib/static/css/ep.css" rel="stylesheet"/>
+    <style>
+	.flodlist {
+		width: 250px;
+	}
+	.flodlist ul, .flodlist li{
+		margin-left:16px;
+	}
+	ul.all{
+		margin-left:0;
+	}
+	.f-trigger {
+		padding-left: 16px;
+		background: url(/fdevlib/static/img/output/icon_open.gif) no-repeat 4px center;
+		zoom: 1;
+		cursor:pointer;	
+	}
+	.f-expand {
+		background: url(/fdevlib/static/img/output/icon_open.gif) no-repeat 4px center;
+	}
+	.f-collapse {
+		background: url(/fdevlib/static/img/output/icon_close.gif) no-repeat 4px center;
+	}
+	button{
+		margin-right：16px;
+		margin-top: 16px;
+		padding:1px;
+	}
+	.f-expand{
+		font-weight:bold;
+	}
+    </style>
+</head>
+<body>
+	<div id="doc">
+		<div id="hd">
+			<h1>fdevlib-example: flodlist（折叠菜单）</h1>
+		</div>
+		<div id="bd">
+			<div class="layout">
+				<div class="main">
+					<h2>1、普通的折叠菜单，外加全部展开和全部折叠功能。</h2>
+					 <div class="flodlist" id="flodlist1">
+						<h3>标题</h3>
+						<ul class="all">
+							<li>
+								<h4 class="f-trigger">段落1</h4>
+								<ul class="f-content">
+									<li>内容1.1</li>
+								</ul>
+							</li>
+							<li>
+								<h4 class="f-trigger">段落2</h4>
+								<ul class="f-content">
+									<li>内容2.1</li>
+									<li>
+										<h5 class="f-trigger">内容2.2</h5>
+										<ul class="f-content">
+											<li>内容2.2.1</li>
+											<li>
+												<h6 class="f-trigger">内容2.2.2</h6>
+												<ul class="f-content">
+													<li>内容2.2.2.1</li>
+													<li>内容2.2.2.2</li>	
+												</ul>
+											</li>
+											<li>
+												<h6 class="f-trigger">内容2.2.3</h6>
+												<ul class="f-content">
+													<li>内容2.2.3.1</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>内容2.3</li>
+									<li>内容2.4</li>
+								</ul>
+							</li>
+							<li>
+								<h4 class="f-trigger">段落3</h4>
+								<ul class="f-content">
+									<li>内容3.1</li>
+									<li>内容3.2</li>
+								</ul>
+							</li>
+							<li>段落4</li>
+						</ul>
+					</div>
+					<button id="expand-all">展开全部</button>
+					<button id="collapse-all">折叠全部</button>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var flodlist1 = new FD.widget.FlodList('flodlist1');
+					//添加全部展开功能
+					$E.on('expand-all','click',function(){
+						flodlist1.expandAll();
+					});
+					//添加全部折叠功能
+					$E.on('collapse-all','click',function(){
+						flodlist1.collapseAll();
+					});	
+					</pre>
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>2、折叠菜单，同级最多只展示一个。</h2>
+					 <div class="flodlist" id="flodlist2">
+						<h3>标题</h3>
+						<ul class="all">
+							<li>
+								<h4 class="f-trigger">段落1</h4>
+								<ul class="f-content">
+									<li>内容1.1</li>
+								</ul>
+							</li>
+							<li>
+								<h4 class="f-trigger">段落2</h4>
+								<ul class="f-content">
+									<li>内容2.1</li>
+									<li>
+										<h5 class="f-trigger">内容2.2</h5>
+										<ul class="f-content">
+											<li>内容2.2.1</li>
+											<li>
+												<h6 data-flag="f222" class="f-trigger">内容2.2.2</h6>
+												<ul class="f-content">
+													<li>内容2.2.2.1</li>
+													<li>内容2.2.2.2</li>	
+												</ul>
+											</li>
+											<li>
+												<h6 data-flag="f223" class="f-trigger">内容2.2.3</h6>
+												<ul class="f-content">
+													<li>内容2.2.3.1</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>内容2.3</li>
+									<li>内容2.4</li>
+								</ul>
+							</li>
+							<li>
+								<h4 class="f-trigger">段落3</h4>
+								<ul class="f-content">
+									<li>内容3.1</li>
+									<li>内容3.2</li>
+								</ul>
+							</li>
+							<li>段落4</li>
+						</ul>
+					</div>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var flodlist2 = new FD.widget.FlodList('flodlist2',{multiExpand: false});
+					flodlist2.collapseAll();
+					</pre>
+				</div>			
+			</div>
+
+			<div class="layout">
+				<div class="main">
+					<h2>3、折叠菜单，指定某一个展开对象。</h2>
+					 <div class="flodlist" id="flodlist3">
+						<h3>标题</h3>
+						<ul class="all">
+							<li>
+								<h4 data-flag="f1" class="f-trigger">段落1</h4>
+								<ul class="f-content">
+									<li>内容1.1</li>
+								</ul>
+							</li>
+							<li>
+								<h4 class="f-trigger">段落2</h4>
+								<ul class="f-content">
+									<li>内容2.1</li>
+									<li>
+										<h5 class="f-trigger">内容2.2</h5>
+										<ul class="f-content">
+											<li>内容2.2.1</li>
+											<li>
+												<h6 data-flag="f222" class="f-trigger">内容2.2.2</h6>
+												<ul class="f-content">
+													<li>内容2.2.2.1</li>
+													<li>内容2.2.2.2</li>	
+												</ul>
+											</li>
+											<li>
+												<h6 data-flag="f223" class="f-trigger">内容2.2.3</h6>
+												<ul class="f-content">
+													<li>内容2.2.3.1</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>内容2.3</li>
+									<li>内容2.4</li>
+								</ul>
+							</li>
+							<li>
+								<h4 class="f-trigger">段落3</h4>
+								<ul class="f-content">
+									<li>内容3.1</li>
+									<li>内容3.2</li>
+								</ul>
+							</li>
+							<li>段落4</li>
+						</ul>
+					</div>
+					<button id="goto1">goto:1</button>
+					<button id="goto222">goto:2.2.2</button>
+					<button id="goto223">goto:2.2.3</button>
+				</div>
+				<div class="sub">
+					<h2>调用代码示意：</h2>
+					<pre class="brush:js">
+					var flodlist3 = new FD.widget.FlodList('flodlist3');
+					flodlist3.collapseAll();
+					
+					$E.on('goto1','click',function(){
+						flodlist3.getFlag('f1');
+					});
+					$E.on('goto222','click',function(){
+						flodlist3.getFlag('f222');
+					});
+					$E.on('goto223','click',function(){
+						flodlist3.getFlag('f223');
+					});
+					</pre>
+				</div>			
+			</div>
+
+		</div>
+		<div id="ft">
+			—— 阿里巴巴中文站前端开发团队
+		</div>
+	</div>
+	<script type="text/javascript" src="../dp.SyntaxHighlighter/scripts/shCore.js"></script> 
+	<script type="text/javascript" src="../dp.SyntaxHighlighter/scripts/shBrushXml.js"></script> 
+	<script type="text/javascript" src="../dp.SyntaxHighlighter/scripts/shBrushJScript.js"></script> 
+	<script type="text/javascript" src="../dp.SyntaxHighlighter/scripts/shBrushCss.js"></script>
+	
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/core/fdev-min.js"></script>
+	<script src="http://style.china.alibaba.com/js/lib/fdev-v3/widget/flodlist/source/flodlist.js"></script>
+	<script>
+	//Dom树构建完毕后开始执行
+	$E.onDOMReady(function(){
+		dp.SyntaxHighlighter.HighlightAll('code');	//代码高亮
+		
+		var flodlist1 = new FD.widget.FlodList('flodlist1');
+		$E.on('expand-all','click',function(){
+			flodlist1.expandAll();
+		});
+		$E.on('collapse-all','click',function(){
+			flodlist1.collapseAll();
+		});	
+		
+		var flodlist2 = new FD.widget.FlodList('flodlist2',{multiExpand: false});
+		flodlist2.collapseAll();
+		
+		var flodlist3 = new FD.widget.FlodList('flodlist3');
+		flodlist3.collapseAll();
+		$E.on('goto1','click',function(){
+			flodlist3.getFlag('f1');
+		});
+		$E.on('goto222','click',function(){
+			flodlist3.getFlag('f222');
+		});
+		$E.on('goto223','click',function(){
+			flodlist3.getFlag('f223');
+		});
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>web-sweet</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+        <style>
+            #demo1 dl { float: left; margin:0 4px 0 0; padding: 4px; width:100px; background-color: #EEF3FA; }
+            #demo1 dt { padding:0; width: 100px; height: 100px; overflow: hidden; line-height: 1; border-radius:0; }
+            /*TODO: a 的 font-size 是根据高度计算的 公式为 size=(0.875*height).toFixed(0) */
+            #demo1 dt a { display: table-cell; vertical-align: middle; text-align: center; width: 100px; height: 100px; *display:block;*font-family:Arial;*font-size:88px;}
+            #demo1 dt img { vertical-align: middle; }
+            #demo1 .cny { font-family: Helvetica; }
+            #demo1 .price { color: #333; }
+            #demo1 .describe { color: #666; }
+        </style>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>web-sweet : 模板语言</h1>
+            <h2>静态HTML模板输出+使用Javascript语法+调用内置方法</h2>
+            <div id="demo1" class="fd-clr">
+            </div>
+            <pre class="prettyprint language-js">
+$.use('web-sweet', function(){
+    var template = '&lt;% for ( var i = 0; i &lt; $data.length; i++ ) { %>\
+        &lt;dl>\
+            &lt;dt>\
+                &lt;a href="javascript:;">\
+                    &lt;img alt="" src="&lt;%= $data[i].src %>" width="100" />\
+                &lt;/a>\
+            &lt;/dt>\
+            &lt;dd class="title">&lt;a href="javascript:;" title="&lt;%= $data[i].title %>">&lt;%= $data[i].title.cut(14,"...") %>&lt;/a>&lt;/dd>\
+            &lt;dd class="price">&lt;span class="cny">&yen;&lt;/span> &lt;em>&lt;%= $data[i].price.toFixed(2) %>&lt;/em>&lt;/dd>\
+            &lt;dd class="describe">&lt;%= $util.trim($data[i].describe) %>&lt;/dd>\
+        &lt;/dl>\
+        &lt;% } %>';
+    var data = [{
+        title: '厂家直销插卡小夹子MP3 礼品MP3 无屏夹子MP3 MP3批发',
+        src: 'http://img.china.alibaba.com/img/ibank/2011/240/629/382926042_547130262.summ.jpg',
+        price: 9.3,
+        describe: '品牌:OEM 型号:小夹子 内存容量:此价格下不包含内存 屏幕色彩:无屏幕 接口:USB,2.0 支持音频格式...'
+    }, {
+        title: '供应耳挂式运动型跑步礼品MP3,SPORT MP3',
+        src: 'http://img.china.alibaba.com/img/offer2/2011/160/020/547160020_767f83968552bbeb4cb5bcd7a6603e30.summ.jpg',
+        price: 26,
+        describe: '品牌:Qisys 型号:MP-016 内存容量:128M~8GB 屏幕尺寸:无屏 屏幕色彩:指示灯提示 接口:...'
+    }];
+    var html = FE.util.sweet(template).applyData(data);
+    $('#demo1').html(html);
+});</pre>
+            <h2>改变上下文环境+调用外部方法</h2>
+            <div id="demo2"></div>
+            <pre class="prettyprint language-js">
+$.use('web-sweet', function(){            
+    var template = 'My name is &lt;%= this.getFullName($data.firstName, $data.lastName) %>.';
+    var data = {
+        firstName: 'John',
+        lastName: 'Resig'
+    };
+    var app = {
+        getFullName: function(firstName, lastName) {
+            return [firstName, lastName].join(' ');
+        }
+    };
+    $('#demo2').html(FE.util.sweet(template).applyData(data, app));
+});</pre>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($) {
+                $.use('web-sweet', function(){
+                    var template = '<% for ( var i = 0; i < $data.length; i++ ) { %>\
+                        <dl>\
+                            <dt>\
+                                <a href="javascript:;">\
+                                    <img alt="" src="<%= $data[i].src %>" width="100" />\
+                                </a>\
+                            </dt>\
+                            <dd class="title"><a href="javascript:;" title="<%= $data[i].title %>"><%= $data[i].title.cut(14,"...") %></a></dd>\
+                            <dd class="price"><span class="cny">&yen;</span> <em><%= $data[i].price.toFixed(2) %></em></dd>\
+                            <dd class="describe"><%= $util.trim($data[i].describe) %></dd>\
+                        </dl>\
+                        <% } %>';
+                    var data = [{
+                        title: '厂家直销插卡小夹子MP3 礼品MP3 无屏夹子MP3 MP3批发',
+                        src: 'http://img.china.alibaba.com/img/ibank/2011/240/629/382926042_547130262.summ.jpg',
+                        price: 9.3,
+                        describe: '品牌:OEM 型号:小夹子 内存容量:此价格下不包含内存 屏幕色彩:无屏幕 接口:USB,2.0 支持音频格式...'
+                    }, {
+                        title: '供应耳挂式运动型跑步礼品MP3,SPORT MP3',
+                        src: 'http://img.china.alibaba.com/img/offer2/2011/160/020/547160020_767f83968552bbeb4cb5bcd7a6603e30.summ.jpg',
+                        price: 26,
+                        describe: '品牌:Qisys 型号:MP-016 内存容量:128M~8GB 屏幕尺寸:无屏 屏幕色彩:指示灯提示 接口:...'
+                    }];
+                    var html = FE.util.sweet(template).applyData(data);
+                    $('#demo1').html(html);
+                    var template = 'My name is <%= this.getFullName($data.firstName, $data.lastName) %>.';
+                    var data = {
+                        firstName: 'John',
+                        lastName: 'Resig'
+                    };
+                    var app = {
+                        getFullName: function(firstName, lastName) {
+                            return [firstName, lastName].join(' ');
+                        }
+                    };
+                    $('#demo2').html(FE.util.sweet(template).applyData(data, app));
+                });
+            });
+        </script>
+    </body>
+</html>

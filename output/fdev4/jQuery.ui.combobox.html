@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.combobox </title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-combobox : 模拟下拉菜单</h1>
+            <h2>介绍</h2>
+            <p>实现单选，多选类型的下拉模拟，灵活性比较大，实现简单，但是需要遵循一定的规则。必要情况下需要自定义样式</p>
+
+            <h2>版本</h2>
+            <ul>
+                <li>施丹侠：创建</li>
+                <li>倪朱国：修改、添加配置属性说明——2011.12.16</li>
+                <li>Denis: 补充Methods、Events的API</li>
+            </ul>
+        
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+//模块动态载入
+jQuery(function($){
+    $.use('ui-combobox',function(){
+        //...
+    });
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="/fdevlib/examples/fdev4/jQuery.ui.combobox.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>name</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : ""
+                </dd>
+                <dd>
+                    对应提交时的name值 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>multiple</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    同时显示几个月 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>closable</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否出现关闭按钮，出现关闭按钮后无法通过点击下拉层外自动关闭下拉 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>editable</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    功能暂不可用 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>maxHeight</b>
+                    : Int | Boolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    指定下拉层的最大高度，默认为不限制高度。限制高度后，内容超出高度会出现滚动条 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>bgiframe</b>
+                    : Boolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                   
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>triggerText</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : ""
+                </dd>
+                <dd>
+                    下拉箭头的文本显示 
+                </dd>
+            </dl>
+
+            <dl>
+                <dt>
+                    <b>tpl</b>
+                    : Function
+                </dt>
+                <dd>
+                    Default : 
+                    <pre class="prettyprint lang-js">
+function(data){
+    var ul = $('&lt;ul&gt;'), i, j;
+    for (i = 0, j = data.length; i < j; i++) {
+        var item = data[i], li = $('&lt;li&gt;').addClass('ui-combobox-item').data('item', item);
+        ul.append(li.html(item.text));
+    }
+    return ul;
+}</pre>
+                </dd>
+                <dd>
+                    下拉列表模板， TODO：需要对单个项增加 'ui-combobox-item' 样式，且设置 data('item') 为当前项的数据。 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>itemNode</b>
+                    : Tag 的 String
+                </dt>
+                <dd>
+                    Default : 'li'
+                </dd>
+                <dd>
+                    列表项的节点字符串形式 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>itemTpl</b>
+                    : Function
+                </dt>
+                <dd>
+                    Default : 
+                    <pre class="prettyprint lang-js">
+function(item){
+    return $('&lt;li&gt;').html(item.text);
+}</pre>
+                </dd>
+                <dd>
+                    列表中项的模板 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>resultTpl</b>
+                    : Function
+                </dt>
+                <dd>
+                    Default : 
+                    <pre class="prettyprint lang-js">
+function(item){
+    return item.text;
+}</pre>
+                </dd>
+                <dd>
+                    结果项的模板 
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>zIndex</b>
+                    : Int
+                </dt>
+                <dd>
+                    Default : 1000
+                </dd>
+                <dd>
+                    附加到下拉列表的z-index样式 
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.toggle()</b>
+                </dt>
+                <dd>
+                    展开/收拢下拉列表
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.resetPanelPosition()</b>
+                </dt>
+                <dd>
+                    下拉框位置重新计算
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.reset( [data] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>data</b>
+                            : Object 可选，指定新的数据源
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    重置下拉控件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.select( value[, isChanged] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>value</b>
+                            : String 要选择的项的值
+                        </li>
+                        <li>
+                            <b>isChanged</b>
+                            : Bolean 是否触发change事件
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    选择选中项
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.val( [value] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>value</b>
+                            : String 要设置的项的值，不传递此参数为获取值
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    获取/设置值
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.remove( value )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>value</b>
+                            : String||Array 需要取消选中的项的值
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    Multiple时取消选中项
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>datainit</b>
+                </dt>
+                <dd>
+                    数据准备结束时触发
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>listrender</b>
+                </dt>
+                <dd>
+                    下拉列表渲染结束时触发
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>change</b>
+                </dt>
+                <dd>
+                    下拉选中的值发生变化时触发
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

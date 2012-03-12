@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="gbk" />
+    <title>Rule.jsontree</title>
+    <link href="/fdevlib/static/css/merge.css" rel="stylesheet"/>
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+</head>
+<body>
+    <div class="g-memo">
+        <h2>具有层级关系的json数据格式</h2>
+        <p>本约定规定了具有层级关系的json格式中某些特定的字段。</p>
+        <br />
+        <ul class="update-histroy">
+            <li>约定最新修改时间：2010-7-12</li>
+        </ul>
+    </div>
+    <div class="g-detail">
+		<h3>约定的json格式</h3>
+		<p>层级关系时指具有父子结构的树形关系。比如:<br />
+		<img src="/fdevlib/static/img/output/treeview.gif" />
+		</p>
+		<p>
+		我们<strong>约定:</strong> 不要直接在json中嵌套层级关系，而是采用 <strong style="color:red;">fdParent</strong> 和 <strong style="color:red;">fdId</strong> 两个字段来标示。(统一的字段名有助于框架组件的快速渗入。)<br />
+		<del><strong>错误</strong>的json数据格式:</del>
+		<pre class="brush:js">
+			{ "root": [
+			        {"name": "a",},
+			        {"name": "b", "children": [
+			        	{"name": "c"},
+			        	{"name": "d", "children":[
+			        		{"name": "e"},
+			        		{"name": "f", "children":[
+			        			{"name": "g"}
+			        		]}
+			        	]},
+			        	{"name": "h"}
+			        ]},
+			        {"name": "i"}
+			]}
+		</pre> 
+		<strong>正确</strong>的json数据格式:
+		<pre class="brush:js">
+			{"root":[
+				{"name": "a", "fdId": 1, "fdParent": 0}
+				{"name": "b", "fdId": 2, "fdParent": 0}
+				{"name": "c", "fdId": 3, "fdParent": 2}
+				{"name": "d", "fdId": 4, "fdParent": 2}
+				{"name": "e", "fdId": 5, "fdParent": 4}
+				{"name": "f", "fdId": 6, "fdParent": 4}
+				{"name": "g", "fdId": 7, "fdParent": 6}
+				{"name": "h", "fdId": 8, "fdParent": 2}
+				{"name": "i", "fdId": 9, "fdParent": 0}
+			]}
+
+		</pre> 
+		</p>
+    </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+</body>
+</html>

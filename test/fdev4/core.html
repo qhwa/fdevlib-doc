@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>Gears Test Suite</title>
+        <link rel="stylesheet" href="/fdevlib/static/css/qunit.css"/>
+        <script src="/fdevlib/static/js/qunit.js">
+        </script>
+    </head>
+    <body>
+        <h1 id="qunit-header">jQuery Gears Test Suite</h1>
+        <h2 id="qunit-banner"></h2>
+        <div id="qunit-testrunner-toolbar">
+        </div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests">
+        </ol>
+        <div id="qunit-fixture">
+            test markup
+        </div>
+        <script src="http://style.china.alibaba.com/js/lib/fdev-v4/core/fdev.js">
+        </script>
+        <script>
+            jQuery(function($) {
+                module('Core');
+                test('core', 21, function() {
+                    var test;
+                    $.namespace('Test.first', 'Test.first.second');
+                    ok(window.Test && window.Test.first && window.Test.first.second, '$.namespace');
+                    test = $.extendIf({
+                        a: false
+                    }, {
+                        a: true,
+                        b: 'b'
+                    });
+                    deepEqual(test, {
+                        a: false,
+                        b: 'b'
+                    }, '$.extendIf');
+                    test = $.util.substitute('http://!@#123{a}$as2de%{b}sd^&sda\][f*()_+-=<>?":;f{c}dfmnh,wno', {
+                        a: '',
+                        b: '',
+                        c: ''
+                    });
+                    equal(test, 'http://!@#123$as2de%sd^&sda\][f*()_+-=<>?":;fdfmnh,wno', '$.substitute width object value');
+                    test = $.util.substitute('http://!@#123{0}$as2de%{1}sd^&sda\][f*()_+-=<>?":;f{2}dfmnh,wno', ['', '', '']);
+                    equal(test, 'http://!@#123$as2de%sd^&sda\][f*()_+-=<>?":;fdfmnh,wno', '$.substitute width array value');
+                    test = $.util.escapeHTML('<div class="a"></div>');
+                    equal(test, '&lt;div class="a"&gt;&lt;/div&gt;', '$.escapeHTML');
+                    test = $.paramSpecial([{
+                        name: 'a',
+                        value: false
+                    }, {
+                        name: 'b',
+                        value: 1
+                    }, {
+                        name: 'c',
+                        value: '中文?!  @#$%^&*()-=_+'
+                    }, {
+                        name: 'd',
+                        value: 0
+                    }, {
+                        name: 'd',
+                        value: '1'
+                    }, {
+                        name: 'd',
+                        value: true
+                    }]);
+                    equal(test, 'a=false&b=1&c=中文?!++@%23$%25^%26*()-=_%2B&d=0&d=1&d=true', '$.paramSpecial');
+                    test = [1, 2, 3].remove(2);
+                    ok(test, 'Array.remove');
+                    test = [1, 2, 3].some(function(o) {
+                        return o === 2;
+                    });
+                    ok(test, 'Array.some return true');
+                    test = [1, 2, 3].some(function(o) {
+                        return o === 0;
+                    });
+                    ok(!test, 'Array.some return false');
+                    test = [1, 2, 3].every(function(o) {
+                        return $.type(o) === 'number';
+                    });
+                    ok(test, 'Array.every return true');
+                    test = [1, 2, 3].every(function(o) {
+                        return o === 2;
+                    });
+                    ok(!test, 'Array.every return false');
+                    test = [1, 2, 3, 4].filter(function(o) {
+                        return o % 2;
+                    });
+                    deepEqual(test, [1, 3], 'Array.filter');
+                    test = [1, 2, 3, 1].indexOf(1);
+                    strictEqual(test, 0, 'Array.indexOf');
+                    test = [1, 2, 3, 1].indexOf(1, 3);
+                    strictEqual(test, 3, 'Array.indexOf with fromIndex');
+                    test = [1, 2, 3, 1].lastIndexOf(1);
+                    strictEqual(test, 3, 'Array.lastIndexOf');
+                    test = [1, 2, 3, 1].lastIndexOf(1, 0);
+                    strictEqual(test, 0, 'Array.lastIndexOf with fromIndex');
+                    test = "  abc ".trim();
+                    strictEqual(test, "abc", 'String.trim');
+                    test = "abc中文".lenB();
+                    strictEqual(test, 7, 'String.lenB');
+                    test = "abc中文".cut(6);
+                    strictEqual(test, "abc中", 'String.cut');
+                    test = (0.009).toFixed(2);
+                    equal(test, '0.01', '(0.09).toFixed works right!');
+                    test = (0.495).toFixed(2);
+                    equal(test, '0.50', '(0.495).toFixed works right!');
+                });
+                module('Module');
+                test('simple module', 3, function() {
+                    $.add('test1', function() {
+                        ok(true, 'add single new module');
+                        $.use('test1', function() {
+                            ok(true, 'use single module');
+                        });
+                    });
+                    $.add(['test2', 'test3'], function() {
+                        ok(true, 'add multiple new modules');
+                    });
+                });
+                asyncTest('use single module with js', 1, function() {
+                    $.use('util-debug', function() {
+                        ok(true, 'use single module with js');
+                        start();
+                    });
+                });
+                asyncTest('use single module with requires', 1, function() {
+                    $.use('ui-core', function() {
+                        ok(true, 'use single module with requires');
+                        start();
+                    });
+                });
+                asyncTest('use multiple module with requires', 1, function() {
+                    $.use(['util-cookie', 'ui-sortable'], function() {
+                        ok(true, 'use multiple modules with requires');
+                        start();
+                    });
+                });
+                asyncTest('add ajax data', 3, function() {
+                    $.add('data-ajax', function() {
+                        ok(true, 'add ajax data');
+                        $.use('data-ajax', function(data) {
+                            strictEqual(data.success, true, 'use ajax data');
+                            $.use('data-ajax', function(data) {
+                                strictEqual(data.success, true, 'use ajax data again');
+                                start();
+                            });
+                        });
+                    }, {
+                        url: 'data-ajax.js',
+                        dataType: 'json'
+                    });
+                });
+                asyncTest('add jsonp data', 3, function() {
+                    $.add('data-jsonp', function() {
+                        ok(true, 'add jsonp data');
+                        $.use('data-jsonp', function(data) {
+                            strictEqual(data.success, true, 'use jsonp data');
+                            $.use('data-jsonp', function(data) {
+                                strictEqual(data.success, true, 'use jsonp data again');
+                                start();
+                            });
+                        });
+                    }, {
+                        url: 'data-jsonp.js',
+                        dataType: 'jsonp',
+                        jsonpCallback: 'jsonp'
+                    });
+                });
+                module('gears');
+                test('$.methodize', 3, function() {
+                    var helper = {
+                    
+                        t1: function(v) {
+                            return v + 1;
+                        },
+                        t2: function(v) {
+                            return v + 2;
+                        },
+                        t3: function(v) {
+                            return v + 3;
+                        }
+                    }, reset = function(helper, attr) {
+                        $.each(helper, function(k, v) {
+                            delete attr.prototype[k];
+                        });
+                    }, cls = function(value) {
+                        this.value = value;
+                    };
+                    
+                    
+                    
+                    $.extendIf(String.prototype, $.methodize(helper));
+                    equals('a'.t1(), 'a1', 'helper 对象中的方法 methodize 化成功');
+                    reset(helper, String);
+                    
+                    
+                    $.extendIf(cls.prototype, $.methodize(helper, 'value'));
+                    var obj = new cls('test');
+                    equals(obj.t3() === 'test3', true, 'this[attr]作为对象的this');
+                    reset(helper, cls);
+                    
+                    
+                    $.extendIf(String.prototype, $.methodize(helper, null, ['t2']));
+                    equals(String.prototype.hasOwnProperty('t2'), false, '存在other参数时，other中的方法不methodize化');
+                    reset(helper, String);
+                    
+                });
+                
+                test('$.extendNative', 3, function() {
+                    var ArrayDontEnums = ['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift', 'concat', 'join', 'slice', 'indexOf', 'lastIndexOf', 'filter', 'forEach', 'every', 'map', 'some', 'reduce', 'reduceRight'], List = function(v) {
+                        var args = [].slice.call(arguments), i = 0, l;
+                        if (v.length === 1 && Object.prototype.toString.apply(v) === '[object Array]') {
+                            args = v;
+                        }
+                        for (l = args.length; i < l; i++) {
+                            this.push(args[i]);
+                        }
+                        this.length = l;
+                    }, StringDontEnums = ['charAt', 'charCodeAt', 'concat', 'indexOf', 'lastIndexOf', 'match', 'quote', 'replace', 'search', 'slice', 'split', 'substr', 'substring', 'trim', 'toLowerCase', 'toUpperCase'];
+                    Str = function(value) {
+                        this._value = value;
+                    };
+                    
+                    $.extendNative(List, Array, ArrayDontEnums, null, function() {
+                        return '[object List]';
+                    });
+                    List.prototype.t1 = function(i) {
+                        return this[i];
+                    };
+                    var listTest = new List(1, 2, 3);
+                    listTest.push('a', 'b', 'c');
+                    equals(listTest[5] === 'c', true, 'List已继承于Array，实例listTest获取listTest[5]成功');
+                    equals(listTest.t1(5) === 'c', true, 'List已继承于Array，实例listTest执行listTest.t1(5)成功');
+                    
+                    $.extendNative(Str, String, StringDontEnums, '_value', function() {
+                        return '[object Str]';
+                    });
+                    var strTest = new Str('test');
+                    equals(strTest.charAt(0) === 't', true, 'Str已继承于String，存在第二个参数为_value，实例strTest执行strTest.charAt(0)成功')
+                });
+            });
+        </script>
+    </body>
+</html>

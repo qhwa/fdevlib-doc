@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>HTML 模版</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>HTML通用书写模版</h1>
+            <h2>介绍</h2>
+            <p>
+                这里提供HTML的书写模版
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    Edgar: 模版文档建立 ---- 2011.02.22
+                </li>
+            </ul>
+            <h2>HTML5 DTD的页面HTML模版，不包含body内容</h2>
+            <p><strong>相关说明</strong>：description、keywords按需填写，base必要时存在，.w952也非必需，但页面主体内容区应为952px宽</p>
+            <pre class="prettyprint language-html">
+&lt;!DOCTYPE html>
+&lt;html lang="zh-CN">
+    &lt;head>
+        &lt;meta charset="gbk"/>
+        &lt;title>阿里巴巴&lt;/title>
+        &lt;meta name="description" content="阿里巴巴批发大市场"/>
+        &lt;meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+        &lt;link href="产品线merge.css" rel="stylesheet"/>
+        &lt;link href="页面merge.css" rel="stylesheet"/>
+        &lt;script src="产品线merge.js">&lt;/script>
+        &lt;base target="_blank"/>
+    &lt;/head>
+    &lt;body>
+        &lt;div id="doc">
+            &lt;div id="alibar">alibar&lt;/div>
+            &lt;div id="header" class="w952">header&lt;/div>
+            &lt;div id="content" class="w952">content&lt;/div>
+            &lt;div id="footer">footer&lt;/div>
+        &lt;/div>
+        &lt;script src="页面merge.js">&lt;/script>
+    &lt;/body>
+&lt;/html>
+            </pre>
+        </div>
+        <script src="../../static/js/app-merge.js"></script>
+    </body>
+</html>

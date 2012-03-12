@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.ui.Valid</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>web-valid : 验证组件</h1>
+            <h2>介绍</h2>
+            <ul>
+                <li>
+                    提供强大的表单验证功能，适合静态/动态表单，复杂业务逻辑，同步/异步验证
+                </li>
+                <li>
+                    默认提供字符串、整数、浮点小数、电子邮箱等格式
+                </li>
+                <li>
+                    提供自定义正则表达式、自定义方法
+                </li>
+                <li>
+                    提供临时验证配置，实现一个验证实例多个验证结果
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('web-valid', function(){
+    var validator1 = new FE.ui.Valid([elements][, options]);
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/FE.ui.Valid.html">点击打开演示页面</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>onValid</b>
+                    : Function
+                </dt>
+                <dd>
+                    Default : 一个返回"true"的方法
+                    <ul>
+                        <li>
+                            <b>res</b>
+                            : String 验证结果
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object 当前节点的验证配置
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    验证回调函数
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.add( elements[, options])</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>elements</b>
+                            : Selectors, HTMLElement, jQuery 需要增加到验证实例的元素
+                        </li>
+                        <li>
+                            <b>options</b>
+                            : Object 验证
+                            <ul>
+                                <li>
+                                    <b>active</b>
+                                    : Bolean 激活状，默认true
+                                </li>
+                                <li>
+                                    <b>cache</b>
+                                    : Bolean 是否缓存上一次验证时的控件值，默认true
+                                </li>
+                                <li>
+                                    <b>evt</b>
+                                    : String 监听验证的事件。不同的事件适用不同的控件类型，比如"checkbox"适用"click"作为监听事件，默认"blur"
+                                </li>
+                                <li>
+                                    <b>fun</b>
+                                    : Function 当"type"为"fun"时，指定具体的方法引用
+                                </li>
+                                <li>
+                                    <b>isValid</b>
+                                    : Bolean 控件是否验证通过，该配置默认为用户操作过程中组件自动更新，但也不排除初始化时对其附值的可能
+                                </li>
+                                <li>
+                                    <b>key</b>
+                                    : String 用来指定当前控件的唯一标识符，可以是id，也可以是文字说明。比如"用户名" "密码"等
+                                </li>
+                                <li>
+                                    <b>lazy</b>
+                                    : Bolean 页面初次载入后用户操作鼠标触发控件的"blur"事件，假如初始默认值未改变则不验证该控件，默认true
+                                </li>
+                                <li>
+                                    <b>max</b>
+                                    : Int 当"type"为"string"时，设定字符串的最大长度；为"int"或"float"时，设定数字的最大值
+                                </li>
+                                <li>
+                                    <b>min</b>
+                                    : Int 当"type"为"string"时，设定字符串的最小长度；为"int"或"float"时，设定数字的最小值
+                                </li>
+                                <li>
+                                    <b>msg</b>
+                                    : String 用来存放临时信息，比如当"type"为"fun"时，控件验证失败后返回的错误信息将存放在本属性中
+                                </li>
+                                <li>
+                                    <b>reg</b>
+                                    : Regex 当"type"为"reg"时，指定具体的正则表达式
+                                </li>
+                                <li>
+                                    <b>required</b>
+                                    : Bolean 是否为必填项，默认false
+                                </li>
+                                <li>
+                                    <b>round</b>
+                                    : Int 当"type"配置项为"float"时，设定精确的小数位数，默认2
+                                </li>
+                                <li>
+                                    <b>trim</b>
+                                    : Bolean 是否去除控件值的两边空格(包括全角空格)，默认true
+                                </li>
+                                <li>
+                                    <b>type</b>
+                                    : String 控件的验证类型，目前支持"string", "int", "float", "email", "mobile", "reg", "url", "fun", "remote"十种，默认"string"
+                                </li>
+                                <li>
+                                    <b>value</b>
+                                    : String 当前缓存的控件值
+                                </li>
+                                <li>
+                                    <b>[customkey]</b> 自定义"key"，可以保存任意你想要保存的值
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    动态添加验证控件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.remove( elements )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>elements</b>
+                            : Selectors, HTMLElement, jQuery 需要从实例中移除的验证元素
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    从实例中移除需要验证的控件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.active( elements[, mark] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>elements</b>
+                            : Selectors, HTMLElement, jQuery 需要激活/失效的验证元素
+                        </li>
+                        <li>
+                            <b>mark</b>
+                            : Bolean || "op" 如果是"true"，则激活传入的元素，反之则反；如果是"op"，则toggle传入的元素状态
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    激活需要验证的控件。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.valid( [elements][, configs][, disfocus] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>elements</b>
+                            : Selectors, HTMLElement, jQuery 需要进行验证的元素(必须已经增加在实例中)
+                        </li>
+                        <li>
+                            <b>configs</b>
+                            : Object 该对象中的配置可以临时覆盖所有验证控件原有的配置，以覆盖后的条件进行验证。
+                        </li>
+                        <li>
+                            <b>disfocus</b>
+                            : flase 默认调用该方法之后，光标会定位到第一个验证失败的控件上。传递"false"后将不会对光标进行定位
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    验证表单。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.reset( [elements] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>elements</b>
+                            : Selectors, HTMLElement, jQuery
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    重置表单状态。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.getConfig( [element] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>elements</b>
+                            : Selectors, HTMLElement, jQuery, Int 可以为控件所在的索引
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    获取控件当前的验证配置状态(非原始配置)
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.setConfig( elements, configs )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>elements</b>
+                            : Selectors, HTMLElement, jQuery 需要设置的控件
+                        </li>
+                        <li>
+                            <b>configs</b>
+                            : Object 配置对象
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    扩展配置参数到控件当前的配置上
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js"></script>
+    </body>
+</html>

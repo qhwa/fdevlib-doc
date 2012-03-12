@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="gbk" />
+	<title>transform</title>
+    <meta name="description" content="阿里巴巴批发大市场"/>
+    <meta name="keywords" content="阿里巴巴,采购批发,1688,行业门户,网上贸易,b2b,电子商务"/>
+	<link href="/fdevlib/static/css/merge-css3.css" rel="stylesheet"/>
+    <link type="text/css" rel="Stylesheet" href="http://style.china.alibaba.com/css/app/hood/global/community-level.css" />
+    <script src="/fdevlib/static/js/merge-fdev3.js"></script>
+	<base target="_blank" />
+</head>
+<body>
+    <div class="g-memo">
+        <h2>transform</h2>
+    </div>
+    <div class="g-detail">
+        <h3>定义：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>transform-origin</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">[ [ &lt;percentage&gt; | &lt;length&gt; | left | center | right ] [ &lt;percentage&gt; | &lt;length&gt; | top | center | bottom ]? ] | [ [ left | center | right ] || [ top | center | bottom ] ]</span></td>
+            </tr>
+        </table>
+        <p>transform-origin接受两个参数，它们可以是百分比，em，px等具体的值，也可以是left,center,right，或者 top,center,bottom等描述性参数;</p>
+        <p>默认值：50% 50%</p>
+        <table border="0" cellpadding="0" cellspacing="0" width="99%" class="mt8 g-paramtable">
+            <tr>
+                <th align="left" width="56"><strong>Name:</strong></th>
+                <th align="left"><i class="ml8 mr8"><u>transform</u></i></th>
+            </tr>
+            <tr>
+                <td><span>值:</span></td>
+                <td><span class="ml8 mr8">none | &lt;transform-function&gt; [ &lt;transform-function&gt; ]*</span></td>
+            </tr>
+            <tr class="even">
+                <td colspan="2"><span>transform-function:</span></td>
+            </tr>
+            <tr>
+                <td><span>scale:</span></td>
+                <td><span class="ml8 mr8">缩放，1为原始大小。scale(x)。正数放大，负数缩小。属性值为一个时，x/y轴同时缩放；属性值为两个值时，分别控制x、y轴的缩放。</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>rotate:</span></td>
+                <td><span class="ml8 mr8">水平旋转，属性值格式为Xdeg。rotate(Xdeg)。X为正数时，顺时针旋转；为负数时，逆时针旋转。</span></td>
+            </tr>
+            <tr>
+                <td><span>translate:</span></td>
+                <td><span class="ml8 mr8">定位元素，基于XY轴重新定位元素。translate(Xpx,Ypx)。属性值为一个时，x、y轴参数相同；为两个时，x、y轴分别定位。</span></td>
+            </tr>
+            <tr class="even">
+                <td><span>skew:</span></td>
+                <td><span class="ml8 mr8">将元素沿水平方向倾斜变形。skew(Xdeg,Ydeg)。这个比较难表述，想象一下平行四边形吧。属性值为一个时，x、y轴参数相同；为两个时，x、y轴各自倾斜。</span></td>
+            </tr>
+            <tr>
+                <td><span>matrix:</span></td>
+                <td><span class="ml8 mr8">以一个含六值的(a,b,c,d,e,f)变换矩阵的形式指定一个2D变换，相当于直接应用一个[a b c d e f]变换矩阵。</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="g-detail">
+        <h3>浏览器兼容性：</h3>
+        <table border="0" cellpadding="0" cellspacing="0" class="g-paramtable compatibility">
+            <tr>
+                <th align="left" width="56"><strong>浏览器</strong></th>
+                <th class="browser-chrome"><a href="http://www.google.com/chrome/" target="_blank" title="Download the Chrome web browser"><span class="">CHROME</span></a></th>
+                <th class="browser-firefox"><a href="http://www.mozilla.com/en-US/firefox/all.html" target="_blank" title="Download the Firefox web browser"><span class="">FIREFOX</span></a></th>
+                <th class="browser-opera"><a href="http://www.opera.com/browser/" target="_blank" title="Download the Opera web browser"><span class="">OPERA</span></a></th>
+                <th class="browser-safari"><a href="http://www.apple.com/safari/download/" target="_blank" title="Download the Safari web browser"><span class="">SAFARI</span></a></th>
+                <th class="browser-ie"><a href="http://www.microsoft.com/ie/" target="_blank" title="Download the Ie web browser"><span class="">IE</span></a></th>
+            </tr>
+            <tr>
+                <td rowspan="2">兼容性</td>
+                <td rowspan="2"><span class="positive">(√)chrome</span></td>
+                <td rowspan="2"><span class="positive">(√)firefox 3.6+ <br />部分支持</span></td>
+                <td rowspan="2"><span class="positive">(√)opera 10.6+</span></td>
+                <td rowspan="2"><span class="positive">(√)safari 5+</span></td>
+                <td><span class="negative">(&times;)IE 6-8</span></td>
+            </tr>
+            <tr>
+                <td><span class="positive">(&radic;)IE 9</span></td>
+            </tr>
+        </table>
+        <h3>说明：</h3>
+        <p>transform属性允许我们旋转、缩放和移动元素</p>
+        <p>有五种变形样式，可以重叠多种变形样式，以空格分隔</p>
+    </div>
+    <div class="g-detail">
+        <h3>例子：</h3>
+        <h4>示例1:scale-缩放</h4>
+        <div class="show-box">
+            <p class="transforms-example scale">hover me</p>
+        </div>
+        <h4>code:</h4>
+        <pre class="brush:html">
+        .scale:hover{
+            -webkit-transform:scale(1.5);
+            -moz-transform:scale(1.5);
+            -o-transform:scale(1.5);
+            transform:scale(1.5);
+        }
+            
+        </pre>
+        <h4>示例2:rotate-旋转</h4>
+        <div class="show-box">
+            <p class="transforms-example rotate">hover me</p>
+        </div>
+        <h4>code:</h4>
+        <pre class="brush:html">
+        .rotate{
+            -webkit-transform:rotate(10deg);
+            -moz-transform:rotate(10deg);
+            -o-transform:rotate(10deg);
+            transform:rotate(10deg);
+        }
+        .rotate:hover{
+            -webkit-transform:rotate(0);
+            -moz-transform:rotate(0);
+            -o-transform:rotate(0);
+            transform:rotate(0);
+        }
+
+        </pre>
+        <h4>示例3:translate-偏移</h4>
+        <div class="show-box">
+            <p class="transforms-example translate">hover me</p>
+        </div>
+        <h4>code:</h4>
+        <pre class="brush:html">
+        .translate:hover{
+            -webkit-transform:translate(10px,-10px);
+            -moz-transform:translate(10px,-10px);
+            -o-transform:translate(10px,-10px);
+            transform:translate(10px,-10px)
+        }
+
+        </pre>
+        <h4>示例4:skew-歪斜</h4>
+        <div class="show-box skew-example fd-clr">
+            <p class="transforms-example skew-x">hover me</p>
+            <p class="transforms-example skew-y">hover me</p>
+            <p class="transforms-example skew">hover me</p>
+        </div>
+        <h4>code:</h4>
+        <pre class="brush:html">
+        .skew-x:hover{
+            -webkit-transform:skewX(20deg);
+            -moz-transform:skewX(20deg);
+            -o-transform:skewX(20deg);
+            transform:skewX(20deg);
+        }
+        .skew-y:hover{
+            -webkit-transform:skewY(20deg);
+            -moz-transform:skewY(20deg);
+            -o-transform:skewY(20deg);
+            transform:skewY(20deg);
+        }
+        .skew:hover{
+            -webkit-transform:skew(20deg,20deg);
+            -moz-transform:skew(20deg,20deg);
+            -o-transform:skew(20deg,20deg);
+            transform:skew(20deg,20deg);
+        }
+
+        </pre>
+        <h4>示例5:matrix-矩阵</h4>
+        <div class="show-box">
+            <p class="transforms-example matrix">hover me</p>
+        </div>
+        <h4>code:</h4>
+        <pre class="brush:html">
+        .matrix:hover{
+            -webkit-transform:matrix(1, -0.2, 0, 1, 0, 0);
+            -moz-transform:matrix(1, -0.2, 0, 1, 0, 0);
+            -o-transform:matrix(1, -0.2, 0, 1, 0, 0);
+        }
+
+        </pre>
+    </div>
+    <div class="g-detail">
+        <h3>更多例子：</h3>
+        <a href="transforms-example.html" title="transforms-example">transforms-example</a>
+    </div>
+    <div class="g-detail">
+        <h3>相关文档：</h3>
+        <ul>
+            <li><a href="http://www.w3.org/TR/css3-2d-transforms/" title="w3c Working Draft">CSS 2D Transforms Module Level 3 (w3c Working Draft)</a></li>
+            <li><a href="http://www.findmebyip.com/litmus" title="HTML5 & CSS support">HTML5 &amp; CSS support</a></li>
+        </ul>
+    </div>
+</body>
+</html>

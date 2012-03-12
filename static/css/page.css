@@ -1,0 +1,33 @@
+a:hover{text-decoration:underline;}
+#doc { padding: 4px; }
+#header h1 { line-height:2.4; font-size:24px; font-weight:700; }
+.g-memo { border: 1px solid #b6cde1; background: #fff5df; padding: 8px; font-size: 14px; font-family: \5FAE\8F6F\96C5\9ED1; }
+.g-memo h2 { font-size: 18px; color: #e76300; font-weight: bold; }
+.g-memo h3 { margin-top: 8px; font-weight: bold; }
+.g-memo .update-histroy li { padding-left: 16px; }
+
+.g-detail { padding: 8px 8px 8px 16px; border-bottom: 1px dashed #ccc; }
+.g-detail h3 { margin: 16px 0 4px 0; color: #e76300; font-size: 14px; font-weight: bold; font-family: \5FAE\8F6F\96C5\9ED1; }
+.g-detail ul{text-indent:20px; }
+.g-demo ul{text-indent:0;}
+.g-demo { zoom: 1; }
+.g-demo:after { content: "\0020"; display: block; height: 0; clear: both; }
+
+.g-paramtable { table-layout:fixed; border-collapse: collapse; border-spacing: 0; width: 100%; }
+.g-paramtable th, .g-paramtable td { border: 1px solid #ccc; padding: 4px; word-wrap:break-word; }
+.g-paramtable th { background: #f8f8f8; }
+.g-paramtable td { vertical-align: top; }
+.g-paramtable td pre { white-space: pre-wrap; }
+.g-paramtable .even { background: #fdfeef; }
+
+.tableshow { margin: 8px 0 16px 8px; }
+.tableshow th { border: 1px solid #cccccc; width: 79px; text-align: center; height: 32px; font-weight: bold; }
+.tableshow td { border: 1px solid #cccccc; width: 49px; text-align: center; height: 32px; }
+.tableshow .t-n { background: #ccffcc; }
+.tableshow .t-w { background: #bcdcfa; }
+.tableshow .on { background: #ffcccc; }
+
+/*example*/
+.p32-s10m0 .main-wrap { margin-left: 400px; }
+.p32-s10m0 .grid-sub { width: 392px; margin-left: -100%; }
+

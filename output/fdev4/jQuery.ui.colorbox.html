@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.colorbox</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-colorbox : 选色盒子</h1>
+            <h2>介绍</h2>
+            <p>
+                轻量级的色彩选择组件，提供常用的色彩供选择。如需专业的拾色功能请使用"ui-colorpicker"
+            </p>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('ui-colorbox', function(){
+    $('...').colorbox();
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.colorbox.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>color</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : '#ffffff'
+                </dd>
+                <dd>
+                    取色器默认选中的颜色，当update配置为true时，该配置失效，取色器会自动验证输入框中的值并进行同步。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>popup</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    取色器的展现方式是否为"浮出层"形式，false则直接渲染到目标容器中。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>update</b>
+                    : Bolean
+                </dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否将取色盒与输入框同步，给输入框赋选中的RGB值，或者将输入框变动的值反应到取色盒。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>triggerType</b>
+                    : String
+                </dt>
+                <dd>
+                    Default : "click"
+                </dd>
+                <dd>
+                    当"popup"为true时，触发组件展示的事件名。
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.colorbox( 'toggle' )</b>
+                </dt>
+                <dd>
+                    取色器展示/关闭。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.colorbox( 'show' )</b>
+                </dt>
+                <dd>
+                    展示取色器
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.colorbox( 'hide' )</b>
+                </dt>
+                <dd>
+                    关闭取色器
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.colorbox( 'setColor', color )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>color</b>
+                            : String 需要设置的色彩，格式为"#******"
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置取色器当前色彩
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.colorbox( 'getColor' )</b>
+                </dt>
+                <dd>
+                    获取取色器当前颜色，没有选择颜色则返回null
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>change</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event "mouseover"事件对象
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object <pre class="prettyprint language-js">
+{
+    color  //当前鼠标位置所在的颜色值
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当鼠标move过程中，颜色值的变化值
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>select</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>e</b>
+                            : Event "click"事件对象
+                        </li>
+                        <li>
+                            <b>o</b>
+                            : Object <pre class="prettyprint language-js">
+{
+    color  //选中的颜色值
+}</pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    当鼠标点击选中的颜色值
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

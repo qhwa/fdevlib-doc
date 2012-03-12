@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.dialog</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-dialog : 浮出层</h1>
+            <h2>介绍</h2>
+            <ul>
+                <li>
+                    提供模拟对话框、浮出层遮罩功能
+                </li>
+                <li>
+                    多实例化，互不干扰；共用遮罩，屏蔽遮罩层下方Tab事件，遮罩层上方Tab循环
+                </li>
+                <li>
+                    提供<b>shim</b>配置项，兼容IE6，完美遮挡select元素
+                </li>
+            </ul>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    汤汤: 修复IE6短文档页面遮罩无法覆盖全页面的BUG ---- 2011.03.22 
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.use('ui-dialog', function(){
+    $('...').dialog(options);
+});</pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.dialog.html">Try it!</a>
+            </p>
+            <h2>Statics</h2>
+            <dl>
+                <dt><b>jQuery.ui.dialog.zIndex</b> : Number</dt>
+                <dd>
+                    Default : 1000
+                </dd>
+                <dd>
+                    浮出层z-index样式的自增基数
+                </dd>
+            </dl>
+            <h2>Configs</h2>
+            <dl>
+                <dt><b>fixed</b> : Boolean</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    浮出层是否跟随滚动
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>center</b> : Boolean</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    浮出层是否打开居中（水平+垂直）
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>draggable</b> : Boolean | Object</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否支持浮出层可拖动。设为 <b>true</b>
+                    只提供默认的拖动效果，可以设置Draggable组件支持的配置Object来自定义拖动效果。<pre class="prettyprint language-js">
+draggable: {
+    handle: 'div.header',
+    containment: 'body',
+    start: startDragHandler
+}</pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>modal</b> : Boolean</dt>
+                <dd>
+                    Default : true
+                </dd>
+                <dd>
+                    浮出层是否带有蒙版效果
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>shim</b> : Boolean</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    是否在IE6下使用iframe垫片。<em>注意：该配置项依赖于ui-core模块，否则无法生效！</em>
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>modalCSS</b> : Object</dt>
+                <dd>
+                    自定义蒙版层的样式
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>css</b> : Object</dt>
+                <dd>
+                    自定义浮出层容器的样式
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>fadeIn</b> : Number</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    浮出层打开时的渐入效果时间(ms)
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>fadeOut</b> : Number</dt>
+                <dd>
+                    Default : false
+                </dd>
+                <dd>
+                    浮出层关闭时的渐出效果时间(ms)
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>timeout</b> : Number</dt>
+                <dd>
+                    Default : 0
+                </dd>
+                <dd>
+                    延时自动关闭浮出层的时间(ms)
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt><b>open</b></dt>
+                <dd>
+                    浮出层打开后触发
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>beforeClose</b></dt>
+                <dd>
+                    浮出层关闭前触发
+                </dd>
+            </dl>
+            <dl>
+                <dt><b>close</b></dt>
+                <dd>
+                    浮出层关闭后触发
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

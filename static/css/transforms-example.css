@@ -1,0 +1,128 @@
+@font-face {
+    font-family: "lexograph";
+    src: url(../font/lexograph.eot);
+    src: local("Lexographer"), url(../font/lexograph.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: qlassik;
+    src: url(../font/qlassik.eot);
+    src: local("Qlassik"), url(../font/qlassik.ttf) format("truetype");
+}
+@font-face {
+    font-family: monago;
+    src: url(../font/MONACO.TTF);
+}
+@font-face {
+    font-family: qusab;
+    src: url(../font/PUSAB___.TTF);
+}
+input[type="range"]{
+    width: 150px;
+    height: 10px;
+    background: rgba(60, 114, 230, .8);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-appearance: none !important;
+}
+input[type="range"]::-webkit-slider-thumb{
+    width: 16px;
+    height: 16px;
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#fff),
+        to(#ccc)
+        );
+    border: 1px solid #999;
+    -webkit-box-shadow: 0 0 6px #666;
+    -webkit-border-radius: 8px;
+    -webkit-appearance: none !important;
+}
+body{
+    font:12px/1.5 monago,qlassik,georgia,sans-serif,Tahoma,Arial,"ËÎÌו",sans-serif;
+}
+header{
+    text-align: center;
+}
+header h1{
+    font-size: 6em;
+    font-weight: 700;
+    font-family: qusab;
+    text-shadow: 3px 4px 1px #ccc;
+    width: 960px;
+    text-align: left;
+    margin: 0 auto;
+}
+nav{
+    float: left;
+    padding-left: 50px;
+    width:302px;
+}
+.example-box{
+    float: left;
+    width: 562px;
+    height: 500px;
+    line-height: 500px;
+    margin-right:8px;
+    border:15px solid #c4c8cc;
+    text-align: center;
+    -moz-border-image: url(../images/border-image.png) 30 30 stretch;
+    -webkit-border-image:url(../images/border-image.png) 30 30 stretch;
+}
+.setting-list{
+    line-height: 20px;
+}
+.setting-list dt{
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+    text-shadow: 1px 1px 2px #ccc;
+}
+.setting-list dd{
+    padding-left: 10px;
+}
+.properties-list{
+    display: inline-block;
+}
+.setting-list input[type="radio"]{
+    margin-top: 3px;
+    vertical-align: top;
+}
+.setting-list label{
+    width: 25px;
+    display: inline-block;
+}
+.setting-list strong{
+    display: inline-block;
+    width: 30px;
+}
+select{
+    margin: 0;
+}
+.example-body{
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: red;
+    color: #FFF;
+    font-weight: 700;
+    -webkit-transition:all .5s ease;
+}
+.disabled-Options{
+    color: #ccc;
+}
+.disabled-Options input[type="range"]{
+    background-color: #ccc;
+}
+.disabled-Options input[type="range"]::-webkit-slider-thumb{
+    -webkit-box-shadow: none;
+    border-color: #FFF;
+}
+
