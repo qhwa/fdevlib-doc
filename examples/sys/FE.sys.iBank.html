@@ -15,7 +15,7 @@
                 <br/>
                 10.20.141.148   loginchina-test.alibaba.com #3300 
                 <br/>
-                10.20.141.151   test.img.alibaba.com 
+                10.20.141.151   test.img.china.alibaba.com
                 <br/>
                 登录测试帐号<a href="https://loginchina-test.alibaba.com:3300/member/signin.htm" target="_blank">https://loginchina-test.alibaba.com:3300/member/signin.htm</a>
                 <br/>
@@ -40,12 +40,16 @@ jQuery(function($){
     $('button', '#demo').click(function(e){
         $.use('sys-ibank', function(){
             FE.sys.iBank({
+                tabs: ['album', 'upload'],
+                albumAuth: false,
+                watermark: false,
+                submitText: '确定',
                 dialog: {
                     open: function(){
                         //alert('组件打开');
                     }
                 },
-                pmDomain: 'picman-test.china.alibaba.com:40100',
+                //pmDomain: 'picman-test.china.alibaba.com:40100',
                 tab: 'upload',
                 token: 'test',
                 source: 'picman',//必须改成调用方的应用名，若不知道应用名可咨询方亮
