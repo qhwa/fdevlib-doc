@@ -56,7 +56,7 @@ Docs.contents=[
                             {"id": "fdev4.jQuery.util.storage", "href": "output/fdev4/jQuery.util.storage.html","text":"util-storage(本地存储)","isClass":true, "iconCls":"icon-js","cls":"cls","leaf":true }
 					    ]
 					},
-					{ "id": "fdev4.jQuery.fn","text": "fn（第三方插件）","iconCls": "icon-cmp","cls": "package","singleClickExpand": true,children:
+					{ "id": "fdev4.jQuery.external","text": "external（第三方插件）","iconCls": "icon-cmp","cls": "package","singleClickExpand": true,children:
 						[
                             {"id": "jQuery.fn.jqGrid", "href": "http://www.trirand.com/blog/","text": "jqGrid（表格）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "jQuery.fn.sprite", "href": "http://www.spritely.net/","text": "spritely（动画精灵）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true }                        
