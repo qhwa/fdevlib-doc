@@ -24,7 +24,7 @@ Docs.contents=[
 			},
 			{ "id": "jQuery","text": "jQuery命名空间下的组件","iconCls": "icon-cmp","cls": "package","singleClickExpand": true,children:
 				[
-			        { "id": "jQuery.ui","text": "ui","iconCls": "icon-cmp","cls": "package","singleClickExpand": true,children:
+			        { "id": "jQuery.ui","text": "ui（jQueryUI组件）","iconCls": "icon-cmp","cls": "package","singleClickExpand": true,children:
 						[
 					        {"id": "fdev4.jQuery.ui.core", "href": "output/fdev4/jQuery.ui.core.html","text": "ui-core（UI核心）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.jQuery.ui.mouse", "href": "output/fdev4/jQuery.ui.mouse.html","text": "ui-mouse（鼠标动作）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
@@ -46,7 +46,7 @@ Docs.contents=[
 							{"id": "fdev4.jQuery.ui.timer", "href": "output/fdev4/jQuery.ui.timer.html","text": "ui-timer（计时器）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true }
 					    ]
 					},
-					{ "id": "fdev4.jQuery.util","text": "util","iconCls": "icon-cmp","cls": "package","singleClickExpand": true,children:
+					{ "id": "fdev4.jQuery.util","text": "util（静态插件）","iconCls": "icon-cmp","cls": "package","singleClickExpand": true,children:
 						[
 							{"id": "fdev4.jQuery.util.cookie", "href": "output/fdev4/jQuery.util.cookie.html","text": "util-cookie（Cookie操作）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.jQuery.util.debug", "href": "output/fdev4/jQuery.util.debug.html","text": "util-debug（调试）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
@@ -54,6 +54,12 @@ Docs.contents=[
 							{"id": "fdev4.jQuery.util.histroy", "href": "output/fdev4/jQuery.util.history.html","text": "util-histroy（浏览器历史）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.JSON", "href": "output/fdev4/JSON.html","text": "util-json（JSON操作）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
                             {"id": "fdev4.jQuery.util.storage", "href": "output/fdev4/jQuery.util.storage.html","text":"util-storage(本地存储)","isClass":true, "iconCls":"icon-js","cls":"cls","leaf":true }
+					    ]
+					},
+					{ "id": "fdev4.jQuery.fn","text": "fn（第三方插件）","iconCls": "icon-cmp","cls": "package","singleClickExpand": true,children:
+						[
+                            {"id": "jQuery.fn.jqGrid", "href": "http://www.trirand.com/blog/","text": "jqGrid（表格）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
+							{"id": "jQuery.fn.sprite", "href": "http://www.spritely.net/","text": "spritely（动画精灵）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true }                        
 					    ]
 					}
 			    ]
