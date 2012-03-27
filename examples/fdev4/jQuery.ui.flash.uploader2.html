@@ -55,8 +55,11 @@
                     <button class="countlimit">
                         setFileCountLimit
                     </button>
-                    <button class="multiple">
-                        setAllMultiple
+                    <button class="enableMultiple">
+                        enableMultiple
+                    </button>
+                    <button class="disableMultiple">
+                        disableMultiple
                     </button>
                 </div>
                 <ul class="result">
@@ -133,8 +136,13 @@ $.use('ui-flash-uploader2, util-debug', function(){
     $('button.countlimit', '#demo1').click(function(){
         demo1.flash('setFileCountLimit', 1);
     });
-    $('button.multiple', '#demo1').click(function(){
-        demo1.flash('allMultiple', false);
+    $('button.enableMultiple', '#demo1').click(function(){
+                        demo1.flash('enableMultiple');
+                        $.log('enableMultiple');
+    });
+    $('button.disableMultiple', '#demo1').click(function(){
+        demo1.flash('disableMultiple');
+        $.log('disableMultiple');
     });
 });                
             </pre>
@@ -164,6 +172,8 @@ $.use('ui-flash-uploader2, util-debug', function(){
                     Achievement.add('method-getFileStatuses', '获取队列中的文件信息');
                     Achievement.add('method-setBrowseFilter', '设置上传的文件类型', ['请点击按钮人工验证']);
                     Achievement.add('method-setFileCountLimit', '设置单次(uploadAll)可上传的文件个数', ['多出的文件将会被排除在上传队列之外，文件状态是refused']);
+                    Achievement.add('method-enableMultiple', '设置可以选择多个文件');
+                    Achievement.add('method-disableMultiple', '设置只能选择单个文件');
                     Achievement.add('event-finish', '上传周期完成');
                     Achievement.add('event-processStart', '客户端flash处理开始');
                     Achievement.add('event-processProgress', '客户端flash处理中');
@@ -267,8 +277,19 @@ $.use('ui-flash-uploader2, util-debug', function(){
                     $('button.countlimit', '#demo1').click(function(){
                         demo1.flash('setFileCountLimit', 1);
                     });
-                    $('button.multiple', '#demo1').click(function(){
-                        demo1.flash('allMultiple', false);
+                    $('button.enableMultiple', '#demo1').click(function(){
+                        demo1.flash('enableMultiple');
+                        if(demo1.flash('isMultiple'))
+                        {
+                            Achievement.check('method-enableMultiple',true)
+                        }
+                    });
+                    $('button.disableMultiple', '#demo1').click(function(){
+                        demo1.flash('disableMultiple');
+                        if(!demo1.flash('isMultiple'))
+                        {
+                            Achievement.check('method-disableMultiple',true)
+                        }
                     });
                 });
             });
