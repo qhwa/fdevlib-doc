@@ -10,7 +10,7 @@
             <h1>ui-flash-uploader : flash上传组件</h1>
             <h2>介绍</h2>
             <p>
-                本组件扩展至ui-flash组件，提供了文件上传的功能。在IE下使用flash方式，在非IE下使用原生的form方式。注意：flash方式支持多文件上传的特性，原生的只支持单一文件上传。
+                本组件扩展至ui-flash组件，提供了文件上传的功能。在所有浏览器下均使用flash上传方式，如flash未安装或版本不够，给用户提示安装并打点。
             </p>
             <h2>版本</h2>
             <ul>
@@ -27,7 +27,13 @@
                     Denis: 将uploader处理函数挂在命名空间下，提供上传请求超时的监听逻辑 ---- 2011.09.17
                 </li>
                 <li>
-                    Denis: 上传组件使用新版的flash文件，更新API ---- 2012.02.23 <a title="切换至旧版本文档" href="jQuery.ui.flash.uploader.old.html">切换至旧版本文档</a>
+                    Denis: 上传组件使用新版的flash文件，更新API ---- 2012.02.23
+                </li>
+                <li>
+                    jianping.shenjp: 上传组件使用新版的flash文件，优化文档 ---- 2012.03.19
+                </li>
+                <li>
+                    <a title="切换至旧版本文档" href="jQuery.ui.flash.uploader.old.html">切换至旧版本文档</a>
                 </li>
             </ul>
             <h2>开始</h2>
@@ -91,7 +97,7 @@ $.use('ui-flash-uploader2', function(){
             <h2>Methods</h2>
             <dl>
                 <dt>
-                    <b>.flash( 'uploadAll', url, param, fileFieldName, identity )</b>
+                    <b>.flash( 'uploadAll', url, param, fileFieldName )</b>
                 </dt>
                 <dd>
                     <ul>
@@ -106,10 +112,6 @@ $.use('ui-flash-uploader2', function(){
                         <li>
                             <b>fileFieldName</b>
                             : String 文件字段名称
-                        </li>
-                        <li>
-                            <b>identity</b>
-                            : String //在中国站使用时，使用'fname'
                         </li>
                     </ul>
                 </dd>

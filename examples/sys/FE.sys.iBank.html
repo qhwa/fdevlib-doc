@@ -6,6 +6,13 @@
         <link href="../../static/css/app-merge.css" rel="stylesheet"/>
     </head>
     <body>
+	<div id="achievement">
+            <h1 class="header">功能点测试</h1>
+            <h2 class="agent"></h2>
+            <h2 class="status"></h2>
+            <div class="list">
+            </div>
+        </div>
         <div id="doc">
             <h1>图片银行</h1>
             <p>
@@ -23,9 +30,11 @@
             </p>
             <h2>1.基本使用方法</h2>
         </div>
+		<ul class="result">
+        </ul>
         <div id="demo1">
             <button>
-                点击选取图片
+                点击图片银行页面
             </button>
             <div id="container">
             </div>
@@ -40,16 +49,15 @@ jQuery(function($){
     $('button', '#demo').click(function(e){
         $.use('sys-ibank', function(){
             FE.sys.iBank({
-                tabs: ['album', 'upload'],
-                albumAuth: false,
+			    albumAuth: false,
                 watermark: false,
-                submitText: '确定',
+                submitText: '确定',      
+//              allowMultiple: false,
                 dialog: {
                     open: function(){
                         //alert('组件打开');
                     }
                 },
-                //pmDomain: 'picman-test.china.alibaba.com:40100',
                 tab: 'upload',
                 token: 'test',
                 source: 'picman',//必须改成调用方的应用名，若不知道应用名可咨询方亮
@@ -67,31 +75,72 @@ jQuery(function($){
         <script>
             FE.test['style.picman.url'] = 'http://picman-test.china.alibaba.com:40100';
             jQuery(function($){
+               var result1 = $('ul.result');
+                var Achievement;
+                var tabs;
+                $.DEBUG = false;
                 $.add('sys-ibank', {
                     css: ['http://style.china.alibaba.com/css/sys/ibank/ibank-min.css'],
-                    js: ['http://style.china.alibaba.com/js/sys/ibank/ibank-min.js'],
+                    js: ['http://style.china.alibaba.com/js/sys/ibank/ibank.js'],
                     ver: '1.0'
                 });
+                $.use('util-achievement,util-debug',function()
+                {
+                    Achievement = $.util.Achievement;
+                    Achievement.add('event-iBankShow', '点击弹出图片银行菜单');
+                    Achievement.add('event-albumClick', '切换图片管家tab');
+                    Achievement.add('event-uploadClick', '切换我的电脑tab');
+                    Achievement.add('event-onlineClick', '切换网上图片tab');
+                    Achievement.add('event-imgInsert', '选择插入图片');
+                    Achievement.init();
+                });
+                
+                function _newTabsAndBindTabsClickEvent()
+                {
+                    tabs = $('div.tabs-nav li');
+                    tabs.bind("click",function(e){
+                        $.log(this.className);
+                        tabs.removeClass('current');
+                        switch ($.trim(this.className)) {
+                            case 'tab-album':
+                                Achievement.check('event-albumClick', true);
+                                break;
+                            case 'tab-upload':
+                                Achievement.check('event-uploadClick', true);
+                                break;
+                            case 'tab-online':
+                                Achievement.check('event-onlineClick', true);
+                                break;
+                        }
+                        $(this).addClass('current');
+                    });
+                }
                 $('button', '#demo1').click(function(e){
                     $.use('sys-ibank', function(){
                         FE.sys.iBank({
-                            tabs: ['album', 'upload'],
                             albumAuth: false,
                             watermark: false,
-                            submitText: '确定',
-                            //portlets: false,
-                            //albumId: '15815320',
-                            //allowMultiple: false,
+                            submitText: '确定',      
+//                            allowMultiple: false,
                             dialog: {
                                 open: function(){
-                                    //alert('组件打开');
+                                   //alert('组件打开');
+                                   _newTabsAndBindTabsClickEvent();
+                                   Achievement.check("event-iBankShow",true);
                                 }
                             },
-                            //tab: 'upload',
+                            tab: 'upload',
                             token: 'test',
                             source: 'picman',
                             insert: function(selected){
-                                $.log(selected);
+                                $.log(selected);                                
+                                $.each(selected, function(i,file){
+                                    var li = $("<li>");
+                                    var img = new Image();
+                                    img.src = file.src;
+                                    result1.append(li.append(img));
+                                });
+                                Achievement.check('event-imgInsert',true);
                             }
                         });
                     });
