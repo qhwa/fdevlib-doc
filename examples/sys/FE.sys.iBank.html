@@ -74,7 +74,7 @@ $('button', '#demo1').click(function(e){
                 insert: function(selected){
                     $.log(selected);
                     $.each(selected, function(i, file){
-                        var li = $("<li>");
+                        var li = $("&lt;li>");
                         var img = new Image();
                         img.src = file.src;
                         result1.append(li.append(img));
