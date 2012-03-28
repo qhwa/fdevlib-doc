@@ -33,6 +33,21 @@ jQuery(function($){
             <h2>Configs</h2>
             <dl>
                 <dt>
+                    <b>data</b>
+                    : $node 或 json数组 [required]
+                </dt>
+                <dd>
+                    下拉菜单的数据源。
+                </dd>
+                <dd>
+                    要求数组每个数据对象必须有value属性做为取值或设值的唯一标识。
+                </dd>
+                <dd>				
+					当为$node时，取 $node > option节点中的文本值为每条数据对象的value属性值。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
                     <b>name</b>
                     : String
                 </dt>
@@ -276,6 +291,22 @@ function(item){
                 </dd>
                 <dd>
                     Multiple时取消选中项
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>$item.data('item')</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>$item</b>
+                            :  选中的$item。可以通过dom获取：$item = $('li.ui-combobox-selected', $node)
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    获取选中的节点对应的数据对象
                 </dd>
             </dl>
             <h2>Events</h2>
