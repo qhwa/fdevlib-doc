@@ -11,7 +11,7 @@
             <p>
                 绑定：
                 <br/>
-                10.20.136.129   picman-test.china.alibaba.com #40100
+                10.20.172.37   picman-test.china.alibaba.com #40100
                 <br/>
                 10.20.141.148   loginchina-test.alibaba.com #3300 
                 <br/>
@@ -31,68 +31,90 @@
             </div>
         </div>
         <pre class="prettyprint language-js">
+//在没有Figo配置生效的环境下，手动配置Figo项
+FE.test['style.picman.url'] = 'http://picman-test.china.alibaba.com:40100';
 jQuery(function($){
+    //配置图片银行模块
     $.add('sys-ibank', {
         css: ['http://style.china.alibaba.com/css/sys/ibank/ibank-min.css'],
-        js: ['http://style.china.alibaba.com/js/sys/ibank/ibank.js'],
+        js: ['http://style.china.alibaba.com/js/sys/ibank/ibank-min.js'],
         ver: '1.0'
     });
-    $('button', '#demo').click(function(e){
+    //静态页面获取token
+    var tokenRequest = $.ajax('http://picman-test.china.alibaba.com:40100/open/ajax/csrf_token_get.json', {
+        dataType: 'jsonp'
+    });
+    
+    $('button', '#demo1').click(function(e){
         $.use('sys-ibank', function(){
-            FE.sys.iBank({
-                tabs: ['album', 'upload'],
-                albumAuth: false,
-                watermark: false,
-                submitText: '确定',
-                dialog: {
-                    open: function(){
-                        //alert('组件打开');
+            $.when(tokenRequest).then(function(o){
+                FE.sys.iBank({
+                    tabs: ['album', 'upload'],
+                    albumAuth: false,
+                    watermark: false,
+                    submitText: '确定',
+                    //portlets: false,
+                    //albumId: '15815320',
+                    //allowMultiple: false,
+                    dialog: {
+                        open: function(){
+                            //alert('组件打开');
+                        }
+                    },
+                    //tab: 'upload',
+                    token: o._csrf_token,
+                    source: 'picman',
+                    insert: function(selected){
+                        $.log(selected);
                     }
-                },
-                //pmDomain: 'picman-test.china.alibaba.com:40100',
-                tab: 'upload',
-                token: 'test',
-                source: 'picman',//必须改成调用方的应用名，若不知道应用名可咨询方亮
-                insert: function(selected){
-                    $.log(selected);
-                }
+                });
+                
             });
         });
     });
 });
-                
             </pre>
         <script src="../../static/js/app-merge.js">
         </script>
         <script>
+            //在没有Figo配置生效的环境下，手动配置Figo项
             FE.test['style.picman.url'] = 'http://picman-test.china.alibaba.com:40100';
             jQuery(function($){
+                //配置图片银行模块
                 $.add('sys-ibank', {
                     css: ['http://style.china.alibaba.com/css/sys/ibank/ibank-min.css'],
                     js: ['http://style.china.alibaba.com/js/sys/ibank/ibank-min.js'],
                     ver: '1.0'
                 });
+                //静态页面获取token
+                var tokenRequest = $.ajax('http://picman-test.china.alibaba.com:40100/open/ajax/csrf_token_get.json', {
+                    dataType: 'jsonp'
+                });
+                
                 $('button', '#demo1').click(function(e){
                     $.use('sys-ibank', function(){
-                        FE.sys.iBank({
-                            tabs: ['album', 'upload'],
-                            albumAuth: false,
-                            watermark: false,
-                            submitText: '确定',
-                            //portlets: false,
-                            //albumId: '15815320',
-                            //allowMultiple: false,
-                            dialog: {
-                                open: function(){
-                                    //alert('组件打开');
+                        $.when(tokenRequest).then(function(o){
+                            FE.sys.iBank({
+                                tabs: ['album', 'upload'],
+                                albumAuth: false,
+                                watermark: false,
+                                submitText: '确定',
+                                //portlets: false,
+                                //albumId: '15815320',
+                                //allowMultiple: false,
+                                dialog: {
+                                    open: function(){
+                                        //alert('组件打开');
+                                    }
+                                },
+                                //tab: 'upload',
+                                token: o._csrf_token,
+                                source: 'picman',
+                                insert: function(selected){
+                                    $.log(selected);
                                 }
-                            },
-                            //tab: 'upload',
-                            token: 'test',
-                            source: 'picman',
-                            insert: function(selected){
-                                $.log(selected);
-                            }
+                            });
+                            
                         });
                     });
                 });
