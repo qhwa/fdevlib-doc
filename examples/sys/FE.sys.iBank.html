@@ -40,6 +40,53 @@
             </div>
         </div>
         <pre class="prettyprint language-js">
+var result1 = $('ul.result');
+
+//配置图片银行模块
+$.add('sys-ibank', {
+    css: ['http://style.china.alibaba.com/css/sys/ibank/ibank-min.css'],
+    js: ['http://style.china.alibaba.com/js/sys/ibank/ibank.js'],
+    ver: '1.0'
+});
+//静态页面获取token
+var tokenRequest = $.ajax('http://picman-test.china.alibaba.com:40100/open/ajax/csrf_token_get.json', {
+    dataType: 'jsonp'
+});
+            
+$('button', '#demo1').click(function(e){
+    $.use('sys-ibank', function(){
+        $.when(tokenRequest).then(function(o){
+            FE.sys.iBank({
+                albumAuth: false,
+                watermark: false,
+                submitText: '确定',
+                //allowMultiple: false,
+                dialog: {
+                    open: function(){
+                        //alert('组件打开');
+                        _newTabsAndBindTabsClickEvent();
+                        Achievement.check("event-iBankShow", true);
+                    }
+                },
+                tab: 'upload',
+                token: o._csrf_token,
+                source: 'picman',
+                insert: function(selected){
+                    $.log(selected);
+                    $.each(selected, function(i, file){
+                        var li = $("<li>");
+                        var img = new Image();
+                        img.src = file.src;
+                        result1.append(li.append(img));
+                    });
+                    Achievement.check('event-imgInsert', true);
+                }
+            });
+        });
+    });
+});
+
+            
             </pre>
         <script src="../../static/js/app-merge.js">
         </script>
@@ -47,10 +94,12 @@
             //在没有Figo配置生效的环境下，手动配置Figo项
             FE.test['style.picman.url'] = 'http://picman-test.china.alibaba.com:40100';
             jQuery(function($){
-                //配置图片银行模块
+                
                 var result1 = $('ul.result');
                 var Achievement;
                 var tabs;
+                
+                //配置图片银行模块
                 $.add('sys-ibank', {
                     css: ['http://style.china.alibaba.com/css/sys/ibank/ibank-min.css'],
                     js: ['http://style.china.alibaba.com/js/sys/ibank/ibank.js'],
