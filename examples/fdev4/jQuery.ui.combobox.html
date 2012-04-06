@@ -74,7 +74,11 @@
                         	</pre>
                             <pre class="brush: js">
 $('div.combobox', '#demo1').combobox({
-    data: $('select')
+    data: $('select'),
+    editable: true,
+    change: function(){
+        console.info($(this).combobox('val'));
+    }
 });
                         	</pre>
                         </div>
@@ -301,7 +305,11 @@ var demo2 = $('div.combobox', '#demo2').combobox({
             jQuery(function($){
                 $.use('ui-combobox, util-debug', function(){
                     $('div.combobox', '#demo1').combobox({
-                        data: $('select')
+                        data: $('select'),
+                        editable: true,
+                        change: function(){
+                            console.info($(this).combobox('val'));
+                        }
                     });
                     var demo2 = $('div.combobox', '#demo2').combobox({
                         name: 'test',
