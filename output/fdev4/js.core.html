@@ -60,7 +60,7 @@
     function importJS(src){
         document.write('&lt;script type="text/javascript" src="' + src + '">&lt;/scr' + 'ipt>');
     }
-    importJS('http://style.china.alibaba.com/js/lib/fdev-v4/core/jquery-1.7.1.js');
+    importJS('http://style.china.alibaba.com/js/lib/fdev-v4/core/jquery-1.7.2.js');
     importJS('http://style.china.alibaba.com/js/lib/fdev-v4/core/gears.js');
     importJS('http://style.china.alibaba.com/js/lib/fdev-v4/core/web.js');
     importJS('http://style.china.alibaba.com/js/lib/fdev-v4/core/config.js');
@@ -68,6 +68,9 @@
             </pre>
             <h2>版本</h2>
             <ul>
+                <li>
+                    jQuery版本升级至官方1.7.2, $.use方法遵循commonJS的Promise规范 ---- 2012-04-16
+                </li>
                 <li>
                     优化escapeHTML方法，使之支持属性值的转义 ---- 2011-05-31
                 </li>
@@ -581,7 +584,7 @@ jQuery.add('data-jsonp', {
                     </ul>
                 </dd>
                 <dd>
-                    动态载入模块。
+                    动态载入模块。改方法目前支持deferred特性。可以通过$.when($.use(), $.use(), ...)来管理多个use操作;
                 </dd>
             </dl>
             <dl>
