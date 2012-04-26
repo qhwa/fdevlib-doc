@@ -81,6 +81,7 @@ Docs.contents=[
 							{"id": "fdev4.FE.ui.PCA", "href": "output/fdev4/FE.ui.PCA.html","text": "web-pca（三级联动）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.FE.ui.Valid", "href": "output/fdev4/FE.ui.Valid.html","text": "web-valid（验证）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
                             {"id": "fdev4.FE.ui.StyleSheet", "href": "output/fdev4/FE.ui.StyleSheet.html","text": "web-stylesheet（CSS Rule）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
+                            {"id": "fdev4.FE.ui.Suggestion", "href": "output/fdev4/FE.ui.Suggestion.html","text": "web-suggestion（关键字搜索补全）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
                             {"id": "fdev4.FE.ui.WebSocket", "href": "output/fdev4/FE.ui.WebSocket.html","text": "web-websocket（WebSocket）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true }
 					    ]
 					}
