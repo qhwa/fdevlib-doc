@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>FE.ui.Suggestion</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>FE.ui.Suggestion : 输入框关键字推荐下拉</h1>
+            <h2>介绍</h2>
+            <p>
+                多用于输入框输入关键字进行搜索
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    Denis: masthead改版后气功
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+$.add('web-suggestion', {
+    requires: ['ui-autocomplete'],
+    js: ['suggestion.js']
+});
+$('input[name=keywords]').bind('focus.suggestion', function(){
+    $.use('web-suggestion', function(){
+        suggestion = new FE.ui.Suggestion(keywords, {
+            appendTo: searchKeywords,
+            url: currentCfg.url,
+            type: currentCfg.type,
+            position: {
+                my: 'left top',
+                at: 'left bottom',
+                offset: '-5 0'
+            },
+            widthfix: 8,
+            onSelected: function(e, ui){
+                $('button[type=submit]').click();
+            }
+        });
+    });
+});
+</pre>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>appendTo</b>
+                    : HTML Element | jQuery
+                </dt>
+                <dd>
+                    下拉列表容器插入的位置
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>url</b>
+                    : Stirng
+                </dt>
+                <dd>
+                    关键字提示接口地址
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>type</b>
+                    : String
+                </dt>
+                <dd>
+                    关键字提示类型：目前有"offer"和"company"两种类型
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>position</b>
+                    : Object
+                </dt>
+                <dd>
+                    下拉列表容器显示的位置偏移，请参考"ui-position"的配置
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>widthfix</b>
+                    : Number
+                </dt>
+                <dd>
+                    下拉列表的宽度修正，默认跟输入框宽度一致
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.enable()</b>
+                </dt>
+                <dd>
+                    激活控件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.disable()</b>
+                </dt>
+                <dd>
+                    禁用控件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.setOptions( o )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>o</b>
+                            : Object 重置一个或多个配置参数
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    禁用控件
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>selected</b>
+                    : Function
+                </dt>
+                <dd>
+                    点击选择关键字以后触发
+                </dd>
+            </dl>
+        </div>
+        <script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>
