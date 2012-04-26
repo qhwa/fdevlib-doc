@@ -20,10 +20,6 @@
             </ul>
             <h2>¿ªÊ¼</h2>
             <pre class="prettyprint language-js">
-$.add('web-suggestion', {
-    requires: ['ui-autocomplete'],
-    js: ['suggestion.js']
-});
 $('input[name=keywords]').bind('focus.suggestion', function(){
     $.use('web-suggestion', function(){
         suggestion = new FE.ui.Suggestion(keywords, {
