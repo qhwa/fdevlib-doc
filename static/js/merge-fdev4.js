@@ -5,7 +5,7 @@
 		}
 	}
 })();
-ImportJavscript.url('http://style.china.alibaba.com/js/lib/fdev-v4/core/fdev-min.js');
+ImportJavscript.url('http://style.china.alibaba.com/fdevlib/js/fdev-v4/core/fdev-min.js');
 ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shCore.js");
 ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shBrushXml.js");
 ImportJavscript.url("/fdevlib/static/syntaxhighlighter2/scripts/shBrushCss.js");
