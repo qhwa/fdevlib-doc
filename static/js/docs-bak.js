@@ -1,4 +1,4 @@
-ï»¿Ext.BLANK_IMAGE_URL='http://matrix/work/javascript/ext/pro-snippets/images/s.gif';
+Ext.BLANK_IMAGE_URL='http://matrix/work/javascript/ext/pro-snippets/images/s.gif';
 ApiPanel=function() {
     ApiPanel.superclass.constructor.call(this,{
         id: 'api-tree',
@@ -75,7 +75,7 @@ Ext.extend(ApiPanel,Ext.tree.TreePanel,{
             bbar: [' ',
 			new Ext.form.Checkbox({
 			    id: 'cbxTabs',
-			    boxLabel: 'å¯ç”¨æ ‡ç­¾æµè§ˆ'
+			    boxLabel: 'ÆôÓÃ±êÇ©ä¯ÀÀ'
 			})
 			]
         });
@@ -111,7 +111,7 @@ Ext.extend(ApiPanel,Ext.tree.TreePanel,{
         });
     },
     /*
-    * å®šä½å½“å‰é¡µå¯¹åº”çš„æ ‘èŠ‚ç‚¹
+    * ¶¨Î»µ±Ç°Ò³¶ÔÓ¦µÄÊ÷½Úµã
     */
     selectClass: function(node) {
         var split=window.location.href.split('#');
@@ -133,7 +133,7 @@ DocPanel=Ext.extend(Ext.Panel,{
         var ps=this.cclass.split('.');
         Ext.apply(this,{
             tbar: ['->',{
-                text: 'æ”¶è—è¯¥æ ‡ç­¾é¡µ',
+                text: 'ÊÕ²Ø¸Ã±êÇ©Ò³',
                 handler: this.directLink,
                 scope: this,
                 iconCls: 'icon-fav'
@@ -148,7 +148,7 @@ DocPanel=Ext.extend(Ext.Panel,{
             "<a href=\"{0}\" target=\"_blank\">{0}</a>",
             window.location.href
         );
-        Ext.Msg.alert('ç›´æ¥è®¿é—®åœ°å€ï¼š'+this.cclass,link);
+        Ext.Msg.alert('Ö±½Ó·ÃÎÊµØÖ·£º'+this.cclass,link);
     }
 });
 

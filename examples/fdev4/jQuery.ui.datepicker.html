@@ -19,7 +19,7 @@
             <h1>ui-datepicker ui-datepicker-time : 日历</h1>
             <h2>输入框+最小可选日期+最大可选日期</h2>
             <div id="demo1">
-                <input id="trigger1" type="text" name="" readonly="readonly" data-min-date="2011-09-07" data-max-date="2012-12-21" />
+                <input id="trigger1" type="text" name="" data-min-date="2011-09-07" data-max-date="2012-12-21" />
             </div><pre class="prettyprint language-html">
 &lt;input id="trigger1" type="text" name="" readonly="readonly" data-min-date="2011-09-07" data-max-date="2011-12-21" /></pre><pre class="prettyprint language-js">
 $('#trigger1').one('focus', function(){
@@ -41,7 +41,7 @@ $('#trigger1').one('focus', function(){
     });
 });</pre><h2>双输入框日期范围</h2>
             <div id="demo2">
-                <input id="trigger2" type="text" name="" readonly="readonly" /> - <input id="trigger3" type="text" name="" readonly="readonly" />
+                <input id="trigger2" type="text" name="" /> - <input id="trigger3" type="text" name="" readonly="readonly" />
             </div>
             <pre class="prettyprint language-html">
 &lt;input id="trigger2" type="text" name="" readonly="readonly" /> - &lt;input id="trigger3" type="text" name="" readonly="readonly" />                
@@ -89,11 +89,14 @@ trigger3.one('focus', function(){
                     var self = $(this);
                     $.use('ui-datepicker-time, util-date', function(){
                         self.datepicker({
-                            showTime:true,
+                            //showTime:true,
                             closable:true,
                             triggerType: 'focus',
                             minDate: Date.parseDate(self.data('minDate')),
                             maxDate: Date.parseDate(self.data('maxDate')),
+                            beforeShow: function(){
+                                $(this).datepicker('setOption', 'selected', Date.parseDate(this.value));
+                            },
                             select: function(e, ui){
                                 $(this).val(ui.date.format('yyyy-MM-dd hh:mm:ss'));
                             },
