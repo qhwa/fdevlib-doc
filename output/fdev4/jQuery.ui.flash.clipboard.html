@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.flash</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="doc">
+            <h1>ui-flash-clipboard : 使用flash完成复制剪贴板功能</h1>
+            <h2>介绍</h2>
+            <p>
+                本组件使用flash来完成复制剪贴板功能。兼容绝大多数浏览器。
+            </p>
+            <h2>版本</h2>
+            <ul>
+                <li>
+                    jianping.shenjp: 参照开源的zeroClipBoard改造完成 ---- 2012.04.25
+                </li>
+            </ul>
+            <h2>开始</h2>
+            <pre class="prettyprint language-js">
+                $.use('ui-flash-clipboard', function(){
+                    $('...').flash(options);
+                });
+            </pre>
+            <h2>Demo</h2>
+            <p>
+                <a target="_blank" href="../../examples/fdev4/jQuery.ui.flash.clipboard.html">Try it!</a>
+            </p>
+            <h2>Configs</h2>
+            <dl>
+                <dt>
+                    <b>width</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 30
+                </dd>
+                <dd>
+                    flash容器的宽度(px)。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>height</b>
+                    : Number
+                </dt>
+                <dd>
+                    Default : 18
+                </dd>
+                <dd>
+                    flash容器的高度(px)。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>flashvars</b>
+                    : Object
+                </dt>
+                <dd>
+                    Default : <pre class="prettyprint language-js">
+                    {
+                        //(flash有效)为了防止IE下跨域问题，统一设置为500，亲！不要随意更改
+                        startDelay: 500,
+                        //事件钩子
+                        eventHandler: 'jQuery.util.flash.triggerHandler'
+                        //根据需要设置style样式，默认情况下不需要写！为了防止编码问题，这里必须用encodeURIComponent包裹
+                        //style:encodeURIComponent(styleObj)
+                    }</pre>
+                </dd>
+                <dd>
+                    flashvars的配置
+                </dd>
+                <dd>
+                    <pre class="prettyprint language-js">
+                    默认情况下，flash 按钮的文字为"复制",透明背景。
+                    
+                    flashvars中的style可以根据需要进行自定义设置，可以设置的属性为：
+                    //style的名字必须为clipboard
+                    'clipboard{
+                        text:复制我吧;//按钮的文本
+                        fontSize:19;//按钮文字的大小
+                        color:#FF0000;//按钮文字的颜色
+                        bgColor:#B1DDF8;//默认的背景色
+                        bgColor.hover:#E1F3FD;//hover状态的背景色
+                        bgColor.active:#E5F1F7;//鼠标按下时的背景色
+                        bgAlpha:1;//背景的透明度
+                    }'
+                    </pre>
+                </dd>
+            </dl>
+            <h2>Methods</h2>
+            <dl>
+                <dt>
+                    <b>.flash( 'setText', text )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>text</b>
+                            : String 需要复制剪贴板的文本
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置需要复制剪贴板的文本
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.flash( 'setHandCursor', enable )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>enable</b>
+                            : boolean 是否使得鼠标移到按钮上时，显示手型
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    设置是否使得鼠标移到按钮上时，显示手型
+                    (默认情况为手型)
+                </dd>
+            </dl>
+            <h2>Events</h2>
+            <dl>
+                <dt>
+                    <b>complete</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>event</b>
+                            : jQuery.event jQuery事件
+                        </li>
+                        <li>
+                            <b>data</b>
+                            : Object flash向外传输的数据
+                            <pre class="prettyprint language-js">
+                            数据结构为
+                            {
+                                swfid: "clipboard_2"//flash的id
+                                text: "copy me!"//复制的文本
+                                type: "complete"//事件名
+                            }
+                            </pre>
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    完成复制分发的事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>mouseOver</b>
+                </dt>
+                <dd>
+                    鼠标移动到flash按钮上分发的事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>mouseOut</b>
+                </dt>
+                <dd>
+                    鼠标离开flash按钮分发的事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>mouseDown</b>
+                </dt>
+                <dd>
+                    鼠标按下flash按钮分发的事件
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>mouseUp</b>
+                </dt>
+                <dd>
+                    鼠标抬起flash按钮分发的事件
+                </dd>
+            </dl>
+             <dl>
+                <dt>
+                    <b>swfReady</b>
+                </dt>
+                <dd>
+                    flash准备完毕分发的事件，只有在这个事件分发后，才能正常调用flash里面的方法。
+                </dd>
+            </dl>
+        </div>
+		<script src="../../static/js/app-merge.js">
+        </script>
+    </body>
+</html>

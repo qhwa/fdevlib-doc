@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>jQuery.ui.clipboard</title>
+        <link href="../../static/css/app-merge.css" rel="stylesheet"/>
+    </head>
+    <style type="text/css">
+        #d_debug_1{
+            float: left;
+        }
+
+    </style>
+    <body>
+        <div id="doc">
+            <h1>ui-flash : clipboard组件</h1>
+            <h2>借助flash使得各个浏览器都能使用复制剪贴板功能</h2>
+            <h2>基本demo(使用默认样式)</h2>
+            <table width="100%">
+                <tr>
+                    <td width="50%" valign="top">
+                        <table>
+                            <tr>
+                                <td align="right"><b>Text:</b></td>
+                                <td align="left"><input id="input_1" value="copy me!"></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div id="clipboard_1"></div>
+                    </td>
+                    <td width="50%" valign="top">
+                        <div id="debug_1" style="border:1px solid #aaa; padding: 10px; font-size:9pt;">
+                            <h3>Debug Console 1:</h3>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <pre class="prettyprint language-js">
+            $.use('ui-flash-clipboard', function(){
+                    $('#clipboard_1').flash({
+                        module: 'clipboard'
+                    }).on("swfReady.flash",function()
+                    {
+                        debugStr("#debug_1","swfReady");
+                    }).on("mouseDown.flash",function()
+                    {
+                        $(this).flash("setText",$("#input_1").val());
+                    }).on("complete.flash",function(e,data){
+                        debugStr("#debug_1","copy text:"+data.text);
+                    });
+                });
+            </pre>
+
+            <h2>进阶demo(修改按钮的样式)</h2>
+            <table width="100%">
+                <tr>
+                    <td width="50%" valign="top">
+                        <table>
+                            <tr>
+                                <td align="right"><b>Text:</b></td>
+                                <td align="left"><input id="input_2" value="copy me!"></td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div id="clipboard_2"></div>
+                    </td>
+                    <td width="50%" valign="top">
+                        <div id="debug_2" style="border:1px solid #aaa; padding: 10px; font-size:9pt;">
+                            <h3>Debug Console 2:</h3>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <pre class="prettyprint language-js">
+            $.use('ui-flash-clipboard', function(){
+                    var styleObj = 'clipboard{\
+                        text:复制我吧;//按钮的文本\
+                        fontSize:19;//按钮文字的大小\
+                        color:#FF0000;//按钮文字的颜色\
+                        bgColor:#B1DDF8;//默认的背景色\
+                        bgColor.hover:#E1F3FD;//hover状态的背景色\
+                        bgColor.active:#E5F1F7;//鼠标按下时的背景色\
+                        bgAlpha:1;//背景的透明度\
+                    }';
+                    $('#clipboard_2').flash({
+                        module: 'clipboard',
+                        width:200,
+                        height:50,
+                        flashvars:{
+                            style:encodeURIComponent(styleObj)
+                        }
+                    }).on("swfReady.flash",function()
+                    {
+                        debugStr("#debug_2","swfReady");
+                    }).on("mouseDown.flash",function()
+                    {
+                        $(this).flash("setText",$("#input_2").val());
+                    }).on("complete.flash",function(e,data){
+                        debugStr("#debug_2","copy text:"+data.text);
+                    });;
+                });
+            </pre>
+        </div>
+
+        <script src="../../static/js/app-merge.js">
+        </script>
+        <script>
+            jQuery(function($){
+                function debugStr(elemid,str){
+                    var textObj = $(elemid);
+                    var p = $("<input readonly='true'></input>").css("display","block").css("border","none").css("width","100%");
+                    p.val(str);
+                    textObj.append(p);
+                }
+
+                $.use('ui-flash-clipboard', function(){
+                    $('#clipboard_1').flash({
+                        module: 'clipboard'
+                    }).on("swfReady.flash",function()
+                    {
+                        debugStr("#debug_1","swfReady");
+                    }).on("mouseDown.flash",function()
+                    {
+                        $(this).flash("setText",$("#input_1").val());
+                    }).on("complete.flash",function(e,data){
+                        debugStr("#debug_1","copy text:   "+data.text);
+                    });
+                });
+
+                $.use('ui-flash-clipboard', function(){
+                    var styleObj = 'clipboard{\
+                        text:复制我吧;\
+                        fontSize:19;\
+                        color:#FF0000;\
+                        bgColor:#B1DDF8;\
+                        bgColor.hover:#E1F3FD;\
+                        bgColor.active:#E5F1F7;\
+                        bgAlpha:1;\
+                    }';
+                    $('#clipboard_2').flash({
+                        module: 'clipboard',
+                        width:200,
+                        height:50,
+                        flashvars:{
+                            style:encodeURIComponent(styleObj),
+                            debug:true
+                        }
+                    }).on("swfReady.flash",function()
+                    {
+                        debugStr("#debug_2","swfReady");
+                    }).on("mouseDown.flash",function()
+                    {
+                        $(this).flash("setText",$("#input_2").val());
+                    }).on("complete.flash",function(e,data){
+                        debugStr("#debug_2","copy text:   "+data.text);
+                    });;
+                });
+            });
+        </script>
+    </body>
+</html>
+
