@@ -73,9 +73,9 @@ $.use('ui-flash-uploader2, util-debug', function(){
     }).bind('fileSelect.flash', function(e, o){
         $(this).flash('uploadAll', 'http://picman-test.china.alibaba.com:40100/album/ajax/image_upload_ajax.json', {
             drawTxt: true,
-            albumId: '15801026',
+            albumId: '15815320',
             _csrf_token: 'test',
-            source: 'offer_detail'
+            source: 'picman'
         }, 'imgFile', 'fname');
     }).bind('swfReady.flash', function(e){
         $.log('swfReady');
@@ -192,9 +192,9 @@ $.use('ui-flash-uploader2, util-debug', function(){
                     }).bind('fileSelect.flash', function(e, o){
                         $(this).flash('uploadAll', 'http://picman-test.china.alibaba.com:40100/album/ajax/image_upload_ajax.json', {
                             drawTxt: true,
-                            albumId: '15801026',
+                            albumId: '15815320',
                             _csrf_token: 'test',
-                            source: 'offer_detail'
+                            source: 'picman'
                         }, 'imgFile', 'fname');
                     }).bind('swfReady.flash', function(e){
                         Achievement.check('property-module', true);
