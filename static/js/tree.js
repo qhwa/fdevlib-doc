@@ -37,6 +37,7 @@ Docs.contents=[
 							{"id": "fdev4.jQuery.ui.droppable", "href": "output/fdev4/jQuery.ui.droppable.html","text": "ui-droppable（拖放）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.jQuery.ui.flash", "href": "output/fdev4/jQuery.ui.flash.html","text": "ui-flash（Flash）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.jQuery.ui.flash.uploader", "href": "output/fdev4/jQuery.ui.flash.uploader.html","text": "ui-flash-uploader（上传组件）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
+							{"id": "fdev4.jQuery.ui.flash.clipboard", "href": "output/fdev4/jQuery.ui.flash.clipboard.html","text": "ui-flash-clipboard（剪切板复制组件）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.jQuery.ui.portlets", "href": "output/fdev4/jQuery.ui.portlets.html","text": "ui-portlets（模块排序）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.jQuery.ui.position", "href": "output/fdev4/jQuery.ui.position.html","text": "ui-position（定位）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
 							{"id": "fdev4.jQuery.ui.progressbar", "href": "output/fdev4/jQuery.ui.progressbar.html","text": "ui-progressbar（进度条）","isClass": true,"iconCls": "icon-js","cls": "cls","leaf": true },
