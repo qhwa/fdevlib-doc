@@ -181,6 +181,7 @@ Docs.contents=[
 	        {"id": "sys.footer", "href": "output/sys/footer.html","text": "footer","isClass": true,"iconCls": "icon-txt","cls": "cls","leaf": true },
 			{"id": "sys.FE.sys.iBank", "href": "output/sys/FE.sys.iBank.html","text": "图片银行(iBank)","isClass": true,"iconCls": "icon-txt","cls": "cls","leaf": true },
 			{"id": "sys.FE.sys.logist", "href": "output/sys/FE.sys.logist.html","text": "统一登录注册","isClass": true,"iconCls": "icon-txt","cls": "cls","leaf": true },
+			{"id": "sys.FE.sys.purchaselist", "href": "output/sys/FE.sys.purchaselist.html","text": "加入进货单组件","isClass": true,"iconCls": "icon-html","cls": "cls","leaf": true },
 			{"id": "sys.irecom", "href": "output/sys/FE.sys.irecom.html","text": "个性化推荐","isClass": true,"iconCls": "icon-txt","cls": "cls","leaf": true }
 	    ]
 	},
