@@ -66,7 +66,7 @@
     -moz-border-top-right-radius: 5px;
 }
 
-#doc dd em {
+#doc dd em, #doc p em {
     color: red;
 }
 
