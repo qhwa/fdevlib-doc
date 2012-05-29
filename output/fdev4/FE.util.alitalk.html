@@ -24,10 +24,14 @@
                     @update Denis 2011.06.23 对已经初始化过的标签不再重复初始化
                 </li>
                 <li>
-                    @update Denis 2011.09.22 优化getAlitalk的默认接口，带上了memberId；提取onRemote方法为默认函数，优化无默认文案的解决方案。
+                    @update Denis 2011.09.22 优化getAlitalk的默认接口，带上了loginId；提取onRemote方法为默认函数，优化无默认文案的解决方案。
                 </li>
             </ul>
             <h2>开始</h2>
+            <pre class="prettyprint language-html">
+<!--loginId必须提供-->
+<a title="" href="#" data-alitalk="{id:alitest}"></a>
+            </pre>
             <pre class="prettyprint language-js">
 $.use('web-alitalk', function(){
     FE.util.alitalk(elements, options);
@@ -61,7 +65,7 @@ $.use('web-alitalk', function(){
                     <ul>
                         <li>
                             <b>id</b>
-                            : String 用户memberId                    
+                            : String 用户loginId                    
                         </li>
                     </ul>
                 </dd>
