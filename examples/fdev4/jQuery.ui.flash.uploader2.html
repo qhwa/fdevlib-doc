@@ -117,8 +117,9 @@ $.use('ui-flash-uploader2, util-debug', function(){
     }).bind('finish.flash', function(e){
         var fileStatuses = $(this).flash('getFileStatuses');
         $.log('finish');
-        $(this).flash('clear');
         fileStatuses = $(this).flash('getFileStatuses');
+        $.log(fileStatuses);
+        $(this).flash('clear');
     });
     
     $('button.enable', '#demo1').click(function(){
@@ -255,6 +256,8 @@ $.use('ui-flash-uploader2, util-debug', function(){
                             }
                         }
                         $.log('finish');
+                        fileStatuses = $(this).flash('getFileStatuses');
+                        $.log(fileStatuses);
                         $(this).flash('clear');
                         fileStatuses = $(this).flash('getFileStatuses');
                         if (fileStatuses && !fileStatuses.length) {
