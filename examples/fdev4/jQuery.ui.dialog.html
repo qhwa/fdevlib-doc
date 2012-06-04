@@ -75,7 +75,7 @@ $('#trigger1').click(function(){
     $(dialogs[0]).bind('dialogbefore', function(){
         $.log('custom before');
     }).dialog({
-        modalCss: {
+        modalCSS: {
             backgroundColor: '#FFF'
         },
         draggable: {
@@ -155,8 +155,8 @@ $('#trigger2').click(function(event){
                         $(dialogs[0]).bind('dialogbefore', function(){
                             $.log('custom before');
                         }).dialog({
-                            modalCss: {
-                                backgroundColor: '#FFF'
+                            modalCSS: {
+                                backgroundColor: '#F00'
                             },
                             draggable: {
                                 handle: 'div.header'
