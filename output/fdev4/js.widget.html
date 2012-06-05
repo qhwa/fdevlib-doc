@@ -45,6 +45,255 @@
                     FE.sys: 网站模块
                 </li>
             </ul>
+            <h2>Properties</h2>
+            <dl>
+                <dt>
+                    <b>jQuery.ui.keyCode</b>
+                    : Object
+                </dt>
+                <dd>
+                    这是一个枚举常量, 存放了常用的键盘按键对应的keyCode. 注释的按键没有开放, 如有需要请联系架构组修改.<pre class="prettyprint language-js">
+                    {
+                      //ALT: 18,
+                      //BACKSPACE: 8,
+                      //CAPS_LOCK: 20,
+                      //COMMA: 188,
+                      //COMMAND: 91,
+                      //COMMAND_LEFT: 91, // COMMAND
+                      //COMMAND_RIGHT: 93,
+                      //CONTROL: 17,
+                      //DELETE: 46,
+                      DOWN: 40,
+                      //END: 35,
+                      ENTER: 13,
+                      ESCAPE: 27,
+                      //HOME: 36,
+                      //INSERT: 45,
+                      LEFT: 37,
+                      //MENU: 93, // COMMAND_RIGHT
+                      //NUMPAD_ADD: 107,
+                      //NUMPAD_DECIMAL: 110,
+                      //NUMPAD_DIVIDE: 111,
+                      NUMPAD_ENTER: 108,
+                      //NUMPAD_MULTIPLY: 106,
+                      //NUMPAD_SUBTRACT: 109,
+                      //PAGE_DOWN: 34,
+                      //PAGE_UP: 33,
+                      //PERIOD: 190,
+                      RIGHT: 39,
+                      SHIFT: 16,
+                      //SPACE: 32,
+                      TAB: 9,
+                      UP: 38
+                      //WINDOWS: 91 // COMMAND
+                    }
+                  </pre>
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>jQuery.support.minHeight</b>
+                </dt>
+                <dd>
+                    是否支持CSS minHeight属性
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>jQuery.support.selectstart </b>
+                </dt>
+                <dd>
+                    div是否支持onselectstart事件
+                </dd>
+            </dl>
+            <h2>Static Method</h2>
+            <dl>
+                <dt>
+                    <b>jQuery.ui.isOverAxis(x, reference, size)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>x</b>
+                            : number x或者y轴坐标
+                        </li>
+                        <li>
+                            <b>reference</b>
+                            : number x或者y轴的起始坐标
+                        </li>
+                        <li>
+                            <b>size</b>
+                            : number x或者y轴的范围
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    用来判断坐标是否在范围之内，这是直线范围，如果需要判断区域范围，请使用isOver(x, y, top, left, height, width)
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>jQuery.ui.isOver(x, y, top, left, height, width)</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>x</b>
+                            : number x轴坐标
+                        </li>
+                        <li>
+                            <b>y</b>
+                            : number y轴坐标
+                        </li>
+                        <li>
+                            <b>top</b>
+                            : number y轴的起始坐标
+                        </li>
+                        <li>
+                            <b>left</b>
+                            : number x轴的起始坐标
+                        </li>
+                        <li>
+                            <b>height</b>
+                            : number y轴相对起始坐标的高度
+                        </li>
+                        <li>
+                            <b>width</b>
+                            : number x轴相对起始坐标的宽度
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    用来判断坐标是否在范围之内
+                </dd>
+            </dl>
+            <h2>jQuery.fn.extend</h2>
+            <dl>
+                <dt>
+                    <b>.scrollParent()</b>
+                </dt>
+                <dd>
+                    获取对象的可滚动的父级节点, 向上递归直到HTML.
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.zIndex( [zIndex] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>zIndex</b>
+                            : Int z-index属性值
+                        </li>
+                        <li>
+                            <b>return</b>
+                            : Int z-index值
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    读取/设置对象的z-index值
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.disableSelection()</b>
+                </dt>
+                <dd>
+                    取消对象的可选中特性, 防止用户拖动鼠标时出现文本选中的高亮状态.
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.enableSelection()</b>
+                </dt>
+                <dd>
+                    激活对象的可选中特性, 使用户拖动鼠标时出现文本选中的高亮状态.
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.bgiframe( [options] )</b>
+                </dt>
+                <dd>
+                    <ul>
+                        <li>
+                            <b>options</b>
+                            : options 给shim垫片的自定义属性, 默认为透明
+                        </li>
+                    </ul>
+                </dd>
+                <dd>
+                    给节点添加shim垫片, 默认只有在IE6下才有效, 如果用户自定义了options, 则可以在非IE6下生效.
+                </dd>
+            </dl>
+            <h2>Selectors extend</h2>
+            <dl>
+                <dt>
+                    <b>":data" ":data(key)"</b>
+                </dt>
+                <dd>
+                    查询具有data信息的节点, 可以指定对应的key.
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>":focusable"</b>
+                </dt>
+                <dd>
+                    查询可以focus的对象,比如表单元素.
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>":tabbable"</b>
+                </dt>
+                <dd>
+                    查询具有tabindex属性的对象
+                </dd>
+            </dl>
+            <h2>Inherit Method</h2>
+            <dl>
+                <dt>
+                    <b>.destroy()</b>
+                </dt>
+                <dd>
+                    销毁组件实例
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.widget()</b>
+                </dt>
+                <dd>
+                    获取组件实例关联的对象（同this.element）
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.option(key[, value])</b>
+                </dt>
+                <dd>
+                    获取/设置组件配置项
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.enable()</b>
+                </dt>
+                <dd>
+                    激活组件，去掉组件关联的对象的"ui-state-disabled"样式和组件名称+"-disabled"后缀的样式。
+                </dd>
+            </dl>
+            <dl>
+                <dt>
+                    <b>.disable()</b>
+                </dt>
+                <dd>
+                    禁用组件，给组件关联的对象添加"ui-state-disabled"样式和组件名称+"-disabled"后缀的样式。
+                </dd>
+            </dl>
             <h2>单元测试</h2>
             <p>
                 <a href="../../test/fdev4/widget.html" target="_blank">Go!</a>
