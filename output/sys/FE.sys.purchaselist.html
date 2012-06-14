@@ -11,11 +11,12 @@
         
         <h2>介绍</h2>
         <p>提供加入进货单的组件。</p>
-        <p>注意：仅供*.china.alibaba.com域名和阿里巴巴中文站客户顶级域名（域名白名单库中）下页面使用，目前只提供基于FDEV4版本框架的组件。</p>
+        <p>注意：仅供*.china.alibaba.com域名和阿里巴巴中文站客户顶级域名（域名白名单库中）下页面使用，目前只提供基于FDEV4版本框架的组件。对于sku的offer大家可以检查相应域名下是否存在crossdomain.xml配置文件即可判断是否支持跨域，例如http://page.china.alibaba.com/crossdomain.xml</p>
         <h2>版本</h2>
         <ul>
             <li>created by ginano 2012.05.09 Fdev4版本</li>
 			 <li>updated by ginano 2012.05.18 新增dialog配置和打点参数，解决顶级域名跨域问题，修复二维sku下的单条记录html生成bug</li>
+			  <li>updated by ginano 2012.06.13 新增组件按钮的位置大小信息，以及增加展示前的回调onShow和点击按钮回调onClick，新增position配置参数用于对话框的定位，增加isAutoAdd设置是否自动加入进货单，isShowSuccess是否展示组件默认加入成功界面</li>
         </ul>
         <h2>开始</h2>
 		<p>引用如下js文件：</p>
@@ -30,11 +31,11 @@ ImportJavscript.url("http://style.china.alibaba.com/sys/js/purchaselist/purchase
 		</pre> 
 		 <h2>Configs</h2>
         <dl>
-            <dt><b>offerId</b> : 对应的offerId，必填</dt>
+            <dt><b>offerId</b> (String): 对应的offerId，必填</dt>
             <dd>目前只针对普通offer和skuoffer有效，其他offer会展示相应的提示信息。</dd>
         </dl>
 		 <dl>
-            <dt><b>tracelogStr</b> :tracelog打点时可以唯一标示该组件引用的次数（可选）</dt>
+            <dt><b>tracelogStr</b>  (String):tracelog打点时可以唯一标示该组件引用的次数（可选）</dt>
             <dd>目前默认tracelog值为sys_purchaselist_initial，如果配置该项则拼接_tracelogStr</dd>
         </dl>
 		<dl>
@@ -42,7 +43,36 @@ ImportJavscript.url("http://style.china.alibaba.com/sys/js/purchaselist/purchase
             <dd>目前默认为{center:true,shim:true}，如果需要自定义，可以查看dialog组件的配置即可完成自定义，详情请<a href="../fdev4/jQuery.ui.dialog.html">点击查看dialog配置项说明</a></dd>
         </dl>
 		<dl>
-            <dt><b>onSuccess</b> :加入成功后的回调函数名（可选）</dt>
+            <dt><b>position</b> :设置打开的对话框与调用组件的对齐方式</dt>
+            <dd>组件对话框展示与调用该对话框的组件对齐方式，按照先左右对齐方式，后上下对齐方式，先调用组件后对话框的方式进行命名参数设置。例如："left-right#top-bottom"表示调用组件的左边缘和对话框的右边缘对齐，调用组件的上边缘与对话框的下边缘对齐。一共系统默认了以下对齐方式：["center","left-left#top-bottom","left-left#bottom-top",'left-right#bottom-top','left-right#top-top','left-right#bottom-bottom','left-right#top-bottom','right-left#bottom-top','right-left#top-top','right-left#bottom-bottom','right-left#top-bottom','right-right#bottom-top','right-right#top-bottom']
+			</dd>
+        </dl>
+		<dl>
+            <dt><b>isShowSuccess</b>  (Boolean): 是否展示系统默认成功界面</dt>
+            <dd>是否展示系统默认成功界面，如果不需要可以自行设置，并结合前面的onSuccess回调函数自行处理。
+			</dd>
+        </dl>
+		<dl>
+            <dt><b>isAutoAdd</b> (Boolean) :设置是否直接执行加入进货单操作而不打开选择界面</dt>
+            <dd>设置是否直接执行加入进货单操作而不打开选择界面，直接进入加入进货单接口调用操作。对于普通的offer按照最小起批量进行自动加入进货单，对于skuoffer则需要自行完成设置，可以配置onShow回调函数进行设置，具体请查看onShow回调配置。
+			</dd>
+        </dl>
+					<dl>
+            <dt><b>onClick</b>  (&nbsp;Function(this,config,e)&nbsp;):在点击调用组件时调用</dt>
+            <dd>
+				<b>this</b>该调用组件本身；<br/>
+				<b>config</b>该组件的data-purchase配置，以及该组件的大小、位置<br/>
+				<b>e</b>事件本身
+			</dd>
+        </dl>
+		<dl>
+            <dt><b>onShow</b>  (&nbsp;Function(config)&nbsp;):在打开选择数量的对话框之前调用</dt>
+            <dd>参数<b>config</b>为该offer的所有配置信息，包括后台返回的msg错误信息（如果有）。此回调一般运用在不显示系统默认对话框，自行需要处理时使用（检查config.msg并展示），或者对于isAutoAdd配置为true时可以设置sku中的数量。采用开放接口(尽量少用，目前不成熟)FE.sys.purchaselist.Controller.setNum(Amount,index);
+			</dd>
+        </dl>
+
+		<dl>
+            <dt><b>onSuccess</b>  (&nbsp;Function(o)&nbsp;):加入成功后的回调函数名（可选）</dt>
             <dd>当服务器返回成功信息之后调用的用户自定义函数，传入的参数有成功信息对象{total:0.0,add_quantity:0,quantity:0,code:'',msg:'加入进货单参数有误，请重新操作！',success:'false'}。<br/>
 				其中：total为进货单中总金额，add_quantity为本次增加的种类,quantity为进货单总得种类数,code为状态码（PURCHASE_OVER_FLOW_ERROR等）,msg为错误提示信息（有错误时）,success为是否成功加入标志。
 			</dd>
