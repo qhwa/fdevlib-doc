@@ -32,11 +32,12 @@ ImportJavscript.url("http://style.china.alibaba.com/fdevlib/js/fdev-v4/core/fdev
 ImportJavscript.url("http://style.china.alibaba.com/sys/js/fly/irecom-min.js");
         </pre>
         <h3>调用步骤</h3>
-        <p>1、需要的html结构，仅一个空容器：</p>
+        <h4>1、需要的html结构，仅一个空容器：</h4>
         <pre class="brush:html">
 <div id="irecom-demo"></div>
         </pre>
-		<p>2、调用方式：</p>
+		<h4>2、调用方式：</h4>
+		<p>注意顺序，建议在<b>DOMReady之后</b>调用，因为组件依赖的某些值（如pageid）需要在beacon.js等后面才能取到</p>
         <pre class="brush:js">
 /*
  * @param {HTML element} or {selector string}  or {jquery element} container：个性化推荐展示的目标容器
@@ -45,11 +46,15 @@ ImportJavscript.url("http://style.china.alibaba.com/sys/js/fly/irecom-min.js");
  */		
 FE.sys.irecom(container,param,config);
         </pre>
-		<p>3、html模板渲染</p>
+		
+		<p><b>注意：</b></p>
+		<p><b>param</b>中的值和取数据有关，用来取得个性化展示数据，<b>config</b>则和组件展示形式及后续打点相关。</p>
+		<h4>3、html模板渲染</h4>
 		<p>个性化推荐，根据param值，从个性化推荐服务器中取得个性化推荐数据，供于渲染。</p>
 		<p>而个性化推荐的数据的类型，目前主要有offer，category+offer等基本类型，<b>请点击参看<a href="FE.sys.irecom.data.html" target="_blank">基本数据字段表</a>，配合组件提供的静态方法完成渲染。</b></p><br/>
-		<p>4、参数打点</p>
+		<h4>4、参数打点</h4>
 		<p>打点分为曝光打点和点击打点两种，一般个性化推荐，都会要求做这两类打点，<b>切勿遗漏</b>。可集成到config的行为配置项中，后面实际案例中会有例子。</p>
+		
         <h3>param参数列表</h3>
         <p>param参数是个性化接口需要我们传给服务器端的值，服务器根据这些传入值，返回所需要的个性化数据，以供展示需要（需求文档中会备注说明需要前端客户端传入）</p>
 		<pre class="brush:js">
@@ -170,9 +175,9 @@ FE.sys.irecom($('#irecom-demo'),param,{
 });
         </pre>
 		<h3>调用案例注意点</h3>
-		<p>①<b>曝光打点</b>预埋属性data-ctr和ctrQueue中的selector呈对应关系，一般节点上预埋收集objectId、alg两个值，ctrQueue中的param附加object_type，个别场景还有其它附加值</p>
+		<p>①<b>曝光打点</b>比较特殊，需要设置两处，1）HTML预埋属性data-ctr；2）config配置的ctrQueue。两者中由selector建立对应关系，一般节点上预埋收集objectId、alg两个值，ctrQueue中的param附加object_type，个别场景还有其它附加值</p>
 		<p>②<b>data-clickstat</b>为点击打点触发点的预埋属性，一般需要objectType、pid(可选)、objectId、alg四个值，个别场景还有其它值</p>
-		<p>③曝光打点(ctr_type)和点击打点(page)共用一个<b>statScene</b></p>
+		<p>③曝光打点(ctr_type)和点击打点(page)共用一个<b>statScene</b>，代表当然页面的场景</p>
 		<h3>一些template渲染时有用的静态方法</h3>
         <table class="g-paramtable">
             <thead>
